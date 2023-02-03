@@ -1,27 +1,32 @@
 import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import theme, { roboto } from '../material/theme'; //todo add user theme fetching logic
+import { roboto, theme } from '../material/theme'; //todo add user theme fetching logic
 import createEmotionCache from '../material/createEmotionCache';
+import { Experimental_CssVarsProvider, getInitColorSchemeScript } from '@mui/material';
 
 
 export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en" className={roboto.className}>
-        <Head>
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="shortcut icon" href="/static/favicon.ico" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-          {(this.props as any).emotionStyleTags}
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
+        <Experimental_CssVarsProvider defaultMode='system'>
+          <Head>
+            <meta name="theme-color" content={theme.palette.primary.main} />
+            <link rel="shortcut icon" href="/favicon.ico" />
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            />
+            <meta name="emotion-insertion-point" content="" />
+            {(this.props as any).emotionStyleTags}
+          </Head>
+          <body>
+            {getInitColorSchemeScript({ defaultMode: 'system' })}
+            <Main />
+            <NextScript />
+          </body>
+        </Experimental_CssVarsProvider>
       </Html>
     );
   }
