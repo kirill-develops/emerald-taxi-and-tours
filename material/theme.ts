@@ -9,14 +9,12 @@ export const roboto = Roboto({
 });
 
 
-let theme = createTheme({
+export let theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
   }
 });
 theme = responsiveFontSizes(theme);
 
-const lightTheme = createTheme(theme, {});
-const darkTheme = createTheme(theme, {});
-
-export default theme;
+export const lightTheme = createTheme(theme, {});
+export const darkTheme = createTheme(theme, {});
