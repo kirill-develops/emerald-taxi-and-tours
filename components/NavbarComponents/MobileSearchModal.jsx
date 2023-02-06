@@ -19,7 +19,7 @@ const modalStyle = {
   p: 4,
 };
 
-function MobileSearchModal() {
+function MobileSearchModal({ dissapearingBreakpoint }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -29,7 +29,7 @@ function MobileSearchModal() {
       sx={{
         flexGrow: 1,
         justifyContent: 'flex-end',
-        display: { xs: 'flex', md: 'none' },
+        display: { xs: 'flex', [dissapearingBreakpoint]: 'none' },
       }}
     >
       <IconButton
