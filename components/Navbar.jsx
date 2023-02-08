@@ -1,4 +1,6 @@
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import React from 'react';
 import Link from '../material/Link';
 import MobilePagesMenu from './NavbarComponents/MobilePagesMenu';

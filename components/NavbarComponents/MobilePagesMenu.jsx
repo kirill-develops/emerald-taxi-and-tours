@@ -1,12 +1,10 @@
-import {
-  Box,
-  IconButton,
-  Menu,
-  MenuItem,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { useState } from 'react';
 import Link from '../../material/Link';
 import { pages } from '../Navbar';
