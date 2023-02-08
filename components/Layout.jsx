@@ -1,3 +1,4 @@
+import Container from '@mui/material/Container';
 import React, { useEffect, useState } from 'react';
 import Copyright from './Copyright';
 import Navbar from './Navbar';
@@ -12,7 +13,7 @@ function Layout({ children }) {
   return (
     <>
       <Navbar />
-      {children}
+      <Container maxWidth="xl">{children}</Container>
       <Copyright />
     </>
   );
