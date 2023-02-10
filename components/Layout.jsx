@@ -20,10 +20,10 @@ function Layout({ children }) {
   return (
     <>
       <Navbar />
+      {!isXsBreakpoint && <Offset />}
       <Container
         maxWidth="xl"
         sx={{
-          height: { sm: '91vh' },
           minHeight: { sm: '100%' },
           overflow: { sm: 'auto' },
         }}
