@@ -32,7 +32,7 @@ function TourGrid() {
   );
 }
 
-const gridItemProps = { xs: 12, sm: 6, md: 4, lg: 3, item: true };
+const gridItemProps = { xs: 12, md: 6, lg: 4, item: true };
 
 function TourCard({ tour }) {
   const { name, area, link, type, price } = tour;
