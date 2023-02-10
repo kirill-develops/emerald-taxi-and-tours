@@ -1,6 +1,9 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import Link from '../material/Link';
 import MobilePagesMenu from './NavbarComponents/MobilePagesMenu';
@@ -13,37 +16,59 @@ export const pages = [
   { name: 'About Us', link: 'about' },
 ];
 
-function Navbar() {
+function ElevationScroll(props) {
+  const { children, window } = props;
+
+  const theme = useTheme();
+  const isXsBreakpoint = useMediaQuery(theme.breakpoints.only('xs'));
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  if (isXsBreakpoint) {
+    return children;
+  }
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 6 : 0,
+  });
+}
+
+function Navbar(props) {
   const menuBreakpoint = 'md';
 
   return (
-    <AppBar
-      sx={{
-        position: { xs: 'fixed', sm: 'sticky' },
-        top: { xs: 'auto', sm: '0' },
-        bottom: { xs: 0, sm: 'auto' },
-      }}
-    >
-      <Toolbar>
-        <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
-        <Typography
-          variant="h6"
-          component={Link}
-          href="/"
-          noWrap
-          sx={{
-            flexGrow: 1,
-            color: 'inherit',
-            textDecoration: 'none',
-            textAlign: { xs: 'center', md: 'initial' },
-          }}
-        >
-          Emerald Taxi & Tours
-        </Typography>
-        <TabletPagesLink dissapearingBreakpoint={menuBreakpoint} />
-        <MobileSearchModal dissapearingBreakpoint={menuBreakpoint} />
-      </Toolbar>
-    </AppBar>
+    <ElevationScroll {...props}>
+      <AppBar
+        sx={{
+          position: { xs: 'fixed' },
+          top: { xs: 'auto', sm: '0' },
+          bottom: { xs: 0, sm: 'initial' },
+        }}
+      >
+        <Toolbar>
+          <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
+          <Typography
+            variant="h6"
+            component={Link}
+            href="/"
+            noWrap
+            sx={{
+              flexGrow: 1,
+              color: 'inherit',
+              textDecoration: 'none',
+              textAlign: { xs: 'center', md: 'initial' },
+            }}
+          >
+            Emerald Taxi & Tours
+          </Typography>
+          <TabletPagesLink dissapearingBreakpoint={menuBreakpoint} />
+          <MobileSearchModal dissapearingBreakpoint={menuBreakpoint} />
+        </Toolbar>
+      </AppBar>
+    </ElevationScroll>
   );
 }
 
