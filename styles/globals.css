@@ -90,6 +90,10 @@ body {
   background: (var(--mui-palette-common-background))
 }
 
+main {
+  height: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
