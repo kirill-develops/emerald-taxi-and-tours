@@ -8,6 +8,9 @@ export const roboto = Roboto({
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
+export const gridSpacingProps = { xs: 1, sm: 2, md: 3, lg: 3.5 };
+
+
 
 export let theme = createTheme({
   typography: {

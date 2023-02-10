@@ -61,7 +61,6 @@ function AccordionCard({ destination, area, linkEnding }) {
     >
       <Card
         variant="outlined"
-        key={destinationURL}
         sx={cardStyleProps}
       >
         <CardHeader

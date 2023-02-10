@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import AccordionCard from './AccordionCard';
+import { gridSpacingProps } from '../../material/theme';
 
 function DestinationAccordion({
   name,
@@ -14,7 +15,7 @@ function DestinationAccordion({
   expanded,
   handleChange,
 }) {
-  const destinationsCardArray = destinations.map((destinaton) => (
+  const destinationsCardElArray = destinations.map((destinaton) => (
     <AccordionCard
       key={destinaton.link}
       destination={destinaton}
@@ -22,8 +23,6 @@ function DestinationAccordion({
       linkEnding={link}
     />
   ));
-
-  const gridSpacingProps = { xs: 1, sm: 2, md: 3, lg: 3.5 };
 
   return (
     <Accordion
@@ -44,7 +43,7 @@ function DestinationAccordion({
           spacing={gridSpacingProps}
           sx={{ alignItems: 'stretch' }}
         >
-          {destinationsCardArray}
+          {destinationsCardElArray}
         </Grid>
       </AccordionDetails>
     </Accordion>
