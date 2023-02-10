@@ -19,9 +19,9 @@ function Navbar() {
   return (
     <AppBar
       sx={{
-        position: { xs: 'fixed', sm: 'initial' },
-        top: { xs: 'auto', sm: 'initial' },
-        bottom: { xs: 0, sm: 'initial' },
+        position: { xs: 'fixed', sm: 'sticky' },
+        top: { xs: 'auto', sm: '0' },
+        bottom: { xs: 0, sm: 'auto' },
       }}
     >
       <Toolbar>
