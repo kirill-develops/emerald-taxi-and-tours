@@ -63,7 +63,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -77,7 +77,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -91,7 +91,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -105,7 +105,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -119,7 +119,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -211,7 +211,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -225,7 +225,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -239,7 +239,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -253,7 +253,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -267,7 +267,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
@@ -281,7 +281,7 @@ export const tourData = [
     price: [
       { name: 'Falmouth & Duncans', parish: 'Trelawny', link: 'trelawny', price: 25 },
       { name: 'Lucea', parish: 'Hanover', link: 'lucea', price: 25 },
-      { name: 'Montego Bay', parish: 'St. James', plink: 'montego_bay', price: 12.5 },
+      { name: 'Montego Bay', parish: 'St. James', link: 'montego_bay', price: 12.5 },
       { name: 'Negril', parish: 'Westmoreland', link: 'negril', price: 37.5 },
       { name: 'Ocho Rios', parish: 'St. Ann', link: 'ocho_rios', price: 40 },
       { name: 'Runaway Bay', parish: 'St. Ann', link: 'runaway_bay', price: 35 },
