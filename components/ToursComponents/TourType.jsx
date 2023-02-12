@@ -2,7 +2,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import React from 'react';
 
-function DestinationType({ typeArr }) {
+function TourType({ typeArr }) {
   return (
     <Stack
       direction="row"
@@ -20,4 +20,4 @@ function DestinationType({ typeArr }) {
   );
 }
 
-export default DestinationType;
+export default TourType;
