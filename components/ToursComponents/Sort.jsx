@@ -1,11 +1,15 @@
+import SortOutlined from '@mui/icons-material/SortOutlined';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import React, { useState } from 'react';
+import React from 'react';
+import { useTour } from '../../state/useSort';
 
 function Sort() {
-  const [sort, setSort] = useState('');
+  const [state, actions] = useTour();
+  const { sort } = state;
+  const { setSort } = actions;
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
@@ -20,12 +24,22 @@ function Sort() {
   return (
     <FormControl
       onKeyUp={handleClearSelect}
-      sx={{ m: 1, width: { xs: '50%', sm: '25%' } }}
+      sx={{ width: { xs: '40%', sm: '25%' } }}
       size={'small'}
     >
-      <InputLabel>Sort</InputLabel>
+      <InputLabel
+        sx={{
+          width: '45%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        Sort
+        <SortOutlined />
+      </InputLabel>
       <Select
-        label="Sort"
+        label="Sort......."
         value={sort}
         onChange={handleSortChange}
         sx={{ backgroundColor: 'white' }}
