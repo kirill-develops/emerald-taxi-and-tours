@@ -27,6 +27,7 @@ function SortButton() {
       sx={{
         width: { xs: '40%', sm: '25%' },
         minWidth: 125,
+        maxWidth: 225,
       }}
       size={'small'}
     >

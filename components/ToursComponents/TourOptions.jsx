@@ -13,7 +13,10 @@ function TourOptions() {
   const { filterExpand } = state;
 
   return (
-    <Container disableGutters>
+    <Container
+      disableGutters
+      maxWidth="xl"
+    >
       <Typography>TOURS & ATTRACTIONS</Typography>
       <Box
         sx={{
