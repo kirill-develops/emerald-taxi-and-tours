@@ -52,7 +52,10 @@ function TourGrid() {
   const sortedTourData = useSortData(filteredTourData, sort);
 
   return (
-    <Container maxWidth="lg">
+    <Container
+      maxWidth="lg"
+      sx={{ pl: { sm: 0 }, pr: { sm: 1 } }}
+    >
       <Grid
         container
         spacing={gridSpacingProps}

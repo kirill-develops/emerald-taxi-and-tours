@@ -7,7 +7,13 @@ import StartingLocations from '../FilterOptionComponents/StartingLocations';
 
 function FilterOptions() {
   return (
-    <Card sx={{ m: 2, p: 1 }}>
+    <Card
+      sx={{
+        m: { xs: 2, sm: 0 },
+        ml: { sm: 1 },
+        p: 1,
+      }}
+    >
       <Typography>Starting Location</Typography>
       <StartingLocations />
       <Typography>Attraction Type</Typography>
