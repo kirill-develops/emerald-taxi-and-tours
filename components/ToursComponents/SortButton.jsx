@@ -6,7 +6,7 @@ import Select from '@mui/material/Select';
 import React from 'react';
 import { useTour } from '../../state/useSort';
 
-function Sort() {
+function SortButton() {
   const [state, actions] = useTour();
   const { sort } = state;
   const { setSort } = actions;
@@ -24,7 +24,10 @@ function Sort() {
   return (
     <FormControl
       onKeyUp={handleClearSelect}
-      sx={{ width: { xs: '40%', sm: '25%' } }}
+      sx={{
+        width: { xs: '40%', sm: '25%' },
+        minWidth: 125,
+      }}
       size={'small'}
     >
       <InputLabel
@@ -32,11 +35,10 @@ function Sort() {
           width: '45%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
         }}
       >
         Sort
-        <SortOutlined />
+        <SortOutlined sx={{ ml: 1 }} />
       </InputLabel>
       <Select
         label="Sort......."
@@ -53,4 +55,4 @@ function Sort() {
   );
 }
 
-export default Sort;
+export default SortButton;
