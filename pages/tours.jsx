@@ -1,22 +1,22 @@
-import Container from '@mui/system/Container';
-import Typography from '@mui/material/Typography';
 import React from 'react';
 import Layout from '../components/Layout';
-import Sort from '../components/ToursComponents/Sort';
 import TourGrid from '../components/ToursComponents/TourGrid';
+import { TourContainer } from '../state/useSort';
+import TourOptions from '../components/ToursComponents/TourOptions';
+import FilterOptions from '../components/ToursComponents/FilterOptions';
 
-function Tours() {
+function tours() {
   return (
     <main>
-      <Layout>
-        <Container disableGutters>
-          <Typography>TOURS & ATTRACTIONS</Typography>
-          <Sort />
-        </Container>
-        <TourGrid />
-      </Layout>
+      <TourContainer>
+        <Layout>
+          <TourOptions />
+          <FilterOptions />
+          <TourGrid />
+        </Layout>
+      </TourContainer>
     </main>
   );
 }
 
-export default Tours;
+export default tours;
