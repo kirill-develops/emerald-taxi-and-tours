@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import React from 'react';
+import { useTour } from '../../state/useSort';
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
@@ -18,13 +19,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 function PriceTable({ pricesArr }) {
+  const [state, setState] = useTour();
+  const { filterStartLocation } = state;
+
   return (
-    <TableContainer>
+    <TableContainer sx={{ maxWidth: 500 }}>
       <Table
         size="small"
         aria-label="regional price table"
       >
-        <caption>All prices in USD</caption>
+        <caption>All prices in USD & include pickup and return</caption>
         <TableHead>
           <TableRow>
             <TableCell>Region</TableCell>
@@ -34,7 +38,10 @@ function PriceTable({ pricesArr }) {
         </TableHead>
         <TableBody>
           {pricesArr.map(({ name, parish, link, price }) => (
-            <StyledTableRow key={link}>
+            <StyledTableRow
+              key={link}
+              sx={{ backgroundColor: filterStartLocation[link] && 'red' }}
+            >
               <TableCell
                 component="th"
                 scope="row"
