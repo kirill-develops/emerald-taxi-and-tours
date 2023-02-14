@@ -5,20 +5,22 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { cardStyleProps } from '../../material/theme';
 import ExpandMore from '../ExpandMore';
 import PriceTable from './PriceTable';
 import TourType from './TourType';
+import PickUpCardHeader from './PickUpCardHeader';
 
-const gridItemProps = { xs: 12, md: 6, lg: 4, item: true };
+const gridItemProps = { xs: 12, item: true };
 
 function TourCard({ tour }) {
-  const { name, area, link, type, price } = tour;
+  const { name, area, link, type, price, description } = tour;
 
   const [expanded, setExpanded] = useState(false);
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -33,10 +35,23 @@ function TourCard({ tour }) {
           title={name}
           subheader={area}
         />
-        <CardContent>
+        <CardContent
+          sx={{
+            pt: 0,
+            display: 'flex',
+            flexDirection: 'row',
+            alignContent: 'center',
+          }}
+        >
           <TourType typeArr={type} />
+          <PickUpCardHeader />
         </CardContent>
-        <CardActions disableSpacing>
+        <Divider variant="middle" />
+        <CardActions
+          disableSpacing
+          sx={{ p: 2 }}
+        >
+          <Button variant="contained">Book Now</Button>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -45,7 +60,6 @@ function TourCard({ tour }) {
           >
             <ExpandMoreIcon />
           </ExpandMore>
-          <Button variant="contained">Book Now</Button>
         </CardActions>
         <Collapse
           in={expanded}
@@ -53,6 +67,7 @@ function TourCard({ tour }) {
           unmountOnExit
         >
           <CardContent>
+            {description.length > 0 && <Typography>{description}</Typography>}
             <PriceTable pricesArr={price} />
           </CardContent>
         </Collapse>
