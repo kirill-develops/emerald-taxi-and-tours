@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useTour } from '../../state/useSort';
-import Filter from './FilterButtonMobile';
+import FilterButton from './FilterButtonMobile';
 import FilterOptions from './FilterOptions';
 import SortButton from './SortButton';
 
@@ -26,11 +26,12 @@ function TourOptions() {
           m: 1,
         }}
       >
-        <Filter />
+        <FilterButton />
         <SortButton />
       </Box>
       <Collapse
         in={filterExpand}
+        sx={{ display: { sm: 'none' } }}
         timeout="auto"
         unmountOnExit
       >

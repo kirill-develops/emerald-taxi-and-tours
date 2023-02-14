@@ -63,8 +63,13 @@ const tourStore = createStore({
         setState({ sort: option })
       },
     handleFilterExpandClick:
-      () => ({ setState, getState }) => {
-        setState({ filterExpand: !getState().filterExpand })
+      (boolean) => ({ setState, getState }) => {
+        const isBoolean = typeof boolean === 'boolean';
+
+        setState({
+          filterExpand: isBoolean ?
+            boolean : !getState().filterExpand
+        })
       },
     handleStartLocationCheckbox:
       ({ target }) => ({ setState, getState }) => {
