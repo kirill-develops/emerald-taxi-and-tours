@@ -44,7 +44,7 @@ function TourCard({ tour }) {
           }}
         >
           <TourType typeArr={type} />
-          <PickUpCardHeader />
+          <PickUpCardHeader price={price} />
         </CardContent>
         <Divider variant="middle" />
         <CardActions

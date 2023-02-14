@@ -11,7 +11,7 @@ function checkObjectValues(obj) {
   return false;
 }
 
-function PickUpCardHeader() {
+function PickUpCardHeader({ price }) {
   const [state, actions] = useTour();
   const { filterStartLocation } = state;
 
