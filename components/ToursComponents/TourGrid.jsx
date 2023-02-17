@@ -2,25 +2,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import React from 'react';
 import { gridSpacingProps } from '../../material/theme';
-import { tourData } from '../../data/tours';
-import { useTour } from '../../state/useSort';
+import { useTour } from '../../state/useTour';
 import TourCard from './TourCard';
-
-function useFilterData(data, startLocationFilter, typeFilter, areaFilter) {
-  const filteredData = data.filter((item) => {
-    let include = false;
-    if (areaFilter[item.area]) {
-      include = true;
-    } else if (item.type.some((t) => typeFilter[t])) {
-      include = true;
-    } else if (item.price.some((p) => startLocationFilter[p.link])) {
-      include = true;
-    }
-    return include;
-  });
-
-  return filteredData.length > 0 ? filteredData : data;
-}
 
 function useSortData(data, sortBy = '') {
   const clonedData = structuredClone(data);
@@ -40,16 +23,10 @@ function useSortData(data, sortBy = '') {
 
 function TourGrid() {
   const [state, actions] = useTour();
-  const { sort, filterStartLocation, filterType, filterArea } = state;
+  const { sort, filterStartLocation, filterType, filterArea, filteredData } =
+    state;
 
-  const filteredTourData = useFilterData(
-    tourData,
-    filterStartLocation,
-    filterType,
-    filterArea,
-  );
-
-  const sortedTourData = useSortData(filteredTourData, sort);
+  const sortedTourData = useSortData(filteredData, sort);
 
   return (
     <Container
