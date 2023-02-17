@@ -40,7 +40,10 @@ function PriceTable({ pricesArr }) {
           {pricesArr.map(({ name, parish, link, price }) => (
             <StyledTableRow
               key={link}
-              sx={{ backgroundColor: filterStartLocation[link] && 'red' }}
+              sx={{
+                backgroundColor:
+                  filterStartLocation[link] && 'orange !important',
+              }}
             >
               <TableCell
                 component="th"
