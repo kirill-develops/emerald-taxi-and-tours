@@ -3,28 +3,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import React from 'react';
 import { tourData } from '../../data/tours';
-import { useTour } from '../../state/useTour';
-
-function extractPriceProperties(data) {
-  let result = [];
-  let uniqueNames = new Map();
-
-  data.forEach(({ price }) => {
-    price.forEach(({ name, link }) => {
-      if (!uniqueNames.has(link)) {
-        result.push({ name: name, link: link });
-        uniqueNames.set(link, true);
-      }
-    });
-  });
-
-  result.sort((a, b) => a.name.localeCompare(b.name));
-
-  return result;
-}
+import { extractProps, useTour } from '../../state/useTour';
 
 function StartingLocations() {
-  const filteredDepartures = extractPriceProperties(tourData);
+  const filteredDepartures = extractProps(tourData, 'price');
   const [state, actions] = useTour();
   const { filterStartLocation } = state;
   const { handleStartLocationCheckbox, findAvailableFilters } = actions;

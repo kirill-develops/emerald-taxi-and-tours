@@ -3,26 +3,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import React from 'react';
 import { tourData } from '../../data/tours';
-import { useTour } from '../../state/useTour';
-
-function extractAreaProperties(data) {
-  let result = [];
-  let uniqueNames = new Map();
-
-  data.forEach(({ area }) => {
-    if (!uniqueNames.has(area)) {
-      result.push(area);
-      uniqueNames.set(area, true);
-    }
-  });
-
-  result.sort();
-
-  return result;
-}
+import { extractProps, useTour } from '../../state/useTour';
 
 function AttractionRegion() {
-  const filteredAreas = extractAreaProperties(tourData);
+  const filteredAreas = extractProps(tourData, 'area');
   const [state, actions] = useTour();
   const { filterArea } = state;
   const { handleAreaCheckbox, findAvailableFilters } = actions;

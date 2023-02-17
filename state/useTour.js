@@ -18,6 +18,30 @@ function initFilter(data, key) {
   return result;
 };
 
+
+export function extractProps(data, key) {
+  const uniqueNames = new Set();
+
+  const result = data.flatMap(obj =>
+    Array.isArray(obj[key]) ? obj[key] : [obj[key]])
+    .filter(name => {
+      const isUnique = !uniqueNames.has(key === 'price' ? name.link : name);
+
+      if (isUnique) uniqueNames.add(key === 'price' ? name.link : name);
+
+      return isUnique;
+    });
+
+  if (key === 'price') {
+    result.sort((a, b) => a.name.localeCompare(b.name));
+  } else {
+    result.sort();
+  }
+
+  return key === 'price' ? result.map(({ name, link }) => ({ name, link })) : result;
+}
+
+
 const tourStore = createStore({
   name: 'tour Store',
   initialState: {

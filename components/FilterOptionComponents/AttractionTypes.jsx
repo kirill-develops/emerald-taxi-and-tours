@@ -3,28 +3,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import React from 'react';
 import { tourData } from '../../data/tours';
-import { useTour } from '../../state/useTour';
-
-function extractTypeProperties(data) {
-  let result = [];
-  let uniqueNames = new Map();
-
-  data.forEach(({ type }) => {
-    type.forEach((name) => {
-      if (!uniqueNames.has(name)) {
-        result.push(name);
-        uniqueNames.set(name, true);
-      }
-    });
-  });
-
-  result.sort();
-
-  return result;
-}
+import { extractProps, useTour } from '../../state/useTour';
 
 function AtractionTypes() {
-  const filteredTypes = extractTypeProperties(tourData);
+  const filteredTypes = extractProps(tourData, 'type');
   const [state, actions] = useTour();
   const { filterType } = state;
   const { handleTypeCheckbox, findAvailableFilters } = actions;
