@@ -23,7 +23,7 @@ function useSortData(data, sortBy = '') {
 
 function TourGrid() {
   const [state, actions] = useTour();
-  const { sort, filterStartLocation, filterType, filterArea, filteredData } =
+  const { sort, filteredData } =
     state;
 
   const sortedTourData = useSortData(filteredData, sort);
