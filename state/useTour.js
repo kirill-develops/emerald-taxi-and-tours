@@ -1,62 +1,31 @@
 import { createStore, createHook, createContainer } from 'react-sweet-state';
 import { tourData } from '../data/tours';
 
-
-function initStartingLocationFilter(data) {
+function initFilter(data, key) {
   let result = {};
   let uniqueNames = new Map();
 
-  data.forEach(({ price }) => {
-    price.forEach(({ link }) => {
-      if (!uniqueNames.has(link)) {
-        result[link] = false;
-        uniqueNames.set(link, true);
+  data.forEach((obj) => {
+    let names = Array.isArray(obj[key]) ? obj[key] : [obj[key]];
+    names.forEach((name) => {
+      if (!uniqueNames.has(key === 'price' ? name.link : name)) {
+        result[key === 'price' ? name.link : name] = false;
+        uniqueNames.set(key === 'price' ? name.link : name, true);
       }
     });
   });
 
   return result;
-}
-
-function initTypeFilter(data) {
-  let result = {};
-  let uniqueNames = new Map();
-
-  data.forEach(({ type }) => {
-    type.forEach((name) => {
-      if (!uniqueNames.has(name)) {
-        result[name] = false;
-        uniqueNames.set(name, true);
-      }
-    });
-  });
-
-  return result;
-}
-
-function initAreaFilter(data) {
-  let result = {};
-  let uniqueNames = new Map();
-
-  data.forEach(({ area }) => {
-    if (!uniqueNames.has(area)) {
-      result[area] = false;
-      uniqueNames.set(area, true);
-    }
-  });
-
-  return result;
-}
-
+};
 
 const tourStore = createStore({
   name: 'tour Store',
   initialState: {
     sort: '',
     filterExpand: false,
-    filterStartLocation: initStartingLocationFilter(tourData),
-    filterType: initTypeFilter(tourData),
-    filterArea: initAreaFilter(tourData),
+    filterStartLocation: initFilter(tourData, 'price'),
+    filterType: initFilter(tourData, 'type'),
+    filterArea: initFilter(tourData, 'area'),
     filteredData: tourData,
   },
   actions: {
@@ -133,7 +102,6 @@ const tourStore = createStore({
       const { filteredData } = getState();
 
       return filters.reduce((acc, filter) => {
-
         if (typeof filter === 'object') {
           const match = filteredData.find((item) =>
             item.price?.some((price) => price.link === filter.link),
@@ -141,6 +109,7 @@ const tourStore = createStore({
 
           acc[filter.link] = Boolean(match);
         }
+
         if (typeof filter === 'string') {
           const match = filteredData.find((item) =>
             item.area === filter ||
