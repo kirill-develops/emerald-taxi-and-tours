@@ -50,16 +50,18 @@ function initAreaFilter(data) {
 
 
 const tourStore = createStore({
+  name: 'tour Store',
   initialState: {
     sort: '',
     filterExpand: false,
     filterStartLocation: initStartingLocationFilter(tourData),
     filterType: initTypeFilter(tourData),
-    filterArea: initAreaFilter(tourData)
+    filterArea: initAreaFilter(tourData),
+    filteredData: tourData,
   },
   actions: {
     setSort:
-      (option) => ({ setState, getState }) => {
+      (option) => ({ setState }) => {
         setState({ sort: option })
       },
     handleFilterExpandClick:
@@ -72,7 +74,7 @@ const tourStore = createStore({
         })
       },
     handleStartLocationCheckbox:
-      ({ target }) => ({ setState, getState }) => {
+      ({ target }) => ({ setState, getState, dispatch }) => {
         const { filterStartLocation: startingLocation } = getState();
         const { value } = target;
 
@@ -81,10 +83,12 @@ const tourStore = createStore({
             ...startingLocation,
             [value]: !startingLocation[value]
           }
-        })
+        });
+
+        dispatch(tourStore.actions.handleFilterData());
       },
     handleTypeCheckbox:
-      ({ target }) => ({ setState, getState }) => {
+      ({ target }) => ({ setState, getState, dispatch }) => {
         const { filterType } = getState();
         const { value } = target;
 
@@ -93,10 +97,12 @@ const tourStore = createStore({
             ...filterType,
             [value]: !filterType[value]
           }
-        })
+        });
+
+        dispatch(tourStore.actions.handleFilterData());
       },
     handleAreaCheckbox:
-      ({ target }) => ({ setState, getState }) => {
+      ({ target }) => ({ setState, getState, dispatch }) => {
         const { filterArea } = getState();
         const { value } = target;
 
@@ -105,8 +111,46 @@ const tourStore = createStore({
             ...filterArea,
             [value]: !filterArea[value]
           }
-        })
-      }
+        });
+
+        dispatch(tourStore.actions.handleFilterData());
+      },
+    handleFilterData: () => ({ setState, getState }) => {
+      const { filterStartLocation, filterType, filterArea } = getState();
+      const isStartLocFiltered = Object.values(filterStartLocation).some(val => val);
+      const isTypeFiltered = Object.values(filterType).some(val => val);
+      const isAreaFiltered = Object.values(filterArea).some(val => val);
+
+      const filteredData = tourData.filter(item =>
+        (!isStartLocFiltered || item.price.some((p) => filterStartLocation[p.link]))
+        && (!isTypeFiltered || item.type.some((t) => filterType[t]))
+        && (!isAreaFiltered || filterArea[item.area])
+      );
+
+      setState({ filteredData: filteredData.length > 0 ? filteredData : tourData });
+    },
+    findAvailableFilters: (filters) => ({ getState }) => {
+      const { filteredData } = getState();
+
+      return filters.reduce((acc, filter) => {
+
+        if (typeof filter === 'object') {
+          const match = filteredData.find((item) =>
+            item.price?.some((price) => price.link === filter.link),
+          );
+
+          acc[filter.link] = Boolean(match);
+        }
+        if (typeof filter === 'string') {
+          const match = filteredData.find((item) =>
+            item.area === filter ||
+            item.type?.some(type => type === filter))
+
+          acc[filter] = Boolean(match);
+        }
+        return acc;
+      }, {});
+    }
   }
 });
 
