@@ -3,7 +3,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import React from 'react';
 import { tourData } from '../../data/tours';
-import { useTour } from '../../state/useSort';
+import { useTour } from '../../state/useTour';
 
 function extractAreaProperties(data) {
   let result = [];
@@ -25,7 +25,9 @@ function AttractionRegion() {
   const filteredAreas = extractAreaProperties(tourData);
   const [state, actions] = useTour();
   const { filterArea } = state;
-  const { handleAreaCheckbox } = actions;
+  const { handleAreaCheckbox, findAvailableFilters } = actions;
+
+  const areaAvailable = findAvailableFilters(filteredAreas);
 
   return (
     <FormGroup>
@@ -40,6 +42,7 @@ function AttractionRegion() {
               inputProps={{ 'aria-label': name }}
               value={name}
               checked={filterArea[name]}
+              disabled={!areaAvailable[name]}
               onChange={handleAreaCheckbox}
             />
           }

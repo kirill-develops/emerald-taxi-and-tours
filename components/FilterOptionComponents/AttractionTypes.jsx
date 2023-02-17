@@ -3,7 +3,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import React from 'react';
 import { tourData } from '../../data/tours';
-import { useTour } from '../../state/useSort';
+import { useTour } from '../../state/useTour';
 
 function extractTypeProperties(data) {
   let result = [];
@@ -27,7 +27,9 @@ function AtractionTypes() {
   const filteredTypes = extractTypeProperties(tourData);
   const [state, actions] = useTour();
   const { filterType } = state;
-  const { handleTypeCheckbox } = actions;
+  const { handleTypeCheckbox, findAvailableFilters } = actions;
+
+  const typeAvailable = findAvailableFilters(filteredTypes);
 
   return (
     <FormGroup>
@@ -42,6 +44,7 @@ function AtractionTypes() {
               inputProps={{ 'aria-label': name }}
               value={name}
               checked={filterType[name]}
+              disabled={!typeAvailable[name]}
               onChange={handleTypeCheckbox}
             />
           }

@@ -3,7 +3,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import React from 'react';
 import { tourData } from '../../data/tours';
-import { useTour } from '../../state/useSort';
+import { useTour } from '../../state/useTour';
 
 function extractPriceProperties(data) {
   let result = [];
@@ -27,7 +27,11 @@ function StartingLocations() {
   const filteredDepartures = extractPriceProperties(tourData);
   const [state, actions] = useTour();
   const { filterStartLocation } = state;
-  const { handleStartLocationCheckbox } = actions;
+  const { handleStartLocationCheckbox, findAvailableFilters } = actions;
+
+  const pickupAvailable = findAvailableFilters(
+    Object.values(filteredDepartures),
+  );
 
   return (
     <FormGroup>
@@ -42,6 +46,7 @@ function StartingLocations() {
               inputProps={{ 'aria-label': name }}
               value={link}
               checked={filterStartLocation[link]}
+              disabled={!pickupAvailable[link]}
               onChange={handleStartLocationCheckbox}
             />
           }
