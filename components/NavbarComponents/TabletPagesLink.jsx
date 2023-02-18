@@ -9,7 +9,7 @@ function TabletPagesLink({ dissapearingBreakpoint }) {
     <Button
       key={link}
       LinkComponent={Link}
-      href={`./${link}`}
+      href={`../${link}`}
       sx={{ display: 'block', color: 'white', textDecoration: 'none' }}
     >
       {name}
