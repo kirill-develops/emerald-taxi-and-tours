@@ -3,7 +3,7 @@ import Collapse from '@mui/material/Collapse';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import { useTour } from '../../state/useTour';
+import { useTour } from '@state/useTour';
 import FilterButton from './FilterButtonMobile';
 import FilterOptions from './FilterOptions';
 import SortButton from './SortButton';

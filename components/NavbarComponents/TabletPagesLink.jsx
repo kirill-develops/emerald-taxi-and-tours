@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import React from 'react';
-import Link from '../../material/Link';
+import Link from '@material/Link';
 import { pages } from '../Navbar';
 
 function TabletPagesLink({ dissapearingBreakpoint }) {

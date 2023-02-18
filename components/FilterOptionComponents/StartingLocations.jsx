@@ -2,8 +2,8 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import React from 'react';
-import { tourData } from '../../data/tours';
-import { extractProps, useTour } from '../../state/useTour';
+import { tourData } from '@data/tours';
+import { extractProps, useTour } from '@state/useTour';
 
 function StartingLocations() {
   const filteredDepartures = extractProps(tourData, 'price');

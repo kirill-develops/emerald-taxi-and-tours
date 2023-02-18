@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import { cardStyleProps } from '../../material/theme';
+import { cardStyleProps } from '@material/theme';
 import ExpandMore from '../ExpandMore';
 import PriceTable from './PriceTable';
 import TourType from './TourType';

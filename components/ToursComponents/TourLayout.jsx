@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid';
 import React from 'react';
-import { gridSpacingProps } from '../../material/theme';
+import { gridSpacingProps } from '@material/theme';
 import TourOptions from './TourOptions';
 import FilterOptions from './FilterOptions';
 import TourGrid from './TourGrid';

@@ -1,8 +1,8 @@
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import React from 'react';
-import { gridSpacingProps } from '../../material/theme';
-import { useTour } from '../../state/useTour';
+import { gridSpacingProps } from '@material/theme';
+import { useTour } from '@state/useTour';
 import TourCard from './TourCard';
 
 function useSortData(data, sortBy = '') {
@@ -23,8 +23,7 @@ function useSortData(data, sortBy = '') {
 
 function TourGrid() {
   const [state, actions] = useTour();
-  const { sort, filteredData } =
-    state;
+  const { sort, filteredData } = state;
 
   const sortedTourData = useSortData(filteredData, sort);
 

@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import AccordionCard from './AccordionCard';
-import { gridSpacingProps } from '../../material/theme';
+import { gridSpacingProps } from '@material/theme';
 
 function DestinationAccordion({
   name,

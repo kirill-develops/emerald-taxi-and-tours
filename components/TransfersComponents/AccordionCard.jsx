@@ -8,7 +8,7 @@ import Collapse from '@mui/material/Collapse';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import { cardStyleProps } from '../../material/theme';
+import { cardStyleProps } from '@material/theme';
 import ExpandMore from '../ExpandMore';
 
 function getSubheader(linkEnding, destination, area) {
