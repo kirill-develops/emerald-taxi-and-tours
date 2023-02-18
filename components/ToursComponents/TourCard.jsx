@@ -51,7 +51,12 @@ function TourCard({ tour }) {
           disableSpacing
           sx={{ p: 2 }}
         >
-          <Button variant="contained">Book Now</Button>
+          <Button
+            variant="contained"
+            href={`../tours/${link}`}
+          >
+            Book Now
+          </Button>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
