@@ -1,11 +1,12 @@
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
-import Link from '../material/Link';
+import Link from '@material/Link';
 import MobilePagesMenu from './NavbarComponents/MobilePagesMenu';
 import MobileSearchModal from './NavbarComponents/MobileSearchModal';
 import TabletPagesLink from './NavbarComponents/TabletPagesLink';
@@ -50,20 +51,25 @@ function Navbar(props) {
       >
         <Toolbar>
           <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
-          <Typography
-            variant="h6"
-            component={Link}
-            href="/"
-            noWrap
+          <Box
             sx={{
               flexGrow: 1,
-              color: 'inherit',
-              textDecoration: 'none',
-              textAlign: { xs: 'center', md: 'initial' },
             }}
           >
-            Emerald Taxi & Tours
-          </Typography>
+            <Typography
+              variant="h6"
+              component={Link}
+              href="../"
+              noWrap
+              sx={{
+                color: 'inherit',
+                textDecoration: 'none',
+                textAlign: { xs: 'center', md: 'initial' },
+              }}
+            >
+              Emerald Taxi & Tours
+            </Typography>
+          </Box>
           <TabletPagesLink dissapearingBreakpoint={menuBreakpoint} />
           <MobileSearchModal dissapearingBreakpoint={menuBreakpoint} />
         </Toolbar>

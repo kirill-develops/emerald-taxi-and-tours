@@ -5,10 +5,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import React, { useState } from 'react';
-import Link from '../../material/Link';
-import { pages } from '../Navbar';
 import { useTheme } from '@emotion/react';
+import React, { useState } from 'react';
+import Link from 'material/Link';
+import { pages } from 'components/Navbar';
 
 function MobilePagesMenu({ dissapearingBreakpoint }) {
   const theme = useTheme();
@@ -69,7 +69,7 @@ function MobilePagesMenu({ dissapearingBreakpoint }) {
           >
             <Typography
               component={Link}
-              href={`./${link}`}
+              href={`../${link}`}
               textAlign="center"
               sx={{ textDecoration: 'none' }}
             >
