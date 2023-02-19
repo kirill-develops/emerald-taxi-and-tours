@@ -1,32 +1,30 @@
 import * as React from 'react';
+import { getInitColorSchemeScript } from '@mui/material';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import { roboto, theme } from '../material/theme'; //todo add user theme fetching logic
-import createEmotionCache from '../material/createEmotionCache';
-import { Experimental_CssVarsProvider, getInitColorSchemeScript } from '@mui/material';
+import { roboto, theme } from '@material/theme';
+import createEmotionCache from '@material/createEmotionCache';
 
 
 export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en" className={roboto.className}>
-        <Experimental_CssVarsProvider defaultMode='system'>
-          <Head>
-            <meta name="theme-color" content={theme.palette.primary.main} />
-            <link rel="shortcut icon" href="/favicon.ico" />
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-            />
-            <meta name="emotion-insertion-point" content="" />
-            {(this.props as any).emotionStyleTags}
-          </Head>
-          <body>
-            {getInitColorSchemeScript({ defaultMode: 'system' })}
-            <Main />
-            <NextScript />
-          </body>
-        </Experimental_CssVarsProvider>
+        <Head>
+          <meta name="theme-color" content={theme.palette.primary.main} />
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+          <meta name="emotion-insertion-point" content="" />
+          {(this.props as any).emotionStyleTags}
+        </Head>
+        <body>
+          {getInitColorSchemeScript({ defaultMode: 'system' })}
+          <Main />
+          <NextScript />
+        </body>
       </Html>
     );
   }

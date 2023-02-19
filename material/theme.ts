@@ -18,6 +18,7 @@ export const cardStyleProps = {
   justifyContent: 'space-between',
 };
 
+
 export let theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
@@ -25,5 +26,4 @@ export let theme = createTheme({
 });
 theme = responsiveFontSizes(theme);
 
-export const lightTheme = createTheme(theme, {});
-export const darkTheme = createTheme(theme, {});
+export const darkTheme = createTheme({ palette: { mode: 'dark' } });
