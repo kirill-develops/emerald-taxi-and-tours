@@ -54,6 +54,7 @@ function Navbar(props) {
           <Box
             sx={{
               flexGrow: 1,
+              textAlign: { xs: 'center', md: 'initial' },
             }}
           >
             <Typography
@@ -64,7 +65,6 @@ function Navbar(props) {
               sx={{
                 color: 'inherit',
                 textDecoration: 'none',
-                textAlign: { xs: 'center', md: 'initial' },
               }}
             >
               Emerald Taxi & Tours
