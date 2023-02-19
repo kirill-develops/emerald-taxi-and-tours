@@ -1,12 +1,12 @@
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
-import DestinationAccordion from '../components/TransfersComponents/DestinationAccordion';
+import Layout from '@components/Layout';
+import DestinationAccordion from '@components/TransfersComponents/DestinationAccordion';
 import {
   normanManleyTransferData,
   sangsterTransferData,
-} from '../data/transfers';
+} from '@data/transfers';
 
 function useAccordionElArray(transferData) {
   const [expanded, setExpanded] = useState(false);

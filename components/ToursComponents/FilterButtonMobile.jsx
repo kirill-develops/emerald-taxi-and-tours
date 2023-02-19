@@ -27,7 +27,6 @@ function FilterButtonMobile() {
       sx={{
         width: '40%',
         minWidth: 125,
-        backgroundColor: 'white',
         display: { sm: 'none' },
       }}
       onClick={handleFilterExpandClick}

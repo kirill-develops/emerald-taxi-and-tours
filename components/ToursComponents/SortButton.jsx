@@ -39,13 +39,16 @@ function SortButton() {
         }}
       >
         Sort
-        <SortOutlined sx={{ ml: 1 }} />
+        <SortOutlined
+          sx={{
+            ml: 1,
+          }}
+        />
       </InputLabel>
       <Select
         label="Sort......."
         value={sort}
         onChange={handleSortChange}
-        sx={{ backgroundColor: 'white' }}
       >
         <MenuItem value="alphabetical"> Alphabetical</MenuItem>
         <MenuItem value="priceAscending">Price: Low to High</MenuItem>
