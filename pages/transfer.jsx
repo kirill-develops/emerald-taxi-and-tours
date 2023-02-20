@@ -38,8 +38,7 @@ function Transfer() {
 
   return (
     <main>
-      <Layout>
-        <Typography>AIRPORT TRANSFERS</Typography>
+      <Layout title="Airport Transfers">
         <Typography>Sangster International, Montego Bay</Typography>
         <Container maxWidth="lg">{sangsterAccordionElArray}</Container>
         <Typography>Norman Manley International, Kingston</Typography>

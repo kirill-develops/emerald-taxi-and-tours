@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useTour } from '@state/useTour';
 import FilterButton from './FilterButtonMobile';
@@ -17,7 +16,6 @@ function TourOptions() {
       disableGutters
       maxWidth="xl"
     >
-      <Typography>TOURS & ATTRACTIONS</Typography>
       <Box
         sx={{
           display: 'flex',

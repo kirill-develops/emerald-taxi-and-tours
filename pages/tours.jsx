@@ -7,7 +7,7 @@ function tours() {
   return (
     <main>
       <TourContainer>
-        <Layout>
+        <Layout title="Tours & Attractions">
           <TourLayout />
         </Layout>
       </TourContainer>
