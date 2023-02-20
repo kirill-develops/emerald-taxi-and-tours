@@ -22,8 +22,48 @@ export const cardStyleProps = {
 export let theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
+  },
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#0e6738'
+    },
+    secondary: {
+      main: "#fead14"
+    },
+    background: {
+      default: '#f2f4f3',
+      paper: '#fafafa'
+    },
+    error: { main: '#d138bf' },
+    warning: { main: '#fe654f' },
+    info: { main: '#51E5FF' },
+    success: { main: '#8BBF9F' }
   }
 });
 theme = responsiveFontSizes(theme);
 
-export const darkTheme = createTheme({ palette: { mode: 'dark' } });
+export let darkTheme = createTheme({
+  typography: {
+    fontFamily: roboto.style.fontFamily,
+  },
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: "#fead14"
+    },
+    secondary: {
+      main: '#0e6738'
+    },
+    background: {
+      default: '#191919',
+      paper: '#202C37'
+    },
+    error: { main: '#d138bf' },
+    warning: { main: '#fe654f' },
+    info: { main: '#51E5FF' },
+    success: { main: '#8BBF9F' }
+  }
+});
+
+darkTheme = responsiveFontSizes(darkTheme);
