@@ -37,14 +37,14 @@ function Transfer() {
   );
 
   return (
-    <main>
+    <>
       <Layout title="Airport Transfers">
         <Typography>Sangster International, Montego Bay</Typography>
         <Container maxWidth="lg">{sangsterAccordionElArray}</Container>
         <Typography>Norman Manley International, Kingston</Typography>
         <Container maxWidth="lg">{normanManleyAccordionElArray}</Container>
       </Layout>
-    </main>
+    </>
   );
 }
 

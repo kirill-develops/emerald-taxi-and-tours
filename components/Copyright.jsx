@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Copyright() {
   return (
-    <>
+    <footer>
       <Typography
         variant="body2"
         color="text.secondary"
@@ -19,6 +19,6 @@ export default function Copyright() {
         {'Copyright © '}
         Emeral Taxi & Tour {new Date().getFullYear()}.
       </Typography>
-    </>
+    </footer>
   );
 }
