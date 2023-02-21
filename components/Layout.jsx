@@ -3,9 +3,10 @@ import Divider from '@mui/material/Divider';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Copyright from './Copyright';
 import Navbar from './Navbar';
+import usePageTransition from '../hooks/usePageTransition';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -49,14 +50,10 @@ function Title({ title, subheader }) {
 }
 
 function Layout({ children, title = '', subheader = '' }) {
-  const [isMounted, setIsMounted] = useState(false);
+  const showComponent = usePageTransition();
 
   const theme = useTheme();
   const isXsBreakpoint = useMediaQuery(theme.breakpoints.only('xs'));
-
-  useEffect(() => setIsMounted(true), []);
-
-  if (!isMounted) return null;
 
   return (
     <>
@@ -68,14 +65,17 @@ function Layout({ children, title = '', subheader = '' }) {
           minHeight: { sm: '100%' },
           overflow: { sm: 'auto' },
         }}
+        className={`component-fade ${showComponent ? 'show' : ''}`}
       >
-        <Title
-          title={title}
-          subheader={subheader}
-        />
-        {children}
-        <Copyright sx={{ overflow: 'auto' }} />
+        <main>
+          <Title
+            title={title}
+            subheader={subheader}
+          />
+          {children}
+        </main>
         {isXsBreakpoint && <Offset />}
+        <Copyright sx={{ overflow: 'auto' }} />
       </Container>
     </>
   );
