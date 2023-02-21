@@ -1,9 +1,7 @@
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import AttractionRegion from '../FilterOptionComponents/AttractionRegion';
-import AttractionTypes from '../FilterOptionComponents/AttractionTypes';
-import StartingLocations from '../FilterOptionComponents/StartingLocations';
+import FilterCheckboxGroup from './FilterCheckboxGroup';
 
 function FilterOptions() {
   return (
@@ -15,11 +13,20 @@ function FilterOptions() {
       }}
     >
       <Typography>Starting Location</Typography>
-      <StartingLocations />
+      <FilterCheckboxGroup
+        filterState="filterStartLocation"
+        dataFilter="price"
+      />
       <Typography>Attraction Type</Typography>
-      <AttractionTypes />
+      <FilterCheckboxGroup
+        filterState="filterType"
+        dataFilter="type"
+      />
       <Typography>Attraction Region</Typography>
-      <AttractionRegion />
+      <FilterCheckboxGroup
+        filterState="filterArea"
+        dataFilter="area"
+      />
       <Typography>Price Range</Typography>
     </Card>
   );

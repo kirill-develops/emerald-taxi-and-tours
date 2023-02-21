@@ -1,5 +1,5 @@
 import { createStore, createHook, createContainer } from 'react-sweet-state';
-import { tourData } from '../data/tours';
+import { tourData } from '@data/tours';
 
 function initFilter(data, key) {
   let result = {};
@@ -19,10 +19,10 @@ function initFilter(data, key) {
 };
 
 
-export function extractProps(data, key) {
+export function extractProps(key) {
   const uniqueNames = new Set();
 
-  const result = data.flatMap(obj =>
+  const result = tourData.flatMap(obj =>
     Array.isArray(obj[key]) ? obj[key] : [obj[key]])
     .filter(name => {
       const isUnique = !uniqueNames.has(key === 'price' ? name.link : name);
@@ -66,43 +66,14 @@ const tourStore = createStore({
             boolean : !getState().filterExpand
         })
       },
-    handleStartLocationCheckbox:
-      ({ target }) => ({ setState, getState, dispatch }) => {
-        const { filterStartLocation: startingLocation } = getState();
-        const { value } = target;
+    handleCheckboxClick:
+      (stateName, value) => ({ setState, getState, dispatch }) => {
+        const state = getState()[stateName];
 
         setState({
-          filterStartLocation: {
-            ...startingLocation,
-            [value]: !startingLocation[value]
-          }
-        });
-
-        dispatch(tourStore.actions.handleFilterData());
-      },
-    handleTypeCheckbox:
-      ({ target }) => ({ setState, getState, dispatch }) => {
-        const { filterType } = getState();
-        const { value } = target;
-
-        setState({
-          filterType: {
-            ...filterType,
-            [value]: !filterType[value]
-          }
-        });
-
-        dispatch(tourStore.actions.handleFilterData());
-      },
-    handleAreaCheckbox:
-      ({ target }) => ({ setState, getState, dispatch }) => {
-        const { filterArea } = getState();
-        const { value } = target;
-
-        setState({
-          filterArea: {
-            ...filterArea,
-            [value]: !filterArea[value]
+          [stateName]: {
+            ...state,
+            [value]: !state[value]
           }
         });
 
