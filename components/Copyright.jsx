@@ -1,9 +1,13 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
+import { Container } from '@mui/material';
 
 export default function Copyright() {
   return (
-    <footer>
+    <Container
+      component="footer"
+      sx={{ my: '1em' }}
+    >
       <Typography
         variant="body2"
         color="text.secondary"
@@ -19,6 +23,6 @@ export default function Copyright() {
         {'Copyright © '}
         Emeral Taxi & Tour {new Date().getFullYear()}.
       </Typography>
-    </footer>
+    </Container>
   );
 }
