@@ -6,16 +6,14 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { cardStyleProps } from '@material/theme';
-import ExpandMore from '../ExpandMore';
+import ExpandMore from '@elements/ExpandMore';
 import PriceTable from './PriceTable';
 import TourType from './TourType';
 import PickUpCardHeader from './PickUpCardHeader';
-
-const gridItemProps = { xs: 12, item: true };
+import { GridItem } from '@elements/CustomGridEl';
 
 function Description({ description }) {
   return description.length > 0 && <Typography>{description}</Typography>;
@@ -30,7 +28,7 @@ function TourCard({ tour }) {
   };
 
   return (
-    <Grid {...gridItemProps}>
+    <GridItem xs={12}>
       <Card
         variant="outlined"
         sx={cardStyleProps}
@@ -84,7 +82,7 @@ function TourCard({ tour }) {
           </CardContent>
         </Collapse>
       </Card>
-    </Grid>
+    </GridItem>
   );
 }
 

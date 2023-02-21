@@ -5,11 +5,11 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { cardStyleProps } from '@material/theme';
-import ExpandMore from '../ExpandMore';
+import ExpandMore from '@elements/ExpandMore';
+import { GridItem } from '@elements/CustomGridEl';
 
 function getSubheader(linkEnding, destination, area) {
   switch (linkEnding) {
@@ -35,7 +35,7 @@ function AccordionCard({ destination, area, linkEnding }) {
   };
 
   return (
-    <Grid
+    <GridItem
       item
       xs={12}
       md={6}
@@ -74,7 +74,7 @@ function AccordionCard({ destination, area, linkEnding }) {
           </CardContent>
         </Collapse>
       </Card>
-    </Grid>
+    </GridItem>
   );
 }
 
