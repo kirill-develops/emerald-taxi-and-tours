@@ -63,6 +63,19 @@ export let darkTheme = createTheme({
     warning: { main: '#fe654f' },
     info: { main: '#51E5FF' },
     success: { main: '#8BBF9F' }
+  },
+  components: {
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+        },
+        fixed: {
+          display: 'flex',
+          height: '100%',
+          alignSelf: 'center'
+        }
+      }
+    }
   }
 });
 

@@ -47,6 +47,7 @@ function Navbar(props) {
           position: { xs: 'fixed' },
           top: { xs: 'auto', sm: '0' },
           bottom: { xs: 0, sm: 'initial' },
+          backgroundColor: (theme) => theme.palette.background.default,
         }}
       >
         <Toolbar>
@@ -58,16 +59,28 @@ function Navbar(props) {
             }}
           >
             <Typography
-              variant="h6"
+              variant="h5"
               component={Link}
+              color="secondary.light"
               href="../"
               noWrap
               sx={{
-                color: 'inherit',
                 textDecoration: 'none',
+                textTransform: 'uppercase',
+                fontWeight: 500,
               }}
             >
-              Emerald Taxi & Tours
+              Emerald{' '}
+              <Typography
+                variant="h6"
+                component="span"
+                color="text.primary"
+                sx={{
+                  textTransform: 'capitalize',
+                }}
+              >
+                Taxi & Tours
+              </Typography>
             </Typography>
           </Box>
           <TabletPagesLink dissapearingBreakpoint={menuBreakpoint} />

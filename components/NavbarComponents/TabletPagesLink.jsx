@@ -1,28 +1,40 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import React from 'react';
-import Link from '@material/Link';
 import { pages } from '../Navbar';
+import { Tab, Tabs } from '@mui/material';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
+function LinkTab(props) {
+  return (
+    <Tab
+      component={Link}
+      {...props}
+    />
+  );
+}
 
 function TabletPagesLink({ dissapearingBreakpoint }) {
-  const pageAnchorElArray = pages.map(({ name, link }) => (
-    <Button
-      key={link}
-      LinkComponent={Link}
-      href={`../${link}`}
-      sx={{
-        display: 'block',
-        color: 'text.primary',
-        textDecoration: 'none',
-      }}
-    >
-      {name}
-    </Button>
-  ));
+  const router = useRouter();
+  const currentPage = useRouter().pathname.substring(1);
+  const foundCurrentPage = pages.find(
+    (page) => page.link === currentPage,
+  )?.link;
+
+  const [value, setValue] = useState(foundCurrentPage || false);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
-    <Box
+    <Tabs
+      value={value}
+      onChange={handleChange}
+      aria-label="page links"
+      centered
       sx={{
+        alignSelf: 'stretch',
         flexGrow: 1,
         display: {
           xs: 'none',
@@ -30,8 +42,19 @@ function TabletPagesLink({ dissapearingBreakpoint }) {
         },
       }}
     >
-      {pageAnchorElArray}
-    </Box>
+      {pages.map(({ name, link }) => (
+        <LinkTab
+          key={link}
+          label={name}
+          href={`../${link}`}
+          value={link}
+          sx={{
+            color: 'text.primary',
+            textDecoration: 'none',
+          }}
+        />
+      ))}
+    </Tabs>
   );
 }
 
