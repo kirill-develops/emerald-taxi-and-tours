@@ -1,4 +1,4 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandCircleDown';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -56,7 +56,10 @@ function AccordionCard({ destination, area, linkEnding }) {
             aria-expanded={expanded}
             aria-label="show more"
           >
-            <ExpandMoreIcon />
+            <ExpandMoreIcon
+              color="secondary"
+              fontSize="large"
+            />
           </ExpandMore>
           <Button variant="contained">Book Now</Button>
         </CardActions>

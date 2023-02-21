@@ -1,4 +1,4 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandCircleDown';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,6 +16,10 @@ import TourType from './TourType';
 import PickUpCardHeader from './PickUpCardHeader';
 
 const gridItemProps = { xs: 12, item: true };
+
+function Description({ description }) {
+  return description.length > 0 && <Typography>{description}</Typography>;
+}
 
 function TourCard({ tour }) {
   const { name, area, link, type, price, description } = tour;
@@ -63,7 +67,10 @@ function TourCard({ tour }) {
             aria-expanded={expanded}
             aria-label="show more"
           >
-            <ExpandMoreIcon />
+            <ExpandMoreIcon
+              color="secondary"
+              fontSize="large"
+            />
           </ExpandMore>
         </CardActions>
         <Collapse
@@ -72,7 +79,7 @@ function TourCard({ tour }) {
           unmountOnExit
         >
           <CardContent>
-            {description.length > 0 && <Typography>{description}</Typography>}
+            <Description description={description} />
             <PriceTable pricesArr={price} />
           </CardContent>
         </Collapse>
