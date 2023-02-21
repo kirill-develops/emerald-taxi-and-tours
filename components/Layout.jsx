@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
 import React from 'react';
 import Copyright from './Copyright';
-import Navbar from './Navbar';
-import usePageTransition from '../hooks/usePageTransition';
+import Navbar from '@components/NavbarComponents/NavbarLayout';
+import usePageTransition from '@hooks/usePageTransition';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
