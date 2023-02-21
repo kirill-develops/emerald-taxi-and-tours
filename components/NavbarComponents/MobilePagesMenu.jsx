@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@emotion/react';
 import React, { useState } from 'react';
-import Link from 'material/Link';
-import { pages } from 'components/Navbar';
+import Link from '@material/Link';
+import pages from '@data/sitePages';
 
 function MobilePagesMenu({ dissapearingBreakpoint }) {
   const theme = useTheme();

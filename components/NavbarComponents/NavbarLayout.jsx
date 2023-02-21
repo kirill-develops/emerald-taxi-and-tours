@@ -7,15 +7,9 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import Link from '@material/Link';
-import MobilePagesMenu from './NavbarComponents/MobilePagesMenu';
-import MobileSearchModal from './NavbarComponents/MobileSearchModal';
-import TabletPagesLink from './NavbarComponents/TabletPagesLink';
-
-export const pages = [
-  { name: 'Airport Transfer', link: 'transfer' },
-  { name: 'Tours', link: 'tours' },
-  { name: 'About Us', link: 'about' },
-];
+import MobilePagesMenu from './MobilePagesMenu';
+import MobileSearchModal from './MobileSearchModal';
+import TabletPagesLink from './TabletPagesLink';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -37,7 +31,7 @@ function ElevationScroll(props) {
   });
 }
 
-function Navbar(props) {
+function NavbarLayout(props) {
   const menuBreakpoint = 'md';
 
   return (
@@ -91,4 +85,4 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+export default NavbarLayout;

@@ -1,9 +1,9 @@
-import React from 'react';
-import { pages } from '../Navbar';
-import { Tab, Tabs } from '@mui/material';
-import { useState } from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import Link from '@material/Link';
+import pages from '@data/sitePages';
 
 function LinkTab(props) {
   return (
@@ -15,13 +15,12 @@ function LinkTab(props) {
 }
 
 function TabletPagesLink({ dissapearingBreakpoint }) {
-  const router = useRouter();
   const currentPage = useRouter().pathname.substring(1);
   const foundCurrentPage = pages.find(
     (page) => page.link === currentPage,
   )?.link;
 
-  const [value, setValue] = useState(foundCurrentPage || false);
+  const [value, setValue] = useState(foundCurrentPage ?? false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
