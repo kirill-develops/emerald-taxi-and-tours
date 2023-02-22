@@ -11,15 +11,28 @@ import { GridContainer } from '@elements/CustomGridEl';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-function Title({ title, subheader }) {
+function Title({ title, subheader, airport }) {
+  const subheaderColor =
+    airport.length > 0 ? 'text.primary' : 'secondary.light';
   const subheaderEl = subheader.length > 0 && (
     <Typography
       variant="h4"
       component="h2"
-      color="secondary.light"
+      color={subheaderColor}
       sx={{ mb: '0.25em' }}
     >
       {subheader}
+    </Typography>
+  );
+
+  const airportEl = airport.length > 0 && (
+    <Typography
+      variant="h5"
+      component="h3"
+      color="secondary.light"
+      sx={{ mb: '0.25em' }}
+    >
+      {airport}
     </Typography>
   );
 
@@ -39,6 +52,7 @@ function Title({ title, subheader }) {
           {title}
         </Typography>
         {subheaderEl}
+        {airportEl}
         <Divider
           variant="inset"
           sx={{
@@ -50,7 +64,7 @@ function Title({ title, subheader }) {
     );
 }
 
-function Layout({ children, title = '', subheader = '' }) {
+function Layout({ children, title = '', subheader = '', airport = '' }) {
   const showComponent = usePageTransition();
 
   const theme = useTheme();
@@ -79,6 +93,7 @@ function Layout({ children, title = '', subheader = '' }) {
           <Title
             title={title}
             subheader={subheader}
+            airport={airport}
           />
           {children}
         </GridContainer>
