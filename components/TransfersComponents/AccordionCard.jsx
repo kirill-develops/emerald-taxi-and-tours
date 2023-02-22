@@ -23,11 +23,13 @@ function getSubheader(areaLink, destination, area) {
   }
 }
 
-function AccordionCard({ destination, area, areaLink }) {
-  const { name, link, price } = destination;
-  const destinationURL = `${areaLink}/${link}`;
+function AccordionCard({ destinationData, areaData }) {
+  const { name: areaName, link: areaLink, airportLink } = areaData;
+  const { name, link, price } = destinationData;
 
-  const subheader = getSubheader(areaLink, destination, area);
+  const destinationURL = `${airportLink}/${areaLink}/${link}`;
+
+  const subheader = getSubheader(areaLink, destinationData, areaName);
 
   const [expanded, setExpanded] = useState(false);
 

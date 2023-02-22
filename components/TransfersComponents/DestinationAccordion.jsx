@@ -17,21 +17,20 @@ function ExpandIcon() {
   );
 }
 
-function DestinationAccordion({
-  name,
-  link,
-  destinations,
-  expanded,
-  handleChange,
-}) {
-  const destinationsCardElArray = destinations.map((destinaton) => (
+function DestinationCardArr({ areaData: data }) {
+  const { destinations, ...areaData } = data;
+
+  return destinations.map((destinaton) => (
     <AccordionCard
       key={destinaton.link}
-      destination={destinaton}
-      area={name}
-      areaLink={link}
+      destinationData={destinaton}
+      areaData={areaData}
     />
   ));
+}
+
+function DestinationAccordion({ areaData, expanded, handleChange }) {
+  const { name, link } = areaData;
 
   return (
     <Accordion
@@ -46,12 +45,13 @@ function DestinationAccordion({
       >
         <Typography>{name}</Typography>
       </AccordionSummary>
+
       <AccordionDetails>
         <GridContainer
           spacing={gridSpacingProps}
           sx={{ alignItems: 'stretch' }}
         >
-          {destinationsCardElArray}
+          <DestinationCardArr areaData={areaData} />
         </GridContainer>
       </AccordionDetails>
     </Accordion>
