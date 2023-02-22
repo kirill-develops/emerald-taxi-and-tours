@@ -3,9 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "@*": ["./*"],
-      "@Navbar/*": ["./components/NavbarComponents/*"],
-      "@Transfer/*" : ["./components/TransferComponents/*"],
-      "@Tour/*" : ["./components/TourComponents/*"],
+      "@Navbar/*": ["components/NavbarComponents/*"],
+      "@Transfer/*" : ["components/TransferComponents/*"],
+      "@Tour/*" : ["components/TourComponents/*"],
     },
     "lib": [
       "dom",

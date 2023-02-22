@@ -4,7 +4,7 @@ import {
   normanManleyTransferData,
   sangsterTransferData,
 } from '@data/transfers';
-import AreaAccordionArr from '../components/TransfersComponents/AreaAccordionArr';
+import AreaAccordionArr from '@Transfer/AreaAccordionArr';
 
 function Transfer() {
   return (
