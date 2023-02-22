@@ -1,48 +1,23 @@
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '@components/Layout';
-import DestinationAccordion from '@components/TransfersComponents/DestinationAccordion';
 import {
   normanManleyTransferData,
   sangsterTransferData,
 } from '@data/transfers';
-
-function useAccordionElArray(transferData) {
-  const [expanded, setExpanded] = useState(false);
-
-  const handleChange = (panel) => (_event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-
-  return transferData.map(({ name, link, destinations }) => {
-    return (
-      <DestinationAccordion
-        key={link}
-        name={name}
-        link={link}
-        destinations={destinations}
-        expanded={expanded}
-        handleChange={handleChange}
-      />
-    );
-  });
-}
+import AreaAccordionArr from '../components/TransfersComponents/AreaAccordionArr';
 
 function Transfer() {
-  const sangsterAccordionElArray = useAccordionElArray(sangsterTransferData);
-
-  const normanManleyAccordionElArray = useAccordionElArray(
-    normanManleyTransferData,
-  );
-
   return (
     <>
       <Layout title="Airport Transfers">
-        <Typography>Sangster International, Montego Bay</Typography>
-        <Container maxWidth="lg">{sangsterAccordionElArray}</Container>
-        <Typography>Norman Manley International, Kingston</Typography>
-        <Container maxWidth="lg">{normanManleyAccordionElArray}</Container>
+        <AreaAccordionArr
+          transferData={sangsterTransferData}
+          title="Sangster International, Montego Bay"
+        />
+        <AreaAccordionArr
+          transferData={normanManleyTransferData}
+          title="Norman Manley International, Kingston"
+        />
       </Layout>
     </>
   );
