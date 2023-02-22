@@ -14,6 +14,7 @@ import PriceTable from './PriceTable';
 import TourType from './TourType';
 import PickUpCardHeader from './PickUpCardHeader';
 import { GridItem } from '@elements/CustomGridEl';
+import Link from '@material/Link';
 
 function Description({ description }) {
   return description.length > 0 && <Typography>{description}</Typography>;
@@ -55,6 +56,7 @@ function TourCard({ tour }) {
         >
           <Button
             variant="contained"
+            LinkComponent={Link}
             href={`../tours/${link}`}
           >
             Book Now
