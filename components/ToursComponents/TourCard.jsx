@@ -15,6 +15,7 @@ import TourType from './TourType';
 import PickUpCardHeader from './PickUpCardHeader';
 import { GridItem } from '@elements/CustomGridEl';
 import Link from '@material/Link';
+import { Tooltip, Zoom } from '@mui/material';
 
 function Description({ description }) {
   return description.length > 0 && <Typography>{description}</Typography>;
@@ -67,10 +68,16 @@ function TourCard({ tour }) {
             aria-expanded={expanded}
             aria-label="show more"
           >
-            <ExpandMoreIcon
-              color="secondary"
-              fontSize="large"
-            />
+            <Tooltip
+              title="click for more"
+              arrow
+              TransitionComponent={Zoom}
+            >
+              <ExpandMoreIcon
+                color="secondary"
+                fontSize="large"
+              />
+            </Tooltip>
           </ExpandMore>
         </CardActions>
         <Collapse
