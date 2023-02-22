@@ -8,16 +8,16 @@ import { useTour } from '@state/useTour';
 function FilterButtonMobile() {
   const [state, setState] = useTour();
   const { filterExpand } = state;
-  const { handleFilterExpandClick } = setState;
+  const { toggleFilterExpand } = setState;
 
   const theme = useTheme();
   const isXsBreakpoint = useMediaQuery(theme.breakpoints.only('xs'));
 
   useLayoutEffect(() => {
     if (isXsBreakpoint === false) {
-      handleFilterExpandClick(false);
+      toggleFilterExpand(false);
     }
-  }, [isXsBreakpoint, handleFilterExpandClick]);
+  }, [isXsBreakpoint, toggleFilterExpand]);
 
   return (
     <Button
@@ -29,7 +29,7 @@ function FilterButtonMobile() {
         minWidth: 125,
         display: { sm: 'none' },
       }}
-      onClick={handleFilterExpandClick}
+      onClick={toggleFilterExpand}
       aria-expanded={filterExpand}
       aria-label="Show tour filters"
     >

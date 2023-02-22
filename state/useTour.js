@@ -2,43 +2,47 @@ import { createStore, createHook, createContainer } from 'react-sweet-state';
 import { tourData } from '@data/tours';
 
 function initFilter(data, key) {
-  let result = {};
-  let uniqueNames = new Map();
+  return data.reduce((result, obj) => {
+    const names = Array.isArray(obj[key]) ? obj[key] : [obj[key]];
 
-  data.forEach((obj) => {
-    let names = Array.isArray(obj[key]) ? obj[key] : [obj[key]];
     names.forEach((name) => {
-      if (!uniqueNames.has(key === 'price' ? name.link : name)) {
-        result[key === 'price' ? name.link : name] = false;
-        uniqueNames.set(key === 'price' ? name.link : name, true);
+      const id = key === 'price' ? name.link : name;
+
+      if (!result[id]) {
+        result[id] = false;
       }
     });
-  });
 
-  return result;
+    return result;
+  }, {});
 };
 
 
 export function extractProps(key) {
   const uniqueNames = new Set();
+  const result = [];
 
-  const result = tourData.flatMap(obj =>
-    Array.isArray(obj[key]) ? obj[key] : [obj[key]])
-    .filter(name => {
-      const isUnique = !uniqueNames.has(key === 'price' ? name.link : name);
+  for (const obj of tourData) {
+    const names = Array.isArray(obj[key]) ? obj[key] : [obj[key]];
 
-      if (isUnique) uniqueNames.add(key === 'price' ? name.link : name);
+    for (const name of names) {
+      const keyName = key === 'price' ? name.link : name;
 
-      return isUnique;
-    });
+      if (!uniqueNames.has(keyName)) {
+        uniqueNames.add(keyName);
 
-  if (key === 'price') {
-    result.sort((a, b) => a.name.localeCompare(b.name));
-  } else {
-    result.sort();
+        if (key === 'price') {
+          result.push({ name: name.name, link: name.link });
+        } else {
+          result.push(name);
+        }
+      }
+    }
   }
 
-  return key === 'price' ? result.map(({ name, link }) => ({ name, link })) : result;
+  result.sort(key === 'price' ? (a, b) => a.name.localeCompare(b.name) : undefined);
+
+  return result;
 }
 
 
@@ -57,7 +61,7 @@ const tourStore = createStore({
       (option) => ({ setState }) => {
         setState({ sort: option })
       },
-    handleFilterExpandClick:
+    toggleFilterExpand:
       (boolean) => ({ setState, getState }) => {
         const isBoolean = typeof boolean === 'boolean';
 
@@ -66,7 +70,7 @@ const tourStore = createStore({
             boolean : !getState().filterExpand
         })
       },
-    handleCheckboxClick:
+    toggleCheckbox:
       (stateName, value) => ({ setState, getState, dispatch }) => {
         const state = getState()[stateName];
 
@@ -77,9 +81,9 @@ const tourStore = createStore({
           }
         });
 
-        dispatch(tourStore.actions.handleFilterData());
+        dispatch(tourStore.actions.filterData());
       },
-    handleFilterData: () => ({ setState, getState }) => {
+    filterData: () => ({ setState, getState }) => {
       const { filterStartLocation, filterType, filterArea } = getState();
       const isStartLocFiltered = Object.values(filterStartLocation).some(val => val);
       const isTypeFiltered = Object.values(filterType).some(val => val);
@@ -96,23 +100,24 @@ const tourStore = createStore({
     findAvailableFilters: (filters) => ({ getState }) => {
       const { filteredData } = getState();
 
-      return filters.reduce((acc, filter) => {
+      return filters.reduce((availableFilters, filter) => {
         if (typeof filter === 'object') {
           const match = filteredData.find((item) =>
             item.price?.some((price) => price.link === filter.link),
           );
 
-          acc[filter.link] = Boolean(match);
-        }
+          availableFilters[filter.link] = Boolean(match);
 
-        if (typeof filter === 'string') {
-          const match = filteredData.find((item) =>
-            item.area === filter ||
-            item.type?.some(type => type === filter))
+        } else if (typeof filter === 'string') {
+          const match = filteredData.find(
+            (item) =>
+              item.area === filter || item.type?.includes(filter)
+          );
 
-          acc[filter] = Boolean(match);
-        }
-        return acc;
+          availableFilters[filter] = Boolean(match);
+        };
+
+        return availableFilters;
       }, {});
     }
   }

@@ -7,15 +7,15 @@ import { extractProps, useTour } from '@state/useTour';
 function FilterCheckboxGroup({ filterState, dataFilter }) {
   const [state, actions] = useTour();
   const filterOptions = extractProps(dataFilter);
-  const { handleCheckboxClick, findAvailableFilters } = actions;
+  const { toggleCheckbox, findAvailableFilters } = actions;
   const filterAvailable = findAvailableFilters(filterOptions);
 
   const handleClick = useCallback(
     ({ target }) => {
       const { value } = target;
-      handleCheckboxClick(filterState, value);
+      toggleCheckbox(filterState, value);
     },
-    [handleCheckboxClick, filterState],
+    [toggleCheckbox, filterState],
   );
 
   return (
