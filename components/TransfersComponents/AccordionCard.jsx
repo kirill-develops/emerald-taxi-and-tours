@@ -9,10 +9,11 @@ import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import { cardStyleProps } from '@material/theme';
 import ExpandMore from '@elements/ExpandMore';
+import Link from '@material/Link';
 import { GridItem } from '@elements/CustomGridEl';
 
-function getSubheader(linkEnding, destination, area) {
-  switch (linkEnding) {
+function getSubheader(areaLink, destination, area) {
+  switch (areaLink) {
     case 'other':
       return destination.area;
     case 'norman_manley':
@@ -22,11 +23,11 @@ function getSubheader(linkEnding, destination, area) {
   }
 }
 
-function AccordionCard({ destination, area, linkEnding }) {
+function AccordionCard({ destination, area, areaLink }) {
   const { name, link, price } = destination;
-  const destinationURL = `${link}_${linkEnding}`;
+  const destinationURL = `${areaLink}/${link}`;
 
-  const subheader = getSubheader(linkEnding, destination, area);
+  const subheader = getSubheader(areaLink, destination, area);
 
   const [expanded, setExpanded] = useState(false);
 
@@ -61,7 +62,13 @@ function AccordionCard({ destination, area, linkEnding }) {
               fontSize="large"
             />
           </ExpandMore>
-          <Button variant="contained">Book Now</Button>
+          <Button
+            variant="contained"
+            LinkComponent={Link}
+            href={`/transfer/${destinationURL}`}
+          >
+            Book Now
+          </Button>
         </CardActions>
         <Collapse
           in={expanded}

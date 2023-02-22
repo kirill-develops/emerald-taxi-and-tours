@@ -29,7 +29,7 @@ function DestinationAccordion({
       key={destinaton.link}
       destination={destinaton}
       area={name}
-      linkEnding={link}
+      areaLink={link}
     />
   ));
 
