@@ -7,6 +7,7 @@ import React from 'react';
 import Copyright from './Copyright';
 import Navbar from '@components/NavbarComponents/NavbarLayout';
 import usePageTransition from '@hooks/usePageTransition';
+import { GridContainer } from '@elements/CustomGridEl';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -64,16 +65,23 @@ function Layout({ children, title = '', subheader = '' }) {
         sx={{
           minHeight: { sm: '100%' },
           overflow: { sm: 'auto' },
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
         }}
         className={`component-fade ${showComponent ? 'show' : ''}`}
       >
-        <main>
+        <GridContainer
+          component="main"
+          flexDirection="column"
+          sx={{ flexGrow: 1 }}
+        >
           <Title
             title={title}
             subheader={subheader}
           />
           {children}
-        </main>
+        </GridContainer>
         {isXsBreakpoint && <Offset />}
         <Copyright sx={{ overflow: 'auto' }} />
       </Container>

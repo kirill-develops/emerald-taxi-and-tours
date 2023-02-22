@@ -47,6 +47,12 @@ a {
   }
 }
 
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .component-fade {
   opacity: 0;
   transition: opacity 0.5s ease-out;
