@@ -15,7 +15,8 @@ function LinkTab(props) {
 }
 
 function TabletPagesLink({ dissapearingBreakpoint }) {
-  const currentPage = useRouter().pathname.substring(1);
+  const currentPage = useRouter().asPath.split('/')[1];
+
   const foundCurrentPage = pages.find(
     (page) => page.link === currentPage,
   )?.link;
