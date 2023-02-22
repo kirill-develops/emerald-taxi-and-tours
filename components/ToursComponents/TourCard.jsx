@@ -6,7 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import Zoom from '@mui/material/Zoom';
 import React, { useState } from 'react';
 import { cardStyleProps } from '@material/theme';
 import ExpandMore from '@elements/ExpandMore';
@@ -15,7 +17,6 @@ import TourType from './TourType';
 import PickUpCardHeader from './PickUpCardHeader';
 import { GridItem } from '@elements/CustomGridEl';
 import Link from '@material/Link';
-import { Tooltip, Zoom } from '@mui/material';
 
 function Description({ description }) {
   return description.length > 0 && <Typography>{description}</Typography>;
@@ -58,7 +59,7 @@ function TourCard({ tour }) {
           <Button
             variant="contained"
             LinkComponent={Link}
-            href={`../tours/${link}`}
+            href={`/tours/${link}`}
           >
             Book Now
           </Button>

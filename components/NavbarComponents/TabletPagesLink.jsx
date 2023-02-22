@@ -46,7 +46,7 @@ function TabletPagesLink({ dissapearingBreakpoint }) {
         <LinkTab
           key={link}
           label={name}
-          href={`../${link}`}
+          href={`/${link}`}
           value={link}
           sx={{
             color: 'text.primary',

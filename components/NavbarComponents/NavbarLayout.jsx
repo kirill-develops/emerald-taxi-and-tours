@@ -56,7 +56,7 @@ function NavbarLayout(props) {
               variant="h5"
               component={Link}
               color="secondary.light"
-              href="../"
+              href="/"
               noWrap
               sx={{
                 textDecoration: 'none',

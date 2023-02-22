@@ -69,7 +69,7 @@ function MobilePagesMenu({ dissapearingBreakpoint }) {
           >
             <Typography
               component={Link}
-              href={`../${link}`}
+              href={`/${link}`}
               textAlign="center"
               sx={{ textDecoration: 'none' }}
             >
