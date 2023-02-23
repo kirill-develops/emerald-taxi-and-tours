@@ -6,6 +6,7 @@
       "@Navbar/*": ["components/NavbarComponents/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],
       "@Tour/*" : ["components/TourComponents/*"],
+      "@Stepper/*" : ["components/StepperComponents/*"],
     },
     "lib": [
       "dom",
