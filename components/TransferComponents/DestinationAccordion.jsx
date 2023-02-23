@@ -1,21 +1,12 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import AccordionCard from './AccordionCard';
 import { gridSpacingProps } from '@material/theme';
 import { GridContainer } from '@elements/CustomGridEl';
-
-function ExpandIcon() {
-  return (
-    <IconButton>
-      <ExpandMoreIcon />
-    </IconButton>
-  );
-}
+import ExpandIcon from '@elements/ExpandIcon';
 
 function DestinationCardArr({ areaData: data }) {
   const { destinations, ...areaData } = data;
