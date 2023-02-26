@@ -2,37 +2,54 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Form, useFormikContext } from 'formik';
 import React, { useCallback, useEffect } from 'react';
-import { useState } from 'react';
-
-import FormFlightDetails from '@Form/FormFlightDetails';
-import FormPersonalDetails from '@Form/FormPersonalDetails';
-import FormPaymentDetails from '@Form/FormPaymentDetails';
-import FormConfirmDetails from '@Form/FormConfirmDetails';
 import StepperStepButtons from './StepperStepButtons';
 import StepperProgressBar from './StepperProgressBar';
+import { transferSteps } from '@data/transferFormData';
 
-function StepperLayout({ setCookie }) {
-  const { values, setFieldValue } = useFormikContext();
-  const [activeStep, setActiveStep] = useState(values.bookingStep || 0);
+function StepperLayout({ cookieData, setCookie }) {
+  const { values, validateForm, setFieldValue, setTouched } =
+    useFormikContext();
 
-  const handleStepChange = useCallback(
-    (step) => {
-      setActiveStep(step);
+  const { bookingStep } = values;
+
+  const { component: activeStepComponent, link: activeStepLink } =
+    transferSteps[bookingStep];
+
+  const handleBackClick = useCallback(
+    (step) => setFieldValue('bookingStep', step, false),
+    [setFieldValue],
+  );
+
+  const handleNextClick = useCallback(
+    async (step) => {
+      const res = await validateForm();
+
+      if (!res[activeStepLink]) {
+        setFieldValue('bookingStep', step, false);
+      } else {
+        const touchedValues = Object.keys(res[activeStepLink]).reduce(
+          (acc, value) => {
+            acc[value] = true;
+            return acc;
+          },
+          {},
+        );
+
+        setTouched({ [activeStepLink]: touchedValues });
+      }
     },
-    [setActiveStep],
+    [activeStepLink, setFieldValue, setTouched, validateForm],
   );
 
   useEffect(() => {
-    setFieldValue('bookingStep', activeStep, false);
-  }, [activeStep, setFieldValue]);
-
-  useEffect(() => {
-    setCookie(values);
-  }, [values, setCookie]);
+    if (cookieData !== values) {
+      setCookie(values);
+    }
+  }, [values, cookieData]);
 
   return (
     <Stack justifyContent="space-between">
-      <StepperProgressBar activeStep={activeStep} />
+      <StepperProgressBar activeStep={bookingStep} />
       <Box
         sx={{
           my: 3,
@@ -41,20 +58,12 @@ function StepperLayout({ setCookie }) {
           alignSelf: 'center',
         }}
       >
-        <Form>
-          {
-            [
-              <FormFlightDetails key={0} />,
-              <FormPersonalDetails key={1} />,
-              <FormPaymentDetails key={2} />,
-              <FormConfirmDetails key={3} />,
-            ][values.bookingStep]
-          }
-        </Form>
+        <Form>{React.cloneElement(activeStepComponent)}</Form>
       </Box>
       <StepperStepButtons
-        activeStep={activeStep}
-        handleStepChange={handleStepChange}
+        handleBackClick={handleBackClick}
+        handleNextClick={handleNextClick}
+        isLastStep={bookingStep === transferSteps.length - 1}
       />
     </Stack>
   );
