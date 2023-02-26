@@ -8,6 +8,7 @@ import { darkTheme, theme } from '@material/theme';
 import createEmotionCache from '@material/createEmotionCache';
 import '@styles/globals.css';
 import { Experimental_CssVarsProvider as CssVarsProvider, useMediaQuery } from '@mui/material';
+import { CookiesProvider } from 'react-cookie';
 
 // Client-side cache, shared for the whole session of the user in the browser
 const clientSideEmotionCache = createEmotionCache();
@@ -31,12 +32,15 @@ export default function MyApp(props: MyAppProps) {
       <Head>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-      {/* <CssVarsProvider defaultMode='system'> */}
-      <ThemeProvider theme={prefersDarkMode ? darkTheme : theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-      {/* </CssVarsProvider> */}
+      <CookiesProvider>
+        {/* <CssVarsProvider defaultMode='system'> */}
+        <ThemeProvider theme={prefersDarkMode ? darkTheme : theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+        {/* </CssVarsProvider> */}
+      </CookiesProvider>
+
     </CacheProvider>
   )
 }
