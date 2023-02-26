@@ -18,28 +18,28 @@ function DatePicker() {
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateTimePicker
-          name="arrive"
+          name="flightDetails.arrive"
           label="Arrival Date & Time"
-          value={values.arrive}
+          value={values?.flightDetails?.arrive}
           onChange={(date) => {
-            setFieldValue('arrive', date);
+            setFieldValue('flightDetails.arrive', date);
           }}
-          onBlur={handleBlur('arrive')}
-          disabled={values.transferType === 'departure'}
+          onBlur={handleBlur('flightDetails.arrive')}
+          disabled={values?.flightDetails?.transferType === 'departure'}
           renderInput={(props) => <TextField {...props} />}
-          maxDateTime={values.depart}
+          maxDateTime={values?.flightDetails?.depart}
           disablePast
         />
         <Typography variant="body1">To</Typography>
         <DateTimePicker
-          name="depart"
+          name="flightDetails.depart"
           label="Departure Date & Time"
-          value={values.depart}
-          onChange={(date) => setFieldValue('depart', date)}
-          onBlur={handleBlur('depart')}
-          disabled={values.transferType === 'arrival'}
+          value={values?.flightDetails?.depart}
+          onChange={(date) => setFieldValue('flightDetails.depart', date)}
+          onBlur={handleBlur('flightDetails.depart')}
+          disabled={values?.flightDetails?.transferType === 'arrival'}
           renderInput={(props) => <TextField {...props} />}
-          minDateTime={values.arrive}
+          minDateTime={values?.flightDetails?.arrive}
         />
       </LocalizationProvider>
     </Stack>

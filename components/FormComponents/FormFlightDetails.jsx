@@ -17,25 +17,39 @@ function FormFlightDetails() {
         spacing={3}
       >
         <TextField
-          name="airline"
+          name="flightDetails.airline"
           label="Airline"
           type="text"
-          value={values.airline}
+          value={values?.flightDetails?.airline}
           onChange={handleChange}
           onBlur={handleBlur}
-          helperText={'* Required'}
-          error={touched.airline && Boolean(errors.airline)}
+          helperText={
+            (touched?.flightDetails?.airline &&
+              errors?.flightDetails?.airline) ||
+            '* Required'
+          }
+          error={
+            touched?.flightDetails?.airline &&
+            Boolean(errors?.flightDetails?.airline)
+          }
           variant="outlined"
         />
         <TextField
-          name="flightNum"
+          name="flightDetails.flightNum"
           label="Flight Number"
           type="number"
-          value={values.flightNum}
+          value={values?.flightDetails?.flightNum}
           onChange={handleChange}
           onBlur={handleBlur}
-          helperText={'* Required'}
-          error={touched.flightNum && Boolean(errors.flightNum)}
+          helperText={
+            (touched?.flightDetails?.flightNum &&
+              errors?.flightDetails?.flightNum) ||
+            '* Required'
+          }
+          error={
+            touched?.flightDetails?.flightNum &&
+            Boolean(errors?.flightDetails?.flightNum)
+          }
           variant="outlined"
           margin="normal"
         />
@@ -43,14 +57,21 @@ function FormFlightDetails() {
       <RoundTripRadio />
       <DatePicker />
       <TextField
-        name="accomName"
+        name="flightDetails.accomName"
         label="Accomodation Name"
         type="text"
-        value={values.accomName}
+        value={values?.flightDetails?.accomName}
         onChange={handleChange}
         onBlur={handleBlur}
-        helperText={'* Required'}
-        error={touched.accomName && Boolean(errors.accomName)}
+        helperText={
+          (touched?.flightDetails?.accomName &&
+            errors?.flightDetails?.accomName) ||
+          '* Required'
+        }
+        error={
+          touched?.flightDetails?.accomName &&
+          Boolean(errors?.flightDetails?.accomName)
+        }
         variant="outlined"
         margin="normal"
         fullWidth
