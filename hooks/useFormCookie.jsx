@@ -1,16 +1,32 @@
 import dayjs from 'dayjs';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
 
 function useFormCookie(initialValues) {
   const [cookies, setCookie] = useCookies(['EmeraldTransferFormCache']);
   const data = cookies.EmeraldTransferFormCache;
-  const parsedData = data && {
-    ...initialValues,
-    ...data,
-    arrive: dayjs(data.arrive),
-    depart: dayjs(data.depart),
-  };
+  const parsedData = useMemo(
+    () =>
+      data
+        ? {
+            ...initialValues,
+            ...data,
+            flightDetails: {
+              ...initialValues.flightDetails,
+              ...data.flightDetails,
+              arrive: dayjs(
+                data?.flightDetails?.arrive ||
+                  initialValues?.flightDetails?.arrive,
+              ),
+              depart: dayjs(
+                data?.flightDetails?.depart ||
+                  initialValues?.flightDetails?.depart,
+              ),
+            },
+          }
+        : initialValues,
+    [data, initialValues],
+  );
 
   const setFormCookie = useCallback(
     (values) => {
@@ -20,11 +36,14 @@ function useFormCookie(initialValues) {
       };
       setCookie(
         'EmeraldTransferFormCache',
-        JSON.stringify(values),
+        JSON.stringify({
+          ...data,
+          ...values,
+        }),
         cookieOptions,
       );
     },
-    [setCookie],
+    [data, setCookie],
   );
 
   return [parsedData, setFormCookie];
