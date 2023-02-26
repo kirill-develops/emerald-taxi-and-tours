@@ -6,21 +6,30 @@ import React, { useCallback, useState } from 'react';
 import StepperLayout from '@Stepper/StepperLayout';
 import ExpandIcon from '@elements/ExpandIcon';
 import { Formik } from 'formik';
-import { transferInitialValues, validationSchema } from 'data/transferFormData';
+import {
+  transferInitialValues,
+  getCurrentValidationSchema,
+} from 'data/transferFormData';
 import useFormCookie from '@hooks/useFormCookie';
 
-function BookingLayout({}) {
+function BookingLayout() {
   const [parsedData, setCookie] = useFormCookie(transferInitialValues);
 
-  const [expanded, setExpanded] = useState(Boolean(parsedData));
+  const [expanded, setExpanded] = useState(Boolean(parsedData?.isBookingOpen));
+
+  const currentValidationSchema = getCurrentValidationSchema(
+    parsedData?.bookingStep,
+  );
 
   const handleExpand = useCallback(() => {
     setExpanded(!expanded);
-  }, [expanded]);
+    setCookie({ isBookingOpen: !expanded });
+  }, [expanded, setCookie]);
 
-  const onSubmit = (values, { setSubmitting }) => {
+  const onSubmit = useCallback((values, { setSubmitting }) => {
+    // * submitting logic goes here
     setSubmitting(false);
-  };
+  }, []);
 
   return (
     <Accordion
@@ -30,22 +39,26 @@ function BookingLayout({}) {
     >
       <AccordionSummary
         expandIcon={<ExpandIcon />}
-        aria-controls={`!location-booking-form`}
-        id={'!location-booking-header'}
+        aria-controls={`location-booking-form`}
       >
         <Typography variant="h6">Begin Booking</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Formik
-          initialValues={parsedData || transferInitialValues}
-          validationSchema={validationSchema}
+          initialValues={parsedData}
+          validationSchema={currentValidationSchema}
           onSubmit={onSubmit}
         >
-          {({ isSubmitting }) => <StepperLayout setCookie={setCookie} />}
+          {({ isSubmitting }) => (
+            <StepperLayout
+              cookieData={parsedData}
+              setCookie={setCookie}
+            />
+          )}
         </Formik>
       </AccordionDetails>
     </Accordion>
   );
 }
 
-export default BookingLayout;
+export default React.memo(BookingLayout);
