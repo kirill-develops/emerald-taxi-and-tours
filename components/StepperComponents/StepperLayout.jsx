@@ -42,10 +42,8 @@ function StepperLayout({ cookieData, setCookie }) {
   );
 
   useEffect(() => {
-    if (cookieData !== values) {
-      setCookie(values);
-    }
-  }, [values, cookieData]);
+    setCookie(values);
+  }, [values, cookieData, setCookie]);
 
   return (
     <Stack justifyContent="space-between">
