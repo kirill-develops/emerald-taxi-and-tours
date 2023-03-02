@@ -9,15 +9,21 @@ function useFormCookie(initialValues) {
 
   const parseFlightDetails = useCallback(
     (data) => {
+      const currentDateTime = dayjs();
+      const initialArrive = initialValues.flightDetails.arrive;
+      const initialDepart = initialValues.flightDetails.depart;
+      const arriveData = data?.flightDetails?.arrive;
+      const departData = data?.flightDetails?.depart;
+      const isArriveBeforeCurrentDate =
+        dayjs(arriveData).isBefore(currentDateTime);
+      const isDepartBeforeCurrentDate =
+        dayjs(departData).isBefore(currentDateTime);
+
       return {
         ...initialValues.flightDetails,
         ...data.flightDetails,
-        arrive: dayjs(
-          data?.flightDetails?.arrive || initialValues?.flightDetails?.arrive,
-        ),
-        depart: dayjs(
-          data?.flightDetails?.depart || initialValues?.flightDetails?.depart,
-        ),
+        arrive: isArriveBeforeCurrentDate ? initialArrive : dayjs(arriveData),
+        depart: isDepartBeforeCurrentDate ? initialDepart : dayjs(departData),
       };
     },
     [initialValues.flightDetails],
