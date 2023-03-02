@@ -60,14 +60,16 @@ function AccordionCard({ destinationData, areaData }) {
             aria-label="show more"
           >
             <ExpandMoreIcon
-              color="secondary"
+              color="primary"
               fontSize="large"
             />
           </ExpandMore>
           <Button
+            color="secondary"
             variant="contained"
             LinkComponent={Link}
             href={`/transfer/${destinationURL}`}
+            sx={{ mx: 1 }}
           >
             Book Now
           </Button>
@@ -78,8 +80,24 @@ function AccordionCard({ destinationData, areaData }) {
           unmountOnExit
         >
           <CardContent>
-            <Typography>One Way: ${price.oneWay}</Typography>
-            <Typography>Round Trip: ${price.roundTrip}</Typography>
+            <Typography>
+              One Way:{' '}
+              <Typography
+                as="span"
+                color="primary"
+              >
+                ${price.oneWay}
+              </Typography>
+            </Typography>
+            <Typography>
+              Round Trip:{' '}
+              <Typography
+                as="span"
+                color="primary"
+              >
+                ${price.roundTrip}
+              </Typography>
+            </Typography>
           </CardContent>
         </Collapse>
       </Card>

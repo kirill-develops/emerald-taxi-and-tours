@@ -31,7 +31,7 @@ function FilterCheckboxGroup({ filterState, dataFilter }) {
             control={
               <Checkbox
                 size="small"
-                color="secondary"
+                color="primary"
                 sx={{ py: 0.5 }}
                 inputProps={{ 'aria-label': label }}
                 value={link}

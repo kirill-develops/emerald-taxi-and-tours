@@ -33,7 +33,7 @@ function TourCard({ tour }) {
   return (
     <GridItem xs={12}>
       <Card
-        variant="outlined"
+        variant="elevation"
         sx={cardStyleProps}
       >
         <CardHeader
@@ -58,6 +58,7 @@ function TourCard({ tour }) {
         >
           <Button
             variant="contained"
+            color="secondary"
             LinkComponent={Link}
             href={`/tours/${link}`}
           >
@@ -75,7 +76,7 @@ function TourCard({ tour }) {
               TransitionComponent={Zoom}
             >
               <ExpandMoreIcon
-                color="secondary"
+                color="primary"
                 fontSize="large"
               />
             </Tooltip>

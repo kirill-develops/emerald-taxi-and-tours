@@ -31,6 +31,7 @@ function TabletPagesLink({ dissapearingBreakpoint }) {
     <Tabs
       value={value}
       onChange={handleChange}
+      indicatorColor="secondary"
       aria-label="page links"
       centered
       sx={{

@@ -6,6 +6,7 @@ import FilterCheckboxGroup from './FilterCheckboxGroup';
 function FilterOptions() {
   return (
     <Card
+      variant="outlined"
       sx={{
         m: { xs: 2, sm: 0 },
         ml: { sm: 1 },

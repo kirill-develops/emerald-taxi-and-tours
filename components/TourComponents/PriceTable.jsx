@@ -41,18 +41,33 @@ function PriceTable({ pricesArr }) {
             <StyledTableRow
               key={link}
               sx={{
-                backgroundColor:
-                  filterStartLocation[link] && 'orange !important',
+                backgroundColor: (theme) =>
+                  filterStartLocation[link] &&
+                  `${theme.palette.secondary.dark} !important`,
+                color: (theme) =>
+                  filterStartLocation[link] &&
+                  `${theme.palette.text.primary} !important`,
               }}
             >
               <TableCell
                 component="th"
                 scope="row"
+                sx={{ color: 'inherit' }}
               >
                 {name}
               </TableCell>
-              <TableCell align="center">{parish}</TableCell>
-              <TableCell align="right">${price}</TableCell>
+              <TableCell
+                align="center"
+                sx={{ color: 'inherit' }}
+              >
+                {parish}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{ color: 'inherit' }}
+              >
+                ${price}
+              </TableCell>
             </StyledTableRow>
           ))}
         </TableBody>

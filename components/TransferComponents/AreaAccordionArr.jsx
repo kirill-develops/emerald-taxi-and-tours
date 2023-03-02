@@ -12,7 +12,12 @@ function AreaAccordionArr({ transferData, title }) {
 
   return (
     <>
-      <Typography>{title}</Typography>
+      <Typography
+        variant="h3"
+        component="h2"
+      >
+        {title}
+      </Typography>
       <Container maxWidth="lg">
         {transferData.map((areaData) => {
           const { link } = areaData;

@@ -97,8 +97,8 @@ function Layout({ children, title = '', subheader = '', airport = '' }) {
           />
           {children}
         </GridContainer>
-        {isXsBreakpoint && <Offset />}
         <Copyright sx={{ overflow: 'auto' }} />
+        {isXsBreakpoint && <Offset />}
       </Container>
     </>
   );
