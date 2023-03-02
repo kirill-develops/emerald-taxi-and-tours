@@ -52,6 +52,10 @@ function FormFlightDetails() {
           }
           variant="outlined"
           margin="normal"
+          inputProps={{
+            step: 1,
+            inputMode: 'numeric',
+          }}
         />
       </Stack>
       <RoundTripRadio />

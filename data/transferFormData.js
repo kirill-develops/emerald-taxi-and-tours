@@ -34,10 +34,11 @@ export const transferInitialValues = {
 const flightDetailsValidationSchema = Yup.object().shape({
   flightDetails: Yup.object().shape({
     airline: Yup.string().required('Airline is required'),
-    flightNum: Yup.string().required('Flight number is required'),
-    transferType: Yup.array()
-      .of(Yup.string())
-      .min(1, 'At least one transfer type is required')
+    flightNum: Yup.number().integer('Invalid Flight Number')
+      .min(100, 'Must be at least 3 digits')
+      .max(9999, 'Must be less than 5 digits')
+      .required('Flight number is required'),
+    transferType: Yup.string()
       .required('Transfer type is required'),
     arrive: Yup.mixed()
       .required('Arrival date is required')
@@ -61,13 +62,20 @@ const flightDetailsValidationSchema = Yup.object().shape({
 
 export const personalDetailsValidationSchema = Yup.object({
   personalDetails: Yup.object().shape({
-    firstName: Yup.string().required('First name is required'),
-    lastName: Yup.string().required('Last name is required'),
-    email: Yup.string().email('Invalid email address').required('Email is required'),
+    firstName: Yup.string()
+      .required('First name is required'),
+    lastName: Yup.string()
+      .required('Last name is required'),
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
     emailConfirm: Yup.string()
       .oneOf([Yup.ref('email'), null], 'Emails must match')
       .required('Email confirmation is required'),
-    mobile: Yup.string().required('Mobile number is required'),
+    mobile: Yup.string()
+      .required('Mobile number is required')
+      .transform(value => (value ? value.replace(/[^0-9]/g, '') : ''))
+      .matches(/^[0-9]{10,}$/, 'Mobile number must have at least 10 digits'),
   })
 });
 
