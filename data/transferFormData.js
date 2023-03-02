@@ -31,13 +31,27 @@ export const transferInitialValues = {
   }
 };
 
-export const flightDetailsValidationSchema = Yup.object({
+const flightDetailsValidationSchema = Yup.object().shape({
   flightDetails: Yup.object().shape({
     airline: Yup.string().required('Airline is required'),
     flightNum: Yup.string().required('Flight number is required'),
     transferType: Yup.string().required('Transfer type is required'),
-    arrive: Yup.date().required('Arrival date is required'),
-    depart: Yup.date().required('Departure date is required'),
+    arrive: Yup.mixed()
+      .required('Arrival date is required')
+      .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
+      .test('before-depart-time', 'Must be before departure', function (value) {
+        const arriveDate = dayjs(value);
+        const departDate = dayjs(this.parent.depart);
+        return arriveDate.isBefore(departDate);
+      }),
+    depart: Yup.mixed()
+      .required('Departure date is required')
+      .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
+      .test('after-arrive-time', 'Departure date must be after the arrival date and time', function (value) {
+        const departDate = dayjs(value);
+        const arriveDate = dayjs(this.parent.arrive);
+        return departDate.isAfter(arriveDate);
+      }),
     accomName: Yup.string().required('Accommodation name is required'),
   })
 });

@@ -4,45 +4,66 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, from 'react';
 import { useFormikContext } from 'formik';
 
 function DatePicker() {
-  const { values, handleBlur, setFieldValue } = useFormikContext();
+  const { values, errors, handleBlur, setFieldValue } = useFormikContext();
 
   return (
-    <Stack
-      spacing={3}
-      direction="row"
-      alignItems="center"
-    >
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Stack
+        spacing={3}
+        direction="row"
+        alignItems="stretch"
+      >
         <DateTimePicker
           name="flightDetails.arrive"
           label="Arrival Date & Time"
           value={values?.flightDetails?.arrive}
-          onChange={(date) => {
-            setFieldValue('flightDetails.arrive', date);
-          }}
-          onBlur={handleBlur('flightDetails.arrive')}
+          onChange={(date) => setFieldValue('flightDetails.arrive', date)}
           disabled={values?.flightDetails?.transferType === 'departure'}
-          renderInput={(props) => <TextField {...props} />}
+          renderInput={(props) => (
+            <TextField
+              {...props}
+              onBlur={handleBlur}
+              helperText={
+                errors?.flightDetails?.arrive ||
+                (values?.flightDetails?.transferType !== 'departure' &&
+                  '* Required')
+              }
+            />
+          )}
           maxDateTime={values?.flightDetails?.depart}
           disablePast
         />
-        <Typography variant="body1">To</Typography>
+        <Typography
+          variant="h6"
+          sx={{ alignSelf: 'center' }}
+        >
+          To
+        </Typography>
         <DateTimePicker
           name="flightDetails.depart"
           label="Departure Date & Time"
           value={values?.flightDetails?.depart}
           onChange={(date) => setFieldValue('flightDetails.depart', date)}
-          onBlur={handleBlur('flightDetails.depart')}
           disabled={values?.flightDetails?.transferType === 'arrival'}
-          renderInput={(props) => <TextField {...props} />}
+          renderInput={(props) => (
+            <TextField
+              {...props}
+              onBlur={handleBlur}
+              helperText={
+                errors?.flightDetails?.depart ||
+                (values?.flightDetails?.transferType !== 'arrival' &&
+                  '* Required')
+              }
+            />
+          )}
           minDateTime={values?.flightDetails?.arrive}
         />
-      </LocalizationProvider>
-    </Stack>
+      </Stack>
+    </LocalizationProvider>
   );
 }
 
