@@ -35,7 +35,10 @@ const flightDetailsValidationSchema = Yup.object().shape({
   flightDetails: Yup.object().shape({
     airline: Yup.string().required('Airline is required'),
     flightNum: Yup.string().required('Flight number is required'),
-    transferType: Yup.string().required('Transfer type is required'),
+    transferType: Yup.array()
+      .of(Yup.string())
+      .min(1, 'At least one transfer type is required')
+      .required('Transfer type is required'),
     arrive: Yup.mixed()
       .required('Arrival date is required')
       .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
