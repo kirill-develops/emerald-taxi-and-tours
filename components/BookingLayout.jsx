@@ -2,7 +2,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import StepperLayout from '@Stepper/StepperLayout';
 import ExpandIcon from '@elements/ExpandIcon';
 import { Formik } from 'formik';
@@ -16,10 +16,13 @@ function BookingLayout() {
   const [parsedData, setCookie] = useFormCookie(transferInitialValues);
 
   const [expanded, setExpanded] = useState(Boolean(parsedData?.isBookingOpen));
-
-  const currentValidationSchema = getCurrentValidationSchema(
-    parsedData?.bookingStep,
+  const [currentValidationSchema, setValidationSchema] = useState(
+    getCurrentValidationSchema(parsedData?.bookingStep),
   );
+
+  useEffect(() => {
+    setValidationSchema(getCurrentValidationSchema(parsedData?.bookingStep));
+  }, [parsedData.bookingStep]);
 
   const handleExpand = useCallback(() => {
     setExpanded(!expanded);
