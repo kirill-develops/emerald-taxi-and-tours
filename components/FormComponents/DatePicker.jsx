@@ -34,7 +34,11 @@ function DatePicker() {
               }
             />
           )}
-          maxDateTime={values?.flightDetails?.depart}
+          maxDateTime={
+            values?.flightDetails?.transferType === 'roundtrip'
+              ? values?.flightDetails?.depart
+              : null
+          }
           disablePast
         />
         <Typography
@@ -60,7 +64,12 @@ function DatePicker() {
               }
             />
           )}
-          minDateTime={values?.flightDetails?.arrive}
+          minDateTime={
+            values?.flightDetails?.transferType === 'roundtrip'
+              ? values?.flightDetails?.arrive
+              : null
+          }
+          disablePast
         />
       </Stack>
     </LocalizationProvider>
