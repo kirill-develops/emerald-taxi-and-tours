@@ -21,6 +21,7 @@ export const transferInitialValues = {
     lastName: '',
     email: '',
     emailConfirm: '',
+    country: 'US',
     mobile: '',
   },
   paymentDetails: {
@@ -31,31 +32,47 @@ export const transferInitialValues = {
   }
 };
 
+
+
 const flightDetailsValidationSchema = Yup.object().shape({
   flightDetails: Yup.object().shape({
     airline: Yup.string().required('Airline is required'),
-    flightNum: Yup.number().integer('Invalid Flight Number')
+    flightNum: Yup.number()
+      .integer('Invalid Flight Number')
+      .positive('Invalid Flight Number')
       .min(100, 'Must be at least 3 digits')
       .max(9999, 'Must be less than 5 digits')
       .required('Flight number is required'),
     transferType: Yup.string()
       .required('Transfer type is required'),
-    arrive: Yup.mixed()
-      .required('Arrival date is required')
-      .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
-      .test('before-depart-time', 'Must be before departure', function (value) {
-        const arriveDate = dayjs(value);
-        const departDate = dayjs(this.parent.depart);
-        return arriveDate.isBefore(departDate);
-      }),
-    depart: Yup.mixed()
-      .required('Departure date is required')
-      .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
-      .test('after-arrive-time', 'Departure date must be after the arrival date and time', function (value) {
-        const departDate = dayjs(value);
-        const arriveDate = dayjs(this.parent.arrive);
-        return departDate.isAfter(arriveDate);
-      }),
+    arrive: Yup.mixed().when('transferType', {
+      is: 'roundtrip',
+      then: schema => schema
+        .required('Arrival date is required')
+        .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
+        .test('before-depart-time', 'Must be before departure', function (value) {
+          const arriveDate = dayjs(value);
+          const departDate = dayjs(this.parent.depart);
+          return departDate && arriveDate.isBefore(departDate);
+        }),
+      otherwise: (schema) => schema.required('Arrival date is required')
+        .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
+      ,
+    }),
+    depart: Yup.mixed().when('transferType', {
+      is: 'roundtrip',
+      then: schema => schema
+        .required('Departure date is required')
+        .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
+        .test('after-arrive-time', 'Must be after arrival', function (value) {
+          const departDate = dayjs(value);
+          const arriveDate = dayjs(this.parent.arrive);
+          return arriveDate && departDate.isAfter(arriveDate);
+        }),
+      otherwise: schema => schema.required('Departure date is required')
+        .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
+      ,
+    }),
     accomName: Yup.string().required('Accommodation name is required'),
   })
 });
@@ -70,8 +87,11 @@ export const personalDetailsValidationSchema = Yup.object({
       .email('Invalid email address')
       .required('Email is required'),
     emailConfirm: Yup.string()
-      .oneOf([Yup.ref('email'), null], 'Emails must match')
+      .test('email-match', 'Emails must match', function (value) {
+        return value === Yup.ref('email');
+      })
       .required('Email confirmation is required'),
+    country: Yup.string().required('Country is required'),
     mobile: Yup.string()
       .required('Mobile number is required')
       .transform(value => (value ? value.replace(/[^0-9]/g, '') : ''))
