@@ -12,7 +12,7 @@ function DatePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <FormInputStack>
+      <FormInputStack sx={{ rowGap: 1 }}>
         <DateTimePicker
           name="flightDetails.arrive"
           label="Arrival Date & Time"
@@ -23,11 +23,8 @@ function DatePicker() {
             <TextField
               {...props}
               onBlur={handleBlur}
-              helperText={
-                errors?.flightDetails?.arrive ||
-                (values?.flightDetails?.transferType !== 'departure' &&
-                  '* Required')
-              }
+              helperText={errors?.flightDetails?.arrive}
+              required={values?.flightDetails?.transferType !== 'departure'}
             />
           )}
           maxDateTime={
@@ -53,11 +50,8 @@ function DatePicker() {
             <TextField
               {...props}
               onBlur={handleBlur}
-              helperText={
-                errors?.flightDetails?.depart ||
-                (values?.flightDetails?.transferType !== 'arrival' &&
-                  '* Required')
-              }
+              helperText={errors?.flightDetails?.depart}
+              required={values?.flightDetails?.transferType !== 'arrival'}
             />
           )}
           minDateTime={

@@ -21,15 +21,14 @@ function FormFlightDetails() {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={
-            (touched?.flightDetails?.airline &&
-              errors?.flightDetails?.airline) ||
-            '* Required'
+            touched?.flightDetails?.airline && errors?.flightDetails?.airline
           }
           error={
             touched?.flightDetails?.airline &&
             Boolean(errors?.flightDetails?.airline)
           }
           variant="outlined"
+          required
         />
         <TextField
           name="flightDetails.flightNum"
@@ -39,20 +38,19 @@ function FormFlightDetails() {
           onChange={handleChange}
           onBlur={handleBlur}
           helperText={
-            (touched?.flightDetails?.flightNum &&
-              errors?.flightDetails?.flightNum) ||
-            '* Required'
+            touched?.flightDetails?.flightNum &&
+            errors?.flightDetails?.flightNum
           }
           error={
             touched?.flightDetails?.flightNum &&
             Boolean(errors?.flightDetails?.flightNum)
           }
-          variant="outlined"
-          margin="normal"
           inputProps={{
             step: 1,
             inputMode: 'numeric',
           }}
+          variant="outlined"
+          required
         />
       </FormInputStack>
       <RoundTripRadio />
@@ -65,9 +63,7 @@ function FormFlightDetails() {
         onChange={handleChange}
         onBlur={handleBlur}
         helperText={
-          (touched?.flightDetails?.accomName &&
-            errors?.flightDetails?.accomName) ||
-          '* Required'
+          touched?.flightDetails?.accomName && errors?.flightDetails?.accomName
         }
         error={
           touched?.flightDetails?.accomName &&
@@ -76,6 +72,7 @@ function FormFlightDetails() {
         variant="outlined"
         margin="normal"
         fullWidth
+        required
       />
     </Stack>
   );
