@@ -3,14 +3,15 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import React, { useCallback, useEffect, useState } from 'react';
-import StepperLayout from '@Stepper/StepperLayout';
-import ExpandIcon from '@elements/ExpandIcon';
 import { Formik } from 'formik';
 import {
   transferInitialValues,
   getCurrentValidationSchema,
-} from 'data/transferFormData';
+} from '@data/transferFormData';
 import useFormCookie from '@hooks/useFormCookie';
+import StepperLayout from '@Stepper/StepperLayout';
+import ExpandIcon from '@elements/ExpandIcon';
+import { darken } from '@mui/material';
 
 function BookingLayout() {
   const [parsedData, setCookie] = useFormCookie(transferInitialValues);
@@ -43,10 +44,14 @@ function BookingLayout() {
       <AccordionSummary
         expandIcon={<ExpandIcon />}
         aria-controls={`location-booking-form`}
+        sx={{
+          backgroundColor: (theme) => darken(theme.palette.secondary.main, 0.2),
+          borderRadius: 1,
+        }}
       >
         <Typography variant="h6">Begin Booking</Typography>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ mt: 4 }}>
         <Formik
           initialValues={parsedData}
           validationSchema={currentValidationSchema}
