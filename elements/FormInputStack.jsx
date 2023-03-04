@@ -6,10 +6,15 @@ function FormInputStack(props) {
 
   return (
     <Stack
-      direction="row"
+      direction={{ xs: 'column', sm: 'row' }}
       alignItems="stretch"
-      spacing={3}
-      sx={{ ...sx, mt: 2, mb: 1 }}
+      sx={{
+        mt: 2,
+        mb: 1,
+        columnGap: 3,
+        rowGap: 2,
+        ...sx,
+      }}
       {...rest}
     >
       {children}
