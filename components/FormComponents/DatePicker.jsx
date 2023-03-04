@@ -1,22 +1,18 @@
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useFormikContext } from 'formik';
+import FormInputStack from '@elements/FormInputStack';
 
 function DatePicker() {
   const { values, errors, handleBlur, setFieldValue } = useFormikContext();
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Stack
-        spacing={3}
-        direction="row"
-        alignItems="stretch"
-      >
+      <FormInputStack>
         <DateTimePicker
           name="flightDetails.arrive"
           label="Arrival Date & Time"
@@ -71,7 +67,7 @@ function DatePicker() {
           }
           disablePast
         />
-      </Stack>
+      </FormInputStack>
     </LocalizationProvider>
   );
 }

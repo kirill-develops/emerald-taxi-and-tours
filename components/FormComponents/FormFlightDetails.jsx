@@ -4,6 +4,7 @@ import { useFormikContext } from 'formik';
 import React from 'react';
 import DatePicker from '@Form/DatePicker';
 import RoundTripRadio from '@Form/RoundTripRadio';
+import FormInputStack from '@elements/FormInputStack';
 
 function FormFlightDetails() {
   const formik = useFormikContext();
@@ -11,11 +12,7 @@ function FormFlightDetails() {
 
   return (
     <Stack alignItems="center">
-      <Stack
-        direction="row"
-        alignItems="center"
-        spacing={3}
-      >
+      <FormInputStack>
         <TextField
           name="flightDetails.airline"
           label="Airline"
@@ -57,7 +54,7 @@ function FormFlightDetails() {
             inputMode: 'numeric',
           }}
         />
-      </Stack>
+      </FormInputStack>
       <RoundTripRadio />
       <DatePicker />
       <TextField
