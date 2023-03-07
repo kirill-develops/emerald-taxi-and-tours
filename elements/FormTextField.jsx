@@ -1,6 +1,8 @@
-import React from 'react';
-import TextField from '@mui/material/TextField';
+import dynamic from 'next/dynamic';
+
+const TextField = dynamic(() => import('@mui/material/TextField'));
 import { useFormikContext } from 'formik';
+import React from 'react';
 
 function FormTextField({
   stepName,

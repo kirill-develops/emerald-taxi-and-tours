@@ -1,13 +1,18 @@
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
+import dynamic from 'next/dynamic';
+
+const Container = dynamic(() => import('@mui/material/Container'));
+const Divider = dynamic(() => import('@mui/material/Divider'));
+const Typography = dynamic(() => import('@mui/material/Typography'));
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
 import React from 'react';
-import Copyright from './Copyright';
-import Navbar from '@Navbar/NavbarLayout';
+
 import usePageTransition from '@hooks/usePageTransition';
-import { GridContainer } from '@elements/CustomGridEl';
+const Copyright = dynamic(() => import('./Copyright'));
+const Navbar = dynamic(() => import('@Navbar/NavbarLayout'));
+const GridContainer = dynamic(() =>
+  import('@elements/CustomGridEl').then((mod) => mod.GridContainer),
+);
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
