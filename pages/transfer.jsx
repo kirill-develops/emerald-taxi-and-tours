@@ -5,10 +5,14 @@ import {
   sangsterTransferData,
 } from '@data/transfers';
 import AreaAccordionArr from '@Transfer/AreaAccordionArr';
+import Head from 'next/head';
 
 function Transfer() {
   return (
     <>
+      <Head>
+        <title>Airport Transfers | EMERALD Taxi & Tours</title>
+      </Head>
       <Layout title="Airport Transfers">
         <AreaAccordionArr
           transferData={sangsterTransferData}

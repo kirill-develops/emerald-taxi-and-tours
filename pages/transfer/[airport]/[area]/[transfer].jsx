@@ -7,6 +7,7 @@ import {
 } from '@data/transfers';
 import Fallback from '@components/Fallback';
 import BookingLayout from '@components/BookingLayout';
+import Head from 'next/head';
 
 const transferData = [...sangsterTransferData, ...normanManleyTransferData];
 
@@ -91,15 +92,24 @@ function DynamicTransfer({ transferParams, areaParams }) {
   }
 
   const { link, name, price } = transferParams;
+  console.log(areaParams);
 
   return (
-    <Layout
-      title={name}
-      subheader={areaParams.name}
-      airport={areaParams.airport}
-    >
-      <BookingLayout />
-    </Layout>
+    <>
+      <Head>
+        <title>
+          Transfers: {name}, {areaParams.name} & {areaParams.airport}| EMERALD
+          Taxi & Tours
+        </title>
+      </Head>
+      <Layout
+        title={name}
+        subheader={areaParams.name}
+        airport={areaParams.airport}
+      >
+        <BookingLayout />
+      </Layout>
+    </>
   );
 }
 
