@@ -5,13 +5,11 @@ import TourLayout from '@Tour/TourLayout';
 
 function tours() {
   return (
-    <main>
-      <TourContainer>
-        <Layout title="Tours & Attractions">
-          <TourLayout />
-        </Layout>
-      </TourContainer>
-    </main>
+    <TourContainer>
+      <Layout title="Tours & Attractions">
+        <TourLayout />
+      </Layout>
+    </TourContainer>
   );
 }
 
