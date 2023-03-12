@@ -4,6 +4,7 @@ import FormFlightDetails from '@Form/FormFlightDetails';
 import FormPersonalDetails from '@Form/FormPersonalDetails';
 import FormPaymentDetails from '@Form/FormPaymentDetails';
 import FormConfirmDetails from '@Form/FormConfirmDetails';
+import { validatePhoneNumberLength } from 'libphonenumber-js';
 
 export const transferInitialValues = {
   bookingStep: 0,
@@ -87,7 +88,7 @@ export const personalDetailsValidationSchema = Yup.object({
       .email('Invalid email address')
       .required('Email is required'),
     emailConfirm: Yup.string()
-      .test('email-match', 'Emails must match', function (value) {
+      .test('email-match', 'Emails must match', (value) => {
         return value === Yup.ref('email');
       })
       .required('Email confirmation is required'),
@@ -95,7 +96,31 @@ export const personalDetailsValidationSchema = Yup.object({
     mobile: Yup.string()
       .required('Mobile number is required')
       .transform(value => (value ? value.replace(/[^0-9]/g, '') : ''))
-      .matches(/^[0-9]{10,}$/, 'Mobile number must have at least 10 digits'),
+      .test('isValidPhoneNumberLength', 'Invalid phone number length for the selected country', function (value) {
+        if (!value) {
+          return true; // Pass if value is not present
+        }
+
+        const { country } = this.parent;
+        const validationError = validatePhoneNumberLength(value, country);
+
+        switch (validationError) {
+          case 'NOT_A_NUMBER':
+            return this.createError({ message: 'Invalid characters in phone number' });
+          case 'INVALID_COUNTRY':
+            return this.createError({ message: 'Invalid country for phone number' });
+          case 'TOO_SHORT':
+            return this.createError({ message: 'Phone number is too short' });
+          case 'INVALID_LENGTH':
+            return this.createError({ message: 'Invalid phone number length' });
+          case 'TOO_LONG':
+            return this.createError({ message: 'Phone number is too long' });
+          case undefined:
+            return true;
+          default:
+            return true;
+        }
+      })
   })
 });
 
