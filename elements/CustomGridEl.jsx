@@ -1,25 +1,23 @@
 import Grid from '@mui/material/Grid';
 
-export const GridContainer = (props) => {
-  const { children, ...other } = props;
-
+export const GridContainer = ({ children, sx, ...other }) => {
   return (
     <Grid
       container
       {...other}
+      sx={{ ...sx }}
     >
       {children}
     </Grid>
   );
 };
 
-export const GridItem = (props) => {
-  const { children, ...other } = props;
-
+export const GridItem = ({ children, sx, ...other }) => {
   return (
     <Grid
       item
       {...other}
+      sx={{ ...sx }}
     >
       {children}
     </Grid>
