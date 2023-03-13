@@ -17,12 +17,9 @@ function usePhoneField(stepName, fieldName, mobile = false) {
 
     const formatter = new AsYouType(currentCountry);
     const formattedNumber = formatter.input(formikValue);
-    const phoneObj = formatter.getNumber();
-    console.log(phoneObj);
 
     return mobile ? [formattedNumber, exampleNumber] : [formikValue, ''];
   }, [mobile, values, stepName, fieldName]);
-  console.log(values.personalDetails.mobile);
 
   const handlePhoneChange = useCallback(
     (event) => {
@@ -44,9 +41,9 @@ function usePhoneField(stepName, fieldName, mobile = false) {
 
       const formatter = new AsYouType();
       formatter.input(inputValue);
-      const phoneObj = formatter.getNumber();
+
       const phoneCountryCode = formatter.getCountry();
-      const possibleCountries = phoneObj?.getPossibleCountries();
+      const possibleCountries = formatter.getNumber()?.getPossibleCountries();
 
       if (phoneCountryCode) {
         setFieldValue('personalDetails.country', phoneCountryCode);
