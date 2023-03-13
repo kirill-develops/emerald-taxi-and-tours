@@ -1,4 +1,4 @@
-import { createTheme, experimental_extendTheme, responsiveFontSizes } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { Roboto } from '@next/font/google';
 
 
@@ -11,18 +11,35 @@ export const roboto = Roboto({
 
 export const gridSpacingProps = { xs: 1, sm: 2, md: 3, lg: 3.5 };
 
-export const cardStyleProps = {
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-};
+const themeTypography = {
+  fontFamily: roboto.style.fontFamily,
+}
+
+const themeComponents = {
+  MuiTabs: {
+    styleOverrides: {
+      root: {
+      },
+      fixed: {
+        display: 'flex',
+        height: '100%',
+        alignSelf: 'center'
+      }
+    }
+  },
+  MuiSelect: {
+    styleOverrides: {
+      select: {
+        display: 'grid'
+      },
+    }
+  }
+}
 
 
 export let theme = createTheme({
-  typography: {
-    fontFamily: roboto.style.fontFamily,
-  },
+  typography: themeTypography,
+  components: themeComponents,
   palette: {
     mode: 'light',
     primary: {
@@ -56,14 +73,13 @@ export let theme = createTheme({
       disabled: '#717971',
     },
     divider: '#C1C9BF',
-  }
+  },
 });
 theme = responsiveFontSizes(theme);
 
 export let darkTheme = createTheme({
-  typography: {
-    fontFamily: roboto.style.fontFamily,
-  },
+  typography: themeTypography,
+  components: themeComponents,
   palette: {
     mode: 'dark',
     primary: {
@@ -138,19 +154,6 @@ export let darkTheme = createTheme({
     "0px 11px 14px -7px rgba(255,255,255,0.2),0px 23px 36px 3px rgba(255,255,255,0.14),0px 9px 44px 8px rgba(255,255,255,0.12)"
     ,
     "0px 11px 15px -7px rgba(255,255,255,0.2),0px 24px 38px 3px rgba(255,255,255,0.14),0px 9px 46px 8px rgba(255,255,255,0.12)"],
-  components: {
-    MuiTabs: {
-      styleOverrides: {
-        root: {
-        },
-        fixed: {
-          display: 'flex',
-          height: '100%',
-          alignSelf: 'center'
-        }
-      }
-    }
-  }
 });
 
 darkTheme = responsiveFontSizes(darkTheme);
