@@ -14,10 +14,6 @@ import TabletPagesLink from './TabletPagesLink';
 import emeraldLogo from '@Public/logo/emerald_logo_v2.png';
 import useLoadingTransition from '@hooks/useLoadingTransition';
 
-const logoStyle = {
-  aspectRatio: '1 / 1',
-};
-
 function ElevationScroll(props) {
   const { children, window } = props;
 
@@ -74,9 +70,8 @@ function NavbarLayout(props) {
               <Image
                 src={emeraldLogo}
                 alt="Emerald Taxi & Tour Logo"
-                height={42}
                 width={42}
-                style={logoStyle}
+                quality={100}
                 blurDataURL
               />
             </Link>
