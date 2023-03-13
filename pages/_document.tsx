@@ -2,8 +2,9 @@ import * as React from 'react';
 import { getInitColorSchemeScript } from '@mui/material';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import { roboto, theme } from '@material/theme'; //todo add user theme fetching logic
+import { roboto, theme } from '@material/theme';
 import createEmotionCache from '@material/createEmotionCache';
+import Favicon from '@components/Favicon';
 
 
 export default class MyDocument extends Document {
@@ -12,12 +13,12 @@ export default class MyDocument extends Document {
       <Html lang="en" className={roboto.className}>
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="shortcut icon" href="/favicon.ico" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
           <meta name="emotion-insertion-point" content="" />
+          <Favicon />
           {(this.props as any).emotionStyleTags}
         </Head>
         <body>
