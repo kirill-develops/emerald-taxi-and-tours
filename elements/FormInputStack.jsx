@@ -1,9 +1,7 @@
 import Stack from '@mui/material/Stack';
 import React from 'react';
 
-function FormInputStack(props) {
-  const { children, sx, ...rest } = props;
-
+function FormInputStack({ children, sx, ...rest }) {
   return (
     <Stack
       direction={{ xs: 'column', sm: 'row' }}
