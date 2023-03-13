@@ -55,12 +55,12 @@ function NavbarLayout(props) {
           <Stack
             direction="row"
             spacing={1.5}
-            noWrap
             sx={{
               flexGrow: 1,
               justifyContent: { xs: 'center', md: 'initial' },
               alignItems: 'center',
               position: 'relative',
+              flexWrap: 'nowrap',
             }}
           >
             <Link
