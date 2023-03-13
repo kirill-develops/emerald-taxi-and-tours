@@ -6,7 +6,7 @@ import React from 'react';
 import AccordionCard from './AccordionCard';
 import { gridSpacingProps } from '@material/theme';
 import { GridContainer } from '@elements/CustomGridEl';
-import ExpandIcon from '@elements/ExpandIcon';
+import ExpandIconButton from '@elements/ExpandIconButton';
 
 function DestinationCardArr({ areaData: data }) {
   const { destinations, ...areaData } = data;
@@ -30,7 +30,7 @@ function DestinationAccordion({ areaData, expanded, handleChange }) {
       TransitionProps={{ unmountOnExit: true }}
     >
       <AccordionSummary
-        expandIcon={<ExpandIcon />}
+        expandIcon={<ExpandIconButton />}
         aria-controls={`${link}-transfers-content`}
         id={`${link}-transfers-header`}
       >

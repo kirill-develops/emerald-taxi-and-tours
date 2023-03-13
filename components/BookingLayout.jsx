@@ -10,7 +10,7 @@ import {
 } from '@data/transferFormData';
 import useFormCookie from '@hooks/useFormCookie';
 import StepperLayout from '@Stepper/StepperLayout';
-import ExpandIcon from '@elements/ExpandIcon';
+import ExpandIconButton from '@elements/ExpandIconButton';
 import { darken } from '@mui/material';
 
 function BookingLayout() {
@@ -42,7 +42,7 @@ function BookingLayout() {
       TransitionProps={{ unmountOnExit: true }}
     >
       <AccordionSummary
-        expandIcon={<ExpandIcon />}
+        expandIcon={<ExpandIconButton />}
         aria-controls={`location-booking-form`}
         sx={{
           backgroundColor: (theme) => darken(theme.palette.secondary.main, 0.2),
