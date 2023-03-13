@@ -1,6 +1,5 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandCircleDown';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -10,13 +9,13 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Zoom from '@mui/material/Zoom';
 import React, { useState } from 'react';
-import { cardStyleProps } from '@material/theme';
 import ExpandMore from '@elements/ExpandMore';
 import PriceTable from './PriceTable';
 import TourType from './TourType';
 import PickUpCardHeader from './PickUpCardHeader';
 import { GridItem } from '@elements/CustomGridEl';
 import Link from '@material/Link';
+import DetailedCard from '@elements/DetailedCard';
 
 function Description({ description }) {
   return description.length > 0 && <Typography>{description}</Typography>;
@@ -32,10 +31,7 @@ function TourCard({ tour }) {
 
   return (
     <GridItem xs={12}>
-      <Card
-        variant="elevation"
-        sx={cardStyleProps}
-      >
+      <DetailedCard variant="elevation">
         <CardHeader
           title={name}
           subheader={area}
@@ -92,7 +88,7 @@ function TourCard({ tour }) {
             <PriceTable pricesArr={price} />
           </CardContent>
         </Collapse>
-      </Card>
+      </DetailedCard>
     </GridItem>
   );
 }

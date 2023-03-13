@@ -1,16 +1,15 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandCircleDown';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import { cardStyleProps } from '@material/theme';
 import ExpandMore from '@elements/ExpandMore';
 import Link from '@material/Link';
 import { GridItem } from '@elements/CustomGridEl';
+import DetailedCard from '@elements/DetailedCard';
 
 function getSubheader(areaLink, destination, area) {
   switch (areaLink) {
@@ -44,10 +43,7 @@ function AccordionCard({ destinationData, areaData }) {
       md={6}
       lg={4}
     >
-      <Card
-        variant="outlined"
-        sx={cardStyleProps}
-      >
+      <DetailedCard variant="outlined">
         <CardHeader
           title={name}
           subheader={subheader}
@@ -100,7 +96,7 @@ function AccordionCard({ destinationData, areaData }) {
             </Typography>
           </CardContent>
         </Collapse>
-      </Card>
+      </DetailedCard>
     </GridItem>
   );
 }
