@@ -8,12 +8,7 @@
       "@Stepper/*" : ["components/StepperComponents/*"],
       "@Tour/*" : ["components/TourComponents/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],
-      "@Data/*" : ["data/*"],
-      "@Elements/*" : ["elements/*"],
-      "@Hooks/*" : ["hooks/*"],
-      "@Material/*" : ["material/*"],
-      "@State/*" : ["state/*"],
-      "@Styles/*" : ["styles/*"],
+      "@Public/*" : ["../public/*"],
     },
     "lib": [
       "dom",

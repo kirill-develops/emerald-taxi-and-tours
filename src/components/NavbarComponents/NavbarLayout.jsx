@@ -10,6 +10,13 @@ import Link from '@material/Link';
 import MobilePagesMenu from './MobilePagesMenu';
 import MobileSearchModal from './MobileSearchModal';
 import TabletPagesLink from './TabletPagesLink';
+import Image from 'next/image';
+import emeraldLogo from '@Public/logo/emerald_logo_v2.png';
+import Stack from '@mui/material/Stack';
+
+const logoStyle = {
+  aspectRatio: '1 / 1',
+};
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -46,12 +53,29 @@ function NavbarLayout(props) {
       >
         <Toolbar>
           <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
-          <Box
+          <Stack
+            direction="row"
+            spacing={1.5}
+            noWrap
             sx={{
               flexGrow: 1,
-              textAlign: { xs: 'center', md: 'initial' },
+              justifyContent: { xs: 'center', md: 'initial' },
+              alignItems: 'center',
+              position: 'relative',
             }}
           >
+            <Link
+              href="/"
+              sx={{ display: 'flex', alignItems: 'center' }}
+            >
+              <Image
+                src={emeraldLogo}
+                alt="Emerald Taxi & Tour Logo"
+                height={42}
+                width={42}
+                style={logoStyle}
+              />
+            </Link>
             <Typography
               variant="h5"
               component={Link}
@@ -76,7 +100,7 @@ function NavbarLayout(props) {
                 Taxi & Tours
               </Typography>
             </Typography>
-          </Box>
+          </Stack>
           <TabletPagesLink dissapearingBreakpoint={menuBreakpoint} />
           <MobileSearchModal dissapearingBreakpoint={menuBreakpoint} />
         </Toolbar>
