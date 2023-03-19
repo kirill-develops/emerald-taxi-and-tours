@@ -77,7 +77,7 @@ export const sangsterTransferData = [
     ]
   },
   {
-    name: 'Other Areas', link: 'other', airport: 'Sangster Internation (MBJ)', airportLink: 'MBJ', destinations: [
+    name: 'Other Areas', link: 'other_areas', airport: 'Sangster Internation (MBJ)', airportLink: 'MBJ', destinations: [
       { name: "All Other Resorts, Villas, AirBnB & Homes in TREASURE BEACH", area: 'Treasure Beach', link: 'treasure_beach', price: { oneWay: 40, roundTrip: 75 } },
       { name: "All Other Resorts, Villas, AirBnB & Homes in MANDEVILLE", area: 'Mandeville', link: 'mandeville', price: { oneWay: 50, roundTrip: 80 } },
       { name: "All Other Resorts, Villas, AirBnB & Homes in PORT ANTONIO", area: 'Port Antonio', link: 'port_antonio', price: { oneWay: 90, roundTrip: 160 } },
