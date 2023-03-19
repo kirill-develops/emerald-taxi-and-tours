@@ -4,28 +4,13 @@ import { gridSpacingProps } from '@material/theme';
 import { useTour } from '@state/useTour';
 import TourCard from './TourCard';
 import { GridContainer } from '@elements/CustomGridEl';
-
-function useSortData(data, sortBy = '') {
-  const clonedData = structuredClone(data);
-  switch (sortBy) {
-    case '':
-      return clonedData;
-    case 'alphabetical':
-      return clonedData.sort((a, b) => a.name.localeCompare(b.name));
-    case 'priceAscending':
-      return clonedData; //! figure out sort
-    case 'priceDescending':
-      return clonedData; //! figure out sort
-    case 'region':
-      return clonedData.sort((a, b) => a.area.localeCompare(b.area));
-  }
-}
+import useSortData from '@hooks/useSortData';
 
 function TourGrid() {
   const [state, actions] = useTour();
-  const { sort, filteredData } = state;
+  const { sort, filteredData, filterStartLocation } = state;
 
-  const sortedTourData = useSortData(filteredData, sort);
+  const sortedTourData = useSortData(filteredData, sort, filterStartLocation);
 
   return (
     <Container
