@@ -3,13 +3,40 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import React from 'react';
+import Tooltip from '@mui/material/Tooltip';
+import Zoom from '@mui/material/Zoom';
+import React, { useMemo } from 'react';
 import { useTour } from '@state/useTour';
+
+function SortTooltip({ title = '', children, sx, disabled = false, ...rest }) {
+  return (
+    <Tooltip
+      title={title}
+      arrow
+      followCursor
+      TransitionComponent={Zoom}
+      placement="left"
+      disableFocusListener={disabled}
+      disableHoverListener={disabled}
+      disableInteractive={disabled}
+      disableTouchListener={disabled}
+      sx={{ ...sx }}
+      {...rest}
+    >
+      <span>{children}</span>
+    </Tooltip>
+  );
+}
 
 function SortButton() {
   const [state, actions] = useTour();
-  const { sort } = state;
+  const { sort, filterStartLocation } = state;
   const { setSort } = actions;
+
+  const hasStartLocation = useMemo(
+    () => Object.values(filterStartLocation).some((value) => value),
+    [filterStartLocation],
+  );
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
@@ -25,7 +52,7 @@ function SortButton() {
     <FormControl
       onKeyUp={handleClearSelect}
       sx={{
-        width: { xs: '40%', sm: '25%' },
+        width: { xs: '40%', sm: '28%' },
         minWidth: 125,
         maxWidth: 225,
       }}
@@ -39,11 +66,7 @@ function SortButton() {
         }}
       >
         Sort
-        <SortOutlined
-          sx={{
-            ml: 1,
-          }}
-        />
+        <SortOutlined sx={{ ml: 1 }} />
       </InputLabel>
       <Select
         label="Sort......."
@@ -51,8 +74,30 @@ function SortButton() {
         onChange={handleSortChange}
       >
         <MenuItem value="alphabetical"> Alphabetical</MenuItem>
-        <MenuItem value="priceAscending">Price: Low to High</MenuItem>
-        <MenuItem value="priceDescending">Price: High to Low</MenuItem>
+
+        <MenuItem
+          value="priceAscending"
+          disabled={!hasStartLocation}
+        >
+          <SortTooltip
+            title="select starting location for price sort"
+            disabled={hasStartLocation}
+          >
+            Price: Low to High
+          </SortTooltip>
+        </MenuItem>
+
+        <MenuItem
+          value="priceDescending"
+          disabled={!hasStartLocation}
+        >
+          <SortTooltip
+            title="select starting location for price sort"
+            disabled={hasStartLocation}
+          >
+            Price: High to Low
+          </SortTooltip>
+        </MenuItem>
         <MenuItem value="region">Region: Alphabetical</MenuItem>
       </Select>
     </FormControl>
