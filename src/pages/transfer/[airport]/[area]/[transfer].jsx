@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import Layout from '@components/Layout';
 import { useRouter } from 'next/router';
 import {
@@ -84,6 +84,8 @@ export async function getStaticProps({ params }) {
   };
 }
 
+export const ParamContext = createContext();
+
 function DynamicTransfer({ transferParams, areaParams }) {
   const router = useRouter();
 
@@ -91,23 +93,22 @@ function DynamicTransfer({ transferParams, areaParams }) {
     return <Fallback />;
   }
 
-  const { link, name, price } = transferParams;
-  console.log(areaParams);
-
   return (
     <>
       <Head>
         <title>
-          Transfers: {name}, {areaParams.name} & {areaParams.airport}| EMERALD
-          Taxi & Tours
+          Transfers: {transferParams.name}, {areaParams.name} &{' '}
+          {areaParams.airport}| EMERALD Taxi & Tours
         </title>
       </Head>
       <Layout
-        title={name}
+        title={transferParams.name}
         subheader={areaParams.name}
         airport={areaParams.airport}
       >
-        <BookingLayout />
+        <ParamContext.Provider value={{ transferParams, areaParams }}>
+          <BookingLayout />
+        </ParamContext.Provider>
       </Layout>
     </>
   );

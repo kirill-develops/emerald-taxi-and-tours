@@ -6,6 +6,7 @@ import FormPaymentDetails from '@Form/FormPaymentDetails';
 import FormConfirmDetails from '@Form/FormConfirmDetails';
 import { validatePhoneNumberLength } from 'libphonenumber-js';
 
+
 export const transferInitialValues = {
   bookingStep: 0,
   isBookingOpen: false,
@@ -32,7 +33,6 @@ export const transferInitialValues = {
     userConfirmed: false
   }
 };
-
 
 
 const flightDetailsValidationSchema = Yup.object().shape({
@@ -77,6 +77,7 @@ const flightDetailsValidationSchema = Yup.object().shape({
     accomName: Yup.string().required('Accommodation name is required'),
   })
 });
+
 
 export const personalDetailsValidationSchema = Yup.object({
   personalDetails: Yup.object().shape({
@@ -124,17 +125,20 @@ export const personalDetailsValidationSchema = Yup.object({
   })
 });
 
+
 export const paymentDetailsValidationSchema = Yup.object({
   paymentDetails: Yup.object().shape({
     paymentAuthorized: Yup.boolean().oneOf([true], 'You must authorize payment'),
   })
 });
 
+
 export const confirmDetailsValidationSchema = Yup.object({
   confirmDetails: Yup.object().shape({
     userConfirmed: Yup.boolean().oneOf([true], 'You must confirm the details'),
   })
 });
+
 
 export const transferSteps = [
   {
@@ -174,6 +178,7 @@ export function useTransferDataByKey(keys) {
     }, [])
   );
 }
+
 
 export function getCurrentValidationSchema(bookingStep) {
   switch (bookingStep) {
