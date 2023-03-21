@@ -22,7 +22,7 @@ function getSubheader(areaLink, destination, area) {
   }
 }
 
-function AccordionCard({ destinationData, areaData }) {
+function TransferCard({ destinationData, areaData }) {
   const { name: areaName, link: areaLink, airportLink } = areaData;
   const { name, link, price } = destinationData;
 
@@ -76,8 +76,8 @@ function AccordionCard({ destinationData, areaData }) {
           unmountOnExit
         >
           <CardContent>
-            <Typography>
-              One Way:{' '}
+            <Typography variant="subtitle2">
+              One Way (1-4 people):{' '}
               <Typography
                 as="span"
                 color="primary"
@@ -85,14 +85,37 @@ function AccordionCard({ destinationData, areaData }) {
                 ${price.oneWay}
               </Typography>
             </Typography>
-            <Typography>
-              Round Trip:{' '}
+            <Typography
+              variant="subtitle2"
+              gutterBottom
+            >
+              Additional Passanger:{' '}
+              <Typography
+                as="span"
+                color="primary"
+              >
+                ${price.extraGuestOneWay}
+              </Typography>{' '}
+              /Each
+            </Typography>
+            <Typography variant="subtitle2">
+              Round Trip (1-4 people):{' '}
               <Typography
                 as="span"
                 color="primary"
               >
                 ${price.roundTrip}
               </Typography>
+            </Typography>
+            <Typography variant="subtitle2">
+              Additional Passanger:{' '}
+              <Typography
+                as="span"
+                color="primary"
+              >
+                ${price.extraGuestTwoWay}
+              </Typography>{' '}
+              /Each
             </Typography>
           </CardContent>
         </Collapse>
@@ -101,4 +124,4 @@ function AccordionCard({ destinationData, areaData }) {
   );
 }
 
-export default AccordionCard;
+export default TransferCard;
