@@ -1,28 +1,27 @@
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import AccordionCard from './AccordionCard';
-import { gridSpacingProps } from '../../material/theme';
+import TransferCard from './TransferCard';
+import { gridSpacingProps } from '@material/theme';
+import { GridContainer } from '@elements/CustomGridEl';
+import ExpandIconButton from '@elements/ExpandIconButton';
 
-function DestinationAccordion({
-  name,
-  link,
-  destinations,
-  expanded,
-  handleChange,
-}) {
-  const destinationsCardElArray = destinations.map((destinaton) => (
-    <AccordionCard
+function DestinationCardArr({ areaData: data }) {
+  const { destinations, ...areaData } = data;
+
+  return destinations.map((destinaton) => (
+    <TransferCard
       key={destinaton.link}
-      destination={destinaton}
-      area={name}
-      linkEnding={link}
+      destinationData={destinaton}
+      areaData={areaData}
     />
   ));
+}
+
+function DestinationAccordion({ areaData, expanded, handleChange }) {
+  const { name, link } = areaData;
 
   return (
     <Accordion
@@ -31,20 +30,20 @@ function DestinationAccordion({
       TransitionProps={{ unmountOnExit: true }}
     >
       <AccordionSummary
-        expandIcon={<ExpandMore />}
+        expandIcon={<ExpandIconButton />}
         aria-controls={`${link}-transfers-content`}
         id={`${link}-transfers-header`}
       >
         <Typography>{name}</Typography>
       </AccordionSummary>
+
       <AccordionDetails>
-        <Grid
-          container
+        <GridContainer
           spacing={gridSpacingProps}
           sx={{ alignItems: 'stretch' }}
         >
-          {destinationsCardElArray}
-        </Grid>
+          <DestinationCardArr areaData={areaData} />
+        </GridContainer>
       </AccordionDetails>
     </Accordion>
   );
