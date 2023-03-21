@@ -52,7 +52,7 @@ function SortButton() {
     <FormControl
       onKeyUp={handleClearSelect}
       sx={{
-        width: { xs: '40%', sm: '25%' },
+        width: { xs: '40%', sm: '28%' },
         minWidth: 125,
         maxWidth: 225,
       }}
@@ -66,11 +66,7 @@ function SortButton() {
         }}
       >
         Sort
-        <SortOutlined
-          sx={{
-            ml: 1,
-          }}
-        />
+        <SortOutlined sx={{ ml: 1 }} />
       </InputLabel>
       <Select
         label="Sort......."
@@ -78,29 +74,30 @@ function SortButton() {
         onChange={handleSortChange}
       >
         <MenuItem value="alphabetical"> Alphabetical</MenuItem>
-        <SortTooltip
-          title="select starting location for price sort"
-          disabled={hasStartLocation}
+
+        <MenuItem
+          value="priceAscending"
+          disabled={!hasStartLocation}
         >
-          <MenuItem
-            value="priceAscending"
-            disabled={!hasStartLocation}
+          <SortTooltip
+            title="select starting location for price sort"
+            disabled={hasStartLocation}
           >
             Price: Low to High
-          </MenuItem>
-        </SortTooltip>
+          </SortTooltip>
+        </MenuItem>
 
-        <SortTooltip
-          title="select starting location for price sort"
-          disabled={hasStartLocation}
+        <MenuItem
+          value="priceDescending"
+          disabled={!hasStartLocation}
         >
-          <MenuItem
-            value="priceDescending"
-            disabled={!hasStartLocation}
+          <SortTooltip
+            title="select starting location for price sort"
+            disabled={hasStartLocation}
           >
             Price: High to Low
-          </MenuItem>
-        </SortTooltip>
+          </SortTooltip>
+        </MenuItem>
         <MenuItem value="region">Region: Alphabetical</MenuItem>
       </Select>
     </FormControl>
