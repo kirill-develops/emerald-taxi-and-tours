@@ -89,7 +89,7 @@ function TransferCard({ destinationData, areaData }) {
               variant="subtitle2"
               gutterBottom
             >
-              Additional Passanger:{' '}
+              Additional Passenger:{' '}
               <Typography
                 as="span"
                 color="primary"
@@ -108,7 +108,7 @@ function TransferCard({ destinationData, areaData }) {
               </Typography>
             </Typography>
             <Typography variant="subtitle2">
-              Additional Passanger:{' '}
+              Additional Passenger:{' '}
               <Typography
                 as="span"
                 color="primary"

@@ -4,6 +4,7 @@ import DatePicker from '@Form/DatePicker';
 import RoundTripRadio from '@Form/RoundTripRadio';
 import FormInputStack from '@elements/FormInputStack';
 import FormTextField from '@elements/FormTextField';
+import FormPassengerSwitches from './FormPassengerSwitches';
 import { ParamContext } from '@pages/transfer/[airport]/[area]/[transfer]';
 
 function FormFlightDetails() {
@@ -47,6 +48,7 @@ function FormFlightDetails() {
         margin="normal"
         disabled={isAccomDisabled}
       />
+      <FormPassengerSwitches />
     </Stack>
   );
 }
