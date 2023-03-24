@@ -1,8 +1,11 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { tourData } from '@data/tours';
 import Layout from '@components/Layout';
 import Fallback from '@components/Fallback';
+import BookingLayout from '@components/BookingLayout';
+import FormContextProvider from '@components/FormComponents/FormContextProvider';
 
 export async function getStaticPaths() {
   const paths = tourData.map((tour) => ({
@@ -42,10 +45,21 @@ function DynamicTour({ tourParams }) {
   const { area, description, link, name, price, type } = tourParams;
 
   return (
-    <Layout
-      title={name}
-      subheader={area}
-    ></Layout>
+    <>
+      <Head>
+        <title>
+          Tour: {name}, {area}| EMERALD Taxi & Tours
+        </title>
+      </Head>
+      <Layout
+        title={name}
+        subheader={area}
+      >
+        <FormContextProvider value={{ tourParams, type: 'tour' }}>
+          <BookingLayout />
+        </FormContextProvider>
+      </Layout>
+    </>
   );
 }
 

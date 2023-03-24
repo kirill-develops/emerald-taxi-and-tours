@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 import { useContext } from 'react';
-import { TransferParamContext } from '@pages/transfer/[airport]/[area]/[transfer]';
+import { ParamContext } from '@components/FormComponents/FormContextProvider';
 import {
   normanManleyTransferData,
   sangsterTransferData,
@@ -10,7 +10,7 @@ function useTransferPrice() {
   const {
     areaParams: { airportLink, link: areaLink },
     transferParams: { link: transferLink },
-  } = useContext(TransferParamContext);
+  } = useContext(ParamContext);
 
   const { values } = useFormikContext();
 

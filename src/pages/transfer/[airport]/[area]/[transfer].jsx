@@ -1,13 +1,14 @@
-import React, { createContext } from 'react';
-import Layout from '@components/Layout';
+import Head from 'next/head';
+import React from 'react';
 import { useRouter } from 'next/router';
 import {
   sangsterTransferData,
   normanManleyTransferData,
 } from '@data/transfers';
 import Fallback from '@components/Fallback';
+import Layout from '@components/Layout';
+import FormContextProvider from '@components/FormComponents/FormContextProvider';
 import BookingLayout from '@components/BookingLayout';
-import Head from 'next/head';
 
 const transferData = [...sangsterTransferData, ...normanManleyTransferData];
 
@@ -84,8 +85,6 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export const TransferParamContext = createContext();
-
 function DynamicTransfer({ transferParams, areaParams }) {
   const router = useRouter();
 
@@ -106,9 +105,11 @@ function DynamicTransfer({ transferParams, areaParams }) {
         subheader={areaParams.name}
         airport={areaParams.airport}
       >
-        <TransferParamContext.Provider value={{ transferParams, areaParams }}>
+        <FormContextProvider
+          value={{ transferParams, areaParams, type: 'transfer' }}
+        >
           <BookingLayout />
-        </TransferParamContext.Provider>
+        </FormContextProvider>
       </Layout>
     </>
   );
