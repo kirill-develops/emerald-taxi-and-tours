@@ -4,7 +4,7 @@ import { Form, useFormikContext } from 'formik';
 import React, { useCallback, useEffect } from 'react';
 import StepperStepButtons from './StepperStepButtons';
 import StepperProgressBar from './StepperProgressBar';
-import { transferSteps } from '@data/transferFormData';
+import { transferSteps } from '@data/transferSteps';
 
 function StepperLayout({ cookieData, setCookie }) {
   const { values, validateForm, setFieldValue, setTouched } =

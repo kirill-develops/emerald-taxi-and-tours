@@ -1,40 +1,6 @@
 import * as Yup from 'yup';
 import dayjs from 'dayjs';
-import FormFlightDetails from '@Form/FormFlightDetails';
-import FormPersonalDetails from '@Form/FormPersonalDetails';
-import FormPaymentDetails from '@Form/FormPaymentDetails';
-import FormConfirmDetails from '@Form/FormConfirmDetails';
 import { validatePhoneNumberLength } from 'libphonenumber-js';
-
-
-export const transferInitialValues = {
-  bookingStep: 0,
-  isBookingOpen: false,
-  flightDetails: {
-    airline: '',
-    flightNum: '',
-    transferType: 'roundtrip',
-    arrive: dayjs().add(1, 'day'),
-    depart: dayjs().add(7, 'day'),
-    passengers: 1,
-    childPassengers: 0,
-    accomName: '',
-  },
-  personalDetails: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    emailConfirm: '',
-    country: 'US',
-    mobile: '',
-  },
-  paymentDetails: {
-    paymentAuthorized: false,
-  },
-  confirmDetails: {
-    userConfirmed: false
-  }
-};
 
 
 const flightDetailsValidationSchema = Yup.object().shape({
@@ -92,6 +58,29 @@ const flightDetailsValidationSchema = Yup.object().shape({
     accomName: Yup.string().required('Accommodation name is required'),
   })
 });
+
+
+export const tourDetailsValidationSchema = Yup.object({
+  tourDetails: Yup.object().shape({
+    tourDate: Yup.date().required('Arrival date is required')
+      .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs())),
+    accomName: Yup.string().required('Accommodation name is required'),
+    area: Yup.string().required('Area is required'),
+    passengers: Yup.number()
+      .integer('Invalid # of passengers')
+      .positive('Invalid # of passengers')
+      .min(1, 'Invalid # of passengers')
+      .max(20, 'Cannot transport this many passengers')
+      .required('Invalid # of passengers'),
+    childPassengers: Yup.number()
+      .integer('Invalid # of passengers')
+      .min(0, 'Invalid # of passengers')
+      .when(['passengers'], ([passengers], schema) => (
+        schema
+          .max(passengers - 1, 'Cannot exceed total # of passengers')
+      )),
+  })
+})
 
 
 export const personalDetailsValidationSchema = Yup.object({
@@ -155,50 +144,11 @@ export const confirmDetailsValidationSchema = Yup.object({
 });
 
 
-export const transferSteps = [
-  {
-    label: 'Flight Details',
-    link: 'flightDetails',
-    component: <FormFlightDetails />,
-  },
-  {
-    label: 'Personal Details',
-    link: 'personalDetails',
-    component: <FormPersonalDetails />,
-  },
-  {
-    label: 'Payment Options',
-    link: 'paymentDetails',
-    component: <FormPaymentDetails />,
-  },
-  {
-    label: 'Confirm',
-    link: 'confirmDetails',
-    component: <FormConfirmDetails />,
-  },
-];
-
-export function useTransferDataByKey(keys) {
-  if (!Array.isArray(keys)) {
-    keys = [keys]
-  }
-
-  return transferSteps.map((data) =>
-    keys.reduce((accumulator, key) => {
-      return ({
-        ...accumulator,
-        [key]: data[key]?.toString
-          ? data[key].toString() : data[key]
-      })
-    }, [])
-  );
-}
-
-
-export function getCurrentValidationSchema(bookingStep) {
+export function getCurrentValidationSchema(bookingStep, formType) {
   switch (bookingStep) {
     case 0:
-      return flightDetailsValidationSchema;
+      return formType === 'transfer'
+        ? flightDetailsValidationSchema : tourDetailsValidationSchema;
 
     case 1:
       return personalDetailsValidationSchema;
