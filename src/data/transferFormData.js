@@ -16,6 +16,8 @@ export const transferInitialValues = {
     transferType: 'roundtrip',
     arrive: dayjs().add(1, 'day'),
     depart: dayjs().add(7, 'day'),
+    passengers: 1,
+    childPassengers: 0,
     accomName: '',
   },
   personalDetails: {
@@ -74,6 +76,19 @@ const flightDetailsValidationSchema = Yup.object().shape({
         .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs()))
       ,
     }),
+    passengers: Yup.number()
+      .integer('Invalid # of passengers')
+      .positive('Invalid # of passengers')
+      .min(1, 'Invalid # of passengers')
+      .max(20, 'Cannot transport this many passengers')
+      .required('Invalid # of passengers'),
+    childPassengers: Yup.number()
+      .integer('Invalid # of passengers')
+      .min(0, 'Invalid # of passengers')
+      .when(['passengers'], ([passengers], schema) => (
+        schema
+          .max(passengers - 1, 'Cannot exceed total # of passengers')
+      )),
     accomName: Yup.string().required('Accommodation name is required'),
   })
 });

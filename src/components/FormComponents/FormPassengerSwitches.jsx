@@ -5,13 +5,18 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 import { useFormikContext } from 'formik';
-import React from 'react';
+import React, { useMemo } from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import useTransferPrice from '@hooks/useTransferPrice';
 
 function getMenuItems(transferPrice, passengers, isChildMenu) {
-  return Array.from({ length: passengers }, (_, index) => {
+  const menuItems = [];
+
+  for (let index = 0; index < passengers; index++) {
     const value = isChildMenu ? index : index + 1;
+    const price = isChildMenu
+      ? -transferPrice * value
+      : transferPrice * (index - 3);
 
     const jsx = (
       <MenuItem
@@ -21,43 +26,66 @@ function getMenuItems(transferPrice, passengers, isChildMenu) {
       >
         <Typography as="span">{value}</Typography>
         <Typography as="span">
-          {isChildMenu
-            ? `-$${transferPrice * value}`
-            : `+$${transferPrice * (index - 3)}`}
+          {`${price >= 0 ? '+' : '-'}$${Math.abs(price)}`}
         </Typography>
       </MenuItem>
     );
 
     if (
-      (isChildMenu && passengers && index < passengers - 4 && index === 0) ||
+      (isChildMenu && index < passengers - 3 && index !== 0) ||
       (!isChildMenu && index >= 4)
     ) {
-      return jsx;
+      menuItems.push(jsx);
     } else
-      return (
+      menuItems.push(
         <MenuItem
           value={value}
           key={index}
         >
           {value}
-        </MenuItem>
+        </MenuItem>,
       );
-  });
+  }
+
+  return menuItems;
 }
 
 function FormPassengerSwitches() {
-  const { values, handleChange, handleBlur, touched, errors } =
-    useFormikContext();
+  const {
+    values,
+    handleChange,
+    handleBlur,
+    setFieldValue,
+    setFieldTouched,
+    touched,
+    errors,
+  } = useFormikContext();
 
   const transferPrice = useTransferPrice();
 
-  const passangerMenuItems = getMenuItems(transferPrice, 20, false);
-
-  const childMenuItems = getMenuItems(
-    transferPrice,
-    values?.flightDetails?.passengers,
-    true,
+  const passangerMenuItems = useMemo(
+    () => getMenuItems(transferPrice, 20, false),
+    [transferPrice],
   );
+
+  const childMenuItems = useMemo(
+    () => getMenuItems(transferPrice, values?.flightDetails?.passengers, true),
+    [transferPrice, values?.flightDetails?.passengers],
+  );
+
+  const handlePassangerChange = (event) => {
+    const {
+      target: { value: targetValue },
+    } = event;
+
+    if (targetValue <= values.flightDetails.childPassengers) {
+      setFieldValue('flightDetails.childPassengers', 0, true);
+      setFieldTouched('flightDetails.childPassengers', true, false);
+    }
+
+    setFieldValue('flightDetails.passengers', targetValue, true);
+    setFieldTouched('flightDetails.passengers', true, false);
+  };
 
   return (
     <FormInputStack sx={{ width: '100%' }}>
@@ -74,7 +102,7 @@ function FormPassengerSwitches() {
           label="# of Passengers"
           name="flightDetails.passengers"
           value={values?.flightDetails?.passengers}
-          onChange={handleChange}
+          onChange={handlePassangerChange}
           onBlur={handleBlur}
           renderValue={(selected) => (
             <Typography as="span">{selected}</Typography>
