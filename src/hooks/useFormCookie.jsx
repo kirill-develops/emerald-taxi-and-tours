@@ -2,15 +2,15 @@ import dayjs from 'dayjs';
 import isEqual from 'lodash/isEqual';
 import { useCallback, useContext, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
-import { ParamContext } from '@pages/transfer/[airport]/[area]/[transfer]';
+import { TransferParamContext } from '@pages/transfer/[airport]/[area]/[transfer]';
 
 function useAccomName() {
-  const paramContext = useContext(ParamContext);
+  const transferParamContext = useContext(TransferParamContext);
 
   const {
     areaParams: { link: areaLink, name: areaName },
     transferParams: { link: transferLink, name: transferName },
-  } = paramContext;
+  } = transferParamContext;
 
   if (transferLink !== 'other' && areaLink !== 'other_areas') {
     return `${transferName} in ${areaName}`;

@@ -84,7 +84,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export const ParamContext = createContext();
+export const TransferParamContext = createContext();
 
 function DynamicTransfer({ transferParams, areaParams }) {
   const router = useRouter();
@@ -106,9 +106,9 @@ function DynamicTransfer({ transferParams, areaParams }) {
         subheader={areaParams.name}
         airport={areaParams.airport}
       >
-        <ParamContext.Provider value={{ transferParams, areaParams }}>
+        <TransferParamContext.Provider value={{ transferParams, areaParams }}>
           <BookingLayout />
-        </ParamContext.Provider>
+        </TransferParamContext.Provider>
       </Layout>
     </>
   );

@@ -5,14 +5,14 @@ import RoundTripRadio from '@Form/RoundTripRadio';
 import FormInputStack from '@elements/FormInputStack';
 import FormTextField from '@elements/FormTextField';
 import FormPassengerSwitches from './FormPassengerSwitches';
-import { ParamContext } from '@pages/transfer/[airport]/[area]/[transfer]';
+import { TransferParamContext } from '@pages/transfer/[airport]/[area]/[transfer]';
 
 function FormFlightDetails() {
-  const paramContext = useContext(ParamContext);
+  const transferParamContext = useContext(TransferParamContext);
   const {
     areaParams: { link: areaLink },
     transferParams: { link: transferLink },
-  } = paramContext;
+  } = transferParamContext;
 
   const isAccomDisabled =
     transferLink !== 'other' && areaLink !== 'other_areas';
