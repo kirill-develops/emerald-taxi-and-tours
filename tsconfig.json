@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       "@*": ["./*"],
       "@Form/*": ["components/FormComponents/*"],
       "@Navbar/*": ["components/NavbarComponents/*"],
-      "@Transfer/*" : ["components/TransferComponents/*"],
-      "@Tour/*" : ["components/TourComponents/*"],
       "@Stepper/*" : ["components/StepperComponents/*"],
+      "@Tour/*" : ["components/TourComponents/*"],
+      "@Transfer/*" : ["components/TransferComponents/*"],
+      "@Public/*" : ["../public/*"],
     },
     "lib": [
       "dom",
