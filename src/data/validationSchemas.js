@@ -60,7 +60,7 @@ const flightDetailsValidationSchema = Yup.object().shape({
 });
 
 
-export const tourDetailsValidationSchema = Yup.object({
+const tourDetailsValidationSchema = Yup.object({
   tourDetails: Yup.object().shape({
     tourDate: Yup.date().required('Arrival date is required')
       .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs())),
@@ -83,7 +83,7 @@ export const tourDetailsValidationSchema = Yup.object({
 })
 
 
-export const personalDetailsValidationSchema = Yup.object({
+const personalDetailsValidationSchema = Yup.object({
   personalDetails: Yup.object().shape({
     firstName: Yup.string()
       .required('First name is required'),
@@ -130,14 +130,14 @@ export const personalDetailsValidationSchema = Yup.object({
 });
 
 
-export const paymentDetailsValidationSchema = Yup.object({
+const paymentDetailsValidationSchema = Yup.object({
   paymentDetails: Yup.object().shape({
     paymentAuthorized: Yup.boolean().oneOf([true], 'You must authorize payment'),
   })
 });
 
 
-export const confirmDetailsValidationSchema = Yup.object({
+const confirmDetailsValidationSchema = Yup.object({
   confirmDetails: Yup.object().shape({
     userConfirmed: Yup.boolean().oneOf([true], 'You must confirm the details'),
   })
