@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 
+let isInitialLoad = true;
+
 function useLoadingTransition(duration = 0.5) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(!isInitialLoad);
 
   useEffect(() => {
-    setVisible(true);
+    if (isInitialLoad) {
+      isInitialLoad = false;
+      setVisible(true);
+    }
   }, []);
 
   const transitionStyle = {
