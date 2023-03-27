@@ -3,7 +3,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import React, { useCallback, useContext, useMemo } from 'react';
 import { ParamContext } from '@Form/FormContextProvider';
-import { tourSteps, transferSteps } from '@data/transferSteps';
+import { tourSteps, transferSteps } from '@data/stepperData';
 
 export function useDataByKey(keys, data) {
   if (!Array.isArray(keys)) {

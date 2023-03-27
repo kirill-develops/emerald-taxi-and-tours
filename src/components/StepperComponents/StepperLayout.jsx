@@ -1,10 +1,11 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Form, useFormikContext } from 'formik';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import StepperStepButtons from './StepperStepButtons';
 import StepperProgressBar from './StepperProgressBar';
-import { transferSteps } from '@data/transferSteps';
+import { transferSteps, tourSteps } from '@data/stepperData';
+import { ParamContext } from '@Form/FormContextProvider';
 
 function StepperLayout({ cookieData, setCookie }) {
   const { values, validateForm, setFieldValue, setTouched } =
@@ -12,8 +13,20 @@ function StepperLayout({ cookieData, setCookie }) {
 
   const { bookingStep } = values;
 
+  const context = useContext(ParamContext);
+
   const { component: activeStepComponent, link: activeStepLink } =
-    transferSteps[bookingStep];
+    context.type === 'transfer'
+      ? transferSteps[bookingStep]
+      : tourSteps[bookingStep];
+
+  const stepperLength = useMemo(
+    () =>
+      context.type === 'transfer'
+        ? transferSteps.length - 1
+        : tourSteps.length - 1,
+    [context.type],
+  );
 
   const handleBackClick = useCallback(
     (step) => setFieldValue('bookingStep', step, false),
@@ -61,7 +74,7 @@ function StepperLayout({ cookieData, setCookie }) {
       <StepperStepButtons
         handleBackClick={handleBackClick}
         handleNextClick={handleNextClick}
-        isLastStep={bookingStep === transferSteps.length - 1}
+        isLastStep={bookingStep === stepperLength}
       />
     </Stack>
   );
