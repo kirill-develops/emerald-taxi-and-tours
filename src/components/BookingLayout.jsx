@@ -1,29 +1,50 @@
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import { darken } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Formik } from 'formik';
 import {
   transferInitialValues,
-  getCurrentValidationSchema,
-} from '@data/transferFormData';
+  tourInitialValues,
+} from '@data/formInitialValues';
 import useFormCookie from '@hooks/useFormCookie';
 import StepperLayout from '@Stepper/StepperLayout';
 import ExpandIconButton from '@elements/ExpandIconButton';
-import { darken } from '@mui/material';
+import { ParamContext } from './FormComponents/FormContextProvider';
+import { getCurrentValidationSchema } from '@data/validationSchemas';
 
 function BookingLayout() {
-  const [parsedData, setCookie] = useFormCookie(transferInitialValues);
+  const context = useContext(ParamContext);
+
+  const initialValues = useMemo(() => {
+    if (context.type === 'tour') {
+      return tourInitialValues;
+    } else if (context.type === 'transfer') {
+      return transferInitialValues;
+    }
+  }, [context.type]);
+
+  const [parsedData, setCookie] = useFormCookie(initialValues, context.type);
 
   const [expanded, setExpanded] = useState(Boolean(parsedData?.isBookingOpen));
+
   const [currentValidationSchema, setValidationSchema] = useState(
-    getCurrentValidationSchema(parsedData?.bookingStep),
+    getCurrentValidationSchema(parsedData?.bookingStep, context.type),
   );
 
   useEffect(() => {
-    setValidationSchema(getCurrentValidationSchema(parsedData?.bookingStep));
-  }, [parsedData.bookingStep]);
+    setValidationSchema(
+      getCurrentValidationSchema(parsedData?.bookingStep, context.type),
+    );
+  }, [parsedData.bookingStep, context.type]);
 
   const handleExpand = useCallback(() => {
     setExpanded(!expanded);
