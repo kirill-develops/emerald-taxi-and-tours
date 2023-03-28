@@ -7,12 +7,15 @@ import {
 } from '@data/transfers';
 
 function useTransferPrice() {
+  const { values } = useFormikContext();
+
   const {
-    areaParams: { airportLink, link: areaLink },
-    transferParams: { link: transferLink },
+    areaParams: { airportLink, link: areaLink } = {},
+    transferParams: { link: transferLink } = {},
+    type,
   } = useContext(ParamContext);
 
-  const { values } = useFormikContext();
+  if (type === 'tour') return '';
 
   const transferData =
     airportLink === 'MBJ' ? sangsterTransferData : normanManleyTransferData;

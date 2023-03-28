@@ -5,11 +5,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 import { useFormikContext } from 'formik';
-import React, { useMemo } from 'react';
+import React, { useContext } from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import useTransferPrice from '@hooks/useTransferPrice';
+import { ParamContext } from './FormContextProvider';
 
-function getMenuItems(transferPrice, passengers, isChildMenu) {
+function useMenuItems(transferPrice, passengers, isChildMenu) {
+  const { type } = useContext(ParamContext);
+
   const menuItems = [];
 
   for (let index = 0; index < passengers; index++) {
@@ -32,8 +35,9 @@ function getMenuItems(transferPrice, passengers, isChildMenu) {
     );
 
     if (
-      (isChildMenu && index < passengers - 3 && index !== 0) ||
-      (!isChildMenu && index >= 4)
+      type === 'transfer' &&
+      ((isChildMenu && index < passengers - 3 && index !== 0) ||
+        (!isChildMenu && index >= 4))
     ) {
       menuItems.push(jsx);
     } else
@@ -50,7 +54,7 @@ function getMenuItems(transferPrice, passengers, isChildMenu) {
   return menuItems;
 }
 
-function FormPassengerSwitches() {
+function FormPassengerSwitches({ stepName }) {
   const {
     values,
     handleChange,
@@ -63,14 +67,12 @@ function FormPassengerSwitches() {
 
   const transferPrice = useTransferPrice();
 
-  const passangerMenuItems = useMemo(
-    () => getMenuItems(transferPrice, 20, false),
-    [transferPrice],
-  );
+  const passangerMenuItems = useMenuItems(transferPrice, 20, false);
 
-  const childMenuItems = useMemo(
-    () => getMenuItems(transferPrice, values?.flightDetails?.passengers, true),
-    [transferPrice, values?.flightDetails?.passengers],
+  const childMenuItems = useMenuItems(
+    transferPrice,
+    values[stepName]?.passengers,
+    true,
   );
 
   const handlePassangerChange = (event) => {
@@ -78,13 +80,13 @@ function FormPassengerSwitches() {
       target: { value: targetValue },
     } = event;
 
-    if (targetValue <= values.flightDetails.childPassengers) {
-      setFieldValue('flightDetails.childPassengers', 0, true);
-      setFieldTouched('flightDetails.childPassengers', true, false);
+    if (targetValue <= values[stepName]?.childPassengers) {
+      setFieldValue(`${stepName}.childPassengers`, 0, true);
+      setFieldTouched(`${stepName}.childPassengers`, true, false);
     }
 
-    setFieldValue('flightDetails.passengers', targetValue, true);
-    setFieldTouched('flightDetails.passengers', true, false);
+    setFieldValue(`${stepName}.passengers`, targetValue, true);
+    setFieldTouched(`${stepName}.passengers`, true, false);
   };
 
   return (
@@ -93,15 +95,14 @@ function FormPassengerSwitches() {
         fullWidth
         required
         error={
-          touched?.flightDetails?.passengers &&
-          Boolean(errors?.flightDetails?.passengers)
+          touched[stepName]?.passengers && Boolean(errors[stepName]?.passengers)
         }
       >
         <InputLabel># of Passengers</InputLabel>
         <Select
           label="# of Passengers"
-          name="flightDetails.passengers"
-          value={values?.flightDetails?.passengers}
+          name={`${stepName}.passengers`}
+          value={values[stepName]?.passengers}
           onChange={handlePassangerChange}
           onBlur={handleBlur}
           renderValue={(selected) => (
@@ -111,22 +112,21 @@ function FormPassengerSwitches() {
           {passangerMenuItems}
         </Select>
         <FormHelperText>
-          {touched?.flightDetails?.passengers &&
-            errors?.flightDetails?.passengers}
+          {touched[stepName]?.passengers && errors[stepName]?.passengers}
         </FormHelperText>
       </FormControl>
       <FormControl
         fullWidth
         error={
-          touched?.flightDetails?.childPassengers &&
-          Boolean(errors?.flightDetails?.childPassengers)
+          touched[stepName]?.childPassengers &&
+          Boolean(errors[stepName]?.childPassengers)
         }
       >
         <InputLabel># of Passengers under 12</InputLabel>
         <Select
           label="# of Passengers under 12"
-          name="flightDetails.childPassengers"
-          value={values?.flightDetails?.childPassengers}
+          name={`${stepName}.childPassengers`}
+          value={values[stepName]?.childPassengers}
           onChange={handleChange}
           onBlur={handleBlur}
           renderValue={(selected) => (
@@ -136,8 +136,8 @@ function FormPassengerSwitches() {
           {childMenuItems}
         </Select>
         <FormHelperText>
-          {touched?.flightDetails?.childPassengers &&
-            errors?.flightDetails?.childPassengers}
+          {touched[stepName]?.childPassengers &&
+            errors[stepName]?.childPassengers}
         </FormHelperText>
       </FormControl>
     </FormInputStack>

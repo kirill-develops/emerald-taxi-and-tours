@@ -48,7 +48,7 @@ function FormFlightDetails() {
         margin="normal"
         disabled={isAccomDisabled}
       />
-      <FormPassengerSwitches />
+      <FormPassengerSwitches stepName={stepName} />
     </Stack>
   );
 }
