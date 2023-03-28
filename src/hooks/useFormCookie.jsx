@@ -4,8 +4,12 @@ import { useCallback, useContext, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
 import { ParamContext } from '@components/FormComponents/FormContextProvider';
 
-function useAccomName() {
+function useAccomName(contextType) {
   const paramContext = useContext(ParamContext);
+
+  if (contextType === 'tour') {
+    return '';
+  }
 
   const {
     areaParams: { link: areaLink, name: areaName },
@@ -19,10 +23,16 @@ function useAccomName() {
   }
 }
 
-function useFormCookie(initialValues) {
-  const [cookies, setCookie] = useCookies(['EmeraldTransferFormCache']);
-  const data = cookies.EmeraldTransferFormCache;
-  const accomName = useAccomName();
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function useFormCookie(initialValues, contextType) {
+  const cookieName = `Emerald${capitalize(contextType)}FormCache`;
+
+  const [cookies, setCookie] = useCookies([cookieName]);
+  const data = cookies[cookieName];
+  const accomName = useAccomName(contextType);
 
   const parseFlightDetails = useCallback(
     (data) => {
@@ -62,34 +72,81 @@ function useFormCookie(initialValues) {
     [initialValues, accomName],
   );
 
+  const parseTourDetails = useCallback(
+    (data) => {
+      const currentDateTime = dayjs();
+      const {
+        tourDetails: { tourDate: initialTourDate },
+      } = initialValues;
+      const dataTourDate = data?.tourDetails?.tourDate;
+
+      const isTourDateBeforeCurrentDate =
+        dataTourDate ?? dayjs(dataTourDate).isBefore(currentDateTime);
+
+      return {
+        ...initialValues.tourDetails,
+        ...data?.tourDetails,
+        tourDate: isTourDateBeforeCurrentDate
+          ? initialTourDate
+          : dayjs(dataTourDate),
+      };
+    },
+    [initialValues],
+  );
+
   const formattedCookie = useMemo(() => {
-    return {
+    const defaultFormattedCookie = {
       ...initialValues,
       ...data,
-      flightDetails: parseFlightDetails(data),
       personalDetails: {
         ...initialValues.personalDetails,
         ...data?.personalDetails,
       },
     };
-  }, [data, initialValues, parseFlightDetails]);
+
+    if (contextType === 'transfer') {
+      return {
+        ...defaultFormattedCookie,
+        flightDetails: parseFlightDetails(data),
+      };
+    } else if (contextType === 'tour') {
+      return {
+        ...defaultFormattedCookie,
+        tourDetails: parseTourDetails(data),
+      };
+    }
+  }, [contextType, data, initialValues, parseFlightDetails, parseTourDetails]);
 
   const getUpdatedCookie = useCallback(
     (values) => {
-      return {
+      const defaultUpdatedCookie = {
         ...data,
         ...values,
-        flightDetails: {
-          ...data?.flightDetails,
-          ...values.flightDetails,
-        },
         personalDetails: {
           ...data?.personalDetails,
           ...values.personalDetails,
         },
       };
+
+      if (contextType === 'transfer') {
+        return {
+          ...defaultUpdatedCookie,
+          flightDetails: {
+            ...data?.flightDetails,
+            ...values.flightDetails,
+          },
+        };
+      } else if (contextType === 'tour') {
+        return {
+          ...defaultUpdatedCookie,
+          tourDetails: {
+            ...data?.tourDetails,
+            ...values.tourDetails,
+          },
+        };
+      }
     },
-    [data],
+    [contextType, data],
   );
 
   const setFormCookie = useCallback(
@@ -99,23 +156,17 @@ function useFormCookie(initialValues) {
         maxAge: 60 * 60 * 24 * 7, // 1 week
       };
 
-      const areValuesSame = isEqual(formattedCookie, values);
+      // console.log(isEqual(formattedCookie, values), formattedCookie, values); //! for debugging
 
-      // console.log(areValuesSame, formattedCookie, values); //! for debugging
-
-      if (!areValuesSame) {
+      if (!isEqual(formattedCookie, values)) {
         const updatedCookie = getUpdatedCookie(values);
 
         // console.log(updatedCookie); //! for debugging
 
-        setCookie(
-          'EmeraldTransferFormCache',
-          JSON.stringify(updatedCookie),
-          cookieOptions,
-        );
+        setCookie(cookieName, JSON.stringify(updatedCookie), cookieOptions);
       }
     },
-    [formattedCookie, setCookie, getUpdatedCookie],
+    [cookieName, formattedCookie, setCookie, getUpdatedCookie],
   );
 
   const parsedData = useMemo(() => {
