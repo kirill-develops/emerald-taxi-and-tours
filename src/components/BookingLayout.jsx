@@ -3,34 +3,19 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { darken } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Formik } from 'formik';
-import {
-  transferInitialValues,
-  tourInitialValues,
-} from '@data/formInitialValues';
 import useFormCookie from '@hooks/useFormCookie';
 import StepperLayout from '@Stepper/StepperLayout';
 import ExpandIconButton from '@elements/ExpandIconButton';
 import { ParamContext } from './FormComponents/FormContextProvider';
 import { getCurrentValidationSchema } from '@data/validationSchemas';
+import useFormInitialValues from '@hooks/useFormInitialValues';
 
 function BookingLayout() {
   const context = useContext(ParamContext);
 
-  const initialValues = useMemo(() => {
-    if (context.type === 'tour') {
-      return tourInitialValues;
-    } else if (context.type === 'transfer') {
-      return transferInitialValues;
-    }
-  }, [context.type]);
+  const initialValues = useFormInitialValues();
 
   const [parsedData, setCookie] = useFormCookie(initialValues, context.type);
 
