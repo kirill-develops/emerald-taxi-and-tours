@@ -8,7 +8,13 @@ import { useFormikContext } from 'formik';
 import FormInputStack from '@elements/FormInputStack';
 
 function DatePicker() {
-  const { values, errors, handleBlur, setFieldValue } = useFormikContext();
+  const { values, errors, touched, setFieldValue, setFieldTouched } =
+    useFormikContext();
+
+  const handleDateChange = (fieldName, date) => {
+    setFieldValue(fieldName, date);
+    setFieldTouched(fieldName, true, false);
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -17,14 +23,20 @@ function DatePicker() {
           name="flightDetails.arrive"
           label="Arrival Date & Time"
           value={values?.flightDetails?.arrive}
-          onChange={(date) => setFieldValue('flightDetails.arrive', date)}
+          onChange={(date) => handleDateChange('flightDetails.arrive', date)}
           disabled={values?.flightDetails?.transferType === 'departure'}
           renderInput={(props) => (
             <TextField
               {...props}
-              onBlur={handleBlur}
+              onBlur={() =>
+                setFieldTouched('flightDetails.arrive', true, false)
+              }
               helperText={errors?.flightDetails?.arrive}
               required={values?.flightDetails?.transferType !== 'departure'}
+              error={
+                touched?.flightDetails?.arrive &&
+                Boolean(errors?.flightDetails?.arrive)
+              }
             />
           )}
           maxDateTime={
@@ -44,14 +56,20 @@ function DatePicker() {
           name="flightDetails.depart"
           label="Departure Date & Time"
           value={values?.flightDetails?.depart}
-          onChange={(date) => setFieldValue('flightDetails.depart', date)}
+          onChange={(date) => handleDateChange('flightDetails.depart', date)}
           disabled={values?.flightDetails?.transferType === 'arrival'}
           renderInput={(props) => (
             <TextField
               {...props}
-              onBlur={handleBlur}
+              onBlur={() =>
+                setFieldTouched('flightDetails.depart', true, false)
+              }
               helperText={errors?.flightDetails?.depart}
               required={values?.flightDetails?.transferType !== 'arrival'}
+              error={
+                touched?.flightDetails?.depart &&
+                Boolean(errors?.flightDetails?.depart)
+              }
             />
           )}
           minDateTime={
