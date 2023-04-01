@@ -1,38 +1,11 @@
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
-import React, { useCallback, useContext, useMemo } from 'react';
-import { ParamContext } from '@Form/FormContextProvider';
-import { tourSteps, transferSteps } from '@data/stepperData';
-
-export function useDataByKey(keys, data) {
-  if (!Array.isArray(keys)) {
-    keys = [keys];
-  }
-
-  return useMemo(
-    () =>
-      data.map((data) =>
-        keys.reduce((accumulator, key) => {
-          return {
-            ...accumulator,
-            [key]: data[key]?.toString ? data[key].toString() : data[key],
-          };
-        }, []),
-      ),
-    [data, keys],
-  );
-}
+import React, { useCallback } from 'react';
+import useStepperData from '@hooks/useStepperData';
 
 function StepperProgressBar({ activeStep }) {
-  const context = useContext(ParamContext);
-
-  const stepsData = useMemo(
-    () => (context.type === 'transfer' ? transferSteps : tourSteps),
-    [context.type],
-  );
-
-  const labels = useDataByKey('label', stepsData);
+  const { stepperLabels } = useStepperData();
 
   const getLabel = useCallback(
     (index, text) => {
@@ -48,7 +21,7 @@ function StepperProgressBar({ activeStep }) {
       activeStep={activeStep}
       alternativeLabel
     >
-      {labels.map(({ label }, index) => (
+      {stepperLabels.map(({ label }, index) => (
         <Step key={label}>
           <StepLabel>{getLabel(index, label)}</StepLabel>
         </Step>

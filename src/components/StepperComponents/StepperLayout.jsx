@@ -1,33 +1,14 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Form, useFormikContext } from 'formik';
-import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import StepperStepButtons from './StepperStepButtons';
 import StepperProgressBar from './StepperProgressBar';
-import { transferSteps, tourSteps } from '@data/stepperData';
-import { ParamContext } from '@Form/FormContextProvider';
+import useStepperData from '@hooks/useStepperData';
+import useFormValues from '@hooks/useFormValues';
 
-function StepperLayout({ cookieData, setCookie }) {
-  const { values, validateForm, setFieldValue, setTouched } =
-    useFormikContext();
-
-  const { bookingStep } = values;
-
-  const context = useContext(ParamContext);
-
-  const { component: activeStepComponent, link: activeStepLink } =
-    context.type === 'transfer'
-      ? transferSteps[bookingStep]
-      : tourSteps[bookingStep];
-
-  const stepperLength = useMemo(
-    () =>
-      context.type === 'transfer'
-        ? transferSteps.length - 1
-        : tourSteps.length - 1,
-    [context.type],
-  );
-
+function useStepperButtons(activeStepLink) {
+  const { validateForm, setFieldValue, setTouched } = useFormikContext();
   const handleBackClick = useCallback(
     (step) => setFieldValue('bookingStep', step, false),
     [setFieldValue],
@@ -54,9 +35,21 @@ function StepperLayout({ cookieData, setCookie }) {
     [activeStepLink, setFieldValue, setTouched, validateForm],
   );
 
-  useEffect(() => {
-    setCookie(values);
-  }, [values, cookieData, setCookie]);
+  return { handleBackClick, handleNextClick };
+}
+
+function StepperLayout({ setCookie }) {
+  const {
+    values: { bookingStep },
+  } = useFormikContext();
+
+  const { activeStepComponent, activeStepLink, stepperLength } =
+    useStepperData(bookingStep);
+
+  useFormValues(setCookie);
+
+  const { handleBackClick, handleNextClick } =
+    useStepperButtons(activeStepLink);
 
   return (
     <Stack justifyContent="space-between">
