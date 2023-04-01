@@ -1,83 +1,72 @@
 import dayjs from 'dayjs';
 import isEqual from 'lodash/isEqual';
-import { useCallback, useContext, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
-import { ParamContext } from '@components/FormComponents/FormContextProvider';
-
-function useAccomName(contextType) {
-  const paramContext = useContext(ParamContext);
-
-  if (contextType === 'tour') {
-    return '';
-  }
-
-  const {
-    areaParams: { link: areaLink, name: areaName },
-    transferParams: { link: transferLink, name: transferName },
-  } = paramContext;
-
-  if (transferLink !== 'other' && areaLink !== 'other_areas') {
-    return `${transferName} in ${areaName}`;
-  } else {
-    return '';
-  }
-}
 
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+const cookieOptions = {
+  path: '/',
+  maxAge: 60 * 60 * 24 * 7, // 1 week
+};
+
 function useFormCookie(initialValues, contextType) {
-  const cookieName = `Emerald${capitalize(contextType)}FormCache`;
+  const cookieName = useMemo(
+    () => `Emerald${capitalize(contextType)}FormCache`,
+    [contextType],
+  );
 
   const [cookies, setCookie] = useCookies([cookieName]);
-  const data = cookies[cookieName];
-  const accomName = useAccomName(contextType);
+
+  const data = useMemo(() => cookies[cookieName], [cookies, cookieName]);
 
   const parseFlightDetails = useCallback(
     (data) => {
       const currentDateTime = dayjs();
+
       const {
         flightDetails: { arrive: initialArrive, depart: initialDepart },
       } = initialValues;
+
       const dataArrive = data?.flightDetails?.arrive;
+
       const dataDepart = data?.flightDetails?.depart;
+
+      if (!dataArrive || !dataDepart) {
+        return {
+          ...initialValues.flightDetails,
+          ...data?.flightDetails,
+          arrive: initialArrive,
+          depart: initialDepart,
+        };
+      }
 
       const isArriveBeforeCurrentDate =
         dataArrive && dayjs(dataArrive).isBefore(currentDateTime);
+
       const isDepartBeforeCurrentDate =
         dataDepart && dayjs(dataDepart).isBefore(currentDateTime);
-
-      // console.table(
-      //   'currentDateTime: ',
-      //   currentDateTime,
-      //   'dataArrive: ',
-      //   dataArrive,
-      //   'isArriveBeforeCurrentDate: ',
-      //   isArriveBeforeCurrentDate,
-      //   'dataDepart: ',
-      //   dataDepart,
-      //   'isDepartBeforeCurrentDate: ',
-      //   isDepartBeforeCurrentDate,
-      // ); //! for debugging
 
       return {
         ...initialValues.flightDetails,
         ...data?.flightDetails,
         arrive: isArriveBeforeCurrentDate ? initialArrive : dayjs(dataArrive),
         depart: isDepartBeforeCurrentDate ? initialDepart : dayjs(dataDepart),
-        accomName: accomName,
       };
     },
-    [initialValues, accomName],
+    [initialValues],
   );
 
   const parseTourDetails = useCallback(
     (data) => {
       const currentDateTime = dayjs();
+
       const {
         tourDetails: { tourDate: initialTourDate },
       } = initialValues;
+
       const dataTourDate = data?.tourDetails?.tourDate;
 
       const isTourDateBeforeCurrentDate =
@@ -124,7 +113,7 @@ function useFormCookie(initialValues, contextType) {
         ...values,
         personalDetails: {
           ...data?.personalDetails,
-          ...values.personalDetails,
+          ...values?.personalDetails,
         },
       };
 
@@ -133,7 +122,7 @@ function useFormCookie(initialValues, contextType) {
           ...defaultUpdatedCookie,
           flightDetails: {
             ...data?.flightDetails,
-            ...values.flightDetails,
+            ...values?.flightDetails,
           },
         };
       } else if (contextType === 'tour') {
@@ -141,7 +130,7 @@ function useFormCookie(initialValues, contextType) {
           ...defaultUpdatedCookie,
           tourDetails: {
             ...data?.tourDetails,
-            ...values.tourDetails,
+            ...values?.tourDetails,
           },
         };
       }
@@ -151,17 +140,22 @@ function useFormCookie(initialValues, contextType) {
 
   const setFormCookie = useCallback(
     (values) => {
-      const cookieOptions = {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7, // 1 week
-      };
+      const valueSubclass = Object.keys(values || {}).reduce((acc, key) => key);
 
-      // console.log(isEqual(formattedCookie, values), formattedCookie, values); //! for debugging
+      const filteredCookie = Object.entries(
+        formattedCookie[valueSubclass],
+      ).reduce(
+        (acc, [key, value]) => {
+          if (values[valueSubclass].hasOwnProperty(key)) {
+            acc[valueSubclass][key] = value;
+          }
+          return acc;
+        },
+        { [valueSubclass]: {} },
+      );
 
-      if (!isEqual(formattedCookie, values)) {
+      if (!isEqual(filteredCookie, values)) {
         const updatedCookie = getUpdatedCookie(values);
-
-        // console.log(updatedCookie); //! for debugging
 
         setCookie(cookieName, JSON.stringify(updatedCookie), cookieOptions);
       }
@@ -171,12 +165,12 @@ function useFormCookie(initialValues, contextType) {
 
   const parsedData = useMemo(() => {
     if (!data) {
-      setFormCookie(initialValues);
+      setCookie(cookieName, JSON.stringify(initialValues), cookieOptions);
       return initialValues;
     }
 
     return formattedCookie;
-  }, [data, initialValues, formattedCookie, setFormCookie]);
+  }, [cookieName, data, initialValues, formattedCookie, setCookie]);
 
   return useMemo(
     () => [parsedData, setFormCookie],
