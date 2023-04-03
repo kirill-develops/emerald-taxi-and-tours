@@ -62,8 +62,15 @@ const flightDetailsValidationSchema = Yup.object().shape({
 
 const tourDetailsValidationSchema = Yup.object({
   tourDetails: Yup.object().shape({
-    tourDate: Yup.date().required('Arrival date is required')
-      .test('after-current-time', 'Cannot be before today', value => dayjs(value).isAfter(dayjs())),
+    date: Yup.date().required('Tour date is required')
+      .min(dayjs().subtract(1, 'days'), 'Tour Date cannot be before today'),
+    time: Yup.date().when('date', {
+      is: (date) => date && dayjs(date).isSame(dayjs(), 'day'),
+      then: schema => schema
+        .min(dayjs().add(3, 'hours'), 'Tour time must be at least 3 hours in advance')
+        .required('Tour time is required'),
+      otherwise: schema => schema.required('Tour time is required'),
+    }),
     accomName: Yup.string().required('Accommodation name is required'),
     area: Yup.string().required('Area is required'),
     passengers: Yup.number()

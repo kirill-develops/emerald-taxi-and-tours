@@ -29,6 +29,8 @@ function useFormInitialValues() {
   const startDate = useMemo(() => dayjs().add(1, 'day'), []);
   const endDate = useMemo(() => dayjs().add(7, 'day'), []);
 
+  const tourDate = useMemo(() => dayjs().add(3, 'hours'), []);
+
   const transferInitialValues = useMemo(
     () => ({
       bookingStep: 0,
@@ -66,7 +68,8 @@ function useFormInitialValues() {
       bookingStep: 0,
       isBookingOpen: false,
       tourDetails: {
-        tourDate: startDate,
+        date: tourDate,
+        time: tourDate,
         accomName: '',
         area: '',
         passengers: 1,
@@ -87,7 +90,7 @@ function useFormInitialValues() {
         userConfirmed: false,
       },
     }),
-    [startDate],
+    [tourDate],
   );
 
   return useMemo(
