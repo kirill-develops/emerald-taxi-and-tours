@@ -3,18 +3,23 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useFormikContext } from 'formik';
 import FormInputStack from '@elements/FormInputStack';
 
-function DatePicker() {
+function TransferDatePicker() {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
-  const handleDateChange = (fieldName, date) => {
-    setFieldValue(fieldName, date);
-    setFieldTouched(fieldName, true, false);
-  };
+  const handleDateChange = useCallback(
+    (fieldName, date) => {
+      setFieldValue(fieldName, date);
+      setFieldTouched(fieldName, true, false);
+    },
+    [setFieldTouched, setFieldValue],
+  );
+
+  const pickerViews = ['month', 'day'];
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -22,6 +27,7 @@ function DatePicker() {
         <DateTimePicker
           name="flightDetails.arrive"
           label="Arrival Date & Time"
+          views={pickerViews}
           value={values?.flightDetails?.arrive}
           onChange={(date) => handleDateChange('flightDetails.arrive', date)}
           disabled={values?.flightDetails?.transferType === 'departure'}
@@ -55,6 +61,7 @@ function DatePicker() {
         <DateTimePicker
           name="flightDetails.depart"
           label="Departure Date & Time"
+          views={pickerViews}
           value={values?.flightDetails?.depart}
           onChange={(date) => handleDateChange('flightDetails.depart', date)}
           disabled={values?.flightDetails?.transferType === 'arrival'}
@@ -84,4 +91,4 @@ function DatePicker() {
   );
 }
 
-export default DatePicker;
+export default TransferDatePicker;
