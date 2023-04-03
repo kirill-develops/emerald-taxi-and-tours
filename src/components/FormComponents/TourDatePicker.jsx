@@ -21,7 +21,7 @@ function TourDatePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <FormInputStack sx={{ width: 'fit-content' }}>
+      <FormInputStack sx={{ width: '100%' }}>
         <DatePicker
           name="tourDetails.date"
           label="Select Tour Date & Time"
@@ -37,6 +37,7 @@ function TourDatePicker() {
                 touched?.tourDetails?.date && Boolean(errors?.tourDetails?.date)
               }
               required
+              fullWidth
             />
           )}
           disablePast
@@ -54,6 +55,7 @@ function TourDatePicker() {
               helperText={errors?.tourDetails?.time}
               error={Boolean(errors?.tourDetails?.time)}
               required
+              fullWidth
             />
           )}
           disablePast
