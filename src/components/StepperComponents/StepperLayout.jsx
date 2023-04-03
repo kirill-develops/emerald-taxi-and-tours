@@ -7,11 +7,15 @@ import StepperProgressBar from './StepperProgressBar';
 import useStepperData from '@hooks/useStepperData';
 import useFormValues from '@hooks/useFormValues';
 
-function useStepperButtons(activeStepLink) {
+function useStepperButtons(activeStepLink, setCookie) {
   const { validateForm, setFieldValue, setTouched } = useFormikContext();
+
   const handleBackClick = useCallback(
-    (step) => setFieldValue('bookingStep', step, false),
-    [setFieldValue],
+    (step) => {
+      setFieldValue('bookingStep', step, false);
+      setCookie({ bookingStep: step });
+    },
+    [setFieldValue, setCookie],
   );
 
   const handleNextClick = useCallback(
@@ -20,6 +24,7 @@ function useStepperButtons(activeStepLink) {
 
       if (!res[activeStepLink]) {
         setFieldValue('bookingStep', step, false);
+        setCookie({ bookingStep: step });
       } else {
         const touchedValues = Object.keys(res[activeStepLink]).reduce(
           (acc, value) => {
@@ -32,7 +37,7 @@ function useStepperButtons(activeStepLink) {
         setTouched({ [activeStepLink]: touchedValues });
       }
     },
-    [activeStepLink, setFieldValue, setTouched, validateForm],
+    [activeStepLink, setCookie, setFieldValue, setTouched, validateForm],
   );
 
   return { handleBackClick, handleNextClick };
@@ -48,8 +53,10 @@ function StepperLayout({ setCookie }) {
 
   useFormValues(setCookie);
 
-  const { handleBackClick, handleNextClick } =
-    useStepperButtons(activeStepLink);
+  const { handleBackClick, handleNextClick } = useStepperButtons(
+    activeStepLink,
+    setCookie,
+  );
 
   return (
     <Stack justifyContent="space-between">

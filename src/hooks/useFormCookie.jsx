@@ -18,42 +18,23 @@ function useFormCookie(initialValues, contextType) {
     [contextType],
   );
 
-  const [cookies, setCookie] = useCookies([cookieName]);
+  const [formCookie, setFormCookie] = useCookies([cookieName]);
 
-  const data = useMemo(() => cookies[cookieName], [cookies, cookieName]);
+  const data = useMemo(() => formCookie[cookieName], [formCookie, cookieName]);
 
   const parseFlightDetails = useCallback(
     (data) => {
-      const currentDateTime = dayjs();
+      const { arrive: initialArrive, depart: initialDepart } =
+        initialValues.flightDetails;
 
-      const {
-        flightDetails: { arrive: initialArrive, depart: initialDepart },
-      } = initialValues;
-
-      const dataArrive = data?.flightDetails?.arrive;
-
-      const dataDepart = data?.flightDetails?.depart;
-
-      if (!dataArrive || !dataDepart) {
-        return {
-          ...initialValues.flightDetails,
-          ...data?.flightDetails,
-          arrive: initialArrive,
-          depart: initialDepart,
-        };
-      }
-
-      const isArriveBeforeCurrentDate =
-        dataArrive && dayjs(dataArrive).isBefore(currentDateTime);
-
-      const isDepartBeforeCurrentDate =
-        dataDepart && dayjs(dataDepart).isBefore(currentDateTime);
+      const { arrive: dataArrive, depart: dataDepart } =
+        data?.flightDetails || {};
 
       return {
         ...initialValues.flightDetails,
         ...data?.flightDetails,
-        arrive: isArriveBeforeCurrentDate ? initialArrive : dayjs(dataArrive),
-        depart: isDepartBeforeCurrentDate ? initialDepart : dayjs(dataDepart),
+        arrive: dataArrive ? dayjs(dataArrive) : initialArrive,
+        depart: dataDepart ? dayjs(dataDepart) : initialDepart,
       };
     },
     [initialValues],
@@ -61,23 +42,17 @@ function useFormCookie(initialValues, contextType) {
 
   const parseTourDetails = useCallback(
     (data) => {
-      const currentDateTime = dayjs();
+      const { date: initialTourDate, time: initialTourTime } =
+        initialValues.tourDetails;
 
-      const {
-        tourDetails: { tourDate: initialTourDate },
-      } = initialValues;
-
-      const dataTourDate = data?.tourDetails?.tourDate;
-
-      const isTourDateBeforeCurrentDate =
-        dataTourDate ?? dayjs(dataTourDate).isBefore(currentDateTime);
+      const { date: dataTourDate, time: dataTourTime } =
+        data?.tourDetails || {};
 
       return {
         ...initialValues.tourDetails,
         ...data?.tourDetails,
-        tourDate: isTourDateBeforeCurrentDate
-          ? initialTourDate
-          : dayjs(dataTourDate),
+        date: dataTourDate ? dayjs(dataTourDate) : initialTourDate,
+        time: dataTourTime ? dayjs(dataTourTime) : initialTourTime,
       };
     },
     [initialValues],
@@ -138,16 +113,14 @@ function useFormCookie(initialValues, contextType) {
     [contextType, data],
   );
 
-  const setFormCookie = useCallback(
+  const updateFormCookie = useCallback(
     (values) => {
       const valueSubclass = Object.keys(values || {}).reduce((acc, key) => key);
 
-      const filteredCookie = Object.entries(
-        formattedCookie[valueSubclass],
-      ).reduce(
-        (acc, [key, value]) => {
-          if (values[valueSubclass].hasOwnProperty(key)) {
-            acc[valueSubclass][key] = value;
+      const filteredCookie = Object.entries(values[valueSubclass] || {}).reduce(
+        (acc, [key, _value]) => {
+          if (formattedCookie[valueSubclass]?.hasOwnProperty(key)) {
+            acc[valueSubclass][key] = formattedCookie[valueSubclass][key];
           }
           return acc;
         },
@@ -157,24 +130,25 @@ function useFormCookie(initialValues, contextType) {
       if (!isEqual(filteredCookie, values)) {
         const updatedCookie = getUpdatedCookie(values);
 
-        setCookie(cookieName, JSON.stringify(updatedCookie), cookieOptions);
+        setFormCookie(cookieName, JSON.stringify(updatedCookie), cookieOptions);
       }
     },
-    [cookieName, formattedCookie, setCookie, getUpdatedCookie],
+    [cookieName, formattedCookie, setFormCookie, getUpdatedCookie],
   );
 
-  const parsedData = useMemo(() => {
+  const parsedCookie = useMemo(() => {
     if (!data) {
-      setCookie(cookieName, JSON.stringify(initialValues), cookieOptions);
+      setFormCookie(cookieName, JSON.stringify(initialValues), cookieOptions);
+
       return initialValues;
     }
 
     return formattedCookie;
-  }, [cookieName, data, initialValues, formattedCookie, setCookie]);
+  }, [cookieName, data, initialValues, formattedCookie, setFormCookie]);
 
   return useMemo(
-    () => [parsedData, setFormCookie],
-    [parsedData, setFormCookie],
+    () => [parsedCookie, updateFormCookie],
+    [parsedCookie, updateFormCookie],
   );
 }
 
