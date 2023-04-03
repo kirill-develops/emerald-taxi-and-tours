@@ -19,7 +19,7 @@ function TransferDatePicker() {
     [setFieldTouched, setFieldValue],
   );
 
-  const pickerViews = ['month', 'day'];
+  const pickerViews = ['month', 'day', 'hours', 'minutes'];
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

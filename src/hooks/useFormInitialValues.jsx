@@ -2,9 +2,9 @@ import dayjs from 'dayjs';
 import { ParamContext } from '@components/FormComponents/FormContextProvider';
 import { useContext, useMemo } from 'react';
 
-function useAccomName(contextType, paramContext) {
+function useAccomName(paramContext) {
   return useMemo(() => {
-    if (contextType === 'tour') {
+    if (paramContext.type === 'tour') {
       return '';
     }
 
@@ -18,13 +18,13 @@ function useAccomName(contextType, paramContext) {
     } else {
       return '';
     }
-  }, [paramContext, contextType]);
+  }, [paramContext]);
 }
 
 function useFormInitialValues() {
   const context = useContext(ParamContext);
 
-  const accomName = useAccomName(context.type, context);
+  const accomName = useAccomName(context);
 
   const startDate = useMemo(() => dayjs().add(1, 'day'), []);
   const endDate = useMemo(() => dayjs().add(7, 'day'), []);
