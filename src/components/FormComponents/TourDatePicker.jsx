@@ -7,7 +7,7 @@ import React, { useCallback } from 'react';
 import { useFormikContext } from 'formik';
 import FormInputStack from '@elements/FormInputStack';
 
-function TourDatePicker() {
+function TourDatePicker({ stepName }) {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
@@ -23,19 +23,17 @@ function TourDatePicker() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <FormInputStack sx={{ width: '100%' }}>
         <DatePicker
-          name="tourDetails.date"
+          name={`${stepName}.date`}
           label="Select Tour Date & Time"
           views={['month', 'day']}
-          value={values?.tourDetails?.date}
-          onChange={(date) => handleDateChange('tourDetails.date', date)}
+          value={values[stepName]?.date}
+          onChange={(date) => handleDateChange(`${stepName}.date`, date)}
           renderInput={(props) => (
             <TextField
               {...props}
-              onBlur={() => setFieldTouched('tourDetails.date', true, false)}
-              helperText={errors?.tourDetails?.date}
-              error={
-                touched?.tourDetails?.date && Boolean(errors?.tourDetails?.date)
-              }
+              onBlur={() => setFieldTouched(`${stepName}.date`, true, false)}
+              helperText={errors[stepName]?.date}
+              error={touched[stepName]?.date && Boolean(errors[stepName]?.date)}
               required
               fullWidth
             />
@@ -43,17 +41,17 @@ function TourDatePicker() {
           disablePast
         />
         <TimePicker
-          name="tourDetails.time"
+          name={`${stepName}.time`}
           label="Select Tour Date & Time"
           views={['hours', 'minutes']}
-          value={values?.tourDetails?.time}
-          onChange={(time) => handleDateChange('tourDetails.time', time)}
+          value={values[stepName]?.time}
+          onChange={(time) => handleDateChange(`${stepName}.time`, time)}
           renderInput={(props) => (
             <TextField
               {...props}
-              onBlur={() => setFieldTouched('tourDetails.time', true, false)}
-              helperText={errors?.tourDetails?.time}
-              error={Boolean(errors?.tourDetails?.time)}
+              onBlur={() => setFieldTouched(`${stepName}.time`, true, false)}
+              helperText={errors[stepName]?.time}
+              error={Boolean(errors[stepName]?.time)}
               required
               fullWidth
             />
