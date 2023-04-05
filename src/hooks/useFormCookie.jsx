@@ -2,10 +2,7 @@ import dayjs from 'dayjs';
 import isEqual from 'lodash/isEqual';
 import { useCallback, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
-
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import { capitalize } from '@helperFunctions';
 
 const cookieOptions = {
   path: '/',
