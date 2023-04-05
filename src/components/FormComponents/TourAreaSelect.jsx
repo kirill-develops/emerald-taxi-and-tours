@@ -5,14 +5,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useFormikContext } from 'formik';
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ParamContext } from './FormContextProvider';
-import { capitalize } from '@helperFunctions';
 
 function useMenuItems() {
   const context = useContext(ParamContext);
 
-  const JSX = context?.tourParams?.price.map(({ link, name, price }) => (
+  const JSX = context?.tourParams?.price?.map(({ link, name, price }) => (
     <MenuItem
       value={link}
       key={link}
@@ -26,13 +25,25 @@ function useMenuItems() {
   return JSX;
 }
 
+function useSelectedItem(selected) {
+  const context = useContext(ParamContext);
+
+  return useMemo(
+    () =>
+      context?.tourParams?.price?.find((obj) => obj.link === selected)?.name,
+    [selected, context?.tourParams?.price],
+  );
+}
+
 function TourAreaSelect({ stepName }) {
-  const inputLabel = 'Select Area Pickup';
+  const inputLabel = 'Pickup: Area';
 
   const menuItemsJSX = useMenuItems();
 
   const { values, touched, errors, handleChange, handleBlur } =
     useFormikContext();
+
+  const selectedLabel = useSelectedItem(values[stepName]?.area);
 
   return (
     <FormControl
@@ -48,9 +59,7 @@ function TourAreaSelect({ stepName }) {
         value={values[stepName]?.area}
         onChange={handleChange}
         onBlur={handleBlur}
-        renderValue={(selected) => (
-          <Typography as="span">{capitalize(selected)}</Typography>
-        )}
+        renderValue={() => <Typography as="span">{selectedLabel}</Typography>}
       >
         {menuItemsJSX}
       </Select>
