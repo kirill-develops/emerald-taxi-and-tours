@@ -4,7 +4,7 @@ import DatePicker from '@Form/TransferDatePicker';
 import RoundTripRadio from '@Form/RoundTripRadio';
 import FormInputStack from '@elements/FormInputStack';
 import FormTextField from '@elements/FormTextField';
-import FormPassengerSwitches from './FormPassengerSwitches';
+import FormPassengerSelects from './FormPassengerSelects';
 import { ParamContext } from './FormContextProvider';
 
 function FormFlightDetails() {
@@ -48,7 +48,7 @@ function FormFlightDetails() {
         margin="normal"
         disabled={isAccomDisabled}
       />
-      <FormPassengerSwitches stepName={stepName} />
+      <FormPassengerSelects stepName={stepName} />
     </Stack>
   );
 }

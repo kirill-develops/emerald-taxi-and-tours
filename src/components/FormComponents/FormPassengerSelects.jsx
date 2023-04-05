@@ -54,7 +54,7 @@ function useMenuItems(transferPrice, passengers, isChildMenu) {
   return menuItems;
 }
 
-function FormPassengerSwitches({ stepName }) {
+function FormPassengerSelect({ stepName }) {
   const {
     values,
     handleChange,
@@ -144,4 +144,4 @@ function FormPassengerSwitches({ stepName }) {
   );
 }
 
-export default FormPassengerSwitches;
+export default FormPassengerSelect;
