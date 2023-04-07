@@ -21,30 +21,19 @@ function useAccomName(paramContext) {
   }, [paramContext]);
 }
 
+export const transferStartDate = dayjs().add(6, 'hours').format();
+export const transferEndDate = dayjs().add(7, 'day').format();
+export const tourDate = dayjs().add(3, 'hours').format();
+
 function useFormInitialValues() {
   const context = useContext(ParamContext);
 
   const accomName = useAccomName(context);
 
-  const startDate = useMemo(() => dayjs().add(1, 'day'), []);
-  const endDate = useMemo(() => dayjs().add(7, 'day'), []);
-
-  const tourDate = useMemo(() => dayjs().add(3, 'hours'), []);
-
-  const transferInitialValues = useMemo(
+  const commonInitialValues = useMemo(
     () => ({
       bookingStep: 0,
       isBookingOpen: false,
-      flightDetails: {
-        airline: '',
-        flightNum: '',
-        transferType: 'roundtrip',
-        arrive: startDate,
-        depart: endDate,
-        passengers: 1,
-        childPassengers: 0,
-        accomName: accomName,
-      },
       personalDetails: {
         firstName: '',
         lastName: '',
@@ -60,13 +49,29 @@ function useFormInitialValues() {
         userConfirmed: false,
       },
     }),
-    [accomName, startDate, endDate],
+    [],
+  );
+
+  const transferInitialValues = useMemo(
+    () => ({
+      ...commonInitialValues,
+      flightDetails: {
+        airline: '',
+        flightNum: '',
+        transferType: 'roundtrip',
+        arrive: transferStartDate,
+        depart: transferEndDate,
+        passengers: 1,
+        childPassengers: 0,
+        accomName,
+      },
+    }),
+    [accomName, commonInitialValues],
   );
 
   const tourInitialValues = useMemo(
     () => ({
-      bookingStep: 0,
-      isBookingOpen: false,
+      ...commonInitialValues,
       tourDetails: {
         date: tourDate,
         time: tourDate,
@@ -75,22 +80,8 @@ function useFormInitialValues() {
         passengers: 1,
         childPassengers: 0,
       },
-      personalDetails: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        emailConfirm: '',
-        country: 'US',
-        mobile: '',
-      },
-      paymentDetails: {
-        paymentAuthorized: false,
-      },
-      confirmDetails: {
-        userConfirmed: false,
-      },
     }),
-    [tourDate],
+    [commonInitialValues],
   );
 
   return useMemo(
