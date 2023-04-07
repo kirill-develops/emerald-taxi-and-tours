@@ -39,8 +39,8 @@ function FormFlightDetails() {
           }}
         />
       </FormInputStack>
-      <RoundTripRadio />
-      <DatePicker />
+      <RoundTripRadio stepName={stepName} />
+      <DatePicker stepName={stepName} />
       <FormTextField
         stepName={stepName}
         fieldName="accomName"

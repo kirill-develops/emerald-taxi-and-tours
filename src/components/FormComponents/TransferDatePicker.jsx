@@ -9,7 +9,7 @@ import FormInputStack from '@elements/FormInputStack';
 import { transferStartDate } from '@hooks/useFormInitialValues';
 import dayjs from 'dayjs';
 
-function TransferDatePicker() {
+function TransferDatePicker({ stepName }) {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
@@ -27,31 +27,27 @@ function TransferDatePicker() {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <FormInputStack sx={{ rowGap: 1 }}>
         <DateTimePicker
-          name="flightDetails.arrive"
+          name={`${stepName}.arrive`}
           label="Arrival Date & Time"
           views={pickerViews}
-          value={values?.flightDetails?.arrive}
-          onChange={(date) => handleDateChange('flightDetails.arrive', date)}
-          disabled={values?.flightDetails?.transferType === 'departure'}
+          value={values[stepName]?.arrive}
+          onChange={(date) => handleDateChange(`${stepName}.arrive`, date)}
+          disabled={values[stepName]?.transferType === 'departure'}
           renderInput={(props) => (
             <TextField
               {...props}
-              onBlur={() =>
-                setFieldTouched('flightDetails.arrive', true, false)
-              }
-              helperText={errors?.flightDetails?.arrive}
-              required={values?.flightDetails?.transferType !== 'departure'}
+              onBlur={() => setFieldTouched(`${stepName}.arrive`, true, false)}
+              helperText={errors[stepName]?.arrive}
+              required={values[stepName]?.transferType !== 'departure'}
               error={
-                touched?.flightDetails?.arrive &&
-                Boolean(errors?.flightDetails?.arrive)
+                touched[stepName]?.arrive && Boolean(errors[stepName]?.arrive)
               }
             />
           )}
           minDateTime={dayjs(transferStartDate)}
           maxDateTime={
-            values?.flightDetails?.transferType === 'roundtrip'
-              ? values?.flightDetails?.depart &&
-                dayjs(values?.flightDetails?.depart)
+            values[stepName]?.transferType === 'roundtrip'
+              ? values[stepName]?.depart && dayjs(values[stepName]?.depart)
               : null
           }
           disablePast
@@ -63,30 +59,26 @@ function TransferDatePicker() {
           To
         </Typography>
         <DateTimePicker
-          name="flightDetails.depart"
+          name={`${stepName}.depart`}
           label="Departure Date & Time"
           views={pickerViews}
-          value={values?.flightDetails?.depart}
-          onChange={(date) => handleDateChange('flightDetails.depart', date)}
-          disabled={values?.flightDetails?.transferType === 'arrival'}
+          value={values[stepName]?.depart}
+          onChange={(date) => handleDateChange(`${stepName}.depart`, date)}
+          disabled={values[stepName]?.transferType === 'arrival'}
           renderInput={(props) => (
             <TextField
               {...props}
-              onBlur={() =>
-                setFieldTouched('flightDetails.depart', true, false)
-              }
-              helperText={errors?.flightDetails?.depart}
-              required={values?.flightDetails?.transferType !== 'arrival'}
+              onBlur={() => setFieldTouched(`${stepName}.depart`, true, false)}
+              helperText={errors[stepName]?.depart}
+              required={values[stepName]?.transferType !== 'arrival'}
               error={
-                touched?.flightDetails?.depart &&
-                Boolean(errors?.flightDetails?.depart)
+                touched[stepName]?.depart && Boolean(errors[stepName]?.depart)
               }
             />
           )}
           minDateTime={
-            values?.flightDetails?.transferType === 'roundtrip'
-              ? values?.flightDetails?.arrive &&
-                dayjs(values?.flightDetails?.arrive)
+            values[stepName]?.transferType === 'roundtrip'
+              ? values[stepName]?.arrive && dayjs(values[stepName]?.arrive)
               : null
           }
           disablePast
