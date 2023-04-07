@@ -9,6 +9,28 @@ const cookieOptions = {
   maxAge: 60 * 60 * 24 * 7, // 1 week
 };
 
+function checkDate(dataDate, initialDate) {
+  const isDataBeforeInitial = dayjs(dataDate)
+    .startOf('day')
+    .isBefore(dayjs(initialDate).startOf('day'));
+
+  return isDataBeforeInitial ? initialDate : dayjs(dataDate).format();
+}
+
+function checkTime(dataTime, initialTime) {
+  const isDataBeforeInitial = dayjs(dataTime)
+    .startOf('minute')
+    .isBefore(dayjs(initialTime).startOf('minute'));
+
+  return isDataBeforeInitial ? initialTime : dayjs(dataTime).format();
+}
+
+function checkDepartDate(dataDate, initialDate, departDate) {
+  const isDataBeforeInitial = dayjs(dataDate).isBefore(dayjs(initialDate));
+
+  return isDataBeforeInitial ? departDate : dayjs(dataDate).format();
+}
+
 function useFormCookie(initialValues, contextType) {
   const cookieName = useMemo(
     () => `Emerald${capitalize(contextType)}FormCache`,
@@ -25,13 +47,17 @@ function useFormCookie(initialValues, contextType) {
         initialValues.flightDetails;
 
       const { arrive: dataArrive, depart: dataDepart } =
-        data?.flightDetails || {};
+        data?.flightDetails ?? {};
 
       return {
         ...initialValues.flightDetails,
         ...data?.flightDetails,
-        arrive: dataArrive ? dayjs(dataArrive) : initialArrive,
-        depart: dataDepart ? dayjs(dataDepart) : initialDepart,
+        arrive: dataArrive
+          ? checkTime(dataArrive, initialArrive)
+          : initialArrive,
+        depart: dataDepart
+          ? checkDepartDate(dataDepart, initialArrive, initialDepart)
+          : initialDepart,
       };
     },
     [initialValues],
@@ -43,13 +69,17 @@ function useFormCookie(initialValues, contextType) {
         initialValues.tourDetails;
 
       const { date: dataTourDate, time: dataTourTime } =
-        data?.tourDetails || {};
+        data?.tourDetails ?? {};
 
       return {
         ...initialValues.tourDetails,
         ...data?.tourDetails,
-        date: dataTourDate ? dayjs(dataTourDate) : initialTourDate,
-        time: dataTourTime ? dayjs(dataTourTime) : initialTourTime,
+        date: dataTourDate
+          ? checkDate(dataTourDate, initialTourDate)
+          : initialTourDate,
+        time: dataTourTime
+          ? checkTime(dataTourTime, initialTourTime)
+          : initialTourTime,
       };
     },
     [initialValues],

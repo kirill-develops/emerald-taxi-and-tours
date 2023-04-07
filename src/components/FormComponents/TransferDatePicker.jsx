@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import React, { useCallback } from 'react';
 import { useFormikContext } from 'formik';
 import FormInputStack from '@elements/FormInputStack';
+import { transferStartDate } from '@hooks/useFormInitialValues';
+import dayjs from 'dayjs';
 
 function TransferDatePicker() {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
@@ -13,7 +15,7 @@ function TransferDatePicker() {
 
   const handleDateChange = useCallback(
     (fieldName, date) => {
-      setFieldValue(fieldName, date);
+      setFieldValue(fieldName, dayjs(date).format());
       setFieldTouched(fieldName, true, false);
     },
     [setFieldTouched, setFieldValue],
@@ -45,9 +47,11 @@ function TransferDatePicker() {
               }
             />
           )}
+          minDateTime={dayjs(transferStartDate)}
           maxDateTime={
             values?.flightDetails?.transferType === 'roundtrip'
-              ? values?.flightDetails?.depart
+              ? values?.flightDetails?.depart &&
+                dayjs(values?.flightDetails?.depart)
               : null
           }
           disablePast
@@ -81,7 +85,8 @@ function TransferDatePicker() {
           )}
           minDateTime={
             values?.flightDetails?.transferType === 'roundtrip'
-              ? values?.flightDetails?.arrive
+              ? values?.flightDetails?.arrive &&
+                dayjs(values?.flightDetails?.arrive)
               : null
           }
           disablePast

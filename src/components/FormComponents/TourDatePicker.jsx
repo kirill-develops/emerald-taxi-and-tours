@@ -6,6 +6,8 @@ import TextField from '@mui/material/TextField';
 import React, { useCallback } from 'react';
 import { useFormikContext } from 'formik';
 import FormInputStack from '@elements/FormInputStack';
+import { tourDate } from '@hooks/useFormInitialValues';
+import dayjs from 'dayjs';
 
 function TourDatePicker({ stepName }) {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
@@ -13,7 +15,7 @@ function TourDatePicker({ stepName }) {
 
   const handleDateChange = useCallback(
     (fieldName, date) => {
-      setFieldValue(fieldName, date);
+      setFieldValue(fieldName, dayjs(date).format());
       setFieldTouched(fieldName, true, false);
     },
     [setFieldValue, setFieldTouched],
@@ -28,6 +30,7 @@ function TourDatePicker({ stepName }) {
           views={['month', 'day']}
           value={values[stepName]?.date}
           onChange={(date) => handleDateChange(`${stepName}.date`, date)}
+          minDate={dayjs(tourDate)}
           renderInput={(props) => (
             <TextField
               {...props}
@@ -46,6 +49,7 @@ function TourDatePicker({ stepName }) {
           views={['hours', 'minutes']}
           value={values[stepName]?.time}
           onChange={(time) => handleDateChange(`${stepName}.time`, time)}
+          minTime={dayjs(tourDate)}
           renderInput={(props) => (
             <TextField
               {...props}
