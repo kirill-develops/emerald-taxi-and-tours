@@ -43,8 +43,11 @@ function useFormCookie(initialValues, contextType) {
 
   const parseFlightDetails = useCallback(
     (data) => {
-      const { arrive: initialArrive, depart: initialDepart } =
-        initialValues.flightDetails;
+      const {
+        arrive: initialArrive,
+        depart: initialDepart,
+        accomName,
+      } = initialValues.flightDetails;
 
       const { arrive: dataArrive, depart: dataDepart } =
         data?.flightDetails ?? {};
@@ -52,6 +55,7 @@ function useFormCookie(initialValues, contextType) {
       return {
         ...initialValues.flightDetails,
         ...data?.flightDetails,
+        accomName: accomName,
         arrive: dataArrive
           ? checkTime(dataArrive, initialArrive)
           : initialArrive,
