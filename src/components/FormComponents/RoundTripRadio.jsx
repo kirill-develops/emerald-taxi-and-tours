@@ -26,7 +26,10 @@ function RoundTripRadio({ stepName }) {
           value={values[stepName]?.transferType}
           onChange={handleChange}
           onBlur={handleBlur}
-          sx={{ gap: 3 }}
+          sx={{
+            gap: { xs: 'initial', sm: 3 },
+            flexDirection: { xs: 'column', sm: 'row' },
+          }}
           row
         >
           <FormControlLabel
