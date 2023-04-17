@@ -1,8 +1,20 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@*": ["/*"]
+      "@*": ["./*"],
+      "@Form/*": ["components/FormComponents/*"],
+      "@Navbar/*": ["components/NavbarComponents/*"],
+      "@Stepper/*" : ["components/StepperComponents/*"],
+      "@Tour/*" : ["components/TourComponents/*"],
+      "@Transfer/*" : ["components/TransferComponents/*"],
+      "@Data/*" : ["data/*"],
+      "@Elements/*" : ["elements/*"],
+      "@Hooks/*" : ["hooks/*"],
+      "@Material/*" : ["material/*"],
+      "@State/*" : ["state/*"],
+      "@Styles/*" : ["styles/*"],
+      "@Public/*" : ["../public/*"],
     }
   }
 }
