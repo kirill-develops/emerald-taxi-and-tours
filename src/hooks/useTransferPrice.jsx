@@ -1,10 +1,7 @@
 import { useFormikContext } from 'formik';
 import { useContext } from 'react';
 import { ParamContext } from '@components/FormComponents/FormContextProvider';
-import {
-  normanManleyTransferData,
-  sangsterTransferData,
-} from '@data/transfers';
+import { transferData } from '@data/transfers';
 
 function useTransferPrice() {
   const { values } = useFormikContext();
@@ -16,9 +13,6 @@ function useTransferPrice() {
   } = useContext(ParamContext);
 
   if (type === 'tour') return '';
-
-  const transferData =
-    airportLink === 'MBJ' ? sangsterTransferData : normanManleyTransferData;
 
   const { extraGuestOneWay, extraGuestTwoWay } = transferData
     .find((area) => area.link === areaLink)

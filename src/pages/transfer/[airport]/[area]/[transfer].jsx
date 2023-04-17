@@ -1,16 +1,11 @@
 import Head from 'next/head';
 import React from 'react';
 import { useRouter } from 'next/router';
-import {
-  sangsterTransferData,
-  normanManleyTransferData,
-} from '@data/transfers';
+import { transferData } from '@data/transfers';
 import Fallback from '@components/Fallback';
 import Layout from '@components/Layout';
 import FormContextProvider from '@components/FormComponents/FormContextProvider';
 import BookingLayout from '@components/BookingLayout';
-
-const transferData = [...sangsterTransferData, ...normanManleyTransferData];
 
 export async function getStaticPaths() {
   function generatePaths(transferData) {
