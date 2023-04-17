@@ -13,6 +13,7 @@ import MobileSearchModal from './MobileSearchModal';
 import TabletPagesLink from './TabletPagesLink';
 import emeraldLogo from '@Public/logo/emerald_logo_v2.png';
 import useLoadingTransition from '@hooks/useLoadingTransition';
+import TabletSearchModal from './TabletSearchModal';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -110,6 +111,7 @@ function NavbarLayout(props) {
           </Stack>
           <TabletPagesLink dissapearingBreakpoint={menuBreakpoint} />
           <MobileSearchModal dissapearingBreakpoint={menuBreakpoint} />
+          <TabletSearchModal dissapearingBreakpoint={menuBreakpoint} />
         </Toolbar>
       </AppBar>
     </ElevationScroll>
