@@ -9,7 +9,6 @@ export const transferData = [
       { name: "Hyatt Ziva & Zilara", link: 'hyatt ziva_zilara', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Iberostar Rose Hall Beach, Suites & Grand", link: 'iberostar_rose', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Jewel Grande", link: 'jewel_grande', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
-      { name: "Ocean Coral Springs by H10 Hotels", link: 'ocean_coral_springs', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Riu Palace & Reggae", link: 'riu_palace', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Round Hill Hotel & Villas", link: 'round_hill', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Royal Decameron", link: 'royal_decameron', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
