@@ -5,6 +5,7 @@
       "@*": ["./*"],
       "@Form/*": ["components/FormComponents/*"],
       "@Navbar/*": ["components/NavbarComponents/*"],
+      "@NavSearch/*": ["components/NavSearch/*"],
       "@Stepper/*" : ["components/StepperComponents/*"],
       "@Tour/*" : ["components/TourComponents/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],

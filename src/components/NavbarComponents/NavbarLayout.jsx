@@ -9,11 +9,11 @@ import Image from 'next/image';
 import React from 'react';
 import Link from '@material/Link';
 import MobilePagesMenu from './MobilePagesMenu';
-import MobileSearchModal from './MobileSearchModal';
+import MobileSearchModal from '@NavSearch/MobileSearchModal';
+import TabletSearchModal from '@NavSearch/TabletSearchModal';
 import TabletPagesLink from './TabletPagesLink';
 import emeraldLogo from '@Public/logo/emerald_logo_v2.png';
 import useLoadingTransition from '@hooks/useLoadingTransition';
-import TabletSearchModal from './TabletSearchModal';
 
 function ElevationScroll(props) {
   const { children, window } = props;
