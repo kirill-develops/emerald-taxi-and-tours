@@ -86,12 +86,15 @@ function useStepperData(bookingStep = 0) {
 
   const stepperLabels = useDataByKey('label', stepsData);
 
-  return {
-    activeStepComponent,
-    activeStepLink,
-    stepperLength,
-    stepperLabels,
-  };
+  return useMemo(
+    () => ({
+      activeStepComponent,
+      activeStepLink,
+      stepperLength,
+      stepperLabels,
+    }),
+    [activeStepComponent, activeStepLink, stepperLength, stepperLabels],
+  );
 }
 
 export default useStepperData;
