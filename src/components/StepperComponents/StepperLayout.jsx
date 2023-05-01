@@ -1,11 +1,12 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Form, useFormikContext } from 'formik';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import StepperStepButtons from './StepperStepButtons';
 import StepperProgressBar from './StepperProgressBar';
 import useStepperData from '@hooks/useStepperData';
 import useFormValues from '@hooks/useFormValues';
+import { useRouter } from 'next/router';
 
 function useStepperButtons(activeStepLink, setCookie) {
   const { validateForm, setFieldValue, setTouched } = useFormikContext();
@@ -46,6 +47,7 @@ function useStepperButtons(activeStepLink, setCookie) {
 function StepperLayout({ setCookie }) {
   const {
     values: { bookingStep },
+    setTouched,
   } = useFormikContext();
 
   const { activeStepComponent, activeStepLink, stepperLength } =
@@ -57,6 +59,20 @@ function StepperLayout({ setCookie }) {
     activeStepLink,
     setCookie,
   );
+
+  const router = useRouter();
+  const prevPathnameRef = useRef(null);
+
+  useEffect(() => {
+    const prevPathname = prevPathnameRef.current;
+    const currentPathname = router.asPath;
+
+    if (prevPathname && prevPathname !== currentPathname) {
+      setTouched({});
+    }
+
+    prevPathnameRef.current = currentPathname;
+  }, [router.asPath, setTouched]);
 
   return (
     <Stack justifyContent="space-between">
