@@ -91,7 +91,12 @@ export default function useSearchFilterOptions() {
         return options;
       }
 
-      const results = fuse.search(state.inputValue);
+      const adaptedSearchTerm = state.inputValue
+        .split(' ')
+        .map((word) => `${word}`)
+        .join(' ');
+
+      const results = fuse.search(adaptedSearchTerm);
 
       return results
         .sort((a, b) => {
