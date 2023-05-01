@@ -14,10 +14,13 @@ import {
   renderOptionProp,
 } from './autocompleteProps';
 import useSearchFilterOptions from '@hooks/useSearchFilterOptions';
+import useSearchListner from '@hooks/useSearchListner';
 
-function SearchModal({ open, handleClose }) {
+function SearchModal({ open, handleOpen, handleClose }) {
   const router = useRouter();
   const { searchOptions, filterOptionsProp } = useSearchFilterOptions();
+
+  useSearchListner(handleOpen);
 
   const handleOptionSelect = (event, value) => {
     if (value) {
@@ -51,7 +54,7 @@ function SearchModal({ open, handleClose }) {
             clearOnBlur={false}
             popupIcon={null}
             open={true}
-            noOptionsText="Unable to find any tours or transfers"
+            noOptionsText="No tours or transfers"
             disablePortal
             onChange={handleOptionSelect}
             options={searchOptions}
@@ -63,6 +66,11 @@ function SearchModal({ open, handleClose }) {
             filterOptions={filterOptionsProp}
             renderGroup={renderGroupProp}
             renderOption={renderOptionProp}
+            onKeyUp={(event) => {
+              if (event.key === 'Escape') {
+                handleClose();
+              }
+            }}
           />
         </Box>
       </Fade>

@@ -9,8 +9,8 @@ import Image from 'next/image';
 import React from 'react';
 import Link from '@material/Link';
 import MobilePagesMenu from './MobilePagesMenu';
-import MobileSearchModal from '@NavSearch/MobileSearchModal';
-import TabletSearchModal from '@NavSearch/TabletSearchModal';
+import MobileSearchButton from './MobileSearchButton';
+import TabletSearchButton from './TabletSearchButton';
 import TabletPagesLink from './TabletPagesLink';
 import emeraldLogo from '@Public/logo/emerald_logo_v2.png';
 import useLoadingTransition from '@hooks/useLoadingTransition';
@@ -110,8 +110,8 @@ function NavbarLayout(props) {
             </Typography>
           </Stack>
           <TabletPagesLink dissapearingBreakpoint={menuBreakpoint} />
-          <MobileSearchModal dissapearingBreakpoint={menuBreakpoint} />
-          <TabletSearchModal dissapearingBreakpoint={menuBreakpoint} />
+          <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
+          <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
         </Toolbar>
       </AppBar>
     </ElevationScroll>

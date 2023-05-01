@@ -1,22 +1,45 @@
 import { Search } from '@mui/icons-material';
-import { InputAdornment } from '@mui/material';
+import { Chip, InputAdornment, useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
-import SearchModal from './SearchModal';
+import SearchModal from '@NavSearch/SearchModal';
 
-function SearchAdornment() {
+function SearchStartAdornment() {
   return (
-    <InputAdornment position="end">
+    <InputAdornment position="start">
       <Search />
     </InputAdornment>
   );
 }
 
-function TabletSearchModal({ dissapearingBreakpoint }) {
+function SearchEndAdornment() {
+  return (
+    <InputAdornment position="end">
+      <Chip
+        label="⌘K"
+        variant="outlined"
+        size="small"
+        sx={{
+          borderRadius: 2,
+        }}
+      />
+    </InputAdornment>
+  );
+}
+
+function TabletSearchButton({ dissapearingBreakpoint }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const isTablet = useMediaQuery((theme) =>
+    theme.breakpoints.up(dissapearingBreakpoint),
+  );
+
+  if (!isTablet) {
+    return null;
+  }
 
   return (
     <Box
@@ -35,7 +58,8 @@ function TabletSearchModal({ dissapearingBreakpoint }) {
         variant="outlined"
         InputProps={{
           readOnly: true,
-          endAdornment: <SearchAdornment />,
+          startAdornment: <SearchStartAdornment />,
+          endAdornment: <SearchEndAdornment />,
         }}
         sx={{
           '& .MuiInputBase-root': {
@@ -46,10 +70,11 @@ function TabletSearchModal({ dissapearingBreakpoint }) {
       />
       <SearchModal
         open={open}
+        handleOpen={handleOpen}
         handleClose={handleClose}
       />
     </Box>
   );
 }
 
-export default TabletSearchModal;
+export default TabletSearchButton;
