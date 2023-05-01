@@ -17,6 +17,17 @@ export const renderInputProp = (params) => (
     autoFocus
     placeholder="Search"
     type='search'
+    sx={{
+      '& .MuiOutlinedInput-root': {
+        paddingRight: theme => `${theme.spacing(1)} !important`
+      }
+    }}
+    InputProps={{
+      ...params.InputProps,
+      sx: {
+        paddingRight: 'unset'
+      }
+    }}
   />
 );
 
