@@ -98,19 +98,31 @@ export default function useSearchFilterOptions() {
 
       const results = fuse.search(adaptedSearchTerm);
 
-      return results
-        .sort((a, b) => {
-          const typeComparison = a.item.type.localeCompare(b.item.type);
-
-          if (typeComparison !== 0) {
-            // If the types are not equal, return the comparison result
-            return typeComparison;
-          } else {
-            // If the types are equal, compare the scores
-            return a.score - b.score;
+      const { tourResults, transferResults } = results.reduce(
+        (acc, result) => {
+          if (result.item.type === 'Tours') {
+            acc.tourResults.push(result);
+          } else if (result.item.type === 'Transfers') {
+            acc.transferResults.push(result);
           }
-        })
-        .map((result) => options[result.refIndex]);
+          return acc;
+        },
+        { tourResults: [], transferResults: [] },
+      );
+
+      tourResults.sort((a, b) => a.score - b.score);
+      transferResults.sort((a, b) => a.score - b.score);
+
+      const isTourFirst =
+        tourResults.length > 0 &&
+        transferResults.length > 0 &&
+        tourResults[0]?.score < transferResults[0]?.score;
+
+      const finalResults = isTourFirst
+        ? [...tourResults, ...transferResults]
+        : [...transferResults, ...tourResults];
+
+      return finalResults.map((result) => options[result.refIndex]);
     },
     [fuse],
   );
