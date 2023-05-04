@@ -1,4 +1,5 @@
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
+import { styled } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -15,6 +16,20 @@ import {
 } from './autocompleteProps';
 import useSearchFilterOptions from '@hooks/useSearchFilterOptions';
 import useSearchListner from '@hooks/useSearchListner';
+
+const StyledAutocompletePopper = styled('div')(({ theme }) => ({
+  [`& .${autocompleteClasses.paper}`]: {
+    boxShadow: 'none',
+    margin: 0,
+    color: 'inherit',
+  },
+  [`& .${autocompleteClasses.listbox}`]: {
+    backgroundColor: theme.palette.background.default,
+  },
+  [`&.${autocompleteClasses.popperDisablePortal}`]: {
+    position: 'relative',
+  },
+}));
 
 function SearchModal({ open, handleOpen, handleClose }) {
   const router = useRouter();
@@ -46,7 +61,7 @@ function SearchModal({ open, handleOpen, handleClose }) {
         timeout={500}
       >
         <Box
-          top={{ xs: '75%', sm: '25%' }}
+          top={{ xs: '60%', sm: '40%' }}
           sx={searchStyles}
         >
           <Autocomplete
@@ -61,6 +76,7 @@ function SearchModal({ open, handleOpen, handleClose }) {
             groupBy={(option) => option.type}
             getOptionLabel={(option) => option.name}
             ListboxProps={listBoxProps}
+            PopperComponent={StyledAutocompletePopper}
             componentsProps={{ popper: { style: modalStyles } }}
             renderInput={renderInputProp}
             filterOptions={filterOptionsProp}

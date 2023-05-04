@@ -14,4 +14,5 @@ export const searchStyles = {
   bgcolor: 'background.paper',
   border: '2px solid common.black',
   borderRadius: '4px',
+  border: theme => `3px solid ${theme.palette.background.paper}`
 };
