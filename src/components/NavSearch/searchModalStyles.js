@@ -2,7 +2,7 @@ export const modalStyles = {
   width: '100%',
   minWidth: 150,
   maxWidth: 400,
-  boxShadow: 12,
+  boxShadow: 5,
 };
 
 export const searchStyles = {

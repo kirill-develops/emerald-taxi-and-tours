@@ -59,7 +59,7 @@ function NavbarLayout(props) {
           ...loadingTransitionStyle,
         }}
       >
-        <Toolbar sx={{ ...loadingTransitionStyle }}>
+        <Toolbar sx={{ ...loadingTransitionStyle, gap: 2 }}>
           <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
           <Stack
             direction="row"

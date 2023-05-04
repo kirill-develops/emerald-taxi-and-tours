@@ -22,6 +22,7 @@ function SearchEndAdornment() {
         size="small"
         sx={{
           borderRadius: 2,
+          color: (theme) => theme.palette.text.secondary,
         }}
       />
     </InputAdornment>
@@ -45,13 +46,14 @@ function TabletSearchButton({ dissapearingBreakpoint }) {
     <Box
       sx={{
         flexGrow: 1,
+        flexBasis: '20%',
         justifyContent: 'flex-end',
         display: { xs: 'none', [dissapearingBreakpoint]: 'flex' },
       }}
     >
       <TextField
         hiddenLabel
-        defaultValue="Search"
+        placeholder="Search"
         focused={false}
         onClick={handleOpen}
         size="small"
