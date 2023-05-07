@@ -9,7 +9,8 @@ import Image from 'next/image';
 import React from 'react';
 import Link from '@material/Link';
 import MobilePagesMenu from './MobilePagesMenu';
-import MobileSearchModal from './MobileSearchModal';
+import MobileSearchButton from './MobileSearchButton';
+import TabletSearchButton from './TabletSearchButton';
 import TabletPagesLink from './TabletPagesLink';
 import emeraldLogo from '@Public/logo/emerald_logo_v2.png';
 import useLoadingTransition from '@hooks/useLoadingTransition';
@@ -30,7 +31,14 @@ function ElevationScroll(props) {
   }
 
   return React.cloneElement(children, {
-    elevation: trigger ? 6 : 0,
+    sx: {
+      ...children.props.sx,
+      opacity: trigger ? 0.9 : 1,
+      backgroundColor: trigger
+        ? 'rgba(0,0,0,0.9)'
+        : (theme) => theme.palette.background.default,
+      backdropFilter: trigger ? 'blur(100rem)' : undefined,
+    },
   });
 }
 
@@ -42,6 +50,7 @@ function NavbarLayout(props) {
   return (
     <ElevationScroll {...props}>
       <AppBar
+        elevation={1}
         sx={{
           position: { xs: 'fixed' },
           top: { xs: 'auto', sm: '0' },
@@ -50,7 +59,7 @@ function NavbarLayout(props) {
           ...loadingTransitionStyle,
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ ...loadingTransitionStyle, gap: 2 }}>
           <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
           <Stack
             direction="row"
@@ -101,7 +110,8 @@ function NavbarLayout(props) {
             </Typography>
           </Stack>
           <TabletPagesLink dissapearingBreakpoint={menuBreakpoint} />
-          <MobileSearchModal dissapearingBreakpoint={menuBreakpoint} />
+          <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
+          <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
         </Toolbar>
       </AppBar>
     </ElevationScroll>

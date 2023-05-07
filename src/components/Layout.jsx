@@ -9,6 +9,8 @@ import usePageTransition from '@hooks/usePageTransition';
 const LayoutTitle = dynamic(() => import('@elements/LayoutTitle'));
 const Copyright = dynamic(() => import('./Copyright'));
 const Navbar = dynamic(() => import('@Navbar/NavbarLayout'));
+const ContactSpeedDial = dynamic(() => import('./ContactSpeedDial'));
+
 const GridContainer = dynamic(() =>
   import('@elements/CustomGridEl').then((mod) => mod.GridContainer),
 );
@@ -51,6 +53,7 @@ function Layout({ children, title = '', subheader = '', airport = '' }) {
         <Copyright sx={{ overflow: 'auto' }} />
         {isXsBreakpoint && <Offset />}
       </Container>
+      <ContactSpeedDial />
     </>
   );
 }

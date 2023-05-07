@@ -1,21 +1,29 @@
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
-import React from 'react';
-
-import { useTransferDataByKey } from '@data/transferFormData';
+import React, { useCallback } from 'react';
+import useStepperData from '@hooks/useStepperData';
 
 function StepperProgressBar({ activeStep }) {
-  const transferLabels = useTransferDataByKey('label');
+  const { stepperLabels } = useStepperData();
+
+  const getLabel = useCallback(
+    (index, text) => {
+      if (activeStep >= index) {
+        return text;
+      }
+    },
+    [activeStep],
+  );
 
   return (
     <Stepper
       activeStep={activeStep}
       alternativeLabel
     >
-      {transferLabels.map(({ label }, index) => (
+      {stepperLabels.map(({ label }, index) => (
         <Step key={label}>
-          <StepLabel>{activeStep >= index && label}</StepLabel>
+          <StepLabel>{getLabel(index, label)}</StepLabel>
         </Step>
       ))}
     </Stepper>

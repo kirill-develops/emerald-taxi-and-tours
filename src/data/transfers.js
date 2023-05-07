@@ -1,4 +1,4 @@
-export const sangsterTransferData = [
+export const transferData = [
   {
     name: 'Montego Bay', link: 'montego_bay', airport: 'Sangster Internation (MBJ)', airportLink: 'MBJ', destinations: [
       { name: "All Other Resorts, Villas, AirBnB & Homes", link: 'other', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
@@ -9,7 +9,6 @@ export const sangsterTransferData = [
       { name: "Hyatt Ziva & Zilara", link: 'hyatt ziva_zilara', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Iberostar Rose Hall Beach, Suites & Grand", link: 'iberostar_rose', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Jewel Grande", link: 'jewel_grande', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
-      { name: "Ocean Coral Springs by H10 Hotels", link: 'ocean_coral_springs', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Riu Palace & Reggae", link: 'riu_palace', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Round Hill Hotel & Villas", link: 'round_hill', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
       { name: "Royal Decameron", link: 'royal_decameron', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
@@ -83,10 +82,7 @@ export const sangsterTransferData = [
       { name: "All Other Resorts, Villas, AirBnB & Homes in PORT ANTONIO", area: 'Port Antonio', link: 'port_antonio', price: { oneWay: 190, roundTrip: 380, extraGuestOneWay: 40, extraGuestTwoWay: 80 } },
       { name: "All Other Resorts, Villas, AirBnB & Homes in KINGSTON", area: 'Kingston', link: 'kingston', price: { oneWay: 250, roundTrip: 500, extraGuestOneWay: 55, extraGuestTwoWay: 110 } },
     ]
-  }
-]
-
-export const normanManleyTransferData = [
+  },
   {
     name: 'All Regions', link: 'norman_manley', airport: 'Norman Manley (KIN)', airportLink: 'KIN', destinations: [
       { name: 'Kingston, Spanish Town & Portmore', link: 'kingston_area', price: { oneWay: 30, roundTrip: 60, extraGuestOneWay: 10, extraGuestTwoWay: 20 } },
@@ -102,4 +98,4 @@ export const normanManleyTransferData = [
       { name: 'South Coast', parish: 'Westmoreland', link: 'st_elizabeth', price: { oneWay: 250, roundTrip: 500, extraGuestOneWay: 55, extraGuestTwoWay: 110 } },
     ]
   }
-]
+];
