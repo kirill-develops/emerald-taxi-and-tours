@@ -68,20 +68,6 @@ function StepperLayout({ setCookie, cookieData }) {
     setCookie,
   );
 
-  const router = useRouter();
-  const prevPathnameRef = useRef(null);
-
-  useEffect(() => {
-    const prevPathname = prevPathnameRef.current;
-    const currentPathname = router.asPath;
-
-    if (prevPathname && prevPathname !== currentPathname) {
-      setTouched({});
-    }
-
-    prevPathnameRef.current = currentPathname;
-  }, [router.asPath, setTouched]);
-
   return (
     <Stack justifyContent="space-between">
       <StepperProgressBar activeStep={bookingStep} />
