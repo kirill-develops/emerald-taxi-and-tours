@@ -7,7 +7,7 @@ import FilterButton from './FilterButtonMobile';
 import FilterOptions from './FilterOptions';
 import SortButton from './SortButton';
 
-function TourOptions() {
+function TourOptions({ sx, ...rest }) {
   const [state, setState] = useTour();
   const { filterExpand } = state;
 
@@ -15,6 +15,8 @@ function TourOptions() {
     <Container
       disableGutters
       maxWidth="xl"
+      sx={sx}
+      {...rest}
     >
       <Box
         sx={{

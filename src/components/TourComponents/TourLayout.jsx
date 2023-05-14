@@ -8,7 +8,7 @@ import { GridContainer, GridItem } from '@elements/CustomGridEl';
 function TourLayout() {
   return (
     <>
-      <TourOptions />
+      <TourOptions sx={{ display: { xs: 'none', sm: 'block' } }} />
       <GridContainer spacing={gridSpacingProps}>
         <GridItem
           sm={4}
