@@ -12,15 +12,21 @@ import ToursByType from './ToursByType';
 import { gridSpacingProps } from '@material/theme';
 import TourOptions from './TourOptions';
 
+const tourHeaderStyles = { width: '100%' };
+
+const headerDividerStyles = { marginBottom: 3 };
+
+const gridContainerStyles = { pl: { sm: 0 }, pr: { sm: 1 } };
+
 function AllToursHeader() {
   return useMemo(
     () => (
-      <GridItem sx={{ width: '100%' }}>
+      <GridItem sx={tourHeaderStyles}>
         <Typography variant="h4">All Tours</Typography>
         <Divider
           variant="inset"
           textAlign="right"
-          sx={{ marginBottom: 3 }}
+          sx={headerDividerStyles}
         />
         <TourOptions />
       </GridItem>
@@ -30,9 +36,7 @@ function AllToursHeader() {
 }
 
 function SortedTours() {
-  const [state, actions] = useTour();
-  const { sort, filteredData, filterStartLocation } = state;
-
+  const [{ sort, filteredData, filterStartLocation }] = useTour();
   const sortedTourData = useSortData(filteredData, sort, filterStartLocation);
 
   return useMemo(
@@ -51,7 +55,7 @@ function TourGrid() {
   return (
     <Container
       maxWidth="lg"
-      sx={{ pl: { sm: 0 }, pr: { sm: 1 } }}
+      sx={gridContainerStyles}
     >
       <GridContainer spacing={gridSpacingProps}>
         <ToursByType />

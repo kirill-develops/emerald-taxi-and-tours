@@ -7,9 +7,17 @@ import FilterButton from './FilterButtonMobile';
 import FilterOptions from './FilterOptions';
 import SortButton from './SortButton';
 
+const boxStyles = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: { xs: 'space-between', sm: 'flex-end' },
+  m: 1,
+};
+
+const collapseStyles = { display: { sm: 'none' } };
+
 function TourOptions({ sx, ...rest }) {
-  const [state, setState] = useTour();
-  const { filterExpand } = state;
+  const [{ filterExpand }] = useTour();
 
   return (
     <Container
@@ -18,20 +26,13 @@ function TourOptions({ sx, ...rest }) {
       sx={sx}
       {...rest}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: { xs: 'space-between', sm: 'flex-end' },
-          m: 1,
-        }}
-      >
+      <Box sx={boxStyles}>
         <FilterButton />
         <SortButton />
       </Box>
       <Collapse
         in={filterExpand}
-        sx={{ display: { sm: 'none' } }}
+        sx={collapseStyles}
         timeout="auto"
         unmountOnExit
       >
@@ -41,4 +42,4 @@ function TourOptions({ sx, ...rest }) {
   );
 }
 
-export default TourOptions;
+export default React.memo(TourOptions);

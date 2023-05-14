@@ -3,17 +3,19 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 import FilterCheckboxGroup from './FilterCheckboxGroup';
 
+const cardStyles = {
+  m: { xs: 2, sm: 0 },
+  ml: { sm: 1 },
+  p: 1,
+  position: { xs: 'static', sm: 'sticky' },
+  top: { sm: 80 },
+};
+
 function FilterOptions() {
   return (
     <Card
       variant="outlined"
-      sx={{
-        m: { xs: 2, sm: 0 },
-        ml: { sm: 1 },
-        p: 1,
-        position: { xs: 'static', sm: 'sticky' },
-        top: { sm: 80 },
-      }}
+      sx={cardStyles}
     >
       <Typography>Starting Location</Typography>
       <FilterCheckboxGroup
@@ -35,4 +37,4 @@ function FilterOptions() {
   );
 }
 
-export default FilterOptions;
+export default React.memo(FilterOptions);

@@ -2,11 +2,13 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import React from 'react';
 
+const stackStyles = { flexWrap: 'wrap', gap: 1 };
+
 function TourType({ typeArr }) {
   return (
     <Stack
       direction="row"
-      sx={{ flexWrap: 'wrap', gap: 1 }}
+      sx={stackStyles}
     >
       {typeArr.map((type) => (
         <Chip
@@ -20,4 +22,4 @@ function TourType({ typeArr }) {
   );
 }
 
-export default TourType;
+export default React.memo(TourType);
