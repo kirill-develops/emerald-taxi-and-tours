@@ -1,12 +1,24 @@
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { Paper } from '@mui/material';
 import React from 'react';
+
 import { useTour } from '@state/useTour';
+
+const StyledHeaderTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
@@ -18,12 +30,54 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function PriceTable({ pricesArr }) {
-  const [state, setState] = useTour();
-  const { filterStartLocation } = state;
+const tableCellStyles = {
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 13,
+  },
+};
+
+const tableRowStyles = (filterStartLocation) => ({
+  backgroundColor: (theme) =>
+    filterStartLocation && `${theme.palette.secondary.dark} !important`,
+  color: (theme) =>
+    filterStartLocation && `${theme.palette.text.primary} !important`,
+});
+
+const tableContainerStyles = { maxWidth: 500, marginY: 2 };
+
+function StyledTableRowComponent({ name, parish, link, price }) {
+  const [{ filterStartLocation }] = useTour();
 
   return (
-    <TableContainer sx={{ maxWidth: 500 }}>
+    <StyledTableRow sx={tableRowStyles(filterStartLocation[link])}>
+      <TableCell
+        scope="row"
+        sx={tableCellStyles}
+      >
+        {name}
+      </TableCell>
+      <TableCell
+        align="center"
+        sx={tableCellStyles}
+      >
+        {parish}
+      </TableCell>
+      <TableCell
+        align="right"
+        sx={tableCellStyles}
+      >
+        ${price}
+      </TableCell>
+    </StyledTableRow>
+  );
+}
+
+function PriceTable({ pricesArr }) {
+  return (
+    <TableContainer
+      sx={tableContainerStyles}
+      component={Paper}
+    >
       <Table
         size="small"
         aria-label="regional price table"
@@ -31,44 +85,20 @@ function PriceTable({ pricesArr }) {
         <caption>All prices in USD & include pickup and return</caption>
         <TableHead>
           <TableRow>
-            <TableCell>Region</TableCell>
-            <TableCell align="center">Parish</TableCell>
-            <TableCell align="right">Price</TableCell>
+            <StyledHeaderTableCell>Region</StyledHeaderTableCell>
+            <StyledHeaderTableCell align="center">Parish</StyledHeaderTableCell>
+            <StyledHeaderTableCell align="right">Price</StyledHeaderTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {pricesArr.map(({ name, parish, link, price }) => (
-            <StyledTableRow
+            <StyledTableRowComponent
               key={link}
-              sx={{
-                backgroundColor: (theme) =>
-                  filterStartLocation[link] &&
-                  `${theme.palette.secondary.dark} !important`,
-                color: (theme) =>
-                  filterStartLocation[link] &&
-                  `${theme.palette.text.primary} !important`,
-              }}
-            >
-              <TableCell
-                component="th"
-                scope="row"
-                sx={{ color: 'inherit' }}
-              >
-                {name}
-              </TableCell>
-              <TableCell
-                align="center"
-                sx={{ color: 'inherit' }}
-              >
-                {parish}
-              </TableCell>
-              <TableCell
-                align="right"
-                sx={{ color: 'inherit' }}
-              >
-                ${price}
-              </TableCell>
-            </StyledTableRow>
+              name={name}
+              parish={parish}
+              link={link}
+              price={price}
+            />
           ))}
         </TableBody>
       </Table>
@@ -76,4 +106,4 @@ function PriceTable({ pricesArr }) {
   );
 }
 
-export default PriceTable;
+export default React.memo(PriceTable);
