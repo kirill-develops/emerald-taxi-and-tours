@@ -11,6 +11,8 @@ function FilterOptions() {
         m: { xs: 2, sm: 0 },
         ml: { sm: 1 },
         p: 1,
+        position: { xs: 'static', sm: 'sticky' },
+        top: { sm: 80 },
       }}
     >
       <Typography>Starting Location</Typography>
