@@ -53,7 +53,7 @@ function SortButton() {
       onKeyUp={handleClearSelect}
       sx={{
         width: { xs: '40%', sm: '28%' },
-        minWidth: 125,
+        minWidth: 195,
         maxWidth: 225,
       }}
       size={'small'}
