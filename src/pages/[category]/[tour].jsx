@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { tourData } from '@data/tours';
+import tourData from '@data/tourData.json';
 import Layout from '@components/Layout';
 import Fallback from '@components/Fallback';
 import BookingLayout from '@components/BookingLayout';
@@ -42,7 +42,8 @@ function DynamicTour({ tourParams }) {
     return <Fallback />;
   }
 
-  const { area, description, link, name, price, type } = tourParams;
+  const { area, name } = tourParams;
+  const context = { tourParams, type: 'tour' };
 
   return (
     <>
@@ -55,7 +56,7 @@ function DynamicTour({ tourParams }) {
         title={name}
         subheader={area}
       >
-        <FormContextProvider value={{ tourParams, type: 'tour' }}>
+        <FormContextProvider value={context}>
           <BookingLayout />
         </FormContextProvider>
       </Layout>
