@@ -1,7 +1,6 @@
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import { tourData } from '@data/tours';
 import { useTour } from '@state/useTour';
 
 function checkObjectValues(obj) {
@@ -16,7 +15,7 @@ function checkObjectValues(obj) {
 
 function PickUpCardHeader({ price }) {
   const [state, actions] = useTour();
-  const { filterStartLocation } = state;
+  const { filterStartLocation, tourData } = state;
 
   const startLocationFilter = checkObjectValues(filterStartLocation);
   const startLocations = startLocationFilter.map((selection) => {
