@@ -7,6 +7,7 @@
       "@Navbar/*": ["components/NavbarComponents/*"],
       "@Stepper/*" : ["components/StepperComponents/*"],
       "@Tour/*" : ["components/TourComponents/*"],
+      "@DynamicTour/*" : ["components/DynamicTourComponents/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],
       "@Public/*" : ["../public/*"],
     },

@@ -8,6 +8,7 @@ import Fallback from '@components/Fallback';
 import FormContextProvider from '@components/FormComponents/FormContextProvider';
 import getLocationId from '@hooks/getTripAdvisorLocationId';
 import getTripAdvisorData from '@hooks/getTripAdvisorData';
+import DynamicTourLayout from '@DynamicTour/DynamicTourLayout';
 
 export async function getStaticPaths() {
   const paths = tourData.map((tour) => ({
@@ -101,7 +102,7 @@ function DynamicTour({ tourParams }) {
         subheader={area}
       >
         <FormContextProvider value={context}>
-          <BookingLayout />
+          <DynamicTourLayout />
         </FormContextProvider>
       </Layout>
     </>
