@@ -1,0 +1,106 @@
+import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import NavigateBefore from '@mui/icons-material/NavigateBefore';
+import NavigateNext from '@mui/icons-material/NavigateNext';
+import React, { useCallback, useMemo, useState } from 'react';
+import Image from 'next/image';
+
+import '@splidejs/react-splide/css/core';
+
+const ImageSwiperEl = styled(Splide)(({ theme }) =>
+  theme.unstable_sx({ marginTop: 1.5 }),
+);
+
+const ImageSwiperOptions = {
+  pagination: false,
+  lazyLoad: 'nearby',
+  type: 'fade',
+  height: '45dvh',
+};
+
+const ImageSwiperSlide = styled(SplideSlide)({});
+
+const iconButtonStyles = (position) => ({
+  zIndex: 1,
+  position: 'absolute',
+  top: '50%',
+  padding: 0.5,
+  [position]: 10,
+  fontSize: 15,
+  backdropFilter: 'brightness(50%)',
+});
+
+const MuiImage = styled(Image)(({ theme }) => ({
+  objectFit: 'contain',
+}));
+
+function ImageSwiperSlides({ photos }) {
+  return useMemo(
+    () =>
+      photos.map((photoData) => {
+        const {
+          id,
+          caption,
+          images: { original: { url } = photoData.images.large } = {
+            images: {},
+          },
+        } = photoData;
+
+        return (
+          <ImageSwiperSlide key={id}>
+            <MuiImage
+              src={url}
+              alt={caption}
+              quality={100}
+              sizes="50dvw"
+              fill
+            />
+          </ImageSwiperSlide>
+        );
+      }),
+    [photos],
+  );
+}
+
+function ImageSwiper({ photos }) {
+  const [isStart, setIsStart] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+
+  const handleSplidePosition = useCallback((splide) => {
+    setIsStart(splide.index === 0);
+    setIsEnd(splide.index === splide.length - 1);
+  }, []);
+
+  return (
+    <ImageSwiperEl
+      aria-label="Image Carousel"
+      hasTrack={false}
+      options={ImageSwiperOptions}
+      onActive={handleSplidePosition}
+    >
+      <Box className="splide__arrows">
+        <IconButton
+          className="splide__arrow splide__arrow--prev"
+          sx={iconButtonStyles('left')}
+          disabled={isStart}
+        >
+          <NavigateBefore color={isStart ? 'disabled' : 'primary'} />
+        </IconButton>
+        <IconButton
+          className="splide__arrow splide__arrow--next"
+          sx={iconButtonStyles('right')}
+          disabled={isEnd}
+        >
+          <NavigateNext color={isEnd ? 'disabled' : 'primary'} />
+        </IconButton>
+      </Box>
+      <SplideTrack>
+        <ImageSwiperSlides photos={photos} />
+      </SplideTrack>
+    </ImageSwiperEl>
+  );
+}
+
+export default React.memo(ImageSwiper);
