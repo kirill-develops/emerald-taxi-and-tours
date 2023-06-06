@@ -1,5 +1,5 @@
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import NavigateBefore from '@mui/icons-material/NavigateBefore';
@@ -17,17 +17,25 @@ const ImageSwiperOptions = {
   pagination: false,
   lazyLoad: 'nearby',
   type: 'fade',
-  height: '45dvh',
 };
 
-const ImageSwiperSlide = styled(SplideSlide)({});
+const ImageSwiperTrack = styled(SplideTrack)(({ theme }) =>
+  theme.unstable_sx({ paddingX: `${theme.spacing(3)} !important` }),
+);
+
+const ImageSwiperSlide = styled(SplideSlide)(({ theme }) =>
+  theme.unstable_sx({
+    height: { xs: '33dvh', md: '45dvh' },
+    maxHeight: 'fit-content',
+  }),
+);
 
 const iconButtonStyles = (position) => ({
   zIndex: 1,
   position: 'absolute',
   top: '50%',
   padding: 0.5,
-  [position]: 10,
+  [position]: 3,
   fontSize: 15,
   backdropFilter: 'brightness(50%)',
 });
@@ -37,6 +45,10 @@ const MuiImage = styled(Image)(({ theme }) => ({
 }));
 
 function ImageSwiperSlides({ photos }) {
+  const {
+    breakpoints: { values: breakpoints },
+  } = useTheme();
+
   return useMemo(
     () =>
       photos.map((photoData) => {
@@ -54,13 +66,13 @@ function ImageSwiperSlides({ photos }) {
               src={url}
               alt={caption}
               quality={100}
-              sizes="50dvw"
+              sizes={`(max-width: ${breakpoints.sm}) 100dvw, (max-width: ${breakpoints.lg}) 66dvw, 50dvw`}
               fill
             />
           </ImageSwiperSlide>
         );
       }),
-    [photos],
+    [photos, breakpoints],
   );
 }
 
@@ -96,9 +108,9 @@ function ImageSwiper({ photos }) {
           <NavigateNext color={isEnd ? 'disabled' : 'primary'} />
         </IconButton>
       </Box>
-      <SplideTrack>
+      <ImageSwiperTrack>
         <ImageSwiperSlides photos={photos} />
-      </SplideTrack>
+      </ImageSwiperTrack>
     </ImageSwiperEl>
   );
 }
