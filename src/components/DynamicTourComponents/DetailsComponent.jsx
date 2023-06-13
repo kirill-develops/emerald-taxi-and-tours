@@ -70,7 +70,6 @@ function DetailsComponent({ details }) {
     num_reviews,
     rating,
     rating_image_url,
-    see_all_photos,
     web_url,
     website,
   } = details;
@@ -86,7 +85,7 @@ function DetailsComponent({ details }) {
           {...detailTypographyProps}
         >
           {localized_name}
-          {i !== subcategory.length && ', '}
+          {i !== subcategory.length - 1 && ', '}
         </Typography>
       )),
     [subcategory],
@@ -125,13 +124,6 @@ function DetailsComponent({ details }) {
           {...linkTypographyProps}
         >
           {phone}
-        </Link>
-        <Link
-          href={see_all_photos}
-          target="_blank"
-          {...linkTypographyProps}
-        >
-          More Photos
         </Link>
         <Link
           href={web_url}

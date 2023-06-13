@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import BookingLayout from '@components/BookingLayout';
 import { ParamContext } from '@Form/FormContextProvider';
 import ImageSwiper from './ImageSwiper';
+import ImageLayout from './ImageLayout';
+import ImageOverlayWrapper from './ImageOverlayWrapper';
 
 function DynamicTourLayout() {
   const { tourParams } = useContext(ParamContext);
@@ -16,7 +18,12 @@ function DynamicTourLayout() {
   return (
     <>
       <BookingLayout />
-      <ImageSwiper photos={photos} />
+      <ImageOverlayWrapper
+        photoCount={details.photo_count}
+        link={details.see_all_photos}
+      >
+        <ImageLayout photos={photos} />
+      </ImageOverlayWrapper>
     </>
   );
 }
