@@ -1,139 +1,99 @@
-import { Divider, Rating, Stack, Typography } from '@mui/material';
+import { Container, Stack, Typography, useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
 import React, { useMemo } from 'react';
-import Link from '@material/Link';
+import { Laptop, Launch, Phone } from '@mui/icons-material';
+import { PopUpLink, TelLink } from '@elements/Links';
+import DetailDevider from './Elements/DetailDevider';
+import RankingEl from './Elements/RankingEl';
+import FormattedRankingString from './Elements/FormattedRankingString';
+import SubcategoryEl from './Elements/SubcategoryEl';
 
-const detailTypographyProps = { variant: 'body2' };
-const linkTypographyProps = { variant: 'subtitle2' };
+export const detailTypographyProps = { variant: 'body2' };
 
-function DetailsDevider() {
-  return (
-    <Divider
-      orientation="vertical"
-      flexItem
-    />
-  );
-}
-
-function RankingEl({ rating, numReviews }) {
-  return (
-    <>
-      <Rating
-        defaultValue={rating}
-        precision={0.1}
-        size="small"
-        readOnly
-      />
-      <Typography {...detailTypographyProps}>{numReviews} reviews</Typography>
-    </>
-  );
-}
-
-function FormattedRankingString({ ranking_string }) {
-  const numberRegex = /#[0-9]+/;
-  const numberMatch = ranking_string?.match(numberRegex);
-
-  if (numberMatch) {
-    const numberPart = numberMatch[0];
-    const textPart = ranking_string.substring(numberPart.length);
-
-    const formattedTextPart = textPart.replace(/&amp;/g, '&');
-
-    return (
-      <Typography {...detailTypographyProps}>
-        <Typography
-          component="span"
-          fontWeight="bold"
-          {...detailTypographyProps}
-        >
-          {numberPart}
-        </Typography>
-        {formattedTextPart}
-      </Typography>
-    );
-  }
-
-  // Return the original string if it doesn't match the expected format
-  return <Typography {...detailTypographyProps}>{ranking_string}</Typography>;
-}
-
-function DetailsComponent({ details }) {
+function DetailsComponent({ details, children }) {
   console.log(details);
 
   const {
-    address_obj: { address_string } = {},
+    address_obj: { address_string: addressString = '' } = {},
     cuisine,
     groups,
     phone,
-    price_level,
-    ranking_data: { ranking_string } = {},
-    num_reviews,
+    price_level: priceLevel,
+    ranking_data: { ranking_string: rankingString = '' } = {},
+    num_reviews: numReviews,
     rating,
-    rating_image_url,
-    web_url,
+    rating_image_url: ratingImageUrl,
+    web_url: webUrl,
     website,
   } = details;
 
-  const subcategory = useMemo(() => cuisine ?? groups ?? {}, [cuisine, groups]);
-
-  const subcategoryJSX = useMemo(
-    () =>
-      subcategory?.map(({ localized_name }, i) => (
-        <Typography
-          component="span"
-          key={localized_name}
-          {...detailTypographyProps}
-        >
-          {localized_name}
-          {i !== subcategory.length - 1 && ', '}
-        </Typography>
-      )),
-    [subcategory],
+  const rankingJSX = useMemo(
+    () => (
+      <RankingEl
+        rating={rating}
+        numReviews={numReviews}
+      />
+    ),
+    [rating, numReviews],
   );
 
+  const subcategory = useMemo(() => cuisine ?? groups ?? {}, [cuisine, groups]);
+
+  const priceNcategoryJSX = useMemo(
+    () => (
+      <Typography {...detailTypographyProps}>
+        {priceLevel} <SubcategoryEl subcategory={subcategory} />
+      </Typography>
+    ),
+    [priceLevel, subcategory],
+  );
+
+  const laptopLinks = useMemo(
+    () => (
+      <>
+        <Stack
+          direction="row"
+          spacing={2}
+          divider={<DetailDevider />}
+        >
+          <PopUpLink href={website}>
+            <Laptop fontSize="small" />
+            Website
+          </PopUpLink>
+          <TelLink href={`tel:${phone}`}>
+            <Phone fontSize="small" />
+            {phone}
+          </TelLink>
+          <PopUpLink href={webUrl}>
+            <Launch fontSize="small" />
+            TripAdvisor Page
+          </PopUpLink>
+        </Stack>
+        <Typography {...detailTypographyProps}>{addressString}</Typography>
+      </>
+    ),
+    [website, phone, webUrl, addressString],
+  );
+
+  const isSmBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
   return (
-    <Box sx={{ paddingBottom: 2 }}>
-      <Stack
-        direction="row"
-        spacing={1}
-        divider={<DetailsDevider />}
-      >
-        <RankingEl
-          rating={rating}
-          numReviews={num_reviews}
-        />
-        <FormattedRankingString ranking_string={ranking_string} />
-        <Typography {...detailTypographyProps}>
-          {price_level} {subcategoryJSX}
-        </Typography>
-      </Stack>
-      <Stack
-        direction="row"
-        spacing={2}
-        divider={<DetailsDevider />}
-      >
-        <Link
-          href={website}
-          target="_blank"
-          {...linkTypographyProps}
+    <Box sx={{ py: { xxs: 1.5, sm: 2, md: 3 } }}>
+      <Container>
+        <Stack
+          direction={isSmBreakpoint ? 'column' : 'row'}
+          spacing={isSmBreakpoint ? 0.5 : 1}
+          divider={!isSmBreakpoint && <DetailDevider />}
         >
-          Visit website
-        </Link>
-        <Link
-          href={`tel:${phone}`}
-          {...linkTypographyProps}
-        >
-          {phone}
-        </Link>
-        <Link
-          href={web_url}
-          target="_blank"
-          {...linkTypographyProps}
-        >
-          TripAdvisor Page
-        </Link>
-      </Stack>
-      <Typography {...detailTypographyProps}>{address_string}</Typography>
+          {rankingJSX}
+          {!isSmBreakpoint && (
+            <FormattedRankingString rankingString={rankingString} />
+          )}
+          {priceNcategoryJSX}
+        </Stack>
+        {!isSmBreakpoint && laptopLinks}
+      </Container>
+      {children}
     </Box>
   );
 }
