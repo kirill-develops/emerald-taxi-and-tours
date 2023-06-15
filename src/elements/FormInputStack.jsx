@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import React from 'react';
 
-function FormInputStack({ children, sx, ...rest }) {
+export default React.memo(function FormInputStack({ children, sx, ...rest }) {
   return (
     <Stack
       direction={{ xxs: 'column', sm: 'row' }}
@@ -18,6 +18,4 @@ function FormInputStack({ children, sx, ...rest }) {
       {children}
     </Stack>
   );
-}
-
-export default FormInputStack;
+});
