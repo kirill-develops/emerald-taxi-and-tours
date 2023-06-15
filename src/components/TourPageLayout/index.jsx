@@ -3,8 +3,8 @@ import BookingLayout from '@components/BookingLayout';
 import { ParamContext } from '@Form/FormContextProvider';
 // import ImageSwiper from './ImageSwiper';
 // import DetailsGrid from './DetailsGrid';
-import DetailsComponent from './DetailsComponent';
-import ImageLayout from './ImageLayout';
+import DetailsComponent from './DetailsComponent/index';
+import ImageLayout from './ImagesLayout/ImageLayout';
 import ImageOverlayWrapper from './ImageOverlayWrapper';
 import RatingsAndReviews from './RatingsAndReviews';
 
@@ -42,11 +42,8 @@ export default function DynamicTourLayout() {
   return (
     <>
       <BookingLayout />
-      <DetailsComponent details={details}>
-        <ImageOverlayWrapper
-          photoCount={photoCount}
-          link={seelAllPicUrl}
-        >
+      <DetailsComponent>
+        <ImageOverlayWrapper>
           <ImageLayout photos={photos} />
         </ImageOverlayWrapper>
       </DetailsComponent>

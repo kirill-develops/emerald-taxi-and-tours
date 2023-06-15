@@ -1,8 +1,8 @@
 import { Card, Divider, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
-import RankingEl from './Elements/RankingEl';
-import FormattedRankingString from './Elements/FormattedRankingString';
+import RankingEl from './DetailsComponent/Elements/RankingEl';
+import FormattedRankingString from './DetailsComponent/Elements/FormattedRankingString';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 
 const PageCard = styled(Card)(({ theme }) =>

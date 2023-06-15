@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import Typography from '@mui/material/Typography';
 import { detailTypographyProps } from '../DetailsComponent';
 
-function SubcategoryEl({ subcategory }) {
+export default React.memo(function SubcategoryEl({ subcategory }) {
   return useMemo(
     () =>
       subcategory?.slice(0, 3).map(({ localized_name }, i) => (
@@ -17,6 +17,4 @@ function SubcategoryEl({ subcategory }) {
       )),
     [subcategory],
   );
-}
-
-export default SubcategoryEl;
+});

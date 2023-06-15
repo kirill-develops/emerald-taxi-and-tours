@@ -1,0 +1,56 @@
+import { LocalSeeOutlined } from '@mui/icons-material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import React, { useContext } from 'react';
+import { PopUpLink } from '@elements/Links';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
+import { styled } from '@mui/material';
+import { ParamContext } from '@Form/FormContextProvider';
+
+const OverlayBox = styled(Box)(({ theme }) =>
+  theme.unstable_sx({
+    position: 'relative',
+    marginY: 2,
+  }),
+);
+
+const OverlayLink = styled(PopUpLink)(({ theme }) =>
+  theme.unstable_sx({
+    position: 'absolute',
+    bottom: 7,
+    left: 7,
+    gap: 0.5,
+    alignItems: 'flex-end',
+    color: theme.palette.text.primary,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  }),
+);
+
+export default function ImageOverlayWrapper({ children, ...rest }) {
+  const {
+    tourParams: {
+      tripAdvisorDetails: {
+        photo_count: photoCount,
+        see_all_photos: seelAllPicUrl,
+      },
+    },
+  } = useContext(ParamContext);
+
+  return (
+    <MaxWidthContainer
+      disableGutters
+      {...rest}
+    >
+      <OverlayBox>
+        <OverlayLink href={seelAllPicUrl}>
+          <LocalSeeOutlined fontSize="small" />
+          <Typography variant="body2"> See All ({photoCount})</Typography>
+        </OverlayLink>
+        {children}
+      </OverlayBox>
+    </MaxWidthContainer>
+  );
+}
