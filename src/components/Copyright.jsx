@@ -1,24 +1,28 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
+import { styled } from '@mui/material/styles';
 
-const textProps = {
-  variant: 'body2',
-  color: 'text.secondary',
-  align: 'center',
-};
+const FooterText = styled(Typography)(({ theme }) =>
+  theme.unstable_sx({
+    variant: 'body2',
+    color: 'text.secondary',
+    textAlign: 'center',
+  }),
+);
+
+const FooterContainer = styled(Container)(({ theme }) =>
+  theme.unstable_sx({ overflow: 'auto', my: '1em' }),
+);
 
 export default function Copyright() {
   return (
-    <Container
-      component="footer"
-      sx={{ my: '1em' }}
-    >
-      <Typography {...textProps}>Established 2021</Typography>
-      <Typography {...textProps}>
+    <FooterContainer component="footer">
+      <FooterText>Established 2021</FooterText>
+      <FooterText>
         {'Copyright © '}
         Emeral Taxi & Tour {new Date().getFullYear()}.
-      </Typography>
-    </Container>
+      </FooterText>
+    </FooterContainer>
   );
 }
