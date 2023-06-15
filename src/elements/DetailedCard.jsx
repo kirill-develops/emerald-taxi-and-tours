@@ -11,13 +11,7 @@ export const cardStyleProps = {
 function DetailedCard({ sx, children, ...rest }) {
   return (
     <Card
-      sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        ...sx,
-      }}
+      sx={{ ...cardStyleProps, ...sx }}
       {...rest}
     >
       {children}
@@ -25,4 +19,4 @@ function DetailedCard({ sx, children, ...rest }) {
   );
 }
 
-export default DetailedCard;
+export default React.memo(DetailedCard);

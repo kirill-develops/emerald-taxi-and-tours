@@ -37,6 +37,7 @@ export default function TabletPagesLink({ dissapearingBreakpoint }) {
       sx={{
         alignSelf: 'stretch',
         flexGrow: 1,
+        flexBasis: 'content',
         display: {
           xxs: 'none',
           [dissapearingBreakpoint]: 'flex',

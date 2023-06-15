@@ -17,8 +17,10 @@ function GridImage({ picData, breakpoints }) {
   const {
     id,
     caption,
-    images: { original: { url = photoData.images.large } = { images: {} } },
+    images: { original: { url = picData.images.large.url } = { images: {} } },
   } = picData;
+
+  console.log(picData);
 
   const muiImageSizes = `(max-width: ${breakpoints.xxs}) 100dvw, 
     (max-width: ${breakpoints.sm}) 30dvw, 

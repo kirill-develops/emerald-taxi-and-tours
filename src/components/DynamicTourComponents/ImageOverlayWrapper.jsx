@@ -1,31 +1,41 @@
 import { LocalSeeOutlined } from '@mui/icons-material';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
+import { PopUpLink } from '@elements/Links';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
 
-function ImageOverlayWrapper({ children, photoCount, link }) {
+const boxStyles = {
+  position: 'relative',
+  // marginX: { xs: -2, sm: -3, lg: 'unset' },
+  marginY: 2,
+};
+
+const linkStyles = (theme) => ({
+  position: 'absolute',
+  bottom: 7,
+  left: 7,
+  gap: 0.5,
+  alignItems: 'flex-end',
+  color: theme.palette.text.primary,
+  textDecoration: 'none',
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+});
+
+export default function ImageOverlayWrapper({ children, photoCount, link }) {
   return (
-    <Box sx={{ position: 'relative', marginY: 2, width: '100%' }}>
-      {children}
-      <IconButton
-        disableRipple
-        href={link}
-        target="_blank"
-        sx={{
-          position: 'absolute',
-          bottom: 3,
-          left: 3,
-          gap: 0.5,
-          alignItems: 'flex-end',
-          '&:hover': {
-            textDecoration: 'underline',
-          },
-        }}
-      >
-        <LocalSeeOutlined fontSize="small" />
-        <Typography variant="body2"> See All ({photoCount})</Typography>
-      </IconButton>
-    </Box>
+    <MaxWidthContainer disableGutters>
+      <Box sx={boxStyles}>
+        {children}
+        <PopUpLink
+          href={link}
+          sx={linkStyles}
+        >
+          <LocalSeeOutlined fontSize="small" />
+          <Typography variant="body2"> See All ({photoCount})</Typography>
+        </PopUpLink>
+      </Box>
+    </MaxWidthContainer>
   );
 }
-
-export default ImageOverlayWrapper;

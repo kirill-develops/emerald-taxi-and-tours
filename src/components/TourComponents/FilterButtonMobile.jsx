@@ -5,6 +5,12 @@ import Button from '@mui/material/Button';
 import React, { useLayoutEffect } from 'react';
 import { useTour } from '@state/useTour';
 
+const filterButtonStyles = {
+  width: '40%',
+  minWidth: 125,
+  display: { sm: 'none' },
+};
+
 function FilterButtonMobile() {
   const [state, setState] = useTour();
   const { filterExpand } = state;
@@ -24,11 +30,7 @@ function FilterButtonMobile() {
       variant="outlined"
       endIcon={<FilterAltOutlined />}
       size="large"
-      sx={{
-        width: '40%',
-        minWidth: 125,
-        display: { sm: 'none' },
-      }}
+      sx={filterButtonStyles}
       onClick={toggleFilterExpand}
       aria-expanded={filterExpand}
       aria-label="Show tour filters"
@@ -38,4 +40,4 @@ function FilterButtonMobile() {
   );
 }
 
-export default FilterButtonMobile;
+export default React.memo(FilterButtonMobile);

@@ -5,16 +5,20 @@ import FilterOptions from './FilterOptions';
 import TourGrid from './TourGrid';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 
-export default function TourLayout() {
+const tourOptionsStyles = { display: { xxs: 'none', sm: 'block' } };
+
+const gridItemStyles = { display: { xxs: 'none', sm: 'block' } };
+
+export default React.memo(function TourLayout() {
   return (
     <>
-      <TourOptions />
+      <TourOptions sx={tourOptionsStyles} />
       <GridContainer spacing={gridSpacingProps}>
         <GridItem
           sm={4}
           md={3}
           lg={2.5}
-          sx={{ display: { xxs: 'none', sm: 'block' } }}
+          sx={gridItemStyles}
         >
           <FilterOptions />
         </GridItem>
@@ -29,4 +33,4 @@ export default function TourLayout() {
       </GridContainer>
     </>
   );
-}
+});
