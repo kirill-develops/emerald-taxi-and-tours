@@ -15,7 +15,7 @@ export default function NavTabs({ children, ...rest }) {
         flexGrow: 1,
         flexBasis: 'content',
         display: {
-          xs: 'none',
+          xxs: 'none',
           [dissapearingBreakpoint]: 'flex',
         },
       }}
