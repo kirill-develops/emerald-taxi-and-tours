@@ -8,9 +8,8 @@ import {
 import { useFormikContext } from 'formik';
 import React from 'react';
 
-function RoundTripRadio() {
-  const formik = useFormikContext();
-  const { values, handleChange, handleBlur } = formik;
+function RoundTripRadio({ stepName }) {
+  const { values, handleChange, handleBlur } = useFormikContext();
 
   return (
     <>
@@ -22,12 +21,15 @@ function RoundTripRadio() {
           Transfer Type
         </FormLabel>
         <RadioGroup
-          name="flightDetails.transferType"
+          name={`${stepName}.transferType`}
           area-aria-labelledby="transfer-type-select-radio-label"
-          value={values?.flightDetails?.transferType}
+          value={values[stepName]?.transferType}
           onChange={handleChange}
           onBlur={handleBlur}
-          sx={{ gap: 3 }}
+          sx={{
+            gap: { xs: 'initial', sm: 3 },
+            flexDirection: { xs: 'column', sm: 'row' },
+          }}
           row
         >
           <FormControlLabel

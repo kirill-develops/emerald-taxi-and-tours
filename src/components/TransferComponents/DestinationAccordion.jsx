@@ -3,7 +3,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import AccordionCard from './AccordionCard';
+import TransferCard from './TransferCard';
 import { gridSpacingProps } from '@material/theme';
 import { GridContainer } from '@elements/CustomGridEl';
 import ExpandIconButton from '@elements/ExpandIconButton';
@@ -12,7 +12,7 @@ function DestinationCardArr({ areaData: data }) {
   const { destinations, ...areaData } = data;
 
   return destinations.map((destinaton) => (
-    <AccordionCard
+    <TransferCard
       key={destinaton.link}
       destinationData={destinaton}
       areaData={areaData}

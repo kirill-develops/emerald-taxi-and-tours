@@ -1,15 +1,11 @@
-import React from 'react';
-import Layout from '@components/Layout';
-import { useRouter } from 'next/router';
-import {
-  sangsterTransferData,
-  normanManleyTransferData,
-} from '@data/transfers';
-import Fallback from '@components/Fallback';
-import BookingLayout from '@components/BookingLayout';
 import Head from 'next/head';
-
-const transferData = [...sangsterTransferData, ...normanManleyTransferData];
+import React from 'react';
+import { useRouter } from 'next/router';
+import { transferData } from '@data/transfers';
+import Fallback from '@components/Fallback';
+import Layout from '@components/Layout';
+import FormContextProvider from '@components/FormComponents/FormContextProvider';
+import BookingLayout from '@components/BookingLayout';
 
 export async function getStaticPaths() {
   function generatePaths(transferData) {
@@ -91,23 +87,24 @@ function DynamicTransfer({ transferParams, areaParams }) {
     return <Fallback />;
   }
 
-  const { link, name, price } = transferParams;
-  console.log(areaParams);
-
   return (
     <>
       <Head>
         <title>
-          Transfers: {name}, {areaParams.name} & {areaParams.airport}| EMERALD
-          Taxi & Tours
+          Transfers: {transferParams.name}, {areaParams.name} &{' '}
+          {areaParams.airport}| EMERALD Taxi & Tours
         </title>
       </Head>
       <Layout
-        title={name}
+        title={transferParams.name}
         subheader={areaParams.name}
         airport={areaParams.airport}
       >
-        <BookingLayout />
+        <FormContextProvider
+          value={{ transferParams, areaParams, type: 'transfer' }}
+        >
+          <BookingLayout />
+        </FormContextProvider>
       </Layout>
     </>
   );

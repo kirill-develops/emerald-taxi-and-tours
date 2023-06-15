@@ -1,11 +1,22 @@
 import Stack from '@mui/material/Stack';
-import React from 'react';
-import DatePicker from '@Form/DatePicker';
+import React, { useContext } from 'react';
+import DatePicker from '@Form/TransferDatePicker';
 import RoundTripRadio from '@Form/RoundTripRadio';
 import FormInputStack from '@elements/FormInputStack';
 import FormTextField from '@elements/FormTextField';
+import FormPassengerSelects from './FormPassengerSelects';
+import { ParamContext } from './FormContextProvider';
 
 function FormFlightDetails() {
+  const transferParamContext = useContext(ParamContext);
+  const {
+    areaParams: { link: areaLink },
+    transferParams: { link: transferLink },
+  } = transferParamContext;
+
+  const isAccomDisabled =
+    transferLink !== 'other' && areaLink !== 'other_areas';
+
   const stepName = 'flightDetails';
 
   return (
@@ -28,14 +39,16 @@ function FormFlightDetails() {
           }}
         />
       </FormInputStack>
-      <RoundTripRadio />
-      <DatePicker />
+      <RoundTripRadio stepName={stepName} />
+      <DatePicker stepName={stepName} />
       <FormTextField
         stepName={stepName}
         fieldName="accomName"
         label="Accomodation Name"
         margin="normal"
+        disabled={isAccomDisabled}
       />
+      <FormPassengerSelects stepName={stepName} />
     </Stack>
   );
 }

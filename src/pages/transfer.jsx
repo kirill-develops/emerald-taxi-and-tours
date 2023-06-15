@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Layout from '@components/Layout';
-import {
-  normanManleyTransferData,
-  sangsterTransferData,
-} from '@data/transfers';
+import { transferData } from '@data/transfers';
 import AreaAccordionArr from '@Transfer/AreaAccordionArr';
 import Head from 'next/head';
 
 function Transfer() {
+  const { sangsterTransferData, normanManleyTransferData } = useMemo(() => {
+    return {
+      sangsterTransferData: transferData.filter(
+        ({ airportLink }) => airportLink === 'MBJ',
+      ),
+      normanManleyTransferData: transferData.filter(
+        ({ airportLink }) => airportLink === 'KIN',
+      ),
+    };
+  }, []);
+
   return (
     <>
       <Head>
