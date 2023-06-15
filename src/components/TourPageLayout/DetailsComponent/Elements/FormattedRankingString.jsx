@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Typography from '@mui/material/Typography';
-import { detailTypographyProps } from '../DetailsComponent';
+import { detailTypographyProps } from '..';
+import { ParamContext } from '@Form/FormContextProvider';
 
-function FormattedRankingString({ rankingString }) {
+export default React.memo(function FormattedRankingString({}) {
+  const {
+    tourParams: {
+      tripAdvisorDetails: {
+        ranking_data: { ranking_string: rankingString = '' } = {},
+      },
+    },
+  } = useContext(ParamContext);
+
   const numberRegex = /#[0-9]+/;
   const numberMatch = rankingString?.match(numberRegex);
 
@@ -28,6 +37,4 @@ function FormattedRankingString({ rankingString }) {
 
   // Return the original string if it doesn't match the expected format
   return <Typography {...detailTypographyProps}>{rankingString}</Typography>;
-}
-
-export default FormattedRankingString;
+});
