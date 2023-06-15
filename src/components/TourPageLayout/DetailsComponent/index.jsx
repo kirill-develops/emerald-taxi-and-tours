@@ -2,8 +2,8 @@ import { Container, Stack, styled, useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
 import React from 'react';
 import DetailDevider from './Elements/DetailDevider';
-import RankingEl from './Elements/RankingEl';
-import FormattedRankingString from './Elements/FormattedRankingString';
+import RankingEl from '../Elements/RankingEl';
+import FormattedRankingString from '../Elements/FormattedRankingString';
 import PriceAndCategory from './Elements/PriceAndCategory';
 import LinksLaptop from './Elements/LinksLaptop';
 

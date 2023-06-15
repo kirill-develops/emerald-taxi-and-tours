@@ -5,7 +5,7 @@ import { styled } from '@mui/material';
 import React, { useContext } from 'react';
 
 import { ParamContext } from '@Form/FormContextProvider';
-import { detailTypographyProps } from '..';
+import { detailTypographyProps } from '../DetailsComponent';
 
 const RankingStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({ alignItems: 'center' }),
