@@ -1,8 +1,10 @@
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { tourData } from '@data/tours';
 import { useTour } from '@state/useTour';
+
+const typographyStyles = { pl: 2 };
 
 function checkObjectValues(obj) {
   const trueProps = [];
@@ -15,52 +17,57 @@ function checkObjectValues(obj) {
 }
 
 function PickUpCardHeader({ price }) {
-  const [state, actions] = useTour();
-  const { filterStartLocation } = state;
+  const [{ filterStartLocation }] = useTour();
 
   const startLocationFilter = checkObjectValues(filterStartLocation);
-  const startLocations = startLocationFilter.map((selection) => {
-    const foundSelection = price.find((obj) => obj.link === selection);
 
-    const notFoundName =
-      !foundSelection &&
-      tourData.reduce((acc, obj) => {
-        const foundPrice = obj.price.find(
-          (price) => price.link === selection && price.name,
+  const startLocations = useMemo(
+    () =>
+      startLocationFilter.map((selection) => {
+        const foundSelection = price.find((obj) => obj.link === selection);
+
+        const notFoundName =
+          !foundSelection &&
+          tourData.reduce((acc, obj) => {
+            const foundPrice = obj.price.find(
+              (price) => price.link === selection && price.name,
+            );
+            return acc || foundPrice?.name || false;
+          }, false);
+
+        return foundSelection
+          ? foundSelection
+          : { name: notFoundName, price: 'notFound', link: selection };
+      }),
+    [price, startLocationFilter],
+  );
+
+  const startArrayEl = useMemo(
+    () =>
+      startLocations.map((each) => {
+        const stringValue =
+          each.price !== 'notFound'
+            ? `Pick-Up: ${each.name} $${each.price}`
+            : `Service unavailable from ${each.name} at this time`;
+
+        return (
+          <Typography
+            sx={typographyStyles}
+            variant="caption"
+            key={each.link}
+          >
+            {stringValue}
+          </Typography>
         );
-        return acc || foundPrice?.name || false;
-      }, false);
+      }),
+    [startLocations],
+  );
 
-    return foundSelection
-      ? foundSelection
-      : { name: notFoundName, price: 'notFound', link: selection };
-  });
-
-  const startArrayEl = startLocations.map((each) => {
-    if (each.price !== 'notFound') {
-      return (
-        <Typography
-          sx={{ pl: 2 }}
-          key={each.link}
-        >
-          Pick-Up: {each.name} ${each.price}
-        </Typography>
-      );
-    } else {
-      return (
-        <Typography
-          sx={{ pl: 2 }}
-          key={each.link}
-        >
-          Service unavailable from {each.name} at this time
-        </Typography>
-      );
-    }
-  });
-
-  return (
-    Boolean(startLocationFilter.length > 0) && <Stack>{startArrayEl}</Stack>
+  return useMemo(
+    () =>
+      Boolean(startLocationFilter.length > 0) && <Stack>{startArrayEl}</Stack>,
+    [startArrayEl, startLocationFilter.length],
   );
 }
 
-export default PickUpCardHeader;
+export default React.memo(PickUpCardHeader);

@@ -31,7 +31,7 @@ function Layout({ children, title = '', subheader = '', airport = '' }) {
         maxWidth="xl"
         sx={{
           minHeight: { sm: '100%' },
-          overflow: { sm: 'auto' },
+          // overflow: { sm: 'initial' },
           flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',

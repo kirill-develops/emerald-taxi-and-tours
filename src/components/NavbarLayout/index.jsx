@@ -4,7 +4,8 @@ import { styled } from '@mui/material/styles';
 import React, { createContext } from 'react';
 
 import MobilePagesMenu from './MobilePagesMenu';
-import MobileSearchModal from './MobileSearchModal';
+import MobileSearchButton from './MobileSearchButton';
+import TabletSearchButton from './TabletSearchButton';
 import TabletPagesLink from './TabletPagesLink';
 import ElevationScroll from './Elements/ElevationScroll';
 import TitleWrapper from './TitleWrapper';
@@ -35,7 +36,8 @@ export default function NavbarLayout(props) {
               <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
               <TitleWrapper />
               <TabletPagesLink />
-              <MobileSearchModal dissapearingBreakpoint={menuBreakpoint} />
+              <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
+              <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
             </Toolbar>
           </MaxWidthContainer>
         </SiteAppBar>

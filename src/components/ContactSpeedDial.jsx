@@ -12,7 +12,7 @@ const actions = [
     icon: <WhatsappIcon />,
     name: 'WhatsApp',
     color: '#25D366',
-    href: 'https://wa.me/18763642567/?text=Your%20message%20here',
+    href: 'https://wa.me/18763642567/',
   },
   {
     icon: <InstagramIcon />,
@@ -23,29 +23,51 @@ const actions = [
   },
 ];
 
+const backdropStyles = { zIndex: 1 };
+
+const speedDialStyles = {
+  position: 'absolute',
+  bottom: { xs: 105, sm: 45 },
+  right: 45,
+  zIndex: 10,
+  [`& .${speedDialClasses.fab}`]: {
+    backgroundColor: (theme) => theme.palette.info.main,
+  },
+};
+
+const speedDialActionFabProps = (href, color) => ({
+  href,
+  component: Link,
+  target: '_blank',
+  sx: {
+    background: color,
+    color: (theme) => theme.palette.text.main,
+    '&:hover': {
+      filter: 'brightness(1.2)',
+      background: color,
+    },
+  },
+});
+
 function ContactSpeedDial() {
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      <Backdrop open={open} />
+      <Backdrop
+        open={open}
+        sx={backdropStyles}
+      />
       <SpeedDial
         ariaLabel="Contact Emerald"
         icon={<QuestionAnswer />}
         onOpen={handleOpen}
         onClose={handleClose}
         open={open}
-        sx={{
-          position: 'absolute',
-          bottom: { xs: 105, sm: 45 },
-          right: 45,
-          zIndex: 10,
-          [`& .${speedDialClasses.fab}`]: {
-            backgroundColor: (theme) => theme.palette.info.main,
-          },
-        }}
+        sx={speedDialStyles}
       >
         {actions.map(({ name, icon, color, href }) => (
           <SpeedDialAction
@@ -54,21 +76,7 @@ function ContactSpeedDial() {
             icon={icon}
             tooltipOpen
             onClick={handleClose}
-            FabProps={{
-              href: href,
-              component: Link,
-              target: '_blank',
-              disableFocusRipple: true,
-              sx: {
-                background: color,
-                color: (theme) => theme.palette.text.main,
-                '&:hover': {
-                  filter: 'brightness(1.2)',
-                  background: color,
-                },
-              },
-            }}
-            href={href}
+            FabProps={speedDialActionFabProps(href, color)}
           />
         ))}
       </SpeedDial>

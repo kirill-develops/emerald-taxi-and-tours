@@ -76,13 +76,8 @@ function TransferCard({ destinationData, areaData }) {
           unmountOnExit
         >
           <CardContent>
-<<<<<<<< HEAD:src/components/TransferComponents/AccordionCard.jsx
-            <Typography>
-              One Way:{' '}
-========
             <Typography variant="subtitle2">
               One Way (1-4 people):{' '}
->>>>>>>> dev:src/components/TransferComponents/TransferCard.jsx
               <Typography
                 as="span"
                 color="primary"
@@ -90,10 +85,6 @@ function TransferCard({ destinationData, areaData }) {
                 ${price.oneWay}
               </Typography>
             </Typography>
-<<<<<<<< HEAD:src/components/TransferComponents/AccordionCard.jsx
-            <Typography>
-              Round Trip:{' '}
-========
             <Typography
               variant="subtitle2"
               gutterBottom
@@ -109,7 +100,6 @@ function TransferCard({ destinationData, areaData }) {
             </Typography>
             <Typography variant="subtitle2">
               Round Trip (1-4 people):{' '}
->>>>>>>> dev:src/components/TransferComponents/TransferCard.jsx
               <Typography
                 as="span"
                 color="primary"
@@ -117,8 +107,6 @@ function TransferCard({ destinationData, areaData }) {
                 ${price.roundTrip}
               </Typography>
             </Typography>
-<<<<<<<< HEAD:src/components/TransferComponents/AccordionCard.jsx
-========
             <Typography variant="subtitle2">
               Additional Passenger:{' '}
               <Typography
@@ -129,7 +117,6 @@ function TransferCard({ destinationData, areaData }) {
               </Typography>{' '}
               /Each
             </Typography>
->>>>>>>> dev:src/components/TransferComponents/TransferCard.jsx
           </CardContent>
         </Collapse>
       </DetailedCard>

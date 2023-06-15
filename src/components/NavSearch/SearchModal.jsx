@@ -1,5 +1,5 @@
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';

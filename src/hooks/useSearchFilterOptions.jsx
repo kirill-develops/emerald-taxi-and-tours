@@ -11,7 +11,7 @@ export default function useSearchFilterOptions() {
           const options = destinations.map((destination) => {
             const name =
               destination.name === 'All Other Resorts, Villas, AirBnB & Homes'
-                ? `all other options in ${areaName} <> ${airport}`
+                ? `All other options in ${areaName} <> ${airport}`
                 : `${destination.name} <> ${airport}`;
 
             return {
