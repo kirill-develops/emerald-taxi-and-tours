@@ -4,7 +4,7 @@ import { ParamContext } from '@Form/FormContextProvider';
 // import ImageSwiper from './ImageSwiper';
 // import DetailsGrid from './DetailsGrid';
 import DetailsComponent from './DetailsComponent/index';
-import ImageLayout from './ImagesLayout/ImageLayout';
+import ImageLayout from './ImagesLayout/';
 import ImageOverlayWrapper from './ImageOverlayWrapper';
 import RatingsAndReviews from './RatingsAndReviews';
 
@@ -44,7 +44,7 @@ export default function DynamicTourLayout() {
       <BookingLayout />
       <DetailsComponent>
         <ImageOverlayWrapper>
-          <ImageLayout photos={photos} />
+          <ImageLayout />
         </ImageOverlayWrapper>
       </DetailsComponent>
       <RatingsAndReviews data={ratingsNReviewsData} />
