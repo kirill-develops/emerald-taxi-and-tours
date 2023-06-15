@@ -8,7 +8,7 @@ import React from 'react';
 import usePageTransition from '@hooks/usePageTransition';
 const LayoutTitle = dynamic(() => import('@elements/LayoutTitle'));
 const Copyright = dynamic(() => import('./Copyright'));
-const Navbar = dynamic(() => import('@Navbar/NavbarLayout'));
+const Navbar = dynamic(() => import('@components/NavbarLayout/'));
 const ContactSpeedDial = dynamic(() => import('./ContactSpeedDial'));
 
 const GridContainer = dynamic(() =>

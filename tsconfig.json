@@ -1,10 +1,10 @@
-q{
+{
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
       "@*": ["./*"],
       "@Form/*": ["components/FormComponents/*"],
-      "@Navbar/*": ["components/NavbarComponents/*"],
+      "@Navbar/*": ["components/NavbarLayout/*"],
       "@NavSearch/*": ["components/NavSearch/*"],
       "@Stepper/*" : ["components/StepperComponents/*"],
       "@Tour/*" : ["components/TourComponents/*"],
@@ -39,7 +39,7 @@ q{
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "next.config.js"  ],
   "exclude": [
     "node_modules"
   ]
