@@ -17,6 +17,7 @@ const OverlayBox = styled(Box)(({ theme }) =>
 const OverlayLink = styled(PopUpLink)(({ theme }) =>
   theme.unstable_sx({
     position: 'absolute',
+    zIndex: 1,
     bottom: 7,
     left: 7,
     gap: 0.5,
@@ -47,7 +48,13 @@ export default function ImageOverlayWrapper({ children, ...rest }) {
       <OverlayBox>
         <OverlayLink href={seelAllPicUrl}>
           <LocalSeeOutlined fontSize="small" />
-          <Typography variant="body2"> See All ({photoCount})</Typography>
+          <Typography
+            variant="body2"
+            fontWeight={500}
+          >
+            {' '}
+            See All ({photoCount})
+          </Typography>
         </OverlayLink>
         {children}
       </OverlayBox>
