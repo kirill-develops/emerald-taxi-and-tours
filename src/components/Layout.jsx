@@ -2,60 +2,67 @@ import dynamic from 'next/dynamic';
 
 const Container = dynamic(() => import('@mui/material/Container'));
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 
 import usePageTransition from '@hooks/usePageTransition';
 const LayoutTitle = dynamic(() => import('@elements/LayoutTitle'));
 const Copyright = dynamic(() => import('./Copyright'));
 const Navbar = dynamic(() => import('@components/NavbarLayout/'));
-const ContactSpeedDial = dynamic(() => import('./ContactSpeedDial'));
-
 const GridContainer = dynamic(() =>
   import('@elements/CustomGridEl').then((mod) => mod.GridContainer),
 );
 
+const LayoutContainer = styled(Container)(({ theme }) =>
+  theme.unstable_sx({
+    minHeight: { sm: '100%' },
+    overflow: { sm: 'auto' },
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+  }),
+);
+
+const LayoutGrid = styled(GridContainer)(({ theme }) =>
+  theme.unstable_sx({
+    flexGrow: 1,
+    flexDirection: 'column',
+  }),
+);
+
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-function Layout({ children, title = '', subheader = '', airport = '' }) {
+export default function Layout({
+  children,
+  title = '',
+  subheader = '',
+  airport = '',
+}) {
   const showComponent = usePageTransition();
 
-  const theme = useTheme();
-  const isXsBreakpoint = useMediaQuery(theme.breakpoints.only('xs'));
+  const isXsBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   return (
     <>
       <Navbar />
       {!isXsBreakpoint && <Offset />}
-      <Container
-        maxWidth="xl"
-        sx={{
-          minHeight: { sm: '100%' },
-          // overflow: { sm: 'initial' },
-          flexGrow: 1,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
+      <LayoutContainer
+        component="main"
+        maxWidth="false"
         className={`component-fade ${showComponent ? 'show' : ''}`}
+        disableGutters
       >
-        <GridContainer
-          component="main"
-          flexDirection="column"
-          sx={{ flexGrow: 1 }}
-        >
+        <LayoutGrid>
           <LayoutTitle
             title={title}
             subheader={subheader}
             airport={airport}
           />
           {children}
-        </GridContainer>
-        <Copyright sx={{ overflow: 'auto' }} />
+        </LayoutGrid>
+        <Copyright />
         {isXsBreakpoint && <Offset />}
-      </Container>
-      <ContactSpeedDial />
+      </LayoutContainer>
     </>
   );
 }
-
-export default Layout;

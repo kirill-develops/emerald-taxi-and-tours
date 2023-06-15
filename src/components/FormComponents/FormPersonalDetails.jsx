@@ -20,7 +20,7 @@ function FormPersonalDetails() {
           stepName={stepName}
           fieldName="lastName"
           label="Last Name"
-          sx={{ mt: { xs: 1, sm: 0 } }}
+          sx={{ mt: { xxs: 1, sm: 0 } }}
         />
       </FormInputStack>
       <FormTextField

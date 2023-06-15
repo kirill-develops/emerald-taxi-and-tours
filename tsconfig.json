@@ -8,6 +8,7 @@
       "@NavSearch/*": ["components/NavSearch/*"],
       "@Stepper/*" : ["components/StepperComponents/*"],
       "@Tour/*" : ["components/TourComponents/*"],
+      "@DynamicTour/*" : ["components/DynamicTourComponents/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],
       "@PageTransfer/*" : ["components/TransferPageComponents/*"],
       "@Public/*" : ["../public/*"],

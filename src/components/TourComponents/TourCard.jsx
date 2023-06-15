@@ -17,11 +17,29 @@ import { GridItem } from '@elements/CustomGridEl';
 import Link from '@material/Link';
 import DetailedCard from '@elements/DetailedCard';
 
-function Description({ description }) {
-  return description.length > 0 && <Typography>{description}</Typography>;
+const cardContentStyles = {
+  pt: 0,
+  display: 'flex',
+  flexDirection: 'row',
+  alignContent: 'center',
+};
+
+const cardActionsStyles = { p: 2 };
+
+function Description({ description, sx, ...rest }) {
+  return (
+    description.length > 0 && (
+      <Typography
+        sx={sx}
+        {...rest}
+      >
+        {description}
+      </Typography>
+    )
+  );
 }
 
-function TourCard({ tour }) {
+function TourCard({ tour, cardType = false }) {
   const { name, area, link, type, price, description } = tour;
 
   const [expanded, setExpanded] = useState(false);
@@ -29,28 +47,31 @@ function TourCard({ tour }) {
     setExpanded(!expanded);
   };
 
-  return (
+  return cardType === false ? (
     <GridItem xs={12}>
       <DetailedCard variant="elevation">
         <CardHeader
           title={name}
           subheader={area}
         />
-        <CardContent
-          sx={{
-            pt: 0,
-            display: 'flex',
-            flexDirection: 'row',
-            alignContent: 'center',
-          }}
-        >
+        <CardContent sx={cardContentStyles}>
           <TourType typeArr={type} />
           <PickUpCardHeader price={price} />
         </CardContent>
         <Divider variant="middle" />
+        <Collapse
+          in={expanded}
+          timeout="auto"
+          unmountOnExit
+        >
+          <CardContent>
+            <Description description={description} />
+            <PriceTable pricesArr={price} />
+          </CardContent>
+        </Collapse>
         <CardActions
           disableSpacing
-          sx={{ p: 2 }}
+          sx={cardActionsStyles}
         >
           <Button
             variant="contained"
@@ -67,7 +88,7 @@ function TourCard({ tour }) {
             aria-label="show more"
           >
             <Tooltip
-              title="click for more"
+              title={expanded ? '' : 'click for more'}
               arrow
               TransitionComponent={Zoom}
             >
@@ -78,19 +99,36 @@ function TourCard({ tour }) {
             </Tooltip>
           </ExpandMore>
         </CardActions>
-        <Collapse
-          in={expanded}
-          timeout="auto"
-          unmountOnExit
-        >
-          <CardContent>
-            <Description description={description} />
-            <PriceTable pricesArr={price} />
-          </CardContent>
-        </Collapse>
       </DetailedCard>
     </GridItem>
+  ) : (
+    <DetailedCard variant="elevation">
+      <CardHeader
+        title={name}
+        subheader={area}
+      />
+      <CardContent sx={cardContentStyles}></CardContent>
+      <Divider variant="middle" />
+      {/* <Description
+        description={description}
+        sx={{ padding: 2 }}
+        variant="caption"
+      /> */}
+      <CardActions
+        disableSpacing
+        sx={cardActionsStyles}
+      >
+        <Button
+          variant="contained"
+          color="secondary"
+          LinkComponent={Link}
+          href={`/tours/${link}`}
+        >
+          Book Now
+        </Button>
+      </CardActions>
+    </DetailedCard>
   );
 }
 
-export default TourCard;
+export default React.memo(TourCard);

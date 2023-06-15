@@ -19,6 +19,8 @@
     "@mui/x-date-pickers": "^6.0.4",
     "@next/font": "13.1.6",
     "autosuggest-highlight": "^3.3.4",
+    "@splidejs/react-splide": "^0.7.12",
+    "axios": "^1.4.0",
     "dayjs": "^1.11.7",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.6",
@@ -36,6 +38,7 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "18.11.18"
+    "@types/node": "18.11.18",
+    "fs": "^0.0.1-security"
   }
 }

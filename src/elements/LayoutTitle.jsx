@@ -1,12 +1,13 @@
 import dynamic from 'next/dynamic';
-
 const Divider = dynamic(() => import('@mui/material/Divider'));
 const Typography = dynamic(() => import('@mui/material/Typography'));
 import React from 'react';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
 
-function LayoutTitle({ title, subheader, airport }) {
+export default function LayoutTitle({ title, subheader, airport }) {
   const subheaderColor =
     airport.length > 0 ? 'text.primary' : 'secondary.light';
+
   const subheaderEl = subheader.length > 0 && (
     <Typography
       variant="h4"
@@ -32,29 +33,28 @@ function LayoutTitle({ title, subheader, airport }) {
   if (title.length > 0)
     return (
       <>
-        <Typography
-          variant="h2"
-          component="h1"
-          color="primary.light"
-          sx={{
-            mt: '0.35em',
-            fontWeight: 400,
-            textTransform: 'uppercase',
-          }}
-        >
-          {title}
-        </Typography>
-        {subheaderEl}
-        {airportEl}
+        <MaxWidthContainer>
+          <Typography
+            variant="h2"
+            component="h1"
+            color="primary.light"
+            sx={{
+              mt: '0.35em',
+              fontWeight: 400,
+              textTransform: 'uppercase',
+            }}
+          >
+            {title}
+          </Typography>
+          {subheaderEl}
+          {airportEl}
+        </MaxWidthContainer>
         <Divider
           variant="inset"
           sx={{
-            mb: '2.35em',
             borderColor: (theme) => theme.palette.secondary.dark,
           }}
         />
       </>
     );
 }
-
-export default LayoutTitle;

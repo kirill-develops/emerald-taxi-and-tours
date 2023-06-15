@@ -27,8 +27,8 @@ function RoundTripRadio({ stepName }) {
           onChange={handleChange}
           onBlur={handleBlur}
           sx={{
-            gap: { xs: 'initial', sm: 3 },
-            flexDirection: { xs: 'column', sm: 'row' },
+            gap: { xxs: 'initial', sm: 3 },
+            flexDirection: { xxs: 'column', sm: 'row' },
           }}
           row
         >

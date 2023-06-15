@@ -1,5 +1,5 @@
 import { createStore, createHook, createContainer } from 'react-sweet-state';
-import { tourData } from '@data/tours';
+import tourData from '@data/tourData.json';
 
 function initFilter(data, key) {
   return data.reduce((result, obj) => {
@@ -55,6 +55,7 @@ const tourStore = createStore({
     filterType: initFilter(tourData, 'type'),
     filterArea: initFilter(tourData, 'area'),
     filteredData: tourData,
+    tourData: tourData
   },
   actions: {
     setSort:

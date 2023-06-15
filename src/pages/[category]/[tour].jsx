@@ -1,11 +1,14 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { promises as fs } from 'fs';
 import React from 'react';
-import { tourData } from '@data/tours';
+import tourData from '@data/tourData.json';
 import Layout from '@components/Layout';
 import Fallback from '@components/Fallback';
-import BookingLayout from '@components/BookingLayout';
 import FormContextProvider from '@components/FormComponents/FormContextProvider';
+import getLocationId from '@hooks/getTripAdvisorLocationId';
+import getTripAdvisorData from '@hooks/getTripAdvisorData';
+import DynamicTourLayout from '@DynamicTour/DynamicTourLayout';
 
 export async function getStaticPaths() {
   const paths = tourData.map((tour) => ({
@@ -18,6 +21,20 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
+async function updateTourData(updatedTourParams = {}) {
+  const updatedTourData = tourData.map((tour) =>
+    tour.link === updatedTourParams.link ? updatedTourParams : tour,
+  );
+
+  const tourDataFileContent = JSON.stringify(updatedTourData);
+
+  try {
+    await fs.writeFile('src/data/tourData.json', tourDataFileContent);
+  } catch (err) {
+    console.error('Error updating tour data file:', err);
+  }
+}
+
 export async function getStaticProps({ params }) {
   const tourParams = tourData.find((tour) => tour.link === params.tour);
 
@@ -25,6 +42,34 @@ export async function getStaticProps({ params }) {
     return {
       notFound: true,
     };
+  }
+
+  if (!tourParams.location_id) {
+    const locationId = await getLocationId(tourParams);
+
+    if (locationId) {
+      const updatedTourParams = { ...tourParams, locationId };
+      await updateTourData(updatedTourParams);
+    }
+  }
+
+  const timeWindow = 48 * 60 * 60 * 1000; // 48 Hours //! change to 12 hours when live
+  const isOldData =
+    Date.now() - new Date(tourParams.dateUpdated).getTime() > timeWindow;
+
+  if (
+    tourParams.location_id &&
+    (!tourParams?.tripAdvisorDetails ||
+      !tourParams?.tripAdvisorPhotos ||
+      !tourParams?.tripAdvisorReviews ||
+      isOldData)
+  ) {
+    const { tourParams: updatedTourParams, isDataUpdated } =
+      await getTripAdvisorData(tourParams, isDataUpdated);
+
+    if (isDataUpdated) {
+      await updateTourData(updatedTourParams);
+    }
   }
 
   return {
@@ -42,7 +87,8 @@ function DynamicTour({ tourParams }) {
     return <Fallback />;
   }
 
-  const { area, description, link, name, price, type } = tourParams;
+  const { area, name } = tourParams;
+  const context = { tourParams, type: 'tour' };
 
   return (
     <>
@@ -55,8 +101,8 @@ function DynamicTour({ tourParams }) {
         title={name}
         subheader={area}
       >
-        <FormContextProvider value={{ tourParams, type: 'tour' }}>
-          <BookingLayout />
+        <FormContextProvider value={context}>
+          <DynamicTourLayout />
         </FormContextProvider>
       </Layout>
     </>
