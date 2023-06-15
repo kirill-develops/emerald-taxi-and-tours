@@ -11,6 +11,8 @@ export const roboto = Roboto({
 
 export const gridSpacingProps = { xs: 1, sm: 2, md: 3, lg: 3.5 };
 
+const themeBreakpoints = { values: { xxs: 0, xs: 320, sm: 670, md: 900, lg: 1200, xl: 1536 } }
+
 const themeTypography = {
   fontFamily: roboto.style.fontFamily,
 }
@@ -38,6 +40,7 @@ const themeComponents = {
 
 
 export let theme = createTheme({
+  breakpoints: themeBreakpoints,
   typography: themeTypography,
   components: themeComponents,
   palette: {
@@ -78,6 +81,7 @@ export let theme = createTheme({
 theme = responsiveFontSizes(theme);
 
 export let darkTheme = createTheme({
+  breakpoints: themeBreakpoints,
   typography: themeTypography,
   components: themeComponents,
   palette: {

@@ -18,7 +18,7 @@ function ElevationScroll(props) {
   const { children, window } = props;
 
   const theme = useTheme();
-  const isXsBreakpoint = useMediaQuery(theme.breakpoints.only('xs'));
+  const isXsBreakpoint = useMediaQuery(theme.breakpoints.down('xs'));
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -41,8 +41,9 @@ function ElevationScroll(props) {
   });
 }
 
-function NavbarLayout(props) {
+export default function NavbarLayout(props) {
   const menuBreakpoint = 'md';
+  const isXsBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   const loadingTransitionStyle = useLoadingTransition();
 
@@ -51,9 +52,9 @@ function NavbarLayout(props) {
       <AppBar
         elevation={1}
         sx={{
-          position: { xs: 'fixed' },
-          top: { xs: 'auto', sm: '0' },
-          bottom: { xs: 0, sm: 'initial' },
+          position: { xxs: 'fixed' },
+          top: { xxs: 'auto', sm: '0' },
+          bottom: { xxs: 0, sm: 'initial' },
           backgroundColor: (theme) => theme.palette.background.default,
           ...loadingTransitionStyle,
         }}

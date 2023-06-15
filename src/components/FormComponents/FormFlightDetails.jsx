@@ -21,7 +21,7 @@ function FormFlightDetails() {
 
   return (
     <Stack alignItems="center">
-      <FormInputStack sx={{ width: { xs: '55%', sm: 'initial' } }}>
+      <FormInputStack sx={{ width: { xxs: '55%', sm: 'initial' } }}>
         <FormTextField
           stepName={stepName}
           fieldName="airline"
@@ -32,7 +32,7 @@ function FormFlightDetails() {
           fieldName="flightNum"
           label="Flight Number"
           type="tel"
-          sx={{ mt: { xs: 1, sm: 0 } }}
+          sx={{ mt: { xxs: 1, sm: 0 } }}
           inputProps={{
             step: 1,
             inputMode: 'numeric',

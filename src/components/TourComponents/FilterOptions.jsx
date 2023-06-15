@@ -8,7 +8,7 @@ function FilterOptions() {
     <Card
       variant="outlined"
       sx={{
-        m: { xs: 2, sm: 0 },
+        m: { xxs: 2, sm: 0 },
         ml: { sm: 1 },
         p: 1,
       }}

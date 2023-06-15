@@ -5,7 +5,7 @@ import FilterOptions from './FilterOptions';
 import TourGrid from './TourGrid';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 
-function TourLayout() {
+export default function TourLayout() {
   return (
     <>
       <TourOptions />
@@ -14,7 +14,7 @@ function TourLayout() {
           sm={4}
           md={3}
           lg={2.5}
-          sx={{ display: { xs: 'none', sm: 'block' } }}
+          sx={{ display: { xxs: 'none', sm: 'block' } }}
         >
           <FilterOptions />
         </GridItem>
@@ -30,5 +30,3 @@ function TourLayout() {
     </>
   );
 }
-
-export default TourLayout;

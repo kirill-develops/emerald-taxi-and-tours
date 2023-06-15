@@ -52,7 +52,7 @@ function SortButton() {
     <FormControl
       onKeyUp={handleClearSelect}
       sx={{
-        width: { xs: '40%', sm: '28%' },
+        width: { xxs: '40%', sm: '28%' },
         minWidth: 125,
         maxWidth: 225,
       }}

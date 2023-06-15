@@ -14,7 +14,7 @@ function LinkTab(props) {
   );
 }
 
-function TabletPagesLink({ dissapearingBreakpoint }) {
+export default function TabletPagesLink({ dissapearingBreakpoint }) {
   const currentPage = useRouter().asPath.split('/')[1];
 
   const foundCurrentPage = pages.find(
@@ -38,7 +38,7 @@ function TabletPagesLink({ dissapearingBreakpoint }) {
         alignSelf: 'stretch',
         flexGrow: 1,
         display: {
-          xs: 'none',
+          xxs: 'none',
           [dissapearingBreakpoint]: 'flex',
         },
       }}
@@ -58,5 +58,3 @@ function TabletPagesLink({ dissapearingBreakpoint }) {
     </Tabs>
   );
 }
-
-export default TabletPagesLink;

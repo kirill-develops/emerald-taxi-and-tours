@@ -29,7 +29,7 @@ function MobileSearchModal({ dissapearingBreakpoint }) {
       sx={{
         flexGrow: 1,
         justifyContent: 'flex-end',
-        display: { xs: 'flex', [dissapearingBreakpoint]: 'none' },
+        display: { xxs: 'flex', [dissapearingBreakpoint]: 'none' },
       }}
     >
       <IconButton
@@ -52,7 +52,7 @@ function MobileSearchModal({ dissapearingBreakpoint }) {
       >
         <Fade in={open}>
           <Box
-            top={{ xs: '75%', sm: '25%' }}
+            top={{ xss: '75%', sm: '25%' }}
             sx={modalStyle}
           >
             {/* <Autocomplete /> */}

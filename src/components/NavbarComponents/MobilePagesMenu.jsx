@@ -27,7 +27,7 @@ function MobilePagesMenu({ dissapearingBreakpoint }) {
       sx={{
         flexGrow: 1,
         display: {
-          xs: 'flex',
+          xxs: 'flex',
           [dissapearingBreakpoint]: 'none',
         },
       }}
@@ -57,7 +57,7 @@ function MobilePagesMenu({ dissapearingBreakpoint }) {
         onClose={handleCloseNavMenu}
         sx={{
           display: {
-            xs: 'block',
+            xxs: 'block',
             [dissapearingBreakpoint]: 'none',
           },
         }}

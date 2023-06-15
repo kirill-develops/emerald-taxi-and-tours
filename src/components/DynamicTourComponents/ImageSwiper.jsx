@@ -25,7 +25,7 @@ const ImageSwiperTrack = styled(SplideTrack)(({ theme }) =>
 
 const ImageSwiperSlide = styled(SplideSlide)(({ theme }) =>
   theme.unstable_sx({
-    height: { xs: '33dvh', md: '45dvh' },
+    height: { xxs: '33dvh', md: '45dvh' },
     maxHeight: 'fit-content',
   }),
 );

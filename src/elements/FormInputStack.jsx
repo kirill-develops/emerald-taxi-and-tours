@@ -4,7 +4,7 @@ import React from 'react';
 function FormInputStack({ children, sx, ...rest }) {
   return (
     <Stack
-      direction={{ xs: 'column', sm: 'row' }}
+      direction={{ xxs: 'column', sm: 'row' }}
       alignItems="stretch"
       sx={{
         mt: 2,

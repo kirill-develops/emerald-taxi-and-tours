@@ -7,7 +7,7 @@ import FilterButton from './FilterButtonMobile';
 import FilterOptions from './FilterOptions';
 import SortButton from './SortButton';
 
-function TourOptions() {
+export default function TourOptions() {
   const [state, setState] = useTour();
   const { filterExpand } = state;
 
@@ -20,7 +20,7 @@ function TourOptions() {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: { xs: 'space-between', sm: 'flex-end' },
+          justifyContent: { xxs: 'space-between', sm: 'flex-end' },
           m: 1,
         }}
       >
@@ -38,5 +38,3 @@ function TourOptions() {
     </Container>
   );
 }
-
-export default TourOptions;
