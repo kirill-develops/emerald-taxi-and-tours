@@ -1,40 +1,17 @@
 import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
-import RankingEl from '../Elements/RankingEl';
-import FormattedRankingString from '../Elements/FormattedRankingString';
 import { ParamContext } from '@Form/FormContextProvider';
 import PageCard from '@elements/PageCard';
-import { Rating, Stack } from '@mui/material';
-
-export function Subratings() {
-  const {
-    tourParams: {
-      tripAdvisorDetails: { subratings },
-    },
-  } = useContext(ParamContext);
-
-  return Object.values(subratings).map(({ localized_name: name, value }) => (
-    <Stack
-      direction="row"
-      justifyContent="space-between"
-      key={name}
-    >
-      <Typography variant="subtitle2">{name}</Typography>
-      <Rating
-        defaultValue={Number(value)}
-        precision={0.1}
-        size="small"
-        readOnly
-      />
-    </Stack>
-  ));
-}
+import RankingEl from '../Elements/RankingEl';
+import FormattedRankingString from '../Elements/FormattedRankingString';
+import Subratings from './Elements/Subratings';
 
 export default function RatingsAndReviews() {
   const {
     tourParams: {
-      tripAdvisorDetails: { rating, subratings },
+      tripAdvisorDetails: { rating },
     },
   } = useContext(ParamContext);
 
