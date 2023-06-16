@@ -7,6 +7,8 @@ import DetailsComponent from './DetailsComponent/index';
 import ImageLayout from './ImagesLayout/';
 import ImageOverlayWrapper from './ImageOverlayWrapper';
 import RatingsAndReviews from './RatingsAndReviews/';
+import Reviews from './Reviews';
+import { Stack } from '@mui/material';
 
 export default function DynamicTourLayout() {
   const { tourParams } = useContext(ParamContext);
@@ -24,8 +26,10 @@ export default function DynamicTourLayout() {
           <ImageLayout />
         </ImageOverlayWrapper>
       </DetailsComponent>
-      <RatingsAndReviews />
-
+      <Stack spacing={2}>
+        <RatingsAndReviews />
+        <Reviews />
+      </Stack>
       {/* <DetailsGrid imageSwiper={<ImageSwiper photos={photos} />} /> */}
     </>
   );
