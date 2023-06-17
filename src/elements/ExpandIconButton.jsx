@@ -1,9 +1,9 @@
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-function ExpandIcon() {
+function ExpandIcon(props) {
   return (
-    <IconButton>
+    <IconButton {...props}>
       <ExpandMoreIcon />
     </IconButton>
   );
