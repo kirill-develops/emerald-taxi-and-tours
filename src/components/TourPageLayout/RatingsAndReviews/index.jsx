@@ -8,12 +8,16 @@ import RankingEl from '../Elements/RankingEl';
 import FormattedRankingString from '../Elements/FormattedRankingString';
 import Subratings from './Elements/Subratings';
 
-export default function RatingsAndReviews() {
+export default React.memo(function RatingsAndReviews() {
   const {
     tourParams: {
-      tripAdvisorDetails: { rating },
+      tripAdvisorDetails: { rating, subratings },
     },
   } = useContext(ParamContext);
+
+  if (!subratings) {
+    return null;
+  }
 
   return (
     <PageCard>
@@ -37,4 +41,4 @@ export default function RatingsAndReviews() {
       </Stack>
     </PageCard>
   );
-}
+});

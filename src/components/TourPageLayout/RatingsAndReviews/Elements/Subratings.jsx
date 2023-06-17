@@ -11,6 +11,10 @@ export default function Subratings() {
     },
   } = useContext(ParamContext);
 
+  if (!subratings) {
+    return null;
+  }
+
   return Object.values(subratings).map(({ localized_name: name, value }) => (
     <Stack
       direction="row"
