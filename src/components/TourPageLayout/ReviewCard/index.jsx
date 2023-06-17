@@ -21,6 +21,10 @@ export default function ReviewCard({ reviewId, ...other }) {
       <ReviewContext.Provider value={contextValue}>
         <PageCard>
           <Stack>
+            <AvatarEl
+              showName
+              showLocation
+            />
           </Stack>
         </PageCard>
       </ReviewContext.Provider>
