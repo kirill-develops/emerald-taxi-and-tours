@@ -110,6 +110,7 @@ function BookingLayout() {
         padding: 3,
         marginX: -3,
         backgroundColor: 'black',
+        zIndex: 10,
       }}
     >
       <Accordion
