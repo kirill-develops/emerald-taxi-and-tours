@@ -10,6 +10,7 @@ import RatingsAndReviews from './RatingsAndReviews/';
 import Reviews from './Reviews';
 import { Stack } from '@mui/material';
 import Description from './Description';
+import ReviewCards from './ReviewCards';
 
 export default function DynamicTourLayout() {
   const { tourParams } = useContext(ParamContext);
@@ -31,6 +32,7 @@ export default function DynamicTourLayout() {
         <Description />
         <RatingsAndReviews />
         <Reviews />
+        <ReviewCards />
       </Stack>
       {/* <DetailsGrid imageSwiper={<ImageSwiper photos={photos} />} /> */}
     </>
