@@ -23,11 +23,24 @@ export function PopUpLink({ href, children, ...others }) {
 export function TelLink({ href, children, ...others }) {
   return (
     <Link
-      href={href}
+      href={`tel:${href}`}
+      target="_blank"
       {...linkTypographyProps}
       {...others}
     >
-      {' '}
+      {children}
+    </Link>
+  );
+}
+
+export function MailLink({ href, children, ...others }) {
+  return (
+    <Link
+      href={`mailto:${href}`}
+      target="_blank"
+      {...linkTypographyProps}
+      {...others}
+    >
       {children}
     </Link>
   );
