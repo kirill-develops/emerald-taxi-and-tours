@@ -9,6 +9,7 @@ import ImageOverlayWrapper from './ImageOverlayWrapper';
 import RatingsAndReviews from './RatingsAndReviews/';
 import Reviews from './Reviews';
 import { Stack } from '@mui/material';
+import Description from './Description';
 
 export default function DynamicTourLayout() {
   const { tourParams } = useContext(ParamContext);
@@ -27,6 +28,7 @@ export default function DynamicTourLayout() {
         </ImageOverlayWrapper>
       </DetailsComponent>
       <Stack spacing={2}>
+        <Description />
         <RatingsAndReviews />
         <Reviews />
       </Stack>
