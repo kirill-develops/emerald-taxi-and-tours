@@ -5,7 +5,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Remove from '@mui/icons-material/Remove';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ParamContext } from '@Form/FormContextProvider';
 
 const headerStyles = { fontWeight: 700 };
