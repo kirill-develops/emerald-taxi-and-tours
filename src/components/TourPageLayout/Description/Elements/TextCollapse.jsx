@@ -42,19 +42,20 @@ export default function TextCollapse({ children }) {
         aria-expanded={expanded}
         aria-label="show more"
       >
-        <ExpandMoreIcon />
+        <ExpandMoreIcon color="secondary" />
       </ExpandButton>
 
       <Typography variant="body1">
         {expanded ? children : first30Words}
         <Typography
           as={Link}
+          color="secondary"
           onClick={handleClick}
           sx={{
             display: expanded ? 'block' : 'inline',
           }}
         >
-          {expanded ? ' [Collapse]' : '...Read More'}
+          {expanded ? '...Less' : '...Read More'}
         </Typography>
       </Typography>
     </>
