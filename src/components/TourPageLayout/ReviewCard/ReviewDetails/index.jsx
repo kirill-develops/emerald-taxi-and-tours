@@ -12,6 +12,7 @@ export default function ReviewDetails() {
     <Stack rowGap={0}>
       <RankingEl />
       <TitleText>{title}</TitleText>
+      <TravelDateAndType />
     </Stack>
   );
 }
