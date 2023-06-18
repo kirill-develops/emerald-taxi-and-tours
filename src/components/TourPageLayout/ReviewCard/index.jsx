@@ -3,6 +3,7 @@ import React, { createContext, useContext, useMemo } from 'react';
 import { ParamContext } from '@Form/FormContextProvider';
 import PageCard from '@elements/PageCard';
 import AvatarEl from './Elements/AvatarEl';
+import ReviewDetails from './ReviewDetails';
 
 export const ReviewContext = createContext();
 
@@ -20,11 +21,12 @@ export default function ReviewCard({ reviewId, ...other }) {
     () => (
       <ReviewContext.Provider value={contextValue}>
         <PageCard>
-          <Stack>
+          <Stack rowGap={1}>
             <AvatarEl
               showName
               showLocation
             />
+            <ReviewDetails />
           </Stack>
         </PageCard>
       </ReviewContext.Provider>
