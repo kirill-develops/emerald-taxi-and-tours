@@ -4,6 +4,8 @@ import { ParamContext } from '@Form/FormContextProvider';
 import PageCard from '@elements/PageCard';
 import AvatarEl from './Elements/AvatarEl';
 import ReviewDetails from './ReviewDetails';
+import DescriptionText from './Elements/DescriptionText';
+import WrittenText from './Elements/ReviewedText';
 
 export const ReviewContext = createContext();
 
@@ -27,6 +29,8 @@ export default function ReviewCard({ reviewId, ...other }) {
               showLocation
             />
             <ReviewDetails />
+            <DescriptionText />
+            <WrittenText />
           </Stack>
         </PageCard>
       </ReviewContext.Provider>
