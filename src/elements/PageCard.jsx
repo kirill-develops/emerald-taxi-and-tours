@@ -1,18 +1,19 @@
 import React from 'react';
-import Card from '@mui/material/Card';
+import Card, { cardClasses } from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 
-const StyledPageCard = styled(Card)(({ theme, sx }) =>
-  theme.unstable_sx({
+const StyledPageCard = styled(Card)(({ theme, sx }) => {
+  console.log(cardClasses);
+  return theme.unstable_sx({
     width: '100%',
     py: { xxs: 1.5, md: 3 },
     borderRadius: 0,
-    borderLeft: 'none',
-    borderRight: 'none',
+    borderLeft: { xxs: 'none', md: `1px solid ${theme.palette.divider}` },
+    borderRight: { xxs: 'none', md: `1px solid ${theme.palette.divider}` },
     ...sx,
-  }),
-);
+  });
+});
 
 export default React.memo(function PageCard({ children, ...rest }) {
   return (
