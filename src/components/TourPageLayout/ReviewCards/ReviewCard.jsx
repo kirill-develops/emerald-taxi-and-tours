@@ -9,6 +9,20 @@ import ReviewedDateText from './Elements/ReviewedText';
 
 export const ReviewContext = createContext();
 
+function ReviewStack({ children, sx, ...rest }) {
+  return (
+    <Stack
+      rowGap={1.5}
+      columnGap={2}
+      direction={{ xxs: 'column', md: 'row' }}
+      sx={{ position: 'relative', ...sx }}
+      {...rest}
+    >
+      {children}
+    </Stack>
+  );
+}
+
 export default function ReviewCard({ reviewId, ...other }) {
   const {
     tourParams: { tripAdvisorReviews },
@@ -23,15 +37,17 @@ export default function ReviewCard({ reviewId, ...other }) {
     () => (
       <ReviewContext.Provider value={contextValue}>
         <PageCard>
-          <Stack rowGap={1}>
+          <ReviewStack>
             <AvatarEl
               showName
               showLocation
             />
-            <ReviewDetails />
-            <DescriptionText />
-            <ReviewedDateText />
-          </Stack>
+            <Stack sx={{ flexBasis: '90%' }}>
+              <ReviewDetails />
+              <DescriptionText />
+              <ReviewedDateText />
+            </Stack>
+          </ReviewStack>
         </PageCard>
       </ReviewContext.Provider>
     ),

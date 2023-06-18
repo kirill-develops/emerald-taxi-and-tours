@@ -9,7 +9,7 @@ export default function ReviewCards({}) {
   } = useContext(ParamContext);
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={{ xxs: 2, md: 0 }}>
       {tripAdvisorReviews.map((review) => (
         <ReviewCard
           key={review.id}

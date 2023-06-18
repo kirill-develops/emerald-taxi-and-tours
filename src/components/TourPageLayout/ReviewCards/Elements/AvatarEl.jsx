@@ -17,22 +17,34 @@ export default function AvatarEl({ showName = false, showLocation = false }) {
 
   return useMemo(() => {
     const nameEl = showName && username && (
-      <Typography variant="caption">{username}</Typography>
+      <Typography
+        variant="caption"
+        sx={{ textAlign: { md: 'center' } }}
+      >
+        {username}
+      </Typography>
     );
 
     const locationEl = showLocation && locationName && (
-      <Typography variant="caption">{locationName}</Typography>
+      <Typography
+        variant="caption"
+        sx={{ textAlign: { md: 'center' } }}
+      >
+        {locationName}
+      </Typography>
     );
 
     return (
       <Stack
-        direction="row"
+        direction={{ xxs: 'row', md: 'column' }}
         alignItems="center"
-        columnGap={1}
+        gap={1}
+        sx={{ flexBasis: '10%', minWidth: '80px' }}
       >
         <Avatar
           alt={`${username} profile pic`}
           src={original}
+          sx={{ width: { md: 54 }, height: { md: 54 } }}
         />
         <Stack>
           {nameEl}

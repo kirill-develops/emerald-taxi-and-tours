@@ -108,7 +108,6 @@ function BookingLayout() {
       sx={{
         top: { xs: 0, sm: expanded ? 0 : 64 },
         padding: 3,
-        marginX: -3,
         backgroundColor: 'black',
         zIndex: 10,
       }}
