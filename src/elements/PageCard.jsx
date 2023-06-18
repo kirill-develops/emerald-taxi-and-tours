@@ -7,7 +7,7 @@ const StyledPageCard = styled(Card)(({ theme, sx }) => {
   console.log(cardClasses);
   return theme.unstable_sx({
     width: '100%',
-    py: { xxs: 1.5, md: 3 },
+    py: { xxs: 2, md: 3 },
     borderRadius: 0,
     borderLeft: { xxs: 'none', md: `1px solid ${theme.palette.divider}` },
     borderRight: { xxs: 'none', md: `1px solid ${theme.palette.divider}` },
