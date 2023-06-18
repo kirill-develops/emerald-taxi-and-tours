@@ -6,10 +6,12 @@ import TravelDateAndType from './Elements/TraveDateAndType';
 import TitleText from './Elements/TitleText';
 
 export default function ReviewDetails() {
+  const { title } = useContext(ReviewContext);
 
   return (
     <Stack rowGap={0}>
       <RankingEl />
+      <TitleText>{title}</TitleText>
     </Stack>
   );
 }
