@@ -8,9 +8,12 @@ import ImageLayout from './ImagesLayout/';
 import ImageOverlayWrapper from './ImageOverlayWrapper';
 import RatingsAndReviews from './RatingsAndReviews/';
 import Reviews from './Reviews';
-
+import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import Description from './Description';
 import ReviewCards from './ReviewCards';
+import ImportantInfo from './ImportantInfo';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
+import { useMediaQuery } from '@mui/material';
 
 const containerStyles = {
   display: 'flex',
@@ -31,6 +34,16 @@ function ReviewsContainer({ children, sx, ...rest }) {
   );
 }
 
+function MaxWidthLayoutWrapper({ children, ...other }) {
+  const isMdBreakpoint = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
+  return isMdBreakpoint ? (
+    <MaxWidthContainer {...other}>{children}</MaxWidthContainer>
+  ) : (
+    children
+  );
+}
+
 export default function DynamicTourLayout() {
   const { tourParams } = useContext(ParamContext);
 
@@ -45,14 +58,29 @@ export default function DynamicTourLayout() {
           <ImageLayout />
         </ImageOverlayWrapper>
       </DetailsComponent>
-      <Stack spacing={2}>
-        <Description />
-        <RatingsAndReviews />
-        <ReviewsContainer>
-          <Reviews />
-          <ReviewCards />
-        </ReviewsContainer>
-      </Stack>
+      <MaxWidthLayoutWrapper>
+        <Stack spacing={2}>
+          <Description />
+          <GridContainer spacing={{ xxs: 2, md: 3 }}>
+            <GridItem
+              xxs={12}
+              md={4}
+            >
+              <RatingsAndReviews />
+            </GridItem>
+            <GridItem
+              xxs={12}
+              md={4}
+            >
+              <ImportantInfo />
+            </GridItem>
+          </GridContainer>
+          <ReviewsContainer>
+            <Reviews />
+            <ReviewCards />
+          </ReviewsContainer>
+        </Stack>
+      </MaxWidthLayoutWrapper>
     </>
   );
 }
