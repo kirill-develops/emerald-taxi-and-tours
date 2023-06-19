@@ -60,14 +60,12 @@ export default function DynamicTourLayout() {
       </DetailsComponent>
       <MaxWidthLayoutWrapper>
         <Stack spacing={2}>
-          <Description />
-          <GridContainer spacing={{ xxs: 2, md: 3 }}>
-            <GridItem
-              xxs={12}
-              md={4}
-            >
-              <RatingsAndReviews />
-            </GridItem>
+          <GridContainer
+            rowSpacing={{ xxs: 2, md: 3 }}
+            columnSpacing={{ md: 3 }}
+          >
+            <Description />
+            <RatingsAndReviews />
             <GridItem
               xxs={12}
               md={4}

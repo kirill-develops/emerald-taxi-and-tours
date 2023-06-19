@@ -36,7 +36,7 @@ export default function ReviewCard({ reviewId, ...other }) {
   return useMemo(
     () => (
       <ReviewContext.Provider value={contextValue}>
-        <PageCard>
+        <PageCard sx={{ maxWidth: { md: 750 } }}>
           <ReviewStack>
             <AvatarEl
               showName
