@@ -103,7 +103,6 @@ function BookingLayout() {
     <Paper
       id="bookingLayoutWrapper"
       ref={paperRef}
-      elevation={3}
       square
       sx={{
         top: { xs: 0, sm: expanded ? 0 : 64 },
