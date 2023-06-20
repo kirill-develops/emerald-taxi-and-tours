@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { createContext } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { transferData } from '@data/transfers';
 import Fallback from '@components/Fallback';

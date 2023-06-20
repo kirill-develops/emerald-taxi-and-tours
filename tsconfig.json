@@ -7,7 +7,6 @@
       "@Form/*": ["components/FormComponents/*"],
       "@Navbar/*": ["components/NavbarLayout/*"],
       "@NavSearch/*": ["components/NavSearch/*"],
-      "@Stepper/*" : ["components/StepperComponents/*"],
       "@Tour/*" : ["components/TourComponents/*"],
       "@TourPageLayout/*" : ["components/TourPageLayout/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],

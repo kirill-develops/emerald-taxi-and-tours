@@ -2,9 +2,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Form, useFormikContext } from 'formik';
 import React, { useCallback } from 'react';
-import StepperStepButtons from './StepperStepButtons';
-import StepperProgressBar from './StepperProgressBar';
-import useStepperData from '@hooks/useStepperData';
+import StepperStepButtons from './Elements/StepperStepButtons';
+import StepperProgressBar from './Elements/StepperProgressBar';
+import useStepperData from './hooks/useStepperData';
 import useFormValues from '@hooks/useFormValues';
 import useUrlCheck from '@hooks/useUrlCheck';
 

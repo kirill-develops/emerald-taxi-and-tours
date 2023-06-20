@@ -69,7 +69,7 @@ function useDataByKey(keys, data) {
   }, [keys, data]);
 }
 
-function useStepperData(bookingStep = 0) {
+export default function useStepperData(bookingStep = 0) {
   const context = useContext(ParamContext);
 
   const stepsData = useMemo(
@@ -96,5 +96,3 @@ function useStepperData(bookingStep = 0) {
     [activeStepComponent, activeStepLink, stepperLength, stepperLabels],
   );
 }
-
-export default useStepperData;

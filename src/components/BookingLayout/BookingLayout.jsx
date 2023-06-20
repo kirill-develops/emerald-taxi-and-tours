@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import { Formik } from 'formik';
 import useFormCookie from '@hooks/useFormCookie';
-import StepperLayout from '@Stepper/StepperLayout';
+import StepperLayout from './StepperLayout/StepperLayout';
 import ExpandIconButton from '@elements/ExpandIconButton';
 import { ParamContext } from '@Form/FormContextProvider';
 import { getCurrentValidationSchema } from '@data/validationSchemas';
