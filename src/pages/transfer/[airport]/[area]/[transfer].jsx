@@ -81,14 +81,14 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export const ParamContext = createContext();
-
 function DynamicTransfer({ transferParams, areaParams }) {
   const router = useRouter();
 
   if (router.isFallback) {
     return <Fallback />;
   }
+
+  const contextParams = { transferParams, areaParams, type: 'transfer' };
 
   return (
     <>
@@ -103,9 +103,7 @@ function DynamicTransfer({ transferParams, areaParams }) {
         subheader={areaParams.name}
         airport={areaParams.airport}
       >
-        <FormContextProvider
-          value={{ transferParams, areaParams, type: 'transfer' }}
-        >
+        <FormContextProvider value={contextParams}>
           <TransferPageLayout />
         </FormContextProvider>
       </Layout>
