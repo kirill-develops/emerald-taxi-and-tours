@@ -4,7 +4,6 @@ import { styled } from '@mui/material/styles';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 
 const StyledPageCard = styled(Card)(({ theme, sx }) => {
-  console.log(cardClasses);
   return theme.unstable_sx({
     width: '100%',
     py: { xxs: 2, md: 3 },

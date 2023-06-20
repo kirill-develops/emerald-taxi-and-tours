@@ -2,11 +2,13 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Form, useFormikContext } from 'formik';
 import React, { useCallback } from 'react';
-import StepperStepButtons from './Elements/StepperStepButtons';
+import StepButtons from './StepButtons/StepButtons';
 import StepperProgressBar from './Elements/StepperProgressBar';
 import useStepperData from './hooks/useStepperData';
 import useFormValues from '@hooks/useFormValues';
 import useUrlCheck from '@hooks/useUrlCheck';
+import BackButton from './StepButtons/Elements/BackButton';
+import NextButton from './StepButtons/Elements/NextButton';
 
 function useStepperButtons(activeStepLink, setCookie) {
   const { validateForm, setFieldValue, setTouched } = useFormikContext();
@@ -58,8 +60,7 @@ function StepperLayout({ setCookie, cookieData }) {
 
   useUrlCheck(formReset);
 
-  const { activeStepComponent, activeStepLink, stepperLength } =
-    useStepperData(bookingStep);
+  const { activeStepComponent, activeStepLink } = useStepperData(bookingStep);
 
   useFormValues(setCookie);
 
@@ -81,10 +82,9 @@ function StepperLayout({ setCookie, cookieData }) {
       >
         <Form>{React.cloneElement(activeStepComponent)}</Form>
       </Box>
-      <StepperStepButtons
-        handleBackClick={handleBackClick}
-        handleNextClick={handleNextClick}
-        isLastStep={bookingStep === stepperLength}
+      <StepButtons
+        backButton={<BackButton handleBackClick={handleBackClick} />}
+        nextButton={<NextButton handleNextClick={handleNextClick} />}
       />
     </Stack>
   );
