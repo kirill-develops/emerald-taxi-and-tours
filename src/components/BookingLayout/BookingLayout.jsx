@@ -7,6 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import React, {
+  createContext,
   useCallback,
   useContext,
   useEffect,
@@ -22,6 +23,8 @@ import { ParamContext } from '@Form/FormContextProvider';
 import { getCurrentValidationSchema } from '@data/validationSchemas';
 import useFormInitialValues from '@hooks/useFormInitialValues';
 import useUrlCheck from '@hooks/useUrlCheck';
+
+export const BookingContext = createContext();
 
 function BookingLayout() {
   const context = useContext(ParamContext);
@@ -141,10 +144,12 @@ function BookingLayout() {
             onSubmit={onSubmit}
           >
             {() => (
-              <StepperLayout
-                cookieData={parsedData}
-                setCookie={setCookie}
-              />
+              <BookingContext.Provider value={setCookie}>
+                <StepperLayout
+                  cookieData={parsedData}
+                  setCookie={setCookie}
+                />
+              </BookingContext.Provider>
             )}
           </Formik>
         </AccordionDetails>

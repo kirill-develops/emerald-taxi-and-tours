@@ -1,5 +1,7 @@
 import Stack from '@mui/material/Stack';
 import React, { useMemo } from 'react';
+import BackButton from './Elements/BackButton';
+import NextButton from './Elements/NextButton';
 
 function StepButtonsStack({ children, ...rest }) {
   return useMemo(
@@ -20,8 +22,8 @@ function StepButtonsStack({ children, ...rest }) {
 export default React.memo(function StepButtons({ backButton, nextButton }) {
   return (
     <StepButtonsStack>
-      {backButton}
-      {nextButton}
+      <BackButton />
+      <NextButton />
     </StepButtonsStack>
   );
 });
