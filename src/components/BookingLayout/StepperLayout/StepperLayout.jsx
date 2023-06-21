@@ -7,44 +7,6 @@ import StepperProgressBar from './Elements/StepperProgressBar';
 import useStepperData from './hooks/useStepperData';
 import useFormValues from '@hooks/useFormValues';
 import useUrlCheck from '@hooks/useUrlCheck';
-import BackButton from './StepButtons/Elements/BackButton';
-import NextButton from './StepButtons/Elements/NextButton';
-
-function useStepperButtons(activeStepLink, setCookie) {
-  const { validateForm, setFieldValue, setTouched } = useFormikContext();
-
-  const handleBackClick = useCallback(
-    (step) => {
-      setFieldValue('bookingStep', step, false);
-      setCookie({ bookingStep: step });
-    },
-    [setFieldValue, setCookie],
-  );
-
-  const handleNextClick = useCallback(
-    async (step) => {
-      const res = await validateForm();
-
-      if (!res[activeStepLink]) {
-        setFieldValue('bookingStep', step, false);
-        setCookie({ bookingStep: step });
-      } else {
-        const touchedValues = Object.keys(res[activeStepLink]).reduce(
-          (acc, value) => {
-            acc[value] = true;
-            return acc;
-          },
-          {},
-        );
-
-        setTouched({ [activeStepLink]: touchedValues });
-      }
-    },
-    [activeStepLink, setCookie, setFieldValue, setTouched, validateForm],
-  );
-
-  return { handleBackClick, handleNextClick };
-}
 
 function StepperLayout({ setCookie, cookieData }) {
   const {
@@ -64,11 +26,6 @@ function StepperLayout({ setCookie, cookieData }) {
 
   useFormValues(setCookie);
 
-  const { handleBackClick, handleNextClick } = useStepperButtons(
-    activeStepLink,
-    setCookie,
-  );
-
   return (
     <Stack justifyContent="space-between">
       <StepperProgressBar activeStep={bookingStep} />
@@ -82,10 +39,7 @@ function StepperLayout({ setCookie, cookieData }) {
       >
         <Form>{React.cloneElement(activeStepComponent)}</Form>
       </Box>
-      <StepButtons
-        backButton={<BackButton handleBackClick={handleBackClick} />}
-        nextButton={<NextButton handleNextClick={handleNextClick} />}
-      />
+      <StepButtons />
     </Stack>
   );
 }
