@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import { Form, useFormikContext } from 'formik';
 import React, { useCallback } from 'react';
 import StepButtons from './StepButtons/StepButtons';
-import StepperProgressBar from './Elements/StepperProgressBar';
+import StepperProgressBar from './ProgressBar/ProgressBar';
 import useStepperData from './hooks/useStepperData';
 import useFormValues from '@hooks/useFormValues';
 import useUrlCheck from '@hooks/useUrlCheck';
@@ -22,13 +22,13 @@ function StepperLayout({ setCookie, cookieData }) {
 
   useUrlCheck(formReset);
 
-  const { activeStepComponent, activeStepLink } = useStepperData(bookingStep);
+  const { activeStepComponent } = useStepperData(bookingStep);
 
   useFormValues(setCookie);
 
   return (
     <Stack justifyContent="space-between">
-      <StepperProgressBar activeStep={bookingStep} />
+      <StepperProgressBar />
       <Box
         sx={{
           my: 3,
