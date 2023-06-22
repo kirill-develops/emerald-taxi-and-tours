@@ -1,8 +1,10 @@
 import dayjs from 'dayjs';
 import isEqual from 'lodash/isEqual';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
 import { capitalize } from '@helperFunctions';
+import { ParamContext } from '@Form/FormContextProvider';
+import useFormInitialValues from '../../../hooks/useFormInitialValues';
 
 const cookieOptions = {
   path: '/',
@@ -31,10 +33,13 @@ function checkDepartDate(dataDate, initialDate, departDate) {
   return isDataBeforeInitial ? departDate : dayjs(dataDate).format();
 }
 
-function useFormCookie(initialValues, contextType) {
+function useFormCookie() {
+  const { type: bookingType } = useContext(ParamContext);
+  const initialValues = useFormInitialValues();
+
   const cookieName = useMemo(
-    () => `Emerald${capitalize(contextType)}FormCache`,
-    [contextType],
+    () => `Emerald${capitalize(bookingType)}FormCache`,
+    [bookingType],
   );
 
   const [formCookie, setFormCookie] = useCookies([cookieName]);
@@ -99,18 +104,18 @@ function useFormCookie(initialValues, contextType) {
       },
     };
 
-    if (contextType === 'transfer') {
+    if (bookingType === 'transfer') {
       return {
         ...defaultFormattedCookie,
         flightDetails: parseFlightDetails(data),
       };
-    } else if (contextType === 'tour') {
+    } else if (bookingType === 'tour') {
       return {
         ...defaultFormattedCookie,
         tourDetails: parseTourDetails(data),
       };
     }
-  }, [contextType, data, initialValues, parseFlightDetails, parseTourDetails]);
+  }, [bookingType, data, initialValues, parseFlightDetails, parseTourDetails]);
 
   const getUpdatedCookie = useCallback(
     (values) => {
@@ -123,7 +128,7 @@ function useFormCookie(initialValues, contextType) {
         },
       };
 
-      if (contextType === 'transfer') {
+      if (bookingType === 'transfer') {
         return {
           ...defaultUpdatedCookie,
           flightDetails: {
@@ -131,7 +136,7 @@ function useFormCookie(initialValues, contextType) {
             ...values?.flightDetails,
           },
         };
-      } else if (contextType === 'tour') {
+      } else if (bookingType === 'tour') {
         return {
           ...defaultUpdatedCookie,
           tourDetails: {
@@ -141,7 +146,7 @@ function useFormCookie(initialValues, contextType) {
         };
       }
     },
-    [contextType, data],
+    [bookingType, data],
   );
 
   const updateFormCookie = useCallback(

@@ -1,68 +1,35 @@
-import Accordion from '@mui/material/Accordion';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { Formik } from 'formik';
-import useFormCookie from '@hooks/useFormCookie';
+import React, { createContext, useContext, useRef } from 'react';
 import StepperLayout from './StepperLayout/StepperLayout';
 import { ParamContext } from '@Form/FormContextProvider';
-import { getCurrentValidationSchema } from '@data/validationSchemas';
-import useFormInitialValues from '@hooks/useFormInitialValues';
-import usePathChangeEffect from './hooks/usePathChangeEffect';
 import BookingAccordionSummary from './Elements/BookingAccordionSummary';
 import BookingTitle from './Elements/BookingTitle';
 import { BookingAccordionDetails } from './Elements/BookingAccordionDetails';
 import BookingPaper from './Elements/BookingPaper';
+import BookingAccordion from './Elements/BookingAccordionComponent';
+import BookingFormik from './Elements/BookingFormik';
+import useExpandInit from './hooks/useExpandInit';
+import useFormCookie from './hooks/useFormCookie';
 
 export const BookingContext = createContext();
 
 function BookingLayout() {
-  const context = useContext(ParamContext);
+  const { type: bookingType } = useContext(ParamContext);
 
-  const initialValues = useFormInitialValues();
-  const [parsedData, setCookie] = useFormCookie(initialValues, context.type);
+  const [parsedData, setCookie] = useFormCookie();
 
-  const [expanded, setExpanded] = useState(Boolean(parsedData?.isBookingOpen));
+  const { isBookingOpen } = parsedData;
 
-  const initExpand = useCallback(() => {
-    setExpanded(false);
-    setCookie({ isBookingOpen: false });
-  }, [setCookie]);
-
-  usePathChangeEffect(initExpand);
-
-  const currentValidationSchemaVal = useMemo(
-    () => getCurrentValidationSchema(parsedData?.bookingStep, context.type),
-    [parsedData?.bookingStep, context.type],
-  );
-
-  const [currentValidationSchema, setValidationSchema] = useState(
-    currentValidationSchemaVal,
-  );
-
-  useEffect(() => {
-    setValidationSchema(
-      getCurrentValidationSchema(parsedData?.bookingStep, context.type),
-    );
-  }, [parsedData.bookingStep, context.type]);
+  const [expanded, setExpanded] = useExpandInit(setCookie, isBookingOpen);
 
   const paperRef = useRef(null);
 
   const contextValue = {
     cookieData: parsedData,
     setCookie,
-    currentValidationSchema,
     paperRef,
     expanded,
     setExpanded,
+    bookingType,
   };
 
   return (
@@ -72,8 +39,11 @@ function BookingLayout() {
           <BookingAccordionSummary>
             <BookingTitle>Book Now</BookingTitle>
           </BookingAccordionSummary>
+
           <BookingAccordionDetails>
-            <BookingFormik>{() => <StepperLayout />}</BookingFormik>
+            <BookingFormik>
+              <StepperLayout />
+            </BookingFormik>
           </BookingAccordionDetails>
         </BookingAccordion>
       </BookingPaper>
