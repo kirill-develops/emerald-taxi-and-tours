@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default function useUrlCheck(executableFn) {
+export default function usePathChangeEffect(executableFn) {
   const router = useRouter();
   const prevPathnameRef = useRef(null);
   const [hasChanged, setHasChanged] = useState(false);

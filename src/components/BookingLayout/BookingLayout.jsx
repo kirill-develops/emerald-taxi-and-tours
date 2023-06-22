@@ -22,7 +22,7 @@ import ExpandIconButton from '@elements/ExpandIconButton';
 import { ParamContext } from '@Form/FormContextProvider';
 import { getCurrentValidationSchema } from '@data/validationSchemas';
 import useFormInitialValues from '@hooks/useFormInitialValues';
-import useUrlCheck from './hooks/useUrlCheck';
+import usePathChangeEffect from './hooks/usePathChangeEffect';
 
 export const BookingContext = createContext();
 
@@ -39,7 +39,7 @@ function BookingLayout() {
     setCookie({ isBookingOpen: false });
   }, [setCookie]);
 
-  useUrlCheck(initExpand);
+  usePathChangeEffect(initExpand);
 
   const currentValidationSchemaVal = useMemo(
     () => getCurrentValidationSchema(parsedData?.bookingStep, context.type),

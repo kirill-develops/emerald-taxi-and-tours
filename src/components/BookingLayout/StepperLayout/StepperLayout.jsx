@@ -1,13 +1,14 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { Form, useFormikContext } from 'formik';
+import { Form } from 'formik';
 import React from 'react';
 import StepButtons from './StepButtons/StepButtons';
 import StepperProgressBar from './ProgressBar/ProgressBar';
-import useStepperData from './hooks/useStepperData';
 import useSaveFormToCookie from './hooks/useSaveFormToCookie';
 import { styled } from '@mui/material';
 import useFormReset from './hooks/useFormReset';
+import usePathChangeEffect from '../hooks/usePathChangeEffect';
+import ActiveStepComponent from './Elements/ActiveStepComponent';
 
 const StepLayoutBox = styled(Box)(({ theme }) =>
   theme.unstable_sx({
@@ -19,13 +20,9 @@ const StepLayoutBox = styled(Box)(({ theme }) =>
 );
 
 export default React.memo(function StepperLayout({}) {
-  const {
-    values: { bookingStep },
-  } = useFormikContext();
-
   const formReset = useFormReset();
 
-  const { activeStepComponent } = useStepperData(bookingStep);
+  usePathChangeEffect(formReset);
 
   useSaveFormToCookie();
 
@@ -33,7 +30,9 @@ export default React.memo(function StepperLayout({}) {
     <Stack justifyContent="space-between">
       <StepperProgressBar />
       <StepLayoutBox>
-        <Form>{React.cloneElement(activeStepComponent)}</Form>
+        <Form>
+          <ActiveStepComponent />
+        </Form>
       </StepLayoutBox>
       <StepButtons />
     </Stack>
