@@ -4,7 +4,7 @@ import { useCallback, useContext, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
 import { capitalize } from '@helperFunctions';
 import { ParamContext } from '@Form/FormContextProvider';
-import useFormInitialValues from '../../../hooks/useFormInitialValues';
+import useFormInitValues from './useFormInitValues';
 
 const cookieOptions = {
   path: '/',
@@ -35,7 +35,8 @@ function checkDepartDate(dataDate, initialDate, departDate) {
 
 function useFormCookie() {
   const { type: bookingType } = useContext(ParamContext);
-  const initialValues = useFormInitialValues();
+
+  const initialValues = useFormInitValues();
 
   const cookieName = useMemo(
     () => `Emerald${capitalize(bookingType)}FormCache`,

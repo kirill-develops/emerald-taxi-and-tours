@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import dayjs from 'dayjs';
 import { validatePhoneNumberLength } from 'libphonenumber-js';
-import { tourDate, transferStartDate } from 'hooks/useFormInitialValues';
+import { tourDate, transferStartDate } from '@data/formInitValues';
 
 
 const flightDetailsValidationSchema = Yup.object().shape({
