@@ -11,6 +11,7 @@ function FormTextField({
   label,
   type = 'text',
   required = true,
+  second = false,
   sx,
   mobileNumber: mobile = false,
   ...props
@@ -22,6 +23,8 @@ function FormTextField({
     fieldName,
     mobile,
   );
+
+  const secondFieldStyles = second && { mt: { xxs: 1, sm: 0 } };
 
   return (
     <TextField
@@ -40,7 +43,7 @@ function FormTextField({
       }
       placeholder={placeholderText}
       variant="outlined"
-      sx={{ ...sx }}
+      sx={{ ...secondFieldStyles, ...sx }}
       required={required}
       fullWidth
       {...props}

@@ -31,11 +31,7 @@ function FormFlightDetails() {
           fieldName="flightNum"
           label="Flight Number"
           type="tel"
-          sx={{ mt: { xxs: 1, sm: 0 } }}
-          inputProps={{
-            step: 1,
-            inputMode: 'numeric',
-          }}
+          second
         />
       </FormInputStack>
       <RoundTripRadio stepName={stepName} />

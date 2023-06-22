@@ -22,7 +22,7 @@ function FormPersonalDetails() {
           stepName={stepName}
           fieldName="lastName"
           label="Last Name"
-          sx={lastNameFieldStyles}
+          second
         />
       </FormInputStack>
       <FormTextField
