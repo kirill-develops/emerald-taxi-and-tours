@@ -56,78 +56,28 @@ function BookingLayout() {
 
   const paperRef = useRef(null);
 
-  const theme = useTheme();
-  const isXs = useMediaQuery(theme.breakpoints.only('xs'));
-  const screenPosition = isXs ? 0 : 130;
-
-  const handleExpand = useCallback(() => {
-    if (!expanded) {
-      paperRef.current.style.position = 'relative';
-
-      const rect = paperRef.current.getBoundingClientRect();
-      const isBelowTopViewport = rect.top > screenPosition;
-
-      if (!isBelowTopViewport) {
-        paperRef.current.scrollIntoView({
-          behavior: 'auto',
-        });
-
-        setTimeout(() => {
-          setExpanded(!expanded);
-          setCookie({ isBookingOpen: !expanded });
-        }, 50);
-      } else {
-        setExpanded(!expanded);
-        setCookie({ isBookingOpen: !expanded });
-      }
-    } else {
-      paperRef.current.style.position = 'sticky';
-      setExpanded(!expanded);
-      setCookie({ isBookingOpen: !expanded });
-    }
-  }, [expanded, setCookie, screenPosition]);
-
-  const onSubmit = useCallback((values, { setSubmitting }) => {
-    // * submitting logic goes here
-    setSubmitting(false);
-  }, []);
-
   const contextValue = {
     cookieData: parsedData,
     setCookie,
     currentValidationSchema,
+    paperRef,
+    expanded,
+    setExpanded,
   };
 
   return (
-    <BookingPaper
-      paperRef={paperRef}
-      expanded={expanded}
-    >
-      <Accordion
-        expanded={expanded}
-        onChange={handleExpand}
-        TransitionProps={{ unmountOnExit: true }}
-        elevation={0}
-        sx={{}}
-      >
-        <BookingAccordionSummary>
-          <BookingTitle>Book Now</BookingTitle>
-        </BookingAccordionSummary>
-        <BookingAccordionDetails>
-          <Formik
-            initialValues={parsedData}
-            validationSchema={currentValidationSchema}
-            onSubmit={onSubmit}
-          >
-            {() => (
-              <BookingContext.Provider value={contextValue}>
-                <StepperLayout />
-              </BookingContext.Provider>
-            )}
-          </Formik>
-        </BookingAccordionDetails>
-      </Accordion>
-    </BookingPaper>
+    <BookingContext.Provider value={contextValue}>
+      <BookingPaper>
+        <BookingAccordion>
+          <BookingAccordionSummary>
+            <BookingTitle>Book Now</BookingTitle>
+          </BookingAccordionSummary>
+          <BookingAccordionDetails>
+            <BookingFormik>{() => <StepperLayout />}</BookingFormik>
+          </BookingAccordionDetails>
+        </BookingAccordion>
+      </BookingPaper>
+    </BookingContext.Provider>
   );
 }
 

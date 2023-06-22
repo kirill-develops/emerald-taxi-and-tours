@@ -1,5 +1,6 @@
 import Paper from '@mui/material/Paper';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { BookingContext } from '../BookingLayout';
 
 function getPaperStyles(expanded = false) {
   return {
@@ -10,12 +11,9 @@ function getPaperStyles(expanded = false) {
   };
 }
 
-export default function BookingPaper({
-  children,
-  paperRef,
-  expanded = false,
-  ...rest
-}) {
+export default function BookingPaper({ children, ...rest }) {
+  const { paperRef, expanded = false } = useContext(BookingContext);
+
   const paperStyles = getPaperStyles(expanded);
 
   useEffect(() => {
