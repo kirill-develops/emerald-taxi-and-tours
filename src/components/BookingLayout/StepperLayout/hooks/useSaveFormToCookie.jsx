@@ -1,10 +1,14 @@
 import { useFormikContext } from 'formik';
 import { useContext, useEffect, useMemo } from 'react';
 import { ParamContext } from '@Form/FormContextProvider';
+import { BookingContext } from '../../BookingLayout';
 
-function useFormValues(setCookie) {
+export default function useSaveFormToCookie() {
   const { values, errors, touched } = useFormikContext();
+
   const context = useContext(ParamContext);
+
+  const { setCookie } = useContext(BookingContext);
 
   const valueSubclass = useMemo(
     () => (context.type === 'transfer' ? 'flightDetails' : 'tourDetails'),
@@ -14,8 +18,12 @@ function useFormValues(setCookie) {
   const valuesWithoutErrors = useMemo(() => {
     const filteredValues = Object.entries(values[valueSubclass] || {}).reduce(
       (acc, [key, value]) => {
-        const hasError = errors[valueSubclass] && errors[valueSubclass][key];
-        const isTouched = touched[valueSubclass] && touched[valueSubclass][key];
+        // const hasError = errors[valueSubclass] && errors[valueSubclass][key]; //!original
+        const hasError = errors[valueSubclass]?.[key];
+
+        // const isTouched = touched[valueSubclass] &&
+        // touched[valueSubclass][key]; //!original
+        const isTouched = touched[valueSubclass]?.[key];
 
         if (!hasError && isTouched) {
           acc[key] = value;
@@ -25,9 +33,7 @@ function useFormValues(setCookie) {
       {},
     );
 
-    return {
-      [valueSubclass]: filteredValues,
-    };
+    return { [valueSubclass]: filteredValues };
   }, [errors, touched, values, valueSubclass]);
 
   useEffect(() => {
@@ -36,5 +42,3 @@ function useFormValues(setCookie) {
     }
   }, [valuesWithoutErrors, valueSubclass, setCookie]);
 }
-
-export default useFormValues;

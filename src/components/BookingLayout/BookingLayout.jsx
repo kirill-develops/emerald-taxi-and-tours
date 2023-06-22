@@ -22,7 +22,7 @@ import ExpandIconButton from '@elements/ExpandIconButton';
 import { ParamContext } from '@Form/FormContextProvider';
 import { getCurrentValidationSchema } from '@data/validationSchemas';
 import useFormInitialValues from '@hooks/useFormInitialValues';
-import useUrlCheck from '@hooks/useUrlCheck';
+import useUrlCheck from './hooks/useUrlCheck';
 
 export const BookingContext = createContext();
 
@@ -102,6 +102,12 @@ function BookingLayout() {
     setSubmitting(false);
   }, []);
 
+  const contextValue = {
+    cookieData: parsedData,
+    setCookie,
+    currentValidationSchema,
+  };
+
   return (
     <Paper
       id="bookingLayoutWrapper"
@@ -144,11 +150,8 @@ function BookingLayout() {
             onSubmit={onSubmit}
           >
             {() => (
-              <BookingContext.Provider value={setCookie}>
-                <StepperLayout
-                  cookieData={parsedData}
-                  setCookie={setCookie}
-                />
+              <BookingContext.Provider value={contextValue}>
+                <StepperLayout />
               </BookingContext.Provider>
             )}
           </Formik>

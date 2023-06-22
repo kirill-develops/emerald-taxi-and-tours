@@ -1,47 +1,41 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Form, useFormikContext } from 'formik';
-import React, { useCallback } from 'react';
+import React from 'react';
 import StepButtons from './StepButtons/StepButtons';
 import StepperProgressBar from './ProgressBar/ProgressBar';
 import useStepperData from './hooks/useStepperData';
-import useFormValues from '@hooks/useFormValues';
-import useUrlCheck from '@hooks/useUrlCheck';
+import useSaveFormToCookie from './hooks/useSaveFormToCookie';
+import { styled } from '@mui/material';
+import useFormReset from './hooks/useFormReset';
 
-function StepperLayout({ setCookie, cookieData }) {
+const StepLayoutBox = styled(Box)(({ theme }) =>
+  theme.unstable_sx({
+    my: 3,
+    minHeight: '20vh',
+    width: '90%',
+    alignSelf: 'center',
+  }),
+);
+
+export default React.memo(function StepperLayout({}) {
   const {
     values: { bookingStep },
-    setTouched,
-    setValues,
   } = useFormikContext();
 
-  const formReset = useCallback(() => {
-    setTouched({});
-    setValues(cookieData);
-  }, [cookieData, setTouched, setValues]);
-
-  useUrlCheck(formReset);
+  const formReset = useFormReset();
 
   const { activeStepComponent } = useStepperData(bookingStep);
 
-  useFormValues(setCookie);
+  useSaveFormToCookie();
 
   return (
     <Stack justifyContent="space-between">
       <StepperProgressBar />
-      <Box
-        sx={{
-          my: 3,
-          minHeight: '20vh',
-          width: '90%',
-          alignSelf: 'center',
-        }}
-      >
+      <StepLayoutBox>
         <Form>{React.cloneElement(activeStepComponent)}</Form>
-      </Box>
+      </StepLayoutBox>
       <StepButtons />
     </Stack>
   );
-}
-
-export default React.memo(StepperLayout);
+});
