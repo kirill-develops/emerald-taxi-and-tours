@@ -23,6 +23,7 @@ import { ParamContext } from '@Form/FormContextProvider';
 import { getCurrentValidationSchema } from '@data/validationSchemas';
 import useFormInitialValues from '@hooks/useFormInitialValues';
 import usePathChangeEffect from './hooks/usePathChangeEffect';
+import BookingTitle from './Elements/BookingTitle';
 
 export const BookingContext = createContext();
 
@@ -127,23 +128,7 @@ function BookingLayout() {
         elevation={0}
         sx={{}}
       >
-        <AccordionSummary
-          expandIcon={<ExpandIconButton />}
-          aria-controls={`location-booking-form`}
-          sx={{
-            backgroundColor: (theme) =>
-              darken(theme.palette.secondary.main, 0.2),
-            borderRadius: 1,
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, textTransform: 'uppercase' }}
-          >
-            Book Now
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails sx={{ mt: 4 }}>
+          <BookingTitle>Book Now</BookingTitle>
           <Formik
             initialValues={parsedData}
             validationSchema={currentValidationSchema}
