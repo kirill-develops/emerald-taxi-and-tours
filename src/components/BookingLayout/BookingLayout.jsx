@@ -24,6 +24,7 @@ import { getCurrentValidationSchema } from '@data/validationSchemas';
 import useFormInitialValues from '@hooks/useFormInitialValues';
 import usePathChangeEffect from './hooks/usePathChangeEffect';
 import BookingTitle from './Elements/BookingTitle';
+import { BookingAccordionDetails } from './Elements/BookingAccordionDetails';
 
 export const BookingContext = createContext();
 
@@ -129,6 +130,7 @@ function BookingLayout() {
         sx={{}}
       >
           <BookingTitle>Book Now</BookingTitle>
+        <BookingAccordionDetails>
           <Formik
             initialValues={parsedData}
             validationSchema={currentValidationSchema}
@@ -140,7 +142,7 @@ function BookingLayout() {
               </BookingContext.Provider>
             )}
           </Formik>
-        </AccordionDetails>
+        </BookingAccordionDetails>
       </Accordion>
     </Paper>
   );
