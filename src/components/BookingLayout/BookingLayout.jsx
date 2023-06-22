@@ -23,6 +23,7 @@ import { ParamContext } from '@Form/FormContextProvider';
 import { getCurrentValidationSchema } from '@data/validationSchemas';
 import useFormInitialValues from '@hooks/useFormInitialValues';
 import usePathChangeEffect from './hooks/usePathChangeEffect';
+import BookingAccordionSummary from './Elements/BookingAccordionSummary';
 import BookingTitle from './Elements/BookingTitle';
 import { BookingAccordionDetails } from './Elements/BookingAccordionDetails';
 
@@ -129,7 +130,9 @@ function BookingLayout() {
         elevation={0}
         sx={{}}
       >
+        <BookingAccordionSummary>
           <BookingTitle>Book Now</BookingTitle>
+        </BookingAccordionSummary>
         <BookingAccordionDetails>
           <Formik
             initialValues={parsedData}
