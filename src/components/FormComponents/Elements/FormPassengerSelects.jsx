@@ -8,7 +8,7 @@ import { useFormikContext } from 'formik';
 import React, { useContext } from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import useTransferPrice from '@hooks/useTransferPrice';
-import { ParamContext } from './FormContextProvider';
+import { ParamContext } from '../FormContextProvider';
 
 function useMenuItems(transferPrice, passengers, isChildMenu) {
   const { type } = useContext(ParamContext);

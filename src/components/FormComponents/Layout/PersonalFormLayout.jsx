@@ -1,9 +1,9 @@
 import React from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import FormTextField from '@elements/FormTextField';
-import FormPhoneField from '@Form/PhoneField/PhoneField';
+import FormPhoneField from '../PhoneField/PhoneField';
 import { useFormikContext } from 'formik';
-import useStepperData from '../BookingLayout/StepperLayout/hooks/useStepperData';
+import useStepperData from '../../BookingLayout/StepperLayout/hooks/useStepperData';
 
 const inputStackStyles = { width: '100%' };
 

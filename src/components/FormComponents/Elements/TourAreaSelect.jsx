@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useFormikContext } from 'formik';
 import React, { useContext, useMemo } from 'react';
-import { ParamContext } from './FormContextProvider';
+import { ParamContext } from '../FormContextProvider';
 
 function useMenuItems() {
   const context = useContext(ParamContext);

@@ -8,6 +8,12 @@ import {
 import { useFormikContext } from 'formik';
 import React from 'react';
 
+const options = [
+  { value: 'arrival', label: 'Arrival' },
+  { value: 'departure', label: 'Departure' },
+  { value: 'roundtrip', label: 'RoundTrip' },
+];
+
 function RoundTripRadio({ stepName }) {
   const { values, handleChange, handleBlur } = useFormikContext();
 
@@ -32,24 +38,15 @@ function RoundTripRadio({ stepName }) {
           }}
           row
         >
-          <FormControlLabel
-            checked={values?.flightDetails?.transferType === 'arrival'}
-            value="arrival"
-            control={<Radio />}
-            label="Arrival"
-          />
-          <FormControlLabel
-            checked={values?.flightDetails?.transferType === 'departure'}
-            value="departure"
-            control={<Radio />}
-            label="Departure"
-          />
-          <FormControlLabel
-            checked={values?.flightDetails?.transferType === 'roundtrip'}
-            value="roundtrip"
-            control={<Radio />}
-            label="RoundTrip"
-          />
+          {options.map(({ value, label }) => (
+            <FormControlLabel
+              key={value}
+              checked={values?.flightDetails?.transferType === value}
+              value={value}
+              control={<Radio />}
+              label={label}
+            />
+          ))}
         </RadioGroup>
       </FormControl>
     </>

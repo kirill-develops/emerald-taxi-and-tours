@@ -1,10 +1,10 @@
 import React from 'react';
 import FormTextField from '@elements/FormTextField';
-import FormPassengerSelects from './FormPassengerSelects';
-import DatePicker from './TourDatePicker';
-import TourAreaSelect from './TourAreaSelect';
+import FormPassengerSelects from '../Elements/FormPassengerSelects';
+import DatePicker from '../Elements/TourDatePicker';
+import TourAreaSelect from '../Elements/TourAreaSelect';
 import { useFormikContext } from 'formik';
-import useStepperData from '../BookingLayout/StepperLayout/hooks/useStepperData';
+import useStepperData from '../../BookingLayout/StepperLayout/hooks/useStepperData';
 
 function FormTourDetails() {
   const {
