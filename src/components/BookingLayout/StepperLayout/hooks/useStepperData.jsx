@@ -5,6 +5,7 @@ import FormPersonalDetails from '@Form/FormPersonalDetails';
 import FormPaymentDetails from '@Form/FormPaymentDetails';
 import FormConfirmDetails from '@Form/FormConfirmDetails';
 import { ParamContext } from '@Form/FormContextProvider';
+import useDataByKey from '@hooks/useDataByKey';
 
 export const transferSteps = [
   {
@@ -52,39 +53,25 @@ export const tourSteps = [
   },
 ];
 
-function useDataByKey(keys, data) {
-  return useMemo(() => {
-    const keyArray = Array.isArray(keys) ? keys : [keys];
-
-    return data.map((dataItem) =>
-      keyArray.reduce((accumulator, key) => {
-        const value = dataItem[key];
-
-        return {
-          ...accumulator,
-          [key]: value?.toString ? value.toString() : value,
-        };
-      }, {}),
-    );
-  }, [keys, data]);
-}
-
 export default function useStepperData(bookingStep = 0) {
   const context = useContext(ParamContext);
 
-  const stepsData = useMemo(
+  const stepsDataByType = useMemo(
     () => (context.type === 'transfer' ? transferSteps : tourSteps),
     [context.type],
   );
 
   const { component: activeStepComponent, link: activeStepUrl } = useMemo(
-    () => stepsData[bookingStep],
-    [bookingStep, stepsData],
+    () => stepsDataByType[bookingStep],
+    [bookingStep, stepsDataByType],
   );
 
-  const stepperLength = useMemo(() => stepsData.length - 1, [stepsData]);
+  const stepperLength = useMemo(
+    () => stepsDataByType.length - 1,
+    [stepsDataByType],
+  );
 
-  const stepperLabels = useDataByKey('label', stepsData);
+  const stepperLabels = useDataByKey('label', stepsDataByType);
 
   return useMemo(
     () => ({
