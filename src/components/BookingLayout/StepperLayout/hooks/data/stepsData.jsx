@@ -1,8 +1,8 @@
-import FormFlightDetails from '../../../../FormComponents/Layout/FlightFormLayout';
-import FormTourDetails from '../../../../FormComponents/Layout/TourFormLayout';
-import FormPersonalDetails from '../../../../FormComponents/Layout/PersonalFormLayout';
-import FormPaymentDetails from '../../../../FormComponents/Layout/PaymentFormLayout';
-import FormConfirmDetails from '../../../../FormComponents/Layout/ConfirmFormLayout';
+import FormFlightDetails from '@Form/Layout/FlightFormLayout';
+import FormTourDetails from '@Form/Layout/TourFormLayout';
+import FormPersonalDetails from '@Form/Layout/PersonalFormLayout';
+import FormPaymentDetails from '@Form/Layout/PaymentFormLayout';
+import FormConfirmDetails from '@Form/Layout/ConfirmFormLayout';
 
 export const transferSteps = [
   {

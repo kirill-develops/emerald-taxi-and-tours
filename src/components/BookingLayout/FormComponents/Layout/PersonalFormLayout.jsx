@@ -3,7 +3,7 @@ import FormInputStack from '@elements/FormInputStack';
 import FormTextField from '@elements/FormTextField';
 import FormPhoneField from '../PhoneField/PhoneField';
 import { useFormikContext } from 'formik';
-import useStepperData from '../../BookingLayout/StepperLayout/hooks/useStepperData';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
 const inputStackStyles = { width: '100%' };
 

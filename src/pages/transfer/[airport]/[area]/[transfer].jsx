@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { transferData } from '@data/transfers';
 import Fallback from '@components/Fallback';
 import Layout from '@components/Layout';
-import FormContextProvider from '@components/FormComponents/FormContextProvider';
+import FormContextProvider from '@Form/FormContextProvider';
 
 import TransferPageLayout from '@components/TransferPageLayout';
 

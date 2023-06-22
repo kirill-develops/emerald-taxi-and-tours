@@ -5,7 +5,7 @@ import React from 'react';
 import tourData from '@data/tourData.json';
 import Layout from '@components/Layout';
 import Fallback from '@components/Fallback';
-import FormContextProvider from '@components/FormComponents/FormContextProvider';
+import FormContextProvider from '@Form/FormContextProvider';
 import getLocationId from '@hooks/getTripAdvisorLocationId';
 import getTripAdvisorData from '@hooks/getTripAdvisorData';
 import DynamicTourLayout from '@TourPageLayout/index';

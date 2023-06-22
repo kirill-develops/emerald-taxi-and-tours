@@ -4,7 +4,7 @@ import FormPassengerSelects from '../Elements/FormPassengerSelects';
 import DatePicker from '../Elements/TourDatePicker';
 import TourAreaSelect from '../Elements/TourAreaSelect';
 import { useFormikContext } from 'formik';
-import useStepperData from '../../BookingLayout/StepperLayout/hooks/useStepperData';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
 function FormTourDetails() {
   const {

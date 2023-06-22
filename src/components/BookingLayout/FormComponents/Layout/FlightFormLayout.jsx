@@ -5,7 +5,7 @@ import FormTextField from '@elements/FormTextField';
 import FormPassengerSelects from '../Elements/FormPassengerSelects';
 import { ParamContext } from '../FormContextProvider';
 import { useFormikContext } from 'formik';
-import useStepperData from '../../BookingLayout/StepperLayout/hooks/useStepperData';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 import RoundTripRadio from '../Elements/RoundTripRadio';
 
 function useAccomDisabledHandler() {
