@@ -2,13 +2,17 @@ import React from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import FormTextField from '@elements/FormTextField';
 import FormPhoneField from '@Form/PhoneField/PhoneField';
-
-const lastNameFieldStyles = { mt: { xxs: 1, sm: 0 } };
+import { useFormikContext } from 'formik';
+import useStepperData from '../BookingLayout/StepperLayout/hooks/useStepperData';
 
 const inputStackStyles = { width: '100%' };
 
-function FormPersonalDetails() {
-  const stepName = 'personalDetails';
+export default React.memo(function FormPersonalDetails() {
+  const {
+    values: { bookingStep },
+  } = useFormikContext();
+
+  const { activeStepUrl: stepName } = useStepperData(bookingStep);
 
   return (
     <>
@@ -42,6 +46,4 @@ function FormPersonalDetails() {
       <FormPhoneField />
     </>
   );
-}
-
-export default FormPersonalDetails;
+});

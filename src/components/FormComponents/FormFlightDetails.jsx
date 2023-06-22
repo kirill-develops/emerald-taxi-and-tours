@@ -5,22 +5,36 @@ import FormInputStack from '@elements/FormInputStack';
 import FormTextField from '@elements/FormTextField';
 import FormPassengerSelects from './FormPassengerSelects';
 import { ParamContext } from './FormContextProvider';
+import { useFormikContext } from 'formik';
+import useStepperData from '../BookingLayout/StepperLayout/hooks/useStepperData';
 
-function FormFlightDetails() {
-  const transferParamContext = useContext(ParamContext);
+function useAccomDisabledHandler() {
   const {
     areaParams: { link: areaLink },
     transferParams: { link: transferLink },
-  } = transferParamContext;
+  } = useContext(ParamContext);
 
-  const isAccomDisabled =
-    transferLink !== 'other' && areaLink !== 'other_areas';
+  return transferLink !== 'other' && areaLink !== 'other_areas';
+}
 
-  const stepName = 'flightDetails';
+const textFieldInputProps = {
+  step: 1,
+  inputMode: 'numeric',
+};
+
+export default React.memo(function FormFlightDetails() {
+  const {
+    values: { bookingStep },
+  } = useFormikContext();
+
+  const { activeStepUrl: stepName } = useStepperData(bookingStep);
+
+  const isAccomDisabled = useAccomDisabledHandler();
 
   return (
     <>
-      <FormInputStack sx={{ width: { xxs: '55%', sm: 'initial' } }}>
+      <RoundTripRadio stepName={stepName} />
+      <FormInputStack sx={{ width: '100%' }}>
         <FormTextField
           stepName={stepName}
           fieldName="airline"
@@ -32,9 +46,9 @@ function FormFlightDetails() {
           label="Flight Number"
           type="tel"
           second
+          inputProps={textFieldInputProps}
         />
       </FormInputStack>
-      <RoundTripRadio stepName={stepName} />
       <DatePicker stepName={stepName} />
       <FormTextField
         stepName={stepName}
@@ -46,6 +60,4 @@ function FormFlightDetails() {
       <FormPassengerSelects stepName={stepName} />
     </>
   );
-}
-
-export default FormFlightDetails;
+});
