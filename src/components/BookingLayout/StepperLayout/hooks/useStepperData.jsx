@@ -77,7 +77,7 @@ export default function useStepperData(bookingStep = 0) {
     [context.type],
   );
 
-  const { component: activeStepComponent, link: activeStepLink } = useMemo(
+  const { component: activeStepComponent, link: activeStepUrl } = useMemo(
     () => stepsData[bookingStep],
     [bookingStep, stepsData],
   );
@@ -89,10 +89,10 @@ export default function useStepperData(bookingStep = 0) {
   return useMemo(
     () => ({
       activeStepComponent,
-      activeStepLink,
+      activeStepUrl,
       stepperLength,
       stepperLabels,
     }),
-    [activeStepComponent, activeStepLink, stepperLength, stepperLabels],
+    [activeStepComponent, activeStepUrl, stepperLength, stepperLabels],
   );
 }
