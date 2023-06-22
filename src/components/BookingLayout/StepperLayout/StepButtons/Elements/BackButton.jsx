@@ -1,24 +1,13 @@
 import Button from '@mui/material/Button';
-import React, { useContext } from 'react';
-import { useFormikContext } from 'formik';
-import useStepperData from '../../hooks/useStepperData';
-import useStepperButtons from '../hooks/useStepperButtons';
-import { BookingContext } from '../../../BookingLayout';
+import React from 'react';
+import useBackButton from '../hooks/useBackButton';
 
 export default React.memo(function BackButton({ ...rest }) {
-  const { values: { bookingStep } = {} } = useFormikContext();
-
-  const setCookie = useContext(BookingContext);
-
-  const { activeStepLink } = useStepperData(bookingStep);
-
-  const { handleBackClick } = useStepperButtons(activeStepLink, setCookie);
-
-  const isFirstStep = bookingStep === 0;
+  const { handleBackClick, isFirstStep } = useBackButton();
 
   return (
     <Button
-      onClick={() => handleBackClick(bookingStep - 1)}
+      onClick={handleBackClick}
       disabled={isFirstStep}
       variant="outlined"
       {...rest}
