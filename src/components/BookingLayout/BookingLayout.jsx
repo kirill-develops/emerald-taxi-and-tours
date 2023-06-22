@@ -1,11 +1,6 @@
 import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Paper from '@mui/material/Paper';
-import { darken } from '@mui/material/';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 import React, {
   createContext,
   useCallback,
@@ -18,7 +13,6 @@ import React, {
 import { Formik } from 'formik';
 import useFormCookie from '@hooks/useFormCookie';
 import StepperLayout from './StepperLayout/StepperLayout';
-import ExpandIconButton from '@elements/ExpandIconButton';
 import { ParamContext } from '@Form/FormContextProvider';
 import { getCurrentValidationSchema } from '@data/validationSchemas';
 import useFormInitialValues from '@hooks/useFormInitialValues';
@@ -26,6 +20,7 @@ import usePathChangeEffect from './hooks/usePathChangeEffect';
 import BookingAccordionSummary from './Elements/BookingAccordionSummary';
 import BookingTitle from './Elements/BookingTitle';
 import { BookingAccordionDetails } from './Elements/BookingAccordionDetails';
+import BookingPaper from './Elements/BookingPaper';
 
 export const BookingContext = createContext();
 
@@ -60,14 +55,6 @@ function BookingLayout() {
   }, [parsedData.bookingStep, context.type]);
 
   const paperRef = useRef(null);
-
-  useEffect(() => {
-    if (expanded) {
-      paperRef.current.style.position = 'relative';
-    } else {
-      paperRef.current.style.position = 'sticky';
-    }
-  });
 
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.only('xs'));
@@ -112,16 +99,9 @@ function BookingLayout() {
   };
 
   return (
-    <Paper
-      id="bookingLayoutWrapper"
-      ref={paperRef}
-      square
-      sx={{
-        top: { xs: 0, sm: expanded ? 0 : 64 },
-        padding: 3,
-        backgroundColor: 'black',
-        zIndex: 10,
-      }}
+    <BookingPaper
+      paperRef={paperRef}
+      expanded={expanded}
     >
       <Accordion
         expanded={expanded}
@@ -147,7 +127,7 @@ function BookingLayout() {
           </Formik>
         </BookingAccordionDetails>
       </Accordion>
-    </Paper>
+    </BookingPaper>
   );
 }
 
