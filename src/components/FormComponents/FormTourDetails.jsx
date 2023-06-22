@@ -1,4 +1,3 @@
-import Stack from '@mui/material/Stack';
 import React from 'react';
 import FormTextField from '@elements/FormTextField';
 import FormPassengerSelects from './FormPassengerSelects';
@@ -9,7 +8,7 @@ function FormTourDetails() {
   const stepName = 'tourDetails';
 
   return (
-    <Stack alignItems="center">
+    <>
       <DatePicker stepName={stepName} />
       <FormTextField
         stepName={stepName}
@@ -19,7 +18,7 @@ function FormTourDetails() {
       />
       <TourAreaSelect stepName={stepName} />
       <FormPassengerSelects stepName={stepName} />
-    </Stack>
+    </>
   );
 }
 

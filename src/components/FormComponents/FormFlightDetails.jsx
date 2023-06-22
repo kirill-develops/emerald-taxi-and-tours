@@ -1,4 +1,3 @@
-import Stack from '@mui/material/Stack';
 import React, { useContext } from 'react';
 import DatePicker from '@Form/TransferDatePicker';
 import RoundTripRadio from '@Form/RoundTripRadio';
@@ -20,7 +19,7 @@ function FormFlightDetails() {
   const stepName = 'flightDetails';
 
   return (
-    <Stack alignItems="center">
+    <>
       <FormInputStack sx={{ width: { xxs: '55%', sm: 'initial' } }}>
         <FormTextField
           stepName={stepName}
@@ -49,7 +48,7 @@ function FormFlightDetails() {
         disabled={isAccomDisabled}
       />
       <FormPassengerSelects stepName={stepName} />
-    </Stack>
+    </>
   );
 }
 

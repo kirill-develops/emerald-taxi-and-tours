@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { Form } from 'formik';
 import React from 'react';
@@ -10,8 +9,11 @@ import useFormReset from './hooks/useFormReset';
 import usePathChangeEffect from '../hooks/usePathChangeEffect';
 import ActiveStepComponent from './Elements/ActiveStepComponent';
 
-const StepLayoutBox = styled(Box)(({ theme }) =>
+const StyledForm = styled(Form)(({ theme }) =>
   theme.unstable_sx({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     my: 3,
     minHeight: '20vh',
     width: '90%',
@@ -29,11 +31,9 @@ export default React.memo(function StepperLayout({}) {
   return (
     <Stack justifyContent="space-between">
       <StepperProgressBar />
-      <StepLayoutBox>
-        <Form>
-          <ActiveStepComponent />
-        </Form>
-      </StepLayoutBox>
+      <StyledForm>
+        <ActiveStepComponent />
+      </StyledForm>
       <StepButtons />
     </Stack>
   );
