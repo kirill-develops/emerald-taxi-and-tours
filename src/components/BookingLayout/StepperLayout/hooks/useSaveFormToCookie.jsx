@@ -18,11 +18,8 @@ export default function useSaveFormToCookie() {
   const valuesWithoutErrors = useMemo(() => {
     const filteredValues = Object.entries(values[valueSubclass] || {}).reduce(
       (acc, [key, value]) => {
-        // const hasError = errors[valueSubclass] && errors[valueSubclass][key]; //!original
         const hasError = errors[valueSubclass]?.[key];
 
-        // const isTouched = touched[valueSubclass] &&
-        // touched[valueSubclass][key]; //!original
         const isTouched = touched[valueSubclass]?.[key];
 
         if (!hasError && isTouched) {
