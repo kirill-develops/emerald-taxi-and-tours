@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import pages from '@data/sitePages';
 import NavTabs from './Elements/NavTabs';
 import TabLink from './Elements/TabLink';
-import useFindCurrentPage from '@hooks/useFindCurrentPage';
+import useFindCurrentPage from './hooks/useFindCurrentPage';
 
 export default React.memo(function TabletPagesLink() {
   const foundCurrentPage = useFindCurrentPage(pages);

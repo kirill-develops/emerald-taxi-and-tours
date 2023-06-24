@@ -4,8 +4,8 @@ const Container = dynamic(() => import('@mui/material/Container'));
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
 import React from 'react';
-
 import usePageTransition from '@hooks/usePageTransition';
+const ContactSpeedDial = dynamic(() => import('./ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('@elements/LayoutTitle'));
 const Copyright = dynamic(() => import('./Copyright'));
 const Navbar = dynamic(() => import('@components/NavbarLayout/'));
@@ -61,6 +61,7 @@ export default function Layout({
           {children}
         </LayoutGrid>
         <Copyright />
+        <ContactSpeedDial />
         {isXsBreakpoint && <Offset />}
       </LayoutContainer>
     </>

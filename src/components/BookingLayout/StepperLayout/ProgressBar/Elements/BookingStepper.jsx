@@ -1,5 +1,4 @@
 import Stepper from '@mui/material/Stepper';
-
 import React from 'react';
 
 export default React.memo(function BookingStepper({
