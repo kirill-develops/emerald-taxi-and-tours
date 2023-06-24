@@ -21,6 +21,7 @@ function AreaAccordionArr({ transferData, title }) {
       <Container maxWidth="lg">
         {transferData.map((areaData) => {
           const { link } = areaData;
+
           return (
             <DestinationAccordion
               key={link}

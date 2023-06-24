@@ -1,15 +1,13 @@
-import Typography from '@mui/material/Typography';
 import React, { useContext, useMemo } from 'react';
 import { ParamContext } from '@Form/FormContextProvider';
 import { Box } from '@mui/material';
-
-const headerStyles = { fontWeight: 700 };
+import CardTitle from '@elements/CardTitle';
 
 const allOtherString = 'All Other Resorts, Villas, AirBnB & Homes';
 
 function useGetName() {
   const { areaParams, transferParams } = useContext(ParamContext);
-  const { airport, airportLink, name: areaName } = areaParams;
+  const { airportLink, name: areaName } = areaParams;
 
   return useMemo(
     () =>
@@ -23,25 +21,18 @@ function useGetName() {
 }
 
 export default function TransferTitle() {
-  const { areaParams } = useContext(ParamContext);
-  const { airport } = areaParams;
+  const {
+    areaParams: { airport },
+  } = useContext(ParamContext);
 
   const name = useGetName();
 
   return (
     <Box>
-      <Typography
-        variant="h4"
-        sx={headerStyles}
-      >
-        Private Shuttle Service:
-      </Typography>
-      <Typography
-        variant="h4"
-        sx={{ ...headerStyles }}
-      >
+      <CardTitle>Private Shuttle Service:</CardTitle>
+      <CardTitle>
         {airport} - {name}
-      </Typography>
+      </CardTitle>
     </Box>
   );
 }

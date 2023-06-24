@@ -2,10 +2,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
 import Remove from '@mui/icons-material/Remove';
 import React from 'react';
 import PageCard from '@elements/PageCard';
+import CardTitle from '@elements/CardTitle';
 
 const bulletPoints = [
   { primary: 'Private Transport', secondary: 'No other guests on board.' },
@@ -30,12 +30,7 @@ const bulletPoints = [
 export default function ImportantInfo() {
   return (
     <PageCard>
-      <Typography
-        variant="h4"
-        fontWeight={700}
-      >
-        Important Info
-      </Typography>
+      <CardTitle>Important Info</CardTitle>
       <List>
         {bulletPoints.map((point, i) => (
           <ListItem
