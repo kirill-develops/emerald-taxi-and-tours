@@ -7,10 +7,23 @@ import React, { useCallback } from 'react';
 import { useFormikContext } from 'formik';
 import FormInputStack from '@elements/FormInputStack';
 import { tourDate } from '@data/formInitValues';
+import { capitalize } from '@helperFunctions';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
-function TourDatePicker({ stepName }) {
+function useSlotProps(type) {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
+
+  const { bookingStep } = values;
+
+  const { activeStepUrl: stepName } = useStepperData(bookingStep);
+
+  const isDate = type === 'date';
+  const views = isDate ? ['month', 'day'] : ['hours', 'minutes'];
+  const value = dayjs(values[stepName]?.[type]);
+  const minKey = isDate ? 'minDate' : 'minTime';
+
+  const capitalizedType = capitalize(type);
 
   const handleDateChange = useCallback(
     (fieldName, date) => {
@@ -20,45 +33,36 @@ function TourDatePicker({ stepName }) {
     [setFieldValue, setFieldTouched],
   );
 
+  return {
+    name: `${stepName}.${type}`,
+    label: `Select Tour ${capitalizedType}`,
+    views: views,
+    value: value,
+    onChange: (value) => handleDateChange(`${stepName}.${type}`, value),
+    minutesStep: 15,
+    [minKey]: dayjs(tourDate),
+    disablePast: true,
+    slotProps: {
+      textField: {
+        onBlur: () => setFieldTouched(`${stepName}.date`, true, false),
+        helperText: errors[stepName]?.[type],
+        error: touched[stepName]?.[type] && Boolean(errors[stepName]?.[type]),
+        required: true,
+        fullWidth: true,
+      },
+    },
+  };
+}
+
+function TourDatePicker({}) {
+  const dateProps = useSlotProps('date');
+  const timeProps = useSlotProps('time');
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <FormInputStack sx={{ width: '100%' }}>
-        <DatePicker
-          name={`${stepName}.date`}
-          label="Select Tour Date & Time"
-          views={['month', 'day']}
-          value={dayjs(values[stepName]?.date)}
-          onChange={(date) => handleDateChange(`${stepName}.date`, date)}
-          minDate={dayjs(tourDate)}
-          disablePast
-          slotProps={{
-            textField: {
-              onBlur: () => setFieldTouched(`${stepName}.date`, true, false),
-              helperText: errors[stepName]?.date,
-              error: touched[stepName]?.date && Boolean(errors[stepName]?.date),
-              required: true,
-              fullWidth: true,
-            },
-          }}
-        />
-        <TimePicker
-          name={`${stepName}.time`}
-          label="Select Tour Date & Time"
-          views={['hours', 'minutes']}
-          value={dayjs(values[stepName]?.time)}
-          onChange={(time) => handleDateChange(`${stepName}.time`, time)}
-          minTime={dayjs(tourDate)}
-          disablePast
-          slotProps={{
-            textField: {
-              onBlur: () => setFieldTouched(`${stepName}.time`, true, false),
-              helperText: errors[stepName]?.time,
-              error: Boolean(errors[stepName]?.time),
-              required: true,
-              fullWidth: true,
-            },
-          }}
-        />
+        <DatePicker {...dateProps} />
+        <TimePicker {...timeProps} />
       </FormInputStack>
     </LocalizationProvider>
   );

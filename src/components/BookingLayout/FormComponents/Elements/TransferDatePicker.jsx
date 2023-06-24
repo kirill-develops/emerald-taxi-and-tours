@@ -7,10 +7,38 @@ import React, { useCallback } from 'react';
 import { useFormikContext } from 'formik';
 import FormInputStack from '@elements/FormInputStack';
 import { transferStartDate } from '@data/formInitValues';
+import { capitalize } from '@helperFunctions';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
-function TransferDatePicker({ stepName }) {
+const pickerViews = ['month', 'day', 'hours', 'minutes'];
+
+function usePickerProps(type) {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
+
+  const { activeStepUrl: stepName } = useStepperData(values.bookingStep);
+
+  const capitalizedType = capitalize(type);
+
+  const value = dayjs(values[stepName]?.[type]);
+
+  const isArrive = type === 'arrive';
+
+  const required = isArrive ? 'departure' : 'arrival';
+
+  const minDateTime =
+    (isArrive && dayjs(transferStartDate)) ||
+    (values[stepName]?.transferType === 'roundtrip' &&
+      values[stepName]?.arrive &&
+      dayjs(values[stepName]?.arrive)) ||
+    null;
+
+  const maxDateTime =
+    (isArrive &&
+      values[stepName]?.transferType === 'roundtrip' &&
+      values[stepName]?.depart &&
+      dayjs(values[stepName]?.depart)) ||
+    null;
 
   const handleDateChange = useCallback(
     (fieldName, date) => {
@@ -20,66 +48,43 @@ function TransferDatePicker({ stepName }) {
     [setFieldTouched, setFieldValue],
   );
 
-  const pickerViews = ['month', 'day', 'hours', 'minutes'];
+  return {
+    name: `${stepName}.${type}`,
+    label: `${capitalizedType} Date & Time`,
+    views: pickerViews,
+    value: value,
+    onChange: (value) => handleDateChange(`${stepName}.${type}`, value),
+    disabled: values[stepName]?.transferType === required,
+    disablePast: true,
+    minDateTime: minDateTime,
+    maxDateTime: maxDateTime,
+    slotProps: {
+      textField: {
+        onBlur: () => setFieldTouched(`${stepName}.${type}`, true, false),
+        helperText: errors[stepName]?.[type],
+        error: touched[stepName]?.[type] && Boolean(errors[stepName]?.[type]),
+        required: values[stepName]?.transferType !== required,
+        fullWidth: true,
+      },
+    },
+  };
+}
+
+function TransferDatePicker() {
+  const arriveProps = usePickerProps('arrive');
+  const departProps = usePickerProps('depart');
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <FormInputStack sx={{ rowGap: 1, width: '100%' }}>
-        <DateTimePicker
-          name={`${stepName}.arrive`}
-          label="Arrival Date & Time"
-          views={pickerViews}
-          value={dayjs(values[stepName]?.arrive)}
-          onChange={(date) => handleDateChange(`${stepName}.arrive`, date)}
-          disabled={values[stepName]?.transferType === 'departure'}
-          disablePast
-          minDateTime={dayjs(transferStartDate)}
-          maxDateTime={
-            values[stepName]?.transferType === 'roundtrip'
-              ? values[stepName]?.depart && dayjs(values[stepName]?.depart)
-              : null
-          }
-          slotProps={{
-            textField: {
-              onBlur: () => setFieldTouched(`${stepName}.arrive`, true, false),
-              helperText: errors[stepName]?.arrive,
-              error:
-                touched[stepName]?.arrive && Boolean(errors[stepName]?.arrive),
-              required: values[stepName]?.transferType !== 'departure',
-              fullWidth: true,
-            },
-          }}
-        />
+        <DateTimePicker {...arriveProps} />
         <Typography
           variant="h6"
           sx={{ alignSelf: 'center' }}
         >
           To
         </Typography>
-        <DateTimePicker
-          name={`${stepName}.depart`}
-          label="Departure Date & Time"
-          views={pickerViews}
-          value={dayjs(values[stepName]?.depart)}
-          onChange={(date) => handleDateChange(`${stepName}.depart`, date)}
-          disabled={values[stepName]?.transferType === 'arrival'}
-          minDateTime={
-            values[stepName]?.transferType === 'roundtrip'
-              ? values[stepName]?.arrive && dayjs(values[stepName]?.arrive)
-              : null
-          }
-          slotProps={{
-            textField: {
-              onBlur: () => setFieldTouched(`${stepName}.depart`, true, false),
-              helperText: errors[stepName]?.depart,
-              error:
-                touched[stepName]?.depart && Boolean(errors[stepName]?.depart),
-              required: values[stepName]?.transferType !== 'arrival',
-              fullWidth: true,
-            },
-          }}
-          disablePast
-        />
+        <DateTimePicker {...departProps} />
       </FormInputStack>
     </LocalizationProvider>
   );
