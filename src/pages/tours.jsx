@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '@components/Layout';
 import { TourContainer } from '@state/useTour';
-import TourLayout from '@Tour/TourLayout';
+import ToursLayout from '@Tour/ToursLayout';
 import Head from 'next/head';
 
 function tours() {
@@ -12,7 +12,7 @@ function tours() {
       </Head>
       <TourContainer>
         <Layout title="Tours & Attractions">
-          <TourLayout />
+          <ToursLayout />
         </Layout>
       </TourContainer>
     </>

@@ -7,7 +7,7 @@
       "@Form/*": ["components/BookingLayout/FormComponents/*"],
       "@Navbar/*": ["components/NavbarLayout/*"],
       "@NavSearch/*": ["components/NavSearch/*"],
-      "@Tour/*" : ["components/TourComponents/*"],
+      "@Tour/*" : ["components/ToursLayout/*"],
       "@TourPageLayout/*" : ["components/TourPageLayout/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],
       "@TransferPageLayout/*" : ["components/TransferPageLayout/*"],
