@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useFormikContext } from 'formik';
 import React, { useContext } from 'react';
 import FormInputStack from '@elements/FormInputStack';
-import useTransferPrice from '@hooks/useTransferPrice';
+import useTransferPrice from '../hooks/useTransferPrice';
 import { ParamContext } from '../FormContextProvider';
 import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
@@ -66,9 +66,7 @@ function FormPassengerSelect({}) {
     errors,
   } = useFormikContext();
 
-  const { bookingStep } = values;
-
-  const { activeStepUrl: stepName } = useStepperData(bookingStep);
+  const { activeStepUrl: stepName } = useStepperData();
 
   const transferPrice = useTransferPrice();
 

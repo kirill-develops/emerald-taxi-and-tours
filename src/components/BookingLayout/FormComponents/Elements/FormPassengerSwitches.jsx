@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useFormikContext } from 'formik';
 import React, { useMemo } from 'react';
 import FormInputStack from '@elements/FormInputStack';
-import useTransferPrice from '@hooks/useTransferPrice';
+import useTransferPrice from '../hooks/useTransferPrice';
 
 function getMenuItems(transferPrice, passengers, isChildMenu) {
   const menuItems = [];
