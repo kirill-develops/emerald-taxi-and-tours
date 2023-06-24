@@ -1,8 +1,5 @@
 import Container from '@mui/material/Container';
 import React, { useMemo } from 'react';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-
 import { useTour } from '@state/useTour';
 import TourCard from './TourCard';
 import { GridContainer } from '@elements/CustomGridEl';
@@ -11,11 +8,12 @@ import { GridItem } from '@elements/CustomGridEl';
 import ToursByType from './ToursByType';
 import { gridSpacingProps } from '@material/theme';
 import TourOptions from './TourOptions';
+import DividerRight from '@elements/DividerRight';
 import SectionTitle from '@elements/SectionTitle';
 
 const tourHeaderStyles = { width: '100%' };
 
-const headerDividerStyles = { marginBottom: 3 };
+const headerDividerStyles = { mb: 3 };
 
 const gridContainerStyles = { pl: { sm: 0 }, pr: { sm: 1 } };
 
@@ -24,6 +22,7 @@ function AllToursHeader() {
     () => (
       <GridItem sx={tourHeaderStyles}>
         <SectionTitle>All Tours</SectionTitle>
+        <DividerRight sx={headerDividerStyles} />
         <TourOptions />
       </GridItem>
     ),

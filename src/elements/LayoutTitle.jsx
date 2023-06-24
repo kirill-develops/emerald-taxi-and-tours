@@ -3,6 +3,7 @@ const Divider = dynamic(() => import('@mui/material/Divider'));
 const Typography = dynamic(() => import('@mui/material/Typography'));
 import React from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
+import DividerRight from './DividerRight';
 import SectionTitle from '@elements/SectionTitle';
 
 function TitleEl({ children }) {
@@ -52,12 +53,7 @@ export default function LayoutTitle({ title, subheader, airport }) {
           {subheaderEl}
           {airportEl}
         </MaxWidthContainer>
-        <Divider
-          variant="inset"
-          sx={{
-            borderColor: (theme) => theme.palette.secondary.dark,
-          }}
-        />
+        <DividerRight />
       </>
     );
 }

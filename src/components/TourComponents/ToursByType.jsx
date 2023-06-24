@@ -1,8 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import { NavigateBefore, NavigateNext } from '@mui/icons-material';
 import { styled, useTheme } from '@mui/material/styles';
@@ -14,6 +12,7 @@ import { GridItem } from '@elements/CustomGridEl';
 import { useTour } from '@state/useTour';
 import { gridSpacingProps } from '@material/theme';
 import useSortData from '@hooks/useSortData';
+import DividerRight from '@elements/DividerRight';
 import SectionTitle from '@elements/SectionTitle';
 
 const TourSwiper = styled(Swiper)(({ theme }) =>
@@ -79,6 +78,7 @@ const TourSwiperComponent = React.memo(({ tours, type }) => {
       sx={gridItemStyles}
     >
       <SectionTitle>{type}s</SectionTitle>
+      <DividerRight />
       <TourSwiper
         slidesPerView={1}
         spaceBetween={4}
