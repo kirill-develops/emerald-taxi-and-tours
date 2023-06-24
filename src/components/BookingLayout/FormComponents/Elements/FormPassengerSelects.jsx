@@ -9,6 +9,7 @@ import React, { useContext } from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import useTransferPrice from '@hooks/useTransferPrice';
 import { ParamContext } from '../FormContextProvider';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
 function useMenuItems(transferPrice, passengers, isChildMenu) {
   const { type } = useContext(ParamContext);
@@ -54,7 +55,7 @@ function useMenuItems(transferPrice, passengers, isChildMenu) {
   return menuItems;
 }
 
-function FormPassengerSelect({ stepName }) {
+function FormPassengerSelect({}) {
   const {
     values,
     handleChange,
@@ -64,6 +65,10 @@ function FormPassengerSelect({ stepName }) {
     touched,
     errors,
   } = useFormikContext();
+
+  const { bookingStep } = values;
+
+  const { activeStepUrl: stepName } = useStepperData(bookingStep);
 
   const transferPrice = useTransferPrice();
 

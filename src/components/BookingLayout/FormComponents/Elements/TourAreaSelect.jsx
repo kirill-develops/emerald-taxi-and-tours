@@ -7,6 +7,7 @@ import Select from '@mui/material/Select';
 import { useFormikContext } from 'formik';
 import React, { useContext, useMemo } from 'react';
 import { ParamContext } from '../FormContextProvider';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
 function useMenuItems() {
   const context = useContext(ParamContext);
@@ -35,13 +36,15 @@ function useSelectedItem(selected) {
   );
 }
 
-function TourAreaSelect({ stepName }) {
+function TourAreaSelect({}) {
   const inputLabel = 'Pickup: Area';
 
   const menuItemsJSX = useMenuItems();
 
   const { values, touched, errors, handleChange, handleBlur } =
     useFormikContext();
+
+  const { activeStepUrl: stepName } = useStepperData(values.bookingStep);
 
   const selectedLabel = useSelectedItem(values[stepName]?.area);
 
