@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-const Divider = dynamic(() => import('@mui/material/Divider'));
 const Typography = dynamic(() => import('@mui/material/Typography'));
 import React from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
@@ -19,16 +18,20 @@ function TitleEl({ children }) {
     </SectionTitle>
   );
 }
+
 export default function LayoutTitle({ title, subheader, airport }) {
-  const subheaderColor =
-    airport.length > 0 ? 'text.primary' : 'secondary.light';
+  const isAirport = airport.length > 0;
+
+  const subheaderColor = isAirport ? 'text.primary' : 'secondary.light';
+
+  const subheaderMargin = !isAirport && { mb: '0.25em' };
 
   const subheaderEl = subheader.length > 0 && (
     <Typography
-      variant="h4"
+      variant="h5"
       component="h2"
       color={subheaderColor}
-      sx={{ mb: '0.25em' }}
+      sx={subheaderMargin}
     >
       {subheader}
     </Typography>
@@ -36,7 +39,7 @@ export default function LayoutTitle({ title, subheader, airport }) {
 
   const airportEl = airport.length > 0 && (
     <Typography
-      variant="h5"
+      variant="h6"
       component="h3"
       color="secondary.light"
       sx={{ mb: '0.25em' }}
