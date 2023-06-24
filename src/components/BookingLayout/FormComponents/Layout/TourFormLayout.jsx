@@ -15,15 +15,9 @@ function FormTourDetails() {
 
   return (
     <>
-      <DatePicker stepName={stepName} />
-      <FormTextField
-        stepName={stepName}
-        fieldName="accomName"
-        label="PickUp: Accomodation Name"
-        margin="normal"
-      />
-      <TourAreaSelect stepName={stepName} />
-      <FormPassengerSelects stepName={stepName} />
+      <DatePicker />
+      <TourAreaSelect />
+      <FormPassengerSelects />
     </>
   );
 }

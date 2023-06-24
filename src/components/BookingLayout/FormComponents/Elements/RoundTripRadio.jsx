@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import { useFormikContext } from 'formik';
 import React from 'react';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
 const options = [
   { value: 'arrival', label: 'Arrival' },
@@ -14,8 +15,10 @@ const options = [
   { value: 'roundtrip', label: 'RoundTrip' },
 ];
 
-function RoundTripRadio({ stepName }) {
+function RoundTripRadio({}) {
   const { values, handleChange, handleBlur } = useFormikContext();
+
+  const { activeStepUrl: stepName } = useStepperData(values.bookingStep);
 
   return (
     <>
