@@ -1,4 +1,3 @@
-import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
 import { ReviewContext } from '../ReviewCard';
 import { Box, Divider } from '@mui/material';
@@ -9,12 +8,7 @@ export default function DescriptionText({ ...rest }) {
 
   return (
     <Box sx={{ paddingRight: { md: 10 } }}>
-      <Typography
-        variant="body1"
-        {...rest}
-      >
-        <TextCollapse>{text}</TextCollapse>
-      </Typography>
+      <TextCollapse>{text}</TextCollapse>
       <Divider sx={{ my: 1 }} />
     </Box>
   );

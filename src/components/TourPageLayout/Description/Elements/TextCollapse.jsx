@@ -44,11 +44,9 @@ export default function TextCollapse({ children }) {
       >
         <ExpandMoreIcon color="secondary" />
       </ExpandButton>
-
       <Typography variant="body1">
         {expanded ? children : first30Words}
-        <Typography
-          as={Link}
+        <Link
           color="secondary"
           onClick={handleClick}
           sx={{
@@ -56,7 +54,7 @@ export default function TextCollapse({ children }) {
           }}
         >
           {expanded ? '...Less' : '...Read More'}
-        </Typography>
+        </Link>
       </Typography>
     </>
   );
