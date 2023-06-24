@@ -11,6 +11,7 @@ import { GridItem } from '@elements/CustomGridEl';
 import ToursByType from './ToursByType';
 import { gridSpacingProps } from '@material/theme';
 import TourOptions from './TourOptions';
+import SectionTitle from '@elements/SectionTitle';
 
 const tourHeaderStyles = { width: '100%' };
 
@@ -22,12 +23,7 @@ function AllToursHeader() {
   return useMemo(
     () => (
       <GridItem sx={tourHeaderStyles}>
-        <Typography variant="h4">All Tours</Typography>
-        <Divider
-          variant="inset"
-          textAlign="right"
-          sx={headerDividerStyles}
-        />
+        <SectionTitle>All Tours</SectionTitle>
         <TourOptions />
       </GridItem>
     ),

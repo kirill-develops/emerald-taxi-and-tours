@@ -14,6 +14,7 @@ import { GridItem } from '@elements/CustomGridEl';
 import { useTour } from '@state/useTour';
 import { gridSpacingProps } from '@material/theme';
 import useSortData from '@hooks/useSortData';
+import SectionTitle from '@elements/SectionTitle';
 
 const TourSwiper = styled(Swiper)(({ theme }) =>
   theme.unstable_sx({
@@ -77,11 +78,7 @@ const TourSwiperComponent = React.memo(({ tours, type }) => {
       key={type}
       sx={gridItemStyles}
     >
-      <Typography variant="h4">{type}s</Typography>
-      <Divider
-        variant="inset"
-        textAlign="right"
-      />
+      <SectionTitle>{type}s</SectionTitle>
       <TourSwiper
         slidesPerView={1}
         spaceBetween={4}
