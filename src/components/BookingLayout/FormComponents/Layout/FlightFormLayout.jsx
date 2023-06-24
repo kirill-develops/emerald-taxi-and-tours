@@ -3,41 +3,22 @@ import DatePicker from '../Elements/TransferDatePicker';
 import FormInputStack from '@elements/FormInputStack';
 import FormPassengerSelects from '../Elements/FormPassengerSelects';
 import RoundTripRadio from '../Elements/RoundTripRadio';
-
-function useAccomDisabledHandler() {
-  const {
-    areaParams: { link: areaLink },
-    transferParams: { link: transferLink },
-  } = useContext(ParamContext);
-
-  return transferLink !== 'other' && areaLink !== 'other_areas';
-}
-
-const textFieldInputProps = {
-  step: 1,
-  inputMode: 'numeric',
-};
+import {
+  AccomTextField,
+  AirlineTextField,
+  FlightNumTextField,
+} from '../Elements/FormTextFields';
 
 export default React.memo(function FormFlightDetails() {
   return (
     <>
       <RoundTripRadio />
       <FormInputStack sx={{ width: '100%' }}>
-        <FormTextField
-          stepName={stepName}
-          fieldName="airline"
-          label="Airline"
-        />
-        <FormTextField
-          stepName={stepName}
-          fieldName="flightNum"
-          label="Flight Number"
-          type="tel"
-          second
-          inputProps={textFieldInputProps}
-        />
+        <AirlineTextField />
+        <FlightNumTextField />
       </FormInputStack>
       <DatePicker />
+      <AccomTextField />
       <FormPassengerSelects />
     </>
   );
