@@ -16,7 +16,7 @@ function usePickerProps(type) {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
-  const { activeStepUrl: stepName } = useStepperData(values.bookingStep);
+  const { activeStepUrl: stepName } = useStepperData();
 
   const capitalizedType = capitalize(type);
 

@@ -14,9 +14,7 @@ function useSlotProps(type) {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
     useFormikContext();
 
-  const { bookingStep } = values;
-
-  const { activeStepUrl: stepName } = useStepperData(bookingStep);
+  const { activeStepUrl: stepName } = useStepperData();
 
   const isDate = type === 'date';
   const views = isDate ? ['month', 'day'] : ['hours', 'minutes'];

@@ -44,7 +44,7 @@ function TourAreaSelect({}) {
   const { values, touched, errors, handleChange, handleBlur } =
     useFormikContext();
 
-  const { activeStepUrl: stepName } = useStepperData(values.bookingStep);
+  const { activeStepUrl: stepName } = useStepperData();
 
   const selectedLabel = useSelectedItem(values[stepName]?.area);
 

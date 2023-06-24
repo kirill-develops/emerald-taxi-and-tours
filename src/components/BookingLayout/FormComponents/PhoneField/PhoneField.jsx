@@ -25,11 +25,7 @@ const phoneFieldInputProps = {
 };
 
 const FormPhoneField = ({ label, value, onChange, sx, ...rest }) => {
-  const {
-    values: { bookingStep },
-  } = useFormikContext();
-
-  const { activeStepUrl: stepName } = useStepperData(bookingStep);
+  const { activeStepUrl: stepName } = useStepperData();
 
   return (
     <PhoneFieldStack>

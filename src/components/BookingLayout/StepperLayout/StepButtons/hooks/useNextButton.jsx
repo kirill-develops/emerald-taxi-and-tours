@@ -14,7 +14,7 @@ export default function useNextButton() {
 
   const { setCookie } = useContext(BookingContext);
 
-  const { activeStepUrl, stepperLength } = useStepperData(bookingStep);
+  const { activeStepUrl, stepperLength } = useStepperData();
 
   const isLastStep = stepperLength === bookingStep;
 

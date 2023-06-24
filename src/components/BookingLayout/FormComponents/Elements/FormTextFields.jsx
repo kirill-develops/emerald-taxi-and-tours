@@ -1,4 +1,3 @@
-import { useFormikContext } from 'formik';
 import React, { useContext } from 'react';
 import FormTextField from '@elements/FormTextField';
 import { ParamContext } from '../FormContextProvider';
@@ -18,11 +17,7 @@ function useAccomDisabledHandler() {
 }
 
 function useStepTextField(fieldName, label, additionalProps = {}) {
-  const {
-    values: { bookingStep },
-  } = useFormikContext();
-
-  const { activeStepUrl: stepName } = useStepperData(bookingStep);
+  const { activeStepUrl: stepName } = useStepperData();
 
   return (
     <FormTextField
@@ -35,11 +30,7 @@ function useStepTextField(fieldName, label, additionalProps = {}) {
 }
 
 export function AccomTextField(props) {
-  const {
-    values: { bookingStep },
-  } = useFormikContext();
-
-  const { activeStepUrl: stepName } = useStepperData(bookingStep);
+  const { activeStepUrl: stepName } = useStepperData();
 
   const isAccomDisabled = useAccomDisabledHandler();
 

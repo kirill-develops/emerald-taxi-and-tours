@@ -18,7 +18,7 @@ const options = [
 function RoundTripRadio({}) {
   const { values, handleChange, handleBlur } = useFormikContext();
 
-  const { activeStepUrl: stepName } = useStepperData(values.bookingStep);
+  const { activeStepUrl: stepName } = useStepperData();
 
   return (
     <>
