@@ -10,7 +10,7 @@ import SortButton from './SortButton';
 const boxStyles = {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: { xss: 'space-between', sm: 'flex-end' },
+  justifyContent: { xxs: 'space-between', sm: 'flex-end' },
   m: 1,
 };
 
