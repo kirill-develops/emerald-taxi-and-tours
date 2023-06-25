@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { promises as fs } from 'fs';
 import React from 'react';
 import tourData from '@data/tourData.json';
-import Layout from '@components/Layout';
+import PageLayout from '@components/PageLayout/Layout';
 import Fallback from '@components/Fallback';
 import FormContextProvider from '@Form/FormContextProvider';
 import getLocationId from '@hooks/getTripAdvisorLocationId';
@@ -97,14 +97,14 @@ function DynamicTour({ tourParams }) {
           Tour: {name}, {area}| EMERALD Taxi & Tours
         </title>
       </Head>
-      <Layout
+      <PageLayout
         title={name}
         subheader={area}
       >
         <FormContextProvider value={context}>
           <DynamicTourLayout />
         </FormContextProvider>
-      </Layout>
+      </PageLayout>
     </>
   );
 }

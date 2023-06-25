@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import Layout from '@components/Layout';
+import PageLayout from '@components/PageLayout/Layout';
 import { transferData } from '@data/transfers';
 import AreaAccordionArr from '@Transfer/AreaAccordionArr';
 import Head from 'next/head';
@@ -21,7 +21,7 @@ function Transfer() {
       <Head>
         <title>Airport Transfers | EMERALD Taxi & Tours</title>
       </Head>
-      <Layout title="Airport Transfers">
+      <PageLayout title="Airport Transfers">
         <AreaAccordionArr
           transferData={sangsterTransferData}
           title="Sangster International, Montego Bay"
@@ -30,7 +30,7 @@ function Transfer() {
           transferData={normanManleyTransferData}
           title="Norman Manley International, Kingston"
         />
-      </Layout>
+      </PageLayout>
     </>
   );
 }

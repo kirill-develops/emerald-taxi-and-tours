@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '@components/Layout';
+import PageLayout from '@components/PageLayout/Layout';
 
 export default function App() {
-  return <Layout title="Home"></Layout>;
+  return <PageLayout title="Home"></PageLayout>;
 }

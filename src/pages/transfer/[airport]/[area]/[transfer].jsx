@@ -3,7 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { transferData } from '@data/transfers';
 import Fallback from '@components/Fallback';
-import Layout from '@components/Layout';
+import PageLayout from '@components/PageLayout/Layout';
 import FormContextProvider from '@Form/FormContextProvider';
 
 import TransferPageLayout from '@components/TransferPageLayout';
@@ -98,7 +98,7 @@ function DynamicTransfer({ transferParams, areaParams }) {
           {areaParams.airport}| EMERALD Taxi & Tours
         </title>
       </Head>
-      <Layout
+      <PageLayout
         title={transferParams.name}
         subheader={areaParams.name}
         airport={areaParams.airport}
@@ -106,7 +106,7 @@ function DynamicTransfer({ transferParams, areaParams }) {
         <FormContextProvider value={contextParams}>
           <TransferPageLayout />
         </FormContextProvider>
-      </Layout>
+      </PageLayout>
     </>
   );
 }

@@ -4,10 +4,10 @@ const Container = dynamic(() => import('@mui/material/Container'));
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
 import React from 'react';
-import usePageTransition from '@hooks/usePageTransition';
-const ContactSpeedDial = dynamic(() => import('./ContactSpeedDial'));
+import usePageTransition from './hooks/usePageTransition';
+const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('@elements/LayoutTitle'));
-const Copyright = dynamic(() => import('./Copyright'));
+const Copyright = dynamic(() => import('../Copyright'));
 const Navbar = dynamic(() => import('@components/NavbarLayout/'));
 const GridContainer = dynamic(() =>
   import('@elements/CustomGridEl').then((mod) => mod.GridContainer),
@@ -32,7 +32,7 @@ const LayoutGrid = styled(GridContainer)(({ theme }) =>
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-export default function Layout({
+export default function PageLayout({
   children,
   title = '',
   subheader = '',
