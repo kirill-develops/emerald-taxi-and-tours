@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import ExpandMore from '@elements/ExpandMore';
 import Link from '@material/Link';
 import { GridItem } from '@elements/CustomGridEl';
-import DetailedCard from '@elements/DetailedCard';
+import GridCard from '@elements/GridCard';
 
 function getSubheader(areaLink, destination, area) {
   switch (areaLink) {
@@ -43,7 +43,7 @@ function TransferCard({ destinationData, areaData }) {
       md={6}
       lg={4}
     >
-      <DetailedCard variant="outlined">
+      <GridCard variant="outlined">
         <CardHeader
           title={name}
           subheader={subheader}
@@ -119,7 +119,7 @@ function TransferCard({ destinationData, areaData }) {
             </Typography>
           </CardContent>
         </Collapse>
-      </DetailedCard>
+      </GridCard>
     </GridItem>
   );
 }

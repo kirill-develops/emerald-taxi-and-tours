@@ -1,7 +1,7 @@
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import React from 'react';
-import FilterCheckboxGroup from './FilterCheckboxGroup';
+import FilterCheckboxGroup from './Elements/FilterCheckboxGroup';
 
 const cardStyles = {
   m: { xxs: 2, sm: 0 },

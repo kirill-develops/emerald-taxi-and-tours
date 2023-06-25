@@ -6,9 +6,10 @@ export const cardStyleProps = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
+  borderRadius: 0,
 };
 
-function DetailedCard({ sx, children, ...rest }) {
+function GridCard({ sx, children, ...rest }) {
   return (
     <Card
       sx={{ ...cardStyleProps, ...sx }}
@@ -19,4 +20,4 @@ function DetailedCard({ sx, children, ...rest }) {
   );
 }
 
-export default React.memo(DetailedCard);
+export default React.memo(GridCard);

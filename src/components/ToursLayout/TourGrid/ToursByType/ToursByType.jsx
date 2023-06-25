@@ -7,13 +7,13 @@ import { styled, useTheme } from '@mui/material/styles';
 
 import 'swiper/swiper.min.css';
 
-import TourCard from './TourCard';
 import { GridItem } from '@elements/CustomGridEl';
 import { useTour } from '@state/useTour';
 import { gridSpacingProps } from '@material/theme';
-import useSortData from '@hooks/useSortData';
 import DividerRight from '@elements/DividerRight';
 import SectionTitle from '@elements/SectionTitle';
+import SwiperTourCard from './Elements/SwiperTourCard';
+import useSortData from '../hooks/useSortData';
 
 const TourSwiper = styled(Swiper)(({ theme }) =>
   theme.unstable_sx({
@@ -93,7 +93,7 @@ const TourSwiperComponent = React.memo(({ tours, type }) => {
       >
         {tours.map((tour) => (
           <TourSwiperSlide key={tour.link}>
-            <TourCard
+            <SwiperTourCard
               tour={tour}
               cardType={true}
             />

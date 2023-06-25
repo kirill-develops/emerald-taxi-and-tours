@@ -3,9 +3,9 @@ import Collapse from '@mui/material/Collapse';
 import Container from '@mui/material/Container';
 import React from 'react';
 import { useTour } from '@state/useTour';
-import FilterButton from './FilterButtonMobile';
-import FilterOptions from './FilterOptions';
-import SortButton from './SortButton';
+import FilterButton from './Elements/FilterButtonMobile';
+import FilterOptions from '../FilterOptions/FilterOptions';
+import SortButton from './Elements/SortButton';
 
 const boxStyles = {
   display: 'flex',

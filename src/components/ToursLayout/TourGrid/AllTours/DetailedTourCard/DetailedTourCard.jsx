@@ -1,5 +1,4 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandCircleDown';
-import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -10,12 +9,12 @@ import Typography from '@mui/material/Typography';
 import Zoom from '@mui/material/Zoom';
 import React, { useState } from 'react';
 import ExpandMore from '@elements/ExpandMore';
-import PriceTable from './PriceTable';
-import TourType from './TourType';
-import PickUpCardHeader from './PickUpCardHeader';
+import PriceTable from './Elements/PriceTable';
+import TourType from './Elements/TourType';
+import PickUpCardHeader from './Elements/PickUpCardHeader';
 import { GridItem } from '@elements/CustomGridEl';
-import Link from '@material/Link';
-import DetailedCard from '@elements/DetailedCard';
+import GridCard from '@elements/GridCard';
+import BookNowButton from './Elements/BookNowButton';
 
 const cardContentStyles = {
   pt: 0,
@@ -39,7 +38,7 @@ function Description({ description, sx, ...rest }) {
   );
 }
 
-function TourCard({ tour, cardType = false }) {
+export default function DetailedTourCard({ tour, cardType = false }) {
   const { name, area, link, type, price, description } = tour;
 
   const [expanded, setExpanded] = useState(false);
@@ -47,9 +46,9 @@ function TourCard({ tour, cardType = false }) {
     setExpanded(!expanded);
   };
 
-  return cardType === false ? (
+  return (
     <GridItem xs={12}>
-      <DetailedCard variant="elevation">
+      <GridCard>
         <CardHeader
           title={name}
           subheader={area}
@@ -73,14 +72,7 @@ function TourCard({ tour, cardType = false }) {
           disableSpacing
           sx={cardActionsStyles}
         >
-          <Button
-            variant="contained"
-            color="secondary"
-            LinkComponent={Link}
-            href={`/tours/${link}`}
-          >
-            Book Now
-          </Button>
+          <BookNowButton url={link} />
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
@@ -99,36 +91,7 @@ function TourCard({ tour, cardType = false }) {
             </Tooltip>
           </ExpandMore>
         </CardActions>
-      </DetailedCard>
+      </GridCard>
     </GridItem>
-  ) : (
-    <DetailedCard variant="elevation">
-      <CardHeader
-        title={name}
-        subheader={area}
-      />
-      <CardContent sx={cardContentStyles}></CardContent>
-      <Divider variant="middle" />
-      {/* <Description
-        description={description}
-        sx={{ padding: 2 }}
-        variant="caption"
-      /> */}
-      <CardActions
-        disableSpacing
-        sx={cardActionsStyles}
-      >
-        <Button
-          variant="contained"
-          color="secondary"
-          LinkComponent={Link}
-          href={`/tours/${link}`}
-        >
-          Book Now
-        </Button>
-      </CardActions>
-    </DetailedCard>
   );
 }
-
-export default React.memo(TourCard);

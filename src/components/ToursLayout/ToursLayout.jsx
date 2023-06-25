@@ -1,8 +1,8 @@
 import React from 'react';
 import { gridSpacingProps } from '@material/theme';
-import TourOptions from './TourOptions';
-import FilterOptions from './FilterOptions';
-import TourGrid from './TourGrid';
+import TourOptions from './TourOptions/TourOptions';
+import FilterOptions from './FilterOptions/FilterOptions';
+import TourGrid from './TourGrid/TourGrid';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 
 const tourOptionsStyles = { display: { xxs: 'none', sm: 'block' } };
