@@ -27,7 +27,7 @@ const backdropStyles = { zIndex: 1 };
 
 const speedDialStyles = {
   position: 'absolute',
-  bottom: { xs: 105, sm: 45 },
+  bottom: { xxs: 105, sm: 45 },
   right: 45,
   zIndex: 10,
   [`& .${speedDialClasses.fab}`]: {

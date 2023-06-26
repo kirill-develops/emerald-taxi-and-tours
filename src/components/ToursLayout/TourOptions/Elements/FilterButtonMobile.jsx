@@ -7,7 +7,7 @@ import { useTour } from '@state/useTour';
 
 const filterButtonStyles = {
   width: '40%',
-  minWidth: 125,
+  minWidth: 100,
   display: { sm: 'none' },
 };
 
@@ -17,7 +17,7 @@ function FilterButtonMobile() {
   const { toggleFilterExpand } = setState;
 
   const theme = useTheme();
-  const isXsBreakpoint = useMediaQuery(theme.breakpoints.only('xs'));
+  const isXsBreakpoint = useMediaQuery(theme.breakpoints.down('sm'));
 
   useLayoutEffect(() => {
     if (isXsBreakpoint === false) {

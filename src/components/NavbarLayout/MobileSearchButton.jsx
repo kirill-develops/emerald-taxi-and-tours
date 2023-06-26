@@ -23,7 +23,7 @@ function MobileSearchButton({ dissapearingBreakpoint }) {
       sx={{
         flexGrow: 1,
         justifyContent: 'flex-end',
-        display: { xs: 'flex', [dissapearingBreakpoint]: 'none' },
+        display: { xxs: 'flex', [dissapearingBreakpoint]: 'none' },
       }}
     >
       <IconButton

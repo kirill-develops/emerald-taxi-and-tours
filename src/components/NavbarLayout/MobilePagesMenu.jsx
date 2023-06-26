@@ -16,7 +16,7 @@ const Wrapper = styled(Box)(({ theme, dissapearingbreakpoint }) =>
   theme.unstable_sx({
     flexGrow: 1,
     display: {
-      xs: 'flex',
+      xxs: 'flex',
       [dissapearingbreakpoint]: 'none',
     },
   }),

@@ -23,7 +23,7 @@ export default React.memo(function TourLayout() {
           <FilterOptions />
         </GridItem>
         <GridItem
-          xs={12}
+          xxs={12}
           sm={8}
           md={9}
           lg={9.5}

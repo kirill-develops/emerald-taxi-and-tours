@@ -10,8 +10,8 @@ import Zoom from '@mui/material/Zoom';
 import { useTour } from '@state/useTour';
 
 const formControlStyles = {
-  width: { xs: '40%', sm: '28%' },
-  minWidth: 195,
+  width: { xxs: '40%', sm: '28%' },
+  minWidth: 120,
   maxWidth: 225,
 };
 
@@ -21,7 +21,7 @@ const inputLabelStyles = {
   alignItems: 'center',
 };
 
-const sortOutlinedStyles = { ml: 1 };
+const sortOutlinedStyles = { ml: 0.5 };
 
 const SortTooltip = React.memo(
   ({ title = '', children, sx, disabled = false, ...rest }) => {

@@ -4,7 +4,7 @@ import { BookingContext } from '../BookingLayout';
 
 function getPaperStyles(expanded = false) {
   return {
-    top: { xs: 0, sm: expanded ? 0 : 64 },
+    top: { xxs: 0, sm: expanded ? 0 : 64 },
     padding: 3,
     backgroundColor: 'black',
     zIndex: 10,

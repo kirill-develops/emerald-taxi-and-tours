@@ -31,7 +31,7 @@ export default function NavMenu({ children }) {
       onClose={handleCloseNavMenu}
       sx={{
         display: {
-          xs: 'block',
+          xxs: 'block',
           [dissapearingBreakpoint]: 'none',
         },
       }}

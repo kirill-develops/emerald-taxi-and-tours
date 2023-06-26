@@ -39,7 +39,7 @@ function TransferCard({ destinationData, areaData }) {
   return (
     <GridItem
       item
-      xs={12}
+      xxs={12}
       md={6}
       lg={4}
     >

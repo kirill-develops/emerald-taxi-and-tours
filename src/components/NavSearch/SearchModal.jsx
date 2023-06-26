@@ -61,7 +61,7 @@ function SearchModal({ open, handleOpen, handleClose }) {
         timeout={500}
       >
         <Box
-          top={{ xs: '60%', sm: '40%' }}
+          top={{ xxs: '60%', sm: '40%' }}
           sx={searchStyles}
         >
           <Autocomplete

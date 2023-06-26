@@ -23,6 +23,12 @@ const cardContentStyles = {
   alignContent: 'center',
 };
 
+const gridItemStyles = {
+  width: '100%',
+  flexDirection: 'column',
+  marginBottom: 2,
+};
+
 const cardActionsStyles = { p: 2 };
 
 function Description({ description, sx, ...rest }) {
@@ -47,7 +53,10 @@ export default function DetailedTourCard({ tour, cardType = false }) {
   };
 
   return (
-    <GridItem xs={12}>
+    <GridItem
+      xxs={12}
+      sx={gridItemStyles}
+    >
       <GridCard>
         <CardHeader
           title={name}

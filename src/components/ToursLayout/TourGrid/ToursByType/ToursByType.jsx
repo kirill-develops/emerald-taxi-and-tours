@@ -12,7 +12,7 @@ import { useTour } from '@state/useTour';
 import { gridSpacingProps } from '@material/theme';
 import DividerRight from '@elements/DividerRight';
 import SectionTitle from '@elements/SectionTitle';
-import SwiperTourCard from './Elements/SwiperTourCard';
+import SwiperTourCard from './SwiperTourCard.jsx/SwiperTourCard';
 import useSortData from '../hooks/useSortData';
 
 const TourSwiper = styled(Swiper)(({ theme }) =>
@@ -23,7 +23,7 @@ const TourSwiper = styled(Swiper)(({ theme }) =>
 );
 
 const TourSwiperSlide = styled(SwiperSlide)({
-  height: 'unset !important',
+  // height: 'unset !important',
 });
 
 const iconButtonStyles = (position) => ({
@@ -73,7 +73,7 @@ const TourSwiperComponent = React.memo(({ tours, type }) => {
 
   return (
     <GridItem
-      xs={12}
+      xxs={12}
       key={type}
       sx={gridItemStyles}
     >

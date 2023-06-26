@@ -48,7 +48,7 @@ function TabletSearchButton({ dissapearingBreakpoint }) {
         flexGrow: 1,
         flexBasis: '20%',
         justifyContent: 'flex-end',
-        display: { xs: 'none', [dissapearingBreakpoint]: 'flex' },
+        display: { xxs: 'none', [dissapearingBreakpoint]: 'flex' },
       }}
     >
       <TextField
