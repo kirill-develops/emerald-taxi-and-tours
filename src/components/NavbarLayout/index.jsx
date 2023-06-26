@@ -9,7 +9,7 @@ import TabletSearchButton from './TabletSearchButton';
 import TabletPagesLink from './TabletPagesLink';
 import ElevationScroll from './Elements/ElevationScroll';
 import TitleWrapper from './TitleWrapper';
-import useLoadingTransition from '@hooks/useLoadingTransition';
+import useLoadingTransition from './hooks/useLoadingTransition';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 
 export const BreakpointContext = createContext();
