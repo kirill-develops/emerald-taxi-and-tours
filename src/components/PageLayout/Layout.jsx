@@ -61,9 +61,9 @@ export default function PageLayout({
           {children}
         </LayoutGrid>
         <Copyright />
-        <ContactSpeedDial />
         {isXsBreakpoint && <Offset />}
       </LayoutContainer>
+      <ContactSpeedDial />
     </>
   );
 }
