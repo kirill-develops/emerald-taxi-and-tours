@@ -4,8 +4,6 @@ import React, { useMemo } from 'react';
 import { tourData } from '@data/tours';
 import { useTour } from '@state/useTour';
 
-const typographyStyles = { pl: 2 };
-
 function checkObjectValues(obj) {
   const trueProps = [];
   for (const prop in obj) {
@@ -52,7 +50,6 @@ function PickUpCardHeader({ price }) {
 
         return (
           <Typography
-            sx={typographyStyles}
             variant="caption"
             key={each.link}
           >

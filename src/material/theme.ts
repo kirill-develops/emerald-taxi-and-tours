@@ -38,6 +38,8 @@ const themeComponents = {
   }
 }
 
+const responsiveFontOptions = { factor: 100 };
+
 
 export let theme = createTheme({
   breakpoints: themeBreakpoints,
@@ -78,7 +80,7 @@ export let theme = createTheme({
     divider: '#C1C9BF',
   },
 });
-theme = responsiveFontSizes(theme);
+theme = responsiveFontSizes(theme, responsiveFontOptions);
 
 export let darkTheme = createTheme({
   breakpoints: themeBreakpoints,
@@ -160,4 +162,4 @@ export let darkTheme = createTheme({
     "0px 11px 15px -7px rgba(255,255,255,0.2),0px 24px 38px 3px rgba(255,255,255,0.14),0px 9px 46px 8px rgba(255,255,255,0.12)"],
 });
 
-darkTheme = responsiveFontSizes(darkTheme);
+darkTheme = responsiveFontSizes(darkTheme, responsiveFontOptions);

@@ -58,9 +58,8 @@ const TourSwiperComponent = React.memo(({ tours, type }) => {
   const muiBreakpoints = useTheme().breakpoints.values;
   const breakpoints = useMemo(
     () => ({
-      [muiBreakpoints.sm]: { slidesPerView: 2 },
-      [muiBreakpoints.md]: { slidesPerView: 3 },
-      [muiBreakpoints.lg]: { slidesPerView: 4 },
+      [muiBreakpoints.md]: { slidesPerView: 2 },
+      [muiBreakpoints.lg]: { slidesPerView: 3 },
       [muiBreakpoints.xl]: { slidesPerView: 4 },
     }),
     [muiBreakpoints],

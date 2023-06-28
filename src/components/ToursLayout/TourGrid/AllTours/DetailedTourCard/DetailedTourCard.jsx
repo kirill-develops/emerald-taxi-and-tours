@@ -1,26 +1,26 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandCircleDown';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
-import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Zoom from '@mui/material/Zoom';
 import React, { useState } from 'react';
-import ExpandMore from '@elements/ExpandMore';
 import PriceTable from './Elements/PriceTable';
 import TourType from './Elements/TourType';
 import PickUpCardHeader from './Elements/PickUpCardHeader';
-import { GridItem } from '@elements/CustomGridEl';
 import GridCard from '@elements/GridCard';
 import BookNowButton from './Elements/BookNowButton';
+import ExpandMoreButton from './Elements/ExpandMoreButton';
+import { Box } from '@mui/material';
+import CardImage from '../../ToursByType/SwiperTourCard.jsx/Elements/CardImage';
+import { GridContainer, GridItem } from '@elements/CustomGridEl';
 
 const cardContentStyles = {
-  pt: 0,
+  py: 0,
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
   alignContent: 'center',
+  rowGap: 1,
 };
 
 const gridItemStyles = {
@@ -44,10 +44,12 @@ function Description({ description, sx, ...rest }) {
   );
 }
 
-export default function DetailedTourCard({ tour, cardType = false }) {
-  const { name, area, link, type, price, description } = tour;
+export default function DetailedTourCard({ tour }) {
+  const { name, area, link, type, price, description, tripAdvisorPhotos } =
+    tour;
 
   const [expanded, setExpanded] = useState(false);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -58,48 +60,55 @@ export default function DetailedTourCard({ tour, cardType = false }) {
       sx={gridItemStyles}
     >
       <GridCard>
-        <CardHeader
-          title={name}
-          subheader={area}
-        />
-        <CardContent sx={cardContentStyles}>
-          <TourType typeArr={type} />
-          <PickUpCardHeader price={price} />
-        </CardContent>
-        <Divider variant="middle" />
-        <Collapse
-          in={expanded}
-          timeout="auto"
-          unmountOnExit
-        >
-          <CardContent>
-            <Description description={description} />
-            <PriceTable pricesArr={price} />
-          </CardContent>
-        </Collapse>
-        <CardActions
-          disableSpacing
-          sx={cardActionsStyles}
-        >
-          <BookNowButton url={link} />
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
+        <GridContainer sx={{ height: '100%' }}>
+          <CardImage
+            picData={tripAdvisorPhotos[0]}
+            xxs={5}
+            sm={4}
+          />
+          <GridItem
+            xxs={7}
+            sm={8}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
           >
-            <Tooltip
-              title={expanded ? '' : 'click for more'}
-              arrow
-              TransitionComponent={Zoom}
+            <CardHeader
+              title={name}
+              subheader={area}
+            />
+            <CardContent sx={cardContentStyles}>
+              <TourType typeArr={type} />
+              <PickUpCardHeader price={price} />
+              <Collapse
+                in={expanded}
+                timeout="auto"
+                unmountOnExit
+              >
+                <Box sx={{ ...cardContentStyles, rowGap: 2, p: 0 }}>
+                  <Description description={description} />
+                  <PriceTable pricesArr={price} />
+                </Box>
+              </Collapse>
+            </CardContent>
+            <Divider
+              variant="middle"
+              sx={{ mt: 2 }}
+            />
+            <CardActions
+              disableSpacing
+              sx={cardActionsStyles}
             >
-              <ExpandMoreIcon
-                color="primary"
-                fontSize="large"
+              <BookNowButton url={link} />
+              <ExpandMoreButton
+                expanded={expanded}
+                handleExpandClick={handleExpandClick}
               />
-            </Tooltip>
-          </ExpandMore>
-        </CardActions>
+            </CardActions>
+          </GridItem>
+        </GridContainer>
       </GridCard>
     </GridItem>
   );

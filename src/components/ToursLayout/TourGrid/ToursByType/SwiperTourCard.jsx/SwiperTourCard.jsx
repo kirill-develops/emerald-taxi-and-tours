@@ -1,4 +1,3 @@
-import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import CardActions from '@mui/material/CardActions';
@@ -13,18 +12,8 @@ const cardActionsStyles = { p: 2 };
 export default function SwiperTourCard({ tour }) {
   const { name, area, link, tripAdvisorPhotos } = tour;
 
-  const cardContentStyles = {
-    pt: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    alignContent: 'center',
-  };
-
   return (
-    <GridCard
-      variant="elevation"
-      sx={{ height: 200, minHeight: 'fit-content' }}
-    >
+    <GridCard sx={{ height: 150 }}>
       <GridContainer sx={{ height: '100%' }}>
         <CardImage
           picData={tripAdvisorPhotos[0]}
@@ -42,7 +31,6 @@ export default function SwiperTourCard({ tour }) {
             title={name}
             subheader={area}
           />
-          <CardContent sx={cardContentStyles}></CardContent>
           <Divider variant="middle" />
           <CardActions
             disableSpacing

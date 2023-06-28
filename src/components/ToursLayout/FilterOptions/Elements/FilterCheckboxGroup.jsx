@@ -6,9 +6,9 @@ import { extractProps, useTour } from '@state/useTour';
 
 const checkboxStyles = { py: 0.5 };
 
-const checkboxInputProps = (label) => ({ 'aria-label': label });
+const getCheckboxInputProps = (label) => ({ 'aria-label': label });
 
-function FilterCheckboxGroup({ filterState, dataFilter }) {
+export default function FilterCheckboxGroup({ filterState, dataFilter }) {
   const [state, actions] = useTour();
   const { toggleCheckbox, findAvailableFilters } = actions;
 
@@ -24,7 +24,10 @@ function FilterCheckboxGroup({ filterState, dataFilter }) {
     <FormGroup>
       {filterOptions.map((item) => {
         const label = item?.name ? item.name : item;
+
         const link = typeof item?.link === 'string' ? item.link : item;
+
+        const ariaProp = getCheckboxInputProps(label);
 
         return (
           <FormControlLabel
@@ -35,7 +38,7 @@ function FilterCheckboxGroup({ filterState, dataFilter }) {
                 size="small"
                 color="primary"
                 sx={checkboxStyles}
-                inputProps={checkboxInputProps(label)}
+                inputProps={ariaProp}
                 value={link}
                 checked={state[filterState][link]}
                 disabled={!filterAvailable[link]}
@@ -48,5 +51,3 @@ function FilterCheckboxGroup({ filterState, dataFilter }) {
     </FormGroup>
   );
 }
-
-export default React.memo(FilterCheckboxGroup);

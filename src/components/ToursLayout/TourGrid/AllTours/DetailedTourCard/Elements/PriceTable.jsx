@@ -43,7 +43,7 @@ const tableRowStyles = (filterStartLocation) => ({
     filterStartLocation && `${theme.palette.text.primary} !important`,
 });
 
-const tableContainerStyles = { maxWidth: 500, marginY: 2 };
+const tableContainerStyles = { maxWidth: 500 };
 
 function StyledTableRowComponent({ name, parish, link, price }) {
   const [{ filterStartLocation }] = useTour();
