@@ -9,6 +9,7 @@ import FormInputStack from '@elements/FormInputStack';
 import { transferStartDate } from '@data/formInitValues';
 import { capitalize } from '@helperFunctions';
 import useStepperData from '../../StepperLayout/hooks/useStepperData';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const pickerViews = ['month', 'day', 'hours', 'minutes'];
 
@@ -48,6 +49,10 @@ function usePickerProps(type) {
     [setFieldTouched, setFieldValue],
   );
 
+  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const size = isMd ? 'medium' : 'small';
+
   return {
     name: `${stepName}.${type}`,
     label: `${capitalizedType} Date & Time`,
@@ -65,6 +70,7 @@ function usePickerProps(type) {
         error: touched[stepName]?.[type] && Boolean(errors[stepName]?.[type]),
         required: values[stepName]?.transferType !== required,
         fullWidth: true,
+        size: size,
       },
     },
   };

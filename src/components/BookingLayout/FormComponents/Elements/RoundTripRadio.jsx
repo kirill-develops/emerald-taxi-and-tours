@@ -4,6 +4,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  useMediaQuery,
 } from '@mui/material';
 import { useFormikContext } from 'formik';
 import React from 'react';
@@ -19,6 +20,10 @@ function RoundTripRadio({}) {
   const { values, handleChange, handleBlur } = useFormikContext();
 
   const { activeStepUrl: stepName } = useStepperData();
+
+  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const size = isMd ? 'medium' : 'small';
 
   return (
     <>
@@ -37,7 +42,7 @@ function RoundTripRadio({}) {
           onBlur={handleBlur}
           sx={{
             gap: { xxs: 'initial', sm: 3 },
-            flexDirection: { xxs: 'column', sm: 'row' },
+            flexDirection: { xxs: 'column', xs: 'row' },
           }}
           row
         >
@@ -46,7 +51,7 @@ function RoundTripRadio({}) {
               key={value}
               checked={values?.flightDetails?.transferType === value}
               value={value}
-              control={<Radio />}
+              control={<Radio size={size} />}
               label={label}
             />
           ))}

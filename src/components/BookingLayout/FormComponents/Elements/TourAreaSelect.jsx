@@ -1,4 +1,5 @@
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
@@ -48,12 +49,17 @@ function TourAreaSelect({}) {
 
   const selectedLabel = useSelectedItem(values[stepName]?.area);
 
+  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const size = isMd ? 'medium' : 'small';
+
   return (
     <FormControl
       fullWidth
       required
       error={touched[stepName]?.area && Boolean(errors[stepName]?.area)}
       margin="normal"
+      size={size}
     >
       <InputLabel>{inputLabel}</InputLabel>
       <Select
@@ -62,6 +68,7 @@ function TourAreaSelect({}) {
         value={values[stepName]?.area}
         onChange={handleChange}
         onBlur={handleBlur}
+        size={size}
         renderValue={() => <Typography as="span">{selectedLabel}</Typography>}
       >
         {menuItemsJSX}

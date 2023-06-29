@@ -4,6 +4,7 @@ const TextField = dynamic(() => import('@mui/material/TextField'));
 import { useFormikContext } from 'formik';
 import React from 'react';
 import usePhoneField from '@hooks/usePhoneField';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function FormTextField({
   stepName,
@@ -26,6 +27,10 @@ function FormTextField({
 
   const secondFieldStyles = second && { mt: { xxs: 1, sm: 0 } };
 
+  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const size = isMd ? 'medium' : 'small';
+
   return (
     <TextField
       name={`${stepName}.${fieldName}`}
@@ -45,6 +50,7 @@ function FormTextField({
       variant="outlined"
       sx={{ ...secondFieldStyles, ...sx }}
       required={required}
+      size={size}
       fullWidth
       {...props}
     />

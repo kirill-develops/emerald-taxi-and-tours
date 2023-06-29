@@ -9,6 +9,7 @@ import FormInputStack from '@elements/FormInputStack';
 import { tourDate } from '@data/formInitValues';
 import { capitalize } from '@helperFunctions';
 import useStepperData from '../../StepperLayout/hooks/useStepperData';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function useSlotProps(type) {
   const { values, errors, touched, setFieldValue, setFieldTouched } =
@@ -30,6 +31,9 @@ function useSlotProps(type) {
     },
     [setFieldValue, setFieldTouched],
   );
+  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const size = isMd ? 'medium' : 'small';
 
   return {
     name: `${stepName}.${type}`,
@@ -47,6 +51,7 @@ function useSlotProps(type) {
         error: touched[stepName]?.[type] && Boolean(errors[stepName]?.[type]),
         required: true,
         fullWidth: true,
+        size: size,
       },
     },
   };
