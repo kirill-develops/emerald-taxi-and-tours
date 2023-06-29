@@ -10,6 +10,7 @@ import FormInputStack from '@elements/FormInputStack';
 import useTransferPrice from '../hooks/useTransferPrice';
 import { ParamContext } from '../FormContextProvider';
 import useStepperData from '../../StepperLayout/hooks/useStepperData';
+import { useMediaQuery } from '@mui/material';
 
 function useMenuItems(transferPrice, passengers, isChildMenu) {
   const { type } = useContext(ParamContext);
@@ -78,6 +79,10 @@ function FormPassengerSelect({}) {
     true,
   );
 
+  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const size = isMd ? 'medium' : 'small';
+
   const handlePassangerChange = (event) => {
     const {
       target: { value: targetValue },
@@ -108,6 +113,7 @@ function FormPassengerSelect({}) {
           value={values[stepName]?.passengers}
           onChange={handlePassangerChange}
           onBlur={handleBlur}
+          size={size}
           renderValue={(selected) => (
             <Typography as="span">{selected}</Typography>
           )}
@@ -132,6 +138,7 @@ function FormPassengerSelect({}) {
           value={values[stepName]?.childPassengers}
           onChange={handleChange}
           onBlur={handleBlur}
+          size={size}
           renderValue={(selected) => (
             <Typography as="span">{selected}</Typography>
           )}

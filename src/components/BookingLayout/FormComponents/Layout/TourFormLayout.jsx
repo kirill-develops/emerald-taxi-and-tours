@@ -1,5 +1,5 @@
 import React from 'react';
-import FormPassengerSelects from '../Elements/FormPassengerSelects';
+import FormPassengerSelects from '../PassengerSelects/FormPassengerSelects';
 import DatePicker from '../Elements/TourDatePicker';
 import TourAreaSelect from '../Elements/TourAreaSelect';
 import { AccomTextField } from '../Elements/FormTextFields';

@@ -1,7 +1,7 @@
 import React from 'react';
 import DatePicker from '../Elements/TransferDatePicker';
 import FormInputStack from '@elements/FormInputStack';
-import FormPassengerSelects from '../Elements/FormPassengerSelects';
+import FormPassengerSelects from '../PassengerSelects/FormPassengerSelects';
 import RoundTripRadio from '../Elements/RoundTripRadio';
 import {
   AccomTextField,
