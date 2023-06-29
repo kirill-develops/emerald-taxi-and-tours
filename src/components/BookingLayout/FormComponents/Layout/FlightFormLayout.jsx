@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from '../Elements/TransferDatePicker';
+import DatePicker from '../TransferDatePicker/TransferDatePicker';
 import FormInputStack from '@elements/FormInputStack';
 import FormPassengerSelects from '../PassengerSelects/FormPassengerSelects';
 import RoundTripRadio from '../Elements/RoundTripRadio';
