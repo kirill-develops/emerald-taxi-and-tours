@@ -8,12 +8,10 @@ import {
   LastNameTextField,
 } from '../Elements/FormTextFields';
 
-const inputStackStyles = { width: '100%' };
-
 export default React.memo(function FormPersonalDetails() {
   return (
     <>
-      <FormInputStack sx={inputStackStyles}>
+      <FormInputStack>
         <FirstNameTextField />
         <LastNameTextField />
       </FormInputStack>

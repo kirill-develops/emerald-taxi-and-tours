@@ -18,7 +18,7 @@ export default React.memo(function FormPassengerSelects({}) {
   } = usePropGetter('childPassengers');
 
   return (
-    <FormInputStack sx={{ width: '100%' }}>
+    <FormInputStack>
       <FormControl
         fullWidth
         required

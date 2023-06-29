@@ -5,6 +5,24 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import usePickerProps from './hooks/usePickerProps';
+import { styled } from '@mui/material';
+
+const StyledInputStack = styled(FormInputStack)(({ theme }) =>
+  theme.unstable_sx({ rowGap: 1 }),
+);
+
+const typographyStyles = { alignSelf: 'center' };
+
+function SeperatorText() {
+  return (
+    <Typography
+      variant="h6"
+      sx={typographyStyles}
+    >
+      To
+    </Typography>
+  );
+}
 
 export default React.memo(function TransferDatePicker() {
   const arriveProps = usePickerProps('arrive');
@@ -12,16 +30,11 @@ export default React.memo(function TransferDatePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <FormInputStack sx={{ rowGap: 1, width: '100%' }}>
+      <StyledInputStack>
         <DateTimePicker {...arriveProps} />
-        <Typography
-          variant="h6"
-          sx={{ alignSelf: 'center' }}
-        >
-          To
-        </Typography>
+        <SeperatorText />
         <DateTimePicker {...departProps} />
-      </FormInputStack>
+      </StyledInputStack>
     </LocalizationProvider>
   );
 });

@@ -11,6 +11,7 @@ export default React.memo(function FormInputStack({ children, sx, ...rest }) {
         mb: 1,
         columnGap: 3,
         rowGap: 3,
+        width: '100%',
         ...sx,
       }}
       {...rest}

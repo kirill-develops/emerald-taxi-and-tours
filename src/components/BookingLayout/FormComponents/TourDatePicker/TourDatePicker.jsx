@@ -12,7 +12,7 @@ function TourDatePicker({}) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <FormInputStack sx={{ width: '100%' }}>
+      <FormInputStack>
         <DatePicker {...dateProps} />
         <TimePicker {...timeProps} />
       </FormInputStack>

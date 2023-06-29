@@ -13,7 +13,7 @@ export default React.memo(function FormFlightDetails() {
   return (
     <>
       <RoundTripRadio />
-      <FormInputStack sx={{ width: '100%' }}>
+      <FormInputStack>
         <AirlineTextField />
         <FlightNumTextField />
       </FormInputStack>
