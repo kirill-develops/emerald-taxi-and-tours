@@ -1,3 +1,8 @@
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import { styled } from '@mui/material/styles';
 import { useFormikContext } from 'formik';
 import React from 'react';
@@ -10,14 +15,23 @@ const options = [
   { value: 'roundtrip', label: 'RoundTrip' },
 ];
 
+const StyledRadioGroup = styled(RadioGroup)(({ theme }) =>
+  theme.unstable_sx({
+    gap: { xxs: 'initial', sm: 3 },
+    flexDirection: { xxs: 'column', xs: 'row' },
+  }),
+);
 
 const StyledFormControl = styled(FormControl)(({ theme }) =>
   theme.unstable_sx({ mt: 2, mb: 1 }),
 );
+
 export default React.memo(function RoundTripRadio({}) {
   const { values, handleChange, handleBlur } = useFormikContext();
 
   const { activeStepUrl: stepName } = useStepperData();
+
+  const formLabel = 'Transfer Type';
 
   const size = useFieldSizeGetter();
 
@@ -25,33 +39,30 @@ export default React.memo(function RoundTripRadio({}) {
     <>
       <StyledFormControl size={size}>
         <FormLabel
-          id="transfer-type-select-radio-label"
+          id="transfer-type-select-radio"
           required
         >
-          Transfer Type
+          {formLabel}
         </FormLabel>
-        <RadioGroup
+        <StyledRadioGroup
+          area-aria-labelledby="transfer-type-select-radio"
+          label={formLabel}
           name={`${stepName}.transferType`}
-          area-aria-labelledby="transfer-type-select-radio-label"
           value={values[stepName]?.transferType}
           onChange={handleChange}
           onBlur={handleBlur}
-          sx={{
-            gap: { xxs: 'initial', sm: 3 },
-            flexDirection: { xxs: 'column', xs: 'row' },
-          }}
           row
         >
           {options.map(({ value, label }) => (
             <FormControlLabel
               key={value}
-              checked={values?.flightDetails?.transferType === value}
+              checked={value === values?.flightDetails?.transferType}
               value={value}
               control={<Radio size={size} />}
               label={label}
             />
           ))}
-        </RadioGroup>
+        </StyledRadioGroup>
       </StyledFormControl>
     </>
   );
