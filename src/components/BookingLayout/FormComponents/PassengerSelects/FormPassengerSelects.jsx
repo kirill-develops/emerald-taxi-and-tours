@@ -1,43 +1,35 @@
-import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import React from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import FormHelperTextEl from '../Elements/FormHelperTextEl';
 import usePropGetter from './hooks/usePassengerPropGetter';
+import FormControlEl from '../Elements/FormControlEl';
 
 export default React.memo(function FormPassengerSelects({}) {
-  const { passengersErrors, passengersMenuItems, passengersProps } =
-    usePropGetter('passengers');
+  const { passengersMenuItems, passengersProps } = usePropGetter('passengers');
 
-  const {
-    childPassengersErrors,
-    childPassengersMenuItems,
-    childPassengersProps,
-    size,
-  } = usePropGetter('childPassengers');
+  const { childPassengersMenuItems, childPassengersProps } =
+    usePropGetter('childPassengers');
 
   return (
     <FormInputStack>
-      <FormControl
+      <FormControlEl
         fullWidth
-        required
-        error={passengersErrors}
-        size={size}
+        valueName="passengers"
       >
         <InputLabel># of Passengers</InputLabel>
         <Select {...passengersProps}>{passengersMenuItems}</Select>
         <FormHelperTextEl valueName="passengers" />
-      </FormControl>
-      <FormControl
+      </FormControlEl>
+      <FormControlEl
         fullWidth
-        error={childPassengersErrors}
-        size={size}
+        valueName="childPassengers"
       >
         <InputLabel># of Passengers under 12</InputLabel>
         <Select {...childPassengersProps}>{childPassengersMenuItems}</Select>
         <FormHelperTextEl valueName="childPassengers" />
-      </FormControl>
+      </FormControlEl>
     </FormInputStack>
   );
 });

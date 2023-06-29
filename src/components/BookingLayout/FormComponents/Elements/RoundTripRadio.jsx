@@ -8,6 +8,7 @@ import { useFormikContext } from 'formik';
 import React from 'react';
 import useFieldSizeGetter from '../hooks/useFieldSizeGetter';
 import useFieldPropGetter from '../hooks/useFieldPropGetter';
+import FormControlEl from './FormControlEl';
 
 const options = [
   { value: 'arrival', label: 'Arrival' },
@@ -22,28 +23,24 @@ const StyledRadioGroup = styled(RadioGroup)(({ theme }) =>
   }),
 );
 
-const StyledFormControl = styled(FormControl)(({ theme }) =>
-  theme.unstable_sx({ mt: 2, mb: 1 }),
-);
-
 export default React.memo(function RoundTripRadio({}) {
   const { values } = useFormikContext();
 
+  const valueName = 'transferType';
+
   const inputLabel = 'Transfer Type';
 
-  const radioGroupProps = useFieldPropGetter('transferType', inputLabel);
+  const radioGroupProps = useFieldPropGetter(valueName, inputLabel);
 
   const size = useFieldSizeGetter();
 
   return (
     <>
-      <StyledFormControl size={size}>
-        <FormLabel
-          id="transfer-type-select-radio"
-          required
-        >
-          {inputLabel}
-        </FormLabel>
+      <FormControlEl
+        margin="normal"
+        valueName={valueName}
+      >
+        <FormLabel id="transfer-type-select-radio">{inputLabel}</FormLabel>
         <StyledRadioGroup
           area-aria-labelledby="transfer-type-select-radio"
           {...radioGroupProps}
@@ -58,7 +55,7 @@ export default React.memo(function RoundTripRadio({}) {
             />
           ))}
         </StyledRadioGroup>
-      </StyledFormControl>
+      </FormControlEl>
     </>
   );
 });
