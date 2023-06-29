@@ -13,7 +13,6 @@ import { gridSpacingProps } from '@material/theme';
 import DividerRight from '@elements/DividerRight';
 import SectionTitle from '@elements/SectionTitle';
 import SwiperTourCard from './SwiperTourCard.jsx/SwiperTourCard';
-import useSortData from '../hooks/useSortData';
 
 const TourSwiper = styled(Swiper)(({ theme }) =>
   theme.unstable_sx({
@@ -118,13 +117,11 @@ TourSwiperComponent.displayName = 'TourSwiperComponent';
 
 function ToursByType() {
   const [state, actions] = useTour();
-  const { sort, filteredData, filterStartLocation } = state;
-
-  const sortedTourData = useSortData(filteredData, sort, filterStartLocation);
+  const { tourData } = state;
 
   const tourDataByType = useMemo(() => {
     const data = {};
-    sortedTourData.forEach((tour) => {
+    tourData.forEach((tour) => {
       tour.type.forEach((type) => {
         data[type] = data[type] ?? [];
         data[type].push(tour);
@@ -134,7 +131,7 @@ function ToursByType() {
     return Object.entries(data)
       .map(([type, tours]) => ({ type, tours }))
       .sort((a, b) => a.type.localeCompare(b.type));
-  }, [sortedTourData]);
+  }, [tourData]);
 
   return tourDataByType.map(({ type, tours }, index) => (
     <TourSwiperComponent
