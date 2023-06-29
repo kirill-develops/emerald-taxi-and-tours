@@ -6,8 +6,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import { styled } from '@mui/material/styles';
 import { useFormikContext } from 'formik';
 import React from 'react';
-import useStepperData from '../../StepperLayout/hooks/useStepperData';
 import useFieldSizeGetter from '../hooks/useFieldSizeGetter';
+import useFieldPropGetter from '../hooks/useFieldPropGetter';
 
 const options = [
   { value: 'arrival', label: 'Arrival' },
@@ -27,11 +27,11 @@ const StyledFormControl = styled(FormControl)(({ theme }) =>
 );
 
 export default React.memo(function RoundTripRadio({}) {
-  const { values, handleChange, handleBlur } = useFormikContext();
+  const { values } = useFormikContext();
 
-  const { activeStepUrl: stepName } = useStepperData();
+  const inputLabel = 'Transfer Type';
 
-  const formLabel = 'Transfer Type';
+  const radioGroupProps = useFieldPropGetter('transferType', inputLabel);
 
   const size = useFieldSizeGetter();
 
@@ -42,16 +42,11 @@ export default React.memo(function RoundTripRadio({}) {
           id="transfer-type-select-radio"
           required
         >
-          {formLabel}
+          {inputLabel}
         </FormLabel>
         <StyledRadioGroup
           area-aria-labelledby="transfer-type-select-radio"
-          label={formLabel}
-          name={`${stepName}.transferType`}
-          value={values[stepName]?.transferType}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          row
+          {...radioGroupProps}
         >
           {options.map(({ value, label }) => (
             <FormControlLabel

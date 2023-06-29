@@ -4,28 +4,7 @@ import Select from '@mui/material/Select';
 import React from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import FormHelperTextEl from '../Elements/FormHelperTextEl';
-import useMenuItemGetter from './hooks/useMenuItemGetter';
-import useSelectPropGetter from './hooks/useSelectPropGetter';
-import useErrorGetter from '../hooks/useErrorGetter';
-import useFieldSizeGetter from '../hooks/useFieldSizeGetter';
-
-function usePropGetter(valueName) {
-  const menuItemKey = `${valueName}MenuItems`;
-  const propKey = `${valueName}Props`;
-  const errorKey = `${valueName}Errors`;
-
-  const menuItems = useMenuItemGetter(valueName);
-  const props = useSelectPropGetter(valueName);
-  const errors = useErrorGetter(valueName);
-  const size = useFieldSizeGetter();
-
-  return {
-    [menuItemKey]: menuItems,
-    [propKey]: props,
-    [errorKey]: errors,
-    size,
-  };
-}
+import usePropGetter from './hooks/usePassengerPropGetter';
 
 export default React.memo(function FormPassengerSelects({}) {
   const { passengersErrors, passengersMenuItems, passengersProps } =

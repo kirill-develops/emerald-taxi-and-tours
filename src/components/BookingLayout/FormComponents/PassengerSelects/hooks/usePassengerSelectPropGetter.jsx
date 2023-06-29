@@ -2,18 +2,17 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useFormikContext } from 'formik';
 import useStepperData from '../../../StepperLayout/hooks/useStepperData';
-import useFieldSizeGetter from '../../hooks/useFieldSizeGetter';
+import useFieldPropGetter from '../../hooks/useFieldPropGetter';
 
-export default function useSelectPropGetter(valueName) {
-  const { values, handleChange, handleBlur, setFieldValue, setFieldTouched } =
+export default function usePassengerSelectPropGetter(valueName) {
+  const { values, handleChange, setFieldValue, setFieldTouched } =
     useFormikContext();
 
   const { activeStepUrl: stepName } = useStepperData();
 
-  const size = useFieldSizeGetter();
+  const fieldProps = useFieldPropGetter(valueName);
 
   const isPassengers = valueName === 'passengers';
-
   const labelSuffix = isPassengers ? 'Passengers' : 'Passengers under 12';
 
   const handlePassangerChange = (event) => {
@@ -33,12 +32,9 @@ export default function useSelectPropGetter(valueName) {
   const onChange = isPassengers ? handlePassangerChange : handleChange;
 
   return {
+    ...fieldProps,
     label: `# of ${labelSuffix}`,
-    name: `${stepName}.${valueName}`,
-    value: values[stepName]?.[valueName],
     onChange: onChange,
-    onBlur: handleBlur,
-    size: size,
     renderValue: (selected) => <Typography as="span">{selected}</Typography>,
   };
 }
