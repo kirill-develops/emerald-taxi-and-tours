@@ -31,7 +31,7 @@ export default function LayoutTitle({ title, subheader, airport }) {
       variant="h5"
       component="h2"
       color={subheaderColor}
-      sx={subheaderMargin}
+      sx={{ ...subheaderMargin }}
     >
       {subheader}
     </Typography>
