@@ -3,10 +3,10 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import React from 'react';
 import FormInputStack from '@elements/FormInputStack';
-import FormHelperTextEl from './Elements/FormHelperTextEl';
+import FormHelperTextEl from '../Elements/FormHelperTextEl';
 import useMenuItemGetter from './hooks/useMenuItemGetter';
 import useSelectPropGetter from './hooks/useSelectPropGetter';
-import useErrorGetter from './hooks/useErrorGetter';
+import useErrorGetter from '../hooks/useErrorGetter';
 import useFieldSizeGetter from '../hooks/useFieldSizeGetter';
 
 function usePropGetter(valueName) {
@@ -19,7 +19,12 @@ function usePropGetter(valueName) {
   const errors = useErrorGetter(valueName);
   const size = useFieldSizeGetter();
 
+  return {
+    [menuItemKey]: menuItems,
+    [propKey]: props,
+    [errorKey]: errors,
     size,
+  };
 }
 
 export default React.memo(function FormPassengerSelects({}) {
@@ -32,10 +37,6 @@ export default React.memo(function FormPassengerSelects({}) {
     childPassengersProps,
     size,
   } = usePropGetter('childPassengers');
-
-  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
-  const size = isMd ? 'medium' : 'small';
 
   return (
     <FormInputStack sx={{ width: '100%' }}>

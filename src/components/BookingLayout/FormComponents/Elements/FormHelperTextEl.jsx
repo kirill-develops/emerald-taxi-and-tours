@@ -1,7 +1,7 @@
 import FormHelperText from '@mui/material/FormHelperText';
 import { useFormikContext } from 'formik';
 import React, { useMemo } from 'react';
-import useStepperData from '../../../StepperLayout/hooks/useStepperData';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
 export default function FormHelperTextEl({ valueName }) {
   const { touched, errors } = useFormikContext();

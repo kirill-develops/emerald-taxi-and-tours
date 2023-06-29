@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-import useStepperData from '../../../StepperLayout/hooks/useStepperData';
+import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
 export default function useErrorGetter(valueName) {
   const { touched, errors } = useFormikContext();
