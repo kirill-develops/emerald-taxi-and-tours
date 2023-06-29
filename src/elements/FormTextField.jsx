@@ -4,7 +4,7 @@ const TextField = dynamic(() => import('@mui/material/TextField'));
 import { useFormikContext } from 'formik';
 import React from 'react';
 import usePhoneField from '@hooks/usePhoneField';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useFieldSizeGetter from '../components/BookingLayout/FormComponents/hooks/useFieldSizeGetter';
 
 function FormTextField({
   stepName,
@@ -27,9 +27,7 @@ function FormTextField({
 
   const secondFieldStyles = second && { mt: { xxs: 1, sm: 0 } };
 
-  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
-  const size = isMd ? 'medium' : 'small';
+  const size = useFieldSizeGetter();
 
   return (
     <TextField

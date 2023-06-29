@@ -1,8 +1,8 @@
 import Typography from '@mui/material/Typography';
-import { useMediaQuery } from '@mui/material';
 import React from 'react';
 import { useFormikContext } from 'formik';
 import useStepperData from '../../../StepperLayout/hooks/useStepperData';
+import useFieldSizeGetter from '../../hooks/useFieldSizeGetter';
 
 export default function useSelectPropGetter(valueName) {
   const { values, handleChange, handleBlur, setFieldValue, setFieldTouched } =
@@ -10,9 +10,7 @@ export default function useSelectPropGetter(valueName) {
 
   const { activeStepUrl: stepName } = useStepperData();
 
-  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
-  const size = isMd ? 'medium' : 'small';
+  const size = useFieldSizeGetter();
 
   const isPassengers = valueName === 'passengers';
 

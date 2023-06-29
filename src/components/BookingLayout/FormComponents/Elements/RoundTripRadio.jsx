@@ -1,14 +1,8 @@
-import {
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  useMediaQuery,
-} from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { useFormikContext } from 'formik';
 import React from 'react';
 import useStepperData from '../../StepperLayout/hooks/useStepperData';
+import useFieldSizeGetter from '../hooks/useFieldSizeGetter';
 
 const options = [
   { value: 'arrival', label: 'Arrival' },
@@ -16,21 +10,20 @@ const options = [
   { value: 'roundtrip', label: 'RoundTrip' },
 ];
 
-function RoundTripRadio({}) {
+
+const StyledFormControl = styled(FormControl)(({ theme }) =>
+  theme.unstable_sx({ mt: 2, mb: 1 }),
+);
+export default React.memo(function RoundTripRadio({}) {
   const { values, handleChange, handleBlur } = useFormikContext();
 
   const { activeStepUrl: stepName } = useStepperData();
 
-  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
-  const size = isMd ? 'medium' : 'small';
+  const size = useFieldSizeGetter();
 
   return (
     <>
-      <FormControl
-        sx={{ mt: 2, mb: 1 }}
-        size={size}
-      >
+      <StyledFormControl size={size}>
         <FormLabel
           id="transfer-type-select-radio-label"
           required
@@ -59,9 +52,7 @@ function RoundTripRadio({}) {
             />
           ))}
         </RadioGroup>
-      </FormControl>
+      </StyledFormControl>
     </>
   );
-}
-
-export default RoundTripRadio;
+});

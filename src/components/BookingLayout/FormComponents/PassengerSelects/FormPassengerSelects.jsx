@@ -7,7 +7,7 @@ import FormHelperTextEl from './Elements/FormHelperTextEl';
 import useMenuItemGetter from './hooks/useMenuItemGetter';
 import useSelectPropGetter from './hooks/useSelectPropGetter';
 import useErrorGetter from './hooks/useErrorGetter';
-import { useMediaQuery } from '@mui/material';
+import useFieldSizeGetter from '../hooks/useFieldSizeGetter';
 
 function usePropGetter(valueName) {
   const menuItemKey = `${valueName}MenuItems`;
@@ -17,8 +17,9 @@ function usePropGetter(valueName) {
   const menuItems = useMenuItemGetter(valueName);
   const props = useSelectPropGetter(valueName);
   const errors = useErrorGetter(valueName);
+  const size = useFieldSizeGetter();
 
-  return { [menuItemKey]: menuItems, [propKey]: props, [errorKey]: errors };
+    size,
 }
 
 export default React.memo(function FormPassengerSelects({}) {
@@ -29,6 +30,7 @@ export default React.memo(function FormPassengerSelects({}) {
     childPassengersErrors,
     childPassengersMenuItems,
     childPassengersProps,
+    size,
   } = usePropGetter('childPassengers');
 
   const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
