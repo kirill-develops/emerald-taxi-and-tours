@@ -51,7 +51,6 @@ export function AirlineTextField() {
 export function FlightNumTextField() {
   return useStepTextField('flightNum', 'Flight Number', {
     type: 'tel',
-    second: true,
     inputProps: {
       step: 1,
       inputMode: 'numeric',
@@ -64,7 +63,7 @@ export function FirstNameTextField() {
 }
 
 export function LastNameTextField() {
-  return useStepTextField('lastName', 'Last Name', { second: true });
+  return useStepTextField('lastName', 'Last Name');
 }
 
 export function EmailTextField() {

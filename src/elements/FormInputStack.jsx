@@ -10,7 +10,7 @@ export default React.memo(function FormInputStack({ children, sx, ...rest }) {
         mt: 2,
         mb: 1,
         columnGap: 3,
-        rowGap: 2,
+        rowGap: 3,
         ...sx,
       }}
       {...rest}
