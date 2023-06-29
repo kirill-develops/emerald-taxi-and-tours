@@ -7,6 +7,7 @@ import FormHelperTextEl from './Elements/FormHelperTextEl';
 import useMenuItemGetter from './hooks/useMenuItemGetter';
 import useSelectPropGetter from './hooks/useSelectPropGetter';
 import useErrorGetter from './hooks/useErrorGetter';
+import { useMediaQuery } from '@mui/material';
 
 function usePropGetter(valueName) {
   const menuItemKey = `${valueName}MenuItems`;
@@ -30,12 +31,17 @@ export default React.memo(function FormPassengerSelects({}) {
     childPassengersProps,
   } = usePropGetter('childPassengers');
 
+  const isMd = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const size = isMd ? 'medium' : 'small';
+
   return (
     <FormInputStack sx={{ width: '100%' }}>
       <FormControl
         fullWidth
         required
         error={passengersErrors}
+        size={size}
       >
         <InputLabel># of Passengers</InputLabel>
         <Select {...passengersProps}>{passengersMenuItems}</Select>
@@ -44,6 +50,7 @@ export default React.memo(function FormPassengerSelects({}) {
       <FormControl
         fullWidth
         error={childPassengersErrors}
+        size={size}
       >
         <InputLabel># of Passengers under 12</InputLabel>
         <Select {...childPassengersProps}>{childPassengersMenuItems}</Select>

@@ -27,7 +27,10 @@ function RoundTripRadio({}) {
 
   return (
     <>
-      <FormControl sx={{ mt: 2, mb: 1 }}>
+      <FormControl
+        sx={{ mt: 2, mb: 1 }}
+        size={size}
+      >
         <FormLabel
           id="transfer-type-select-radio-label"
           required
