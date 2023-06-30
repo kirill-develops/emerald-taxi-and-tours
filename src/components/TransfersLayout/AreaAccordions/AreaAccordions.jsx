@@ -17,34 +17,35 @@ export default React.memo(function AreaAccordionArr({ transferData, title }) {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const renderAccordion = (areaData) => {
+    const { link, name } = areaData;
+    const isExpanded = expanded === link;
+
+    return (
+      <Accordion
+        key={link}
+        expanded={isExpanded}
+        onChange={handleExpand(link)}
+        TransitionProps={{ unmountOnExit: true }}
+      >
+        <AccordionSummaryEl link={link}>
+          <Typography variant="h5">{name}</Typography>
+        </AccordionSummaryEl>
+        <AccordionDetails>
+          <TransferGrid>
+            <DestinationCards areaData={areaData} />
+          </TransferGrid>
+        </AccordionDetails>
+      </Accordion>
+    );
+  };
+
+  const renderedAccordions = transferData.map(renderAccordion);
+
   return (
     <Stack rowGap={1}>
       <SectionTitle>{title}</SectionTitle>
-      <Container maxWidth="lg">
-        {transferData.map((areaData) => {
-          const { link, name } = areaData;
-
-          const isExpanded = expanded === link;
-
-          return (
-            <Accordion
-              key={link}
-              expanded={isExpanded}
-              onChange={handleExpand(link)}
-              TransitionProps={{ unmountOnExit: true }}
-            >
-              <AccordionSummaryEl link={link}>
-                <Typography variant="h5">{name}</Typography>
-              </AccordionSummaryEl>
-              <AccordionDetails>
-                <TransferGrid>
-                  <DestinationCards areaData={areaData} />
-                </TransferGrid>
-              </AccordionDetails>
-            </Accordion>
-          );
-        })}
-      </Container>
+      <Container maxWidth="lg">{renderedAccordions}</Container>
     </Stack>
   );
 });
