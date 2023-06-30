@@ -8,11 +8,11 @@ import { styled, useTheme } from '@mui/material/styles';
 import 'swiper/swiper.min.css';
 
 import { GridItem } from '@elements/CustomGridEl';
-import { useTour } from '@state/useTour';
 import { gridSpacingProps } from '@material/theme';
 import DividerRight from '@elements/DividerRight';
 import SectionTitle from '@elements/SectionTitle';
 import SwiperTourCard from './SwiperTourCard.jsx/SwiperTourCard';
+import { useTour } from '../../hooks/useTour';
 
 const TourSwiper = styled(Swiper)(({ theme }) =>
   theme.unstable_sx({

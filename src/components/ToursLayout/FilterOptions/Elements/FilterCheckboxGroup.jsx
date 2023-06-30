@@ -2,7 +2,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import React, { useCallback } from 'react';
-import { extractProps, useTour } from '@state/useTour';
+import { useTour, extractProps } from '../../hooks/useTour';
 
 const checkboxStyles = { py: 0.5 };
 

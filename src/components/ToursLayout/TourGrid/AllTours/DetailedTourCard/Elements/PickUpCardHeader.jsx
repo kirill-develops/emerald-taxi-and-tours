@@ -2,7 +2,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React, { useMemo } from 'react';
 import { tourData } from '@data/tours';
-import { useTour } from '@state/useTour';
+import { useTour } from '../../../../hooks/useTour';
 
 function checkObjectValues(obj) {
   const trueProps = [];

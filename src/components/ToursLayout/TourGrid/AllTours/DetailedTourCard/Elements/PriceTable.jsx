@@ -7,8 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Paper } from '@mui/material';
 import React from 'react';
-
-import { useTour } from '@state/useTour';
+import { useTour } from '../../../../hooks/useTour';
 
 const StyledHeaderTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

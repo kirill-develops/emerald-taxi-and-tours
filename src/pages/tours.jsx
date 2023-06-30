@@ -1,8 +1,8 @@
 import React from 'react';
 import PageLayout from '@components/PageLayout/Layout';
-import { TourContainer } from '@state/useTour';
 import ToursLayout from '@Tour/ToursLayout';
 import Head from 'next/head';
+import TourContext from '@context/TourContext';
 
 function tours() {
   return (
@@ -10,11 +10,11 @@ function tours() {
       <Head>
         <title>Attractions & Tours | EMERALD Taxi & Tours</title>
       </Head>
-      <TourContainer>
+      <TourContext>
         <PageLayout title="Tours & Attractions">
           <ToursLayout />
         </PageLayout>
-      </TourContainer>
+      </TourContext>
     </>
   );
 }

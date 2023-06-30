@@ -1,4 +1,4 @@
-import { createStore, createHook, createContainer } from 'react-sweet-state';
+import { createStore, createHook } from 'react-sweet-state';
 import tourData from '@data/tourData.json';
 
 function initFilter(data, key) {
@@ -46,7 +46,7 @@ export function extractProps(key) {
 }
 
 
-const tourStore = createStore({
+export const tourStore = createStore({
   name: 'tour Store',
   initialState: {
     sort: '',
@@ -123,7 +123,5 @@ const tourStore = createStore({
     }
   }
 });
-
-export const TourContainer = createContainer(tourStore);
 
 export const useTour = createHook(tourStore);

@@ -1,11 +1,11 @@
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import React from 'react';
-import { useTour } from '@state/useTour';
 import MobileFilterButton from './Elements/FilterButtonMobile';
 import FilterOptions from '../FilterOptions/FilterOptions';
 import SortButton from './Elements/SortButton';
 import MaxWidthContainer from '../../../elements/MaxWidthContainer';
+import { useTour } from '../hooks/useTour';
 
 const boxStyles = {
   display: 'flex',

@@ -12,6 +12,7 @@
       "@Transfer/*" : ["components/TransferComponents/*"],
       "@TransferPageLayout/*" : ["components/TransferPageLayout/*"],
       "@Public/*" : ["../public/*"],
+      "@context/*": ["context/*"]
     },
     "lib": [
       "dom",

@@ -1,7 +1,7 @@
 import TourCard from '../DetailedTourCard/DetailedTourCard';
 import React, { useMemo } from 'react';
-import { useTour } from '@state/useTour';
 import useSortData from '../../hooks/useSortData';
+import { useTour } from '../../../hooks/useTour';
 
 export default function SortedTours() {
   const [{ sort, filteredData, filterStartLocation }] = useTour();
