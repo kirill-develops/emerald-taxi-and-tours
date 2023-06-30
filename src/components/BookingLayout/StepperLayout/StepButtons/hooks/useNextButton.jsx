@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 import { useCallback, useContext } from 'react';
-import { BookingContext } from '../../../BookingLayout';
+import BookingContext from '@context/BookingContext';
 import useStepperData from '../../hooks/useStepperData';
 
 export default function useNextButton() {

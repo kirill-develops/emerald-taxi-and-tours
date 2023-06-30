@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
-import React, { useCallback, useContext, useMemo } from 'react';
-import { BookingContext } from '../../../BookingLayout';
+import { useCallback, useContext, useMemo } from 'react';
+import BookingContext from '@context/BookingContext';
 
 export default function useBackButton() {
   const {

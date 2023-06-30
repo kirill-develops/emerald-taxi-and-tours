@@ -1,7 +1,7 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Accordion from '@mui/material/Accordion';
 import React, { useCallback, useContext } from 'react';
-import { BookingContext } from '../BookingLayout';
+import BookingContext from '@context/BookingContext';
 
 export default function BookingAccordionComponent({ children, ...rest }) {
   const { expanded, setExpanded, setCookie, paperRef } =

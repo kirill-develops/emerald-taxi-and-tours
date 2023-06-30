@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import React, { useCallback, useContext } from 'react';
-import { BookingContext } from '../BookingLayout';
+import BookingContext from '@context/BookingContext';
 import useValidationSchema from '../hooks/useValidationSchema';
 
 export default function BookingFormik({ children, ...rest }) {

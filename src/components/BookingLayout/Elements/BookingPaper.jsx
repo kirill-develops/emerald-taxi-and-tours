@@ -1,6 +1,6 @@
 import Paper from '@mui/material/Paper';
 import React, { useContext, useEffect } from 'react';
-import { BookingContext } from '../BookingLayout';
+import BookingContext from '@context/BookingContext';
 
 function getPaperStyles(expanded = false) {
   return {

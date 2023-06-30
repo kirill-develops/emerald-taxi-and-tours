@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import StepperLayout from './StepperLayout/StepperLayout';
 import { ParamContext } from '@Form/FormContextProvider';
 import BookingAccordionSummary from './Elements/BookingAccordionSummary';
@@ -9,8 +9,7 @@ import BookingAccordion from './Elements/BookingAccordionComponent';
 import BookingFormik from './Elements/BookingFormik';
 import useExpandInit from './hooks/useExpandInit';
 import useFormCookie from './hooks/useFormCookie';
-
-export const BookingContext = createContext();
+import BookingContext from '@context/BookingContext';
 
 function BookingLayout() {
   const { type: bookingType } = useContext(ParamContext);
