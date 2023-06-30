@@ -3,10 +3,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { useContext } from 'react';
 
 import { MobileMenuContext } from '../MobilePagesMenu';
-import { BreakpointContext } from '..';
+import NavBreakpointContext from '@context/NavBreakpointContext';
 
 export default function NavMenu({ children }) {
-  const dissapearingBreakpoint = useContext(BreakpointContext);
+  const dissapearingBreakpoint = useContext(NavBreakpointContext);
 
   const isSmAndUpBreakpoint = useMediaQuery((theme) =>
     theme.breakpoints.up('sm'),

@@ -1,7 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { styled } from '@mui/material/styles';
-import React, { createContext } from 'react';
+import React from 'react';
 
 import MobilePagesMenu from './MobilePagesMenu';
 import MobileSearchButton from './MobileSearchButton';
@@ -11,8 +11,7 @@ import ElevationScroll from './Elements/ElevationScroll';
 import TitleWrapper from './TitleWrapper';
 import useLoadingTransition from './hooks/useLoadingTransition';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
-
-export const BreakpointContext = createContext();
+import NavBreakpointContext from '@context/NavBreakpointContext';
 
 const SiteAppBar = styled(AppBar)(({ theme }) =>
   theme.unstable_sx({
@@ -28,7 +27,7 @@ export default function NavbarLayout(props) {
   const loadingTransitionStyle = useLoadingTransition();
 
   return (
-    <BreakpointContext.Provider value={menuBreakpoint}>
+    <NavBreakpointContext.Provider value={menuBreakpoint}>
       <ElevationScroll {...props}>
         <SiteAppBar elevation={1}>
           <MaxWidthContainer disableGutters>
@@ -42,6 +41,6 @@ export default function NavbarLayout(props) {
           </MaxWidthContainer>
         </SiteAppBar>
       </ElevationScroll>
-    </BreakpointContext.Provider>
+    </NavBreakpointContext.Provider>
   );
 }

@@ -1,9 +1,9 @@
 import Tabs from '@mui/material/Tabs';
 import React, { useContext } from 'react';
-import { BreakpointContext } from '..';
+import NavBreakpointContext from '@context/NavBreakpointContext';
 
 export default function NavTabs({ children, ...rest }) {
-  const dissapearingBreakpoint = useContext(BreakpointContext);
+  const dissapearingBreakpoint = useContext(NavBreakpointContext);
 
   return (
     <Tabs

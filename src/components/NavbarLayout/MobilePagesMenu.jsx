@@ -8,7 +8,7 @@ import sitePages from '@data/sitePages';
 import { styled } from '@mui/material';
 import NavIconButton from './Elements/NavIconButton';
 import NavMenu from './Elements/NavMenu';
-import { BreakpointContext } from '.';
+import NavBreakpointContext from '@context/NavBreakpointContext';
 
 export const MobileMenuContext = createContext();
 
@@ -23,7 +23,7 @@ const Wrapper = styled(Box)(({ theme, dissapearingbreakpoint }) =>
 );
 
 export default React.memo(function MobilePagesMenu() {
-  const dissapearingBreakpoint = useContext(BreakpointContext);
+  const dissapearingBreakpoint = useContext(NavBreakpointContext);
 
   const [anchorElNav, setAnchorElNav] = useState(null);
 
