@@ -1,6 +1,6 @@
 import Stack from '@mui/material/Stack';
 import React, { useContext } from 'react';
-import { ReviewContext } from '../ReviewCard';
+import ReviewContext from '@context/ReviewContext';
 import RankingEl from './Elements/RankingEl';
 import TravelDateAndType from './Elements/TraveDateAndType';
 import TitleText from './Elements/TitleText';

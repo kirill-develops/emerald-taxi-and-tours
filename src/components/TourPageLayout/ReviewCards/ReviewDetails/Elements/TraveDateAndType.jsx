@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import React, { useContext, useMemo } from 'react';
 import dayjs from 'dayjs';
-import { ReviewContext } from '../../ReviewCard';
+import ReviewContext from '@context/ReviewContext';
 
 const useFormatDate = (dateString) => {
   const formattedDate = useMemo(

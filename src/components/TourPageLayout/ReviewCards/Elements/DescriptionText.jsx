@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ReviewContext } from '../ReviewCard';
+import ReviewContext from '@context/ReviewContext';
 import { Box, Divider } from '@mui/material';
 import TextCollapse from '../../Description/Elements/TextCollapse';
 

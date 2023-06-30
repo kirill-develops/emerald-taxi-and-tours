@@ -1,6 +1,6 @@
 import { Rating } from '@mui/material';
 import React, { useContext } from 'react';
-import { ReviewContext } from '../../ReviewCard';
+import ReviewContext from '@context/ReviewContext';
 
 export default function RankingEl() {
   const { rating } = useContext(ReviewContext);

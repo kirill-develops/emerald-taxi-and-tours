@@ -2,7 +2,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React, { useContext, useMemo } from 'react';
-import { ReviewContext } from '../ReviewCard';
+import ReviewContext from '@context/ReviewContext';
 
 export default function AvatarEl({ showName = false, showLocation = false }) {
   const {
