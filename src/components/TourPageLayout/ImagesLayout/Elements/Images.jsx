@@ -21,16 +21,16 @@ export default React.memo(function Images({}) {
     return 5;
   }, [isXxsBreakpoint, isXsBreakpoint, isSmBreakpoint]);
 
-  return useMemo(
-    () =>
-      photos
-        .slice(0, breakpointImageLength || photos.length - 1)
-        .map((picData) => (
-          <GridImage
-            picData={picData}
-            key={picData.id}
-          />
-        )),
-    [, photos, breakpointImageLength],
-  );
+  return useMemo(() => {
+    if (!photos) return null;
+
+    const length = breakpointImageLength || photos.length - 1;
+
+    return photos.slice(0, length).map((picData) => (
+      <GridImage
+        picData={picData}
+        key={picData.id}
+      />
+    ));
+  }, [, photos, breakpointImageLength]);
 });

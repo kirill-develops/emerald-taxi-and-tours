@@ -35,7 +35,7 @@ export default function ImageOverlayWrapper({ children, ...rest }) {
     tripAdvisorDetails: {
       photo_count: photoCount,
       see_all_photos: seeAllPicUrl,
-    },
+    } = {},
   } = useContext(ParamContext);
 
   return seeAllPicUrl ? (
