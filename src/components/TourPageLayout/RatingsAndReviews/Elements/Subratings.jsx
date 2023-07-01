@@ -6,9 +6,7 @@ import { ParamContext } from '@Form/FormContextProvider';
 
 export default function Subratings() {
   const {
-    tourParams: {
-      tripAdvisorDetails: { subratings },
-    },
+    tripAdvisorDetails: { subratings },
   } = useContext(ParamContext);
 
   if (!subratings) {

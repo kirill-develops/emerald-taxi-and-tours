@@ -1,8 +1,7 @@
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import React, { useContext } from 'react';
+import React from 'react';
 import BookingLayout from '@components/BookingLayout/BookingLayout';
-import { ParamContext } from '@Form/FormContextProvider';
 import DetailsComponent from './DetailsComponent/index';
 import ImageLayout from './ImagesLayout/';
 import ImageOverlayWrapper from './ImageOverlayWrapper';
@@ -45,11 +44,6 @@ function MaxWidthLayoutWrapper({ children, ...other }) {
 }
 
 export default function DynamicTourLayout() {
-  const { tourParams } = useContext(ParamContext);
-
-  const { tripAdvisorDetails: details, tripAdvisorReviews: reviews } =
-    tourParams;
-
   return (
     <>
       <BookingLayout />

@@ -13,9 +13,7 @@ const RankingStack = styled(Stack)(({ theme }) =>
 
 export default React.memo(function RankingEl({ children }) {
   const {
-    tourParams: {
-      tripAdvisorDetails: { rating, num_reviews: numReviews },
-    },
+    tripAdvisorDetails: { rating, num_reviews: numReviews },
   } = useContext(ParamContext);
 
   return (

@@ -4,9 +4,7 @@ import { ParamContext } from '@Form/FormContextProvider';
 import ReviewCard from './ReviewCard';
 
 export default function ReviewCards({}) {
-  const {
-    tourParams: { tripAdvisorReviews },
-  } = useContext(ParamContext);
+  const { tripAdvisorReviews } = useContext(ParamContext);
 
   return (
     <Stack spacing={{ xxs: 2, md: 0 }}>

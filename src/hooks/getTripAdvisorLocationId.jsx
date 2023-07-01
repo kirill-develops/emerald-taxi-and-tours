@@ -4,7 +4,7 @@ const API_KEY = process.env.TRIP_ADVISOR_API_KEY;
 
 export default async function getLocationId(tourParams) {
   const searchQuery = tourParams?.name?.replace(/ /g, '%20');
-  const category = tourParams?.type[0];
+  const category = tourParams?.type?.[0] || 'hotel';
   const address = tourParams?.area?.replace(/ /g, '%20');
 
   const options = {

@@ -7,8 +7,8 @@ function useTransferPrice() {
   const { values } = useFormikContext();
 
   const {
-    areaParams: { airportLink, link: areaLink } = {},
-    transferParams: { link: transferLink } = {},
+    area: { link: areaLink } = {},
+    link: transferLink,
     type,
   } = useContext(ParamContext);
 

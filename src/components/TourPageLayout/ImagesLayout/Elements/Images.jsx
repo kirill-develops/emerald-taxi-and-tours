@@ -4,9 +4,7 @@ import { ParamContext } from '@Form/FormContextProvider';
 import GridImage from './GridImage';
 
 export default React.memo(function Images({}) {
-  const {
-    tourParams: { tripAdvisorPhotos: photos },
-  } = useContext(ParamContext);
+  const { tripAdvisorPhotos: photos } = useContext(ParamContext);
 
   const isXxsBreakpoint = useMediaQuery((theme) =>
     theme.breakpoints.only('xxs'),

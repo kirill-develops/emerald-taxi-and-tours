@@ -5,10 +5,8 @@ import { ParamContext } from '@Form/FormContextProvider';
 
 export default React.memo(function FormattedRankingString({}) {
   const {
-    tourParams: {
-      tripAdvisorDetails: {
-        ranking_data: { ranking_string: rankingString = '' } = {},
-      },
+    tripAdvisorDetails: {
+      ranking_data: { ranking_string: rankingString = '' } = {},
     },
   } = useContext(ParamContext);
 

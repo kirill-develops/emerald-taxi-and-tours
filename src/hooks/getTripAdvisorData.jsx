@@ -67,63 +67,58 @@ function isObjEmpty(obj) {
   return !obj || Object.keys(obj).length === 0;
 }
 
-export default async function getTripAdvisorData(
-  tourParams,
-  dataUpdated,
-  retryCount = 0,
-) {
+export default async function getTripAdvisorData(params, retryCount = 0) {
   if (retryCount >= 3) {
-    return tourParams;
+    return params;
   }
 
+  let dataUpdated = false;
+
   const [details, photos, reviews] = await Promise.allSettled([
-    isObjEmpty(tourParams?.tripAdvisorDetails)
-      ? getDetails(tourParams.location_id)
+    isObjEmpty(params?.tripAdvisorDetails)
+      ? getDetails(params.location_id)
       : null,
-    isObjEmpty(tourParams?.tripAdvisorPhotos)
-      ? getPhotos(tourParams.location_id)
+    isObjEmpty(params?.tripAdvisorPhotos)
+      ? getPhotos(params.location_id)
       : null,
-    isObjEmpty(tourParams?.tripAdvisorReviews)
-      ? getReviews(tourParams.location_id)
+    isObjEmpty(params?.tripAdvisorReviews)
+      ? getReviews(params.location_id)
       : null,
   ]);
 
   if (
     details.status === 'fulfilled' &&
-    isObjEmpty(tourParams?.tripAdvisorDetails)
+    isObjEmpty(params?.tripAdvisorDetails)
   ) {
-    tourParams.tripAdvisorDetails = details.value ?? [];
-    tourParams.dataUpdated = new Date().toISOString();
+    params.tripAdvisorDetails = details.value ?? [];
+    params.dataUpdated = new Date().toISOString();
     dataUpdated = true;
   }
 
-  if (
-    photos.status === 'fulfilled' &&
-    isObjEmpty(tourParams?.tripAdvisorPhotos)
-  ) {
-    tourParams.tripAdvisorPhotos = photos.value ?? [];
-    tourParams.dataUpdated = new Date().toISOString();
+  if (photos.status === 'fulfilled' && isObjEmpty(params?.tripAdvisorPhotos)) {
+    params.tripAdvisorPhotos = photos.value ?? [];
+    params.dataUpdated = new Date().toISOString();
     dataUpdated = true;
   }
 
   if (
     reviews.status === 'fulfilled' &&
-    isObjEmpty(tourParams?.tripAdvisorReviews)
+    isObjEmpty(params?.tripAdvisorReviews)
   ) {
-    tourParams.tripAdvisorReviews = reviews.value ?? [];
-    tourParams.dataUpdated = new Date().toISOString();
+    params.tripAdvisorReviews = reviews.value ?? [];
+    params.dataUpdated = new Date().toISOString();
     dataUpdated = true;
   }
 
   if (
-    (!details.value ? !isObjEmpty(tourParams.tripAdvisorDetails) : true) &&
-    (!photos.value ? !isObjEmpty(tourParams.tripAdvisorPhotos) : true) &&
-    (!reviews.value ? !isObjEmpty(tourParams.tripAdvisorReviews) : true)
+    (!details.value ? !isObjEmpty(params.tripAdvisorDetails) : true) &&
+    (!photos.value ? !isObjEmpty(params.tripAdvisorPhotos) : true) &&
+    (!reviews.value ? !isObjEmpty(params.tripAdvisorReviews) : true)
   ) {
-    return { tourParams, dataUpdated };
+    return { params, dataUpdated };
   }
 
   await new Promise((resolve) => setTimeout(resolve, 5000));
 
-  return getTripAdvisorData(tourParams, dataUpdated, retryCount + 1);
+  return getTripAdvisorData(params, retryCount + 1);
 }

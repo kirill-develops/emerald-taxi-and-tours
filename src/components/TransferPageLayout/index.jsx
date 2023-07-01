@@ -6,6 +6,8 @@ import ImportantInfo from '../TourPageLayout/ImportantInfo';
 import TransferDescription from './Elements/TransferDescription';
 import TransferTitle from './Elements/TransferTitle';
 import PageCard from '@elements/PageCard';
+import ImageOverlayWrapper from '../TourPageLayout/ImageOverlayWrapper';
+import ImagesLayout from '../TourPageLayout/ImagesLayout';
 
 const transferStackStyles = { mt: 4 };
 
@@ -33,6 +35,9 @@ export default function TransferPageLayout() {
     <>
       <BookingLayout />
       <TransferStack>
+        <ImageOverlayWrapper>
+          <ImagesLayout />
+        </ImageOverlayWrapper>
         <DescriptionCard>
           <TransferTitle />
           <TransferDescription />

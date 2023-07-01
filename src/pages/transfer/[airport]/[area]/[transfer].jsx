@@ -1,12 +1,14 @@
 import Head from 'next/head';
-import React from 'react';
+import { promises as fs } from 'fs';
 import { useRouter } from 'next/router';
-import { transferData } from '@data/transfers';
+import React from 'react';
+import transferData from '@data/transferData.json';
 import Fallback from '@components/Fallback';
 import PageLayout from '@components/PageLayout/Layout';
 import FormContextProvider from '@Form/FormContextProvider';
-
+import getLocationId from '@hooks/getTripAdvisorLocationId';
 import TransferPageLayout from '@components/TransferPageLayout';
+import getTripAdvisorData from '@hooks/getTripAdvisorData';
 
 export async function getStaticPaths() {
   function generatePaths(transferData) {
@@ -37,6 +39,44 @@ export async function getStaticPaths() {
   const paths = generatePaths(transferData);
 
   return { paths, fallback: true };
+}
+
+async function updateTransferData({
+  area: { link: areaLink, airportLink },
+  ...transferParams
+} = {}) {
+  const { link: transferLink } = transferParams;
+
+  const updatedArea = transferData.find(
+    (area) => area.link === areaLink && area.airportLink === airportLink,
+  );
+
+  const updatedDestinationsData = updatedArea.destinations.map(
+    (destination) => {
+      if (destination.link === transferLink) {
+        return transferParams;
+      }
+
+      return destination;
+    },
+  );
+
+  const updatedAreaData = {
+    ...updatedArea,
+    destinations: updatedDestinationsData,
+  };
+
+  const updatedTransferData = transferData.map((area) =>
+    area.link === areaLink ? updatedAreaData : area,
+  );
+
+  const transferDataFileContent = JSON.stringify(updatedTransferData);
+
+  try {
+    await fs.writeFile('src/data/transferData.json', transferDataFileContent);
+  } catch (err) {
+    console.error('Error updating transfer data file:', err);
+  }
 }
 
 export async function getStaticProps({ params }) {
@@ -70,38 +110,89 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const { destinations, ...areaParams } = transferArea;
+  const { destinations, ...areaData } = transferArea;
+
+  let locationId;
+
+  if (!transferParams?.location_id) {
+    const locationIdProp = { ...transferParams, area: areaData?.name };
+
+    locationId = await getLocationId(locationIdProp);
+
+    if (locationId) {
+      const updatedTransferParams = {
+        ...transferParams,
+        location_id: locationId,
+        area: areaData,
+      };
+
+      await updateTransferData(updatedTransferParams);
+    }
+  }
+
+  const timeWindow = 48 * 60 * 60 * 1000; // 48 Hours //! change to 12 hours when live
+  const isOldData =
+    Date.now() - new Date(transferParams.dateUpdated).getTime() > timeWindow;
+
+  let updatedTransferParams = transferParams;
+
+  if (
+    (transferParams.location_id || locationId) &&
+    (!transferParams?.tripAdvisorDetails ||
+      !transferParams?.tripAdvisorPhotos ||
+      !transferParams?.tripAdvisorReviews ||
+      isOldData)
+  ) {
+    const transferProp = transferParams.location_id
+      ? transferParams
+      : { ...transferParams, location_id: locationId };
+
+    const { params: updatedParams, dataUpdated: isDataUpdated } =
+      await getTripAdvisorData(transferProp);
+
+    if (isDataUpdated) {
+      const finishedTransferParams = {
+        ...updatedParams,
+        area: areaData,
+      };
+
+      await updateTransferData(finishedTransferParams);
+
+      updatedTransferParams = finishedTransferParams;
+    }
+  }
+
+  const paramsData = { ...updatedTransferParams, area: areaData };
 
   return {
     props: {
-      transferParams,
-      areaParams,
+      params: paramsData,
     },
     revalidate: 43200,
   };
 }
 
-function DynamicTransfer({ transferParams, areaParams }) {
+function DynamicTransfer({ params }) {
   const router = useRouter();
 
   if (router.isFallback) {
     return <Fallback />;
   }
 
-  const contextParams = { transferParams, areaParams, type: 'transfer' };
+  const contextParams = { ...params, type: 'transfer' };
 
   return (
     <>
       <Head>
         <title>
-          Transfers: {transferParams.name}, {areaParams.name} &{' '}
-          {areaParams.airport}| EMERALD Taxi & Tours
+          Transfers: {params.name}, {params.area.name} & {params.area.airport}|
+          EMERALD Taxi & Tours
         </title>
       </Head>
       <PageLayout
-        title={transferParams.name}
-        subheader={areaParams.name}
-        airport={areaParams.airport}
+        title={params.name}
+        subheader={params.area.name}
+        airport={params.area.airport}
       >
         <FormContextProvider value={contextParams}>
           <TransferPageLayout />

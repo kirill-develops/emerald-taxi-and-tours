@@ -23,9 +23,7 @@ function ReviewStack({ children, sx, ...rest }) {
 }
 
 export default function ReviewCard({ reviewId, ...other }) {
-  const {
-    tourParams: { tripAdvisorReviews },
-  } = useContext(ParamContext);
+  const { tripAdvisorReviews } = useContext(ParamContext);
 
   const contextValue = useMemo(
     () => tripAdvisorReviews.find((review) => review.id === reviewId),

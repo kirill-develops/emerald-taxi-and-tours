@@ -14,14 +14,12 @@ const AddressText = styled(Typography)(({ theme }) =>
 
 export default React.memo(function LinksLaptop() {
   const {
-    tourParams: {
-      tripAdvisorDetails: {
-        address_obj: { address_string: addressString = '' } = {},
-        email,
-        phone,
-        web_url: webUrl,
-        website,
-      },
+    tripAdvisorDetails: {
+      address_obj: { address_string: addressString = '' } = {},
+      email,
+      phone,
+      web_url: webUrl,
+      website,
     },
   } = useContext(ParamContext);
 

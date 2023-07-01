@@ -32,21 +32,19 @@ const OverlayLink = styled(PopUpLink)(({ theme }) =>
 
 export default function ImageOverlayWrapper({ children, ...rest }) {
   const {
-    tourParams: {
-      tripAdvisorDetails: {
-        photo_count: photoCount,
-        see_all_photos: seelAllPicUrl,
-      },
+    tripAdvisorDetails: {
+      photo_count: photoCount,
+      see_all_photos: seeAllPicUrl,
     },
   } = useContext(ParamContext);
 
-  return (
+  return seeAllPicUrl ? (
     <MaxWidthContainer
       disableGutters
       {...rest}
     >
       <OverlayBox>
-        <OverlayLink href={seelAllPicUrl}>
+        <OverlayLink href={seeAllPicUrl}>
           <LocalSeeOutlined fontSize="small" />
           <Typography
             variant="body2"
@@ -58,6 +56,13 @@ export default function ImageOverlayWrapper({ children, ...rest }) {
         </OverlayLink>
         {children}
       </OverlayBox>
+    </MaxWidthContainer>
+  ) : (
+    <MaxWidthContainer
+      disableGutters
+      {...rest}
+    >
+      {children}
     </MaxWidthContainer>
   );
 }

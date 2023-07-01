@@ -14,8 +14,9 @@ export function useAccomName() {
     }
 
     const {
-      areaParams: { link: areaLink, name: areaName },
-      transferParams: { link: transferLink, name: transferName },
+      area: { link: areaLink, name: areaName },
+      link: transferLink,
+      name: transferName,
     } = paramContext;
 
     if (transferLink !== 'other' && areaLink !== 'other_areas') {

@@ -49,11 +49,9 @@ const qualityStringObj = [
 
 export default function TravelerRating() {
   const {
-    tourParams: {
-      tripAdvisorDetails: {
-        review_rating_count: ratingCountObj,
-        num_reviews: numReviews,
-      },
+    tripAdvisorDetails: {
+      review_rating_count: ratingCountObj,
+      num_reviews: numReviews,
     },
   } = useContext(ParamContext);
 

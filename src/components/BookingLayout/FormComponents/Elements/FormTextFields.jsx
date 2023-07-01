@@ -4,14 +4,14 @@ import { ParamContext } from '../FormContextProvider';
 import useStepperData from '../../StepperLayout/hooks/useStepperData';
 
 function useAccomDisabledHandler() {
-  const { areaParams, transferParams, type } = useContext(ParamContext);
+  const { area, type, link } = useContext(ParamContext);
 
   if (type === 'tour') {
     return false;
   }
 
-  const areaLink = areaParams?.link;
-  const transferLink = transferParams?.link;
+  const areaLink = area?.link;
+  const transferLink = link;
 
   return transferLink !== 'other' && areaLink !== 'other_areas';
 }

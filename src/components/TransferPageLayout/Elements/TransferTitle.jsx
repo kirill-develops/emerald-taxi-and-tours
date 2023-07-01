@@ -6,23 +6,23 @@ import CardTitle from '@elements/CardTitle';
 const allOtherString = 'All Other Resorts, Villas, AirBnB & Homes';
 
 function useGetName() {
-  const { areaParams, transferParams } = useContext(ParamContext);
-  const { airportLink, name: areaName } = areaParams;
+  const params = useContext(ParamContext);
+  const { airportLink, name: areaName } = params.area;
 
   return useMemo(
     () =>
-      transferParams.name === allOtherString
+      params.name === allOtherString
         ? `Accomodations in ${areaName}`
         : airportLink === 'MBJ'
-        ? transferParams.name
-        : `Accomodations in ${transferParams.name}`,
-    [transferParams, airportLink, areaName],
+        ? params.name
+        : `Accomodations in ${params.name}`,
+    [params, airportLink, areaName],
   );
 }
 
 export default function TransferTitle() {
   const {
-    areaParams: { airport },
+    area: { airport },
   } = useContext(ParamContext);
 
   const name = useGetName();

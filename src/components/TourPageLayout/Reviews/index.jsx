@@ -8,9 +8,7 @@ import TravelerRating from './Elements/TravelerRating';
 
 export default function Reviews() {
   const {
-    tourParams: {
-      tripAdvisorDetails: { num_reviews: numReviews },
-    },
+    tripAdvisorDetails: { num_reviews: numReviews },
   } = useContext(ParamContext);
 
   return (

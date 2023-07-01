@@ -64,7 +64,7 @@ export async function getStaticProps({ params }) {
       !tourParams?.tripAdvisorReviews ||
       isOldData)
   ) {
-    const { tourParams: updatedTourParams, isDataUpdated } =
+    const { params: updatedTourParams, isDataUpdated } =
       await getTripAdvisorData(tourParams, isDataUpdated);
 
     if (isDataUpdated) {
@@ -88,7 +88,7 @@ function DynamicTour({ tourParams }) {
   }
 
   const { area, name } = tourParams;
-  const context = { tourParams, type: 'tour' };
+  const context = { ...tourParams, type: 'tour' };
 
   return (
     <>

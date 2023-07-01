@@ -15,9 +15,7 @@ const DescriptionCard = styled(PageCard)(({ theme }) =>
 
 export default React.memo(function Description() {
   const {
-    tourParams: {
-      tripAdvisorDetails: { description },
-    },
+    tripAdvisorDetails: { description },
   } = useContext(ParamContext);
 
   return (
