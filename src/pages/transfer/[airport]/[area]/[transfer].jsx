@@ -7,8 +7,8 @@ import Fallback from '@components/Fallback';
 import PageLayout from '@components/PageLayout/Layout';
 import FormContextProvider from '@Form/FormContextProvider';
 import getLocationId from '@hooks/getTripAdvisorLocationId';
-import TransferPageLayout from '@components/TransferPageLayout';
 import getTripAdvisorData from '@hooks/getTripAdvisorData';
+import DetailedPageLayout from '@components/DetailedPageLayout/DetailedPageLayout';
 
 export async function getStaticPaths() {
   function generatePaths(transferData) {
@@ -195,7 +195,7 @@ function DynamicTransfer({ params }) {
         airport={params.area.airport}
       >
         <FormContextProvider value={contextParams}>
-          <TransferPageLayout />
+          <DetailedPageLayout />
         </FormContextProvider>
       </PageLayout>
     </>

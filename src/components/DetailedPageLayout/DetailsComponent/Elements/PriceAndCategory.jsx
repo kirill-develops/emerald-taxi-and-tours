@@ -6,14 +6,22 @@ import { detailTypographyProps } from '..';
 
 export default React.memo(function PriceAndCategory() {
   const {
-    tripAdvisorDetails: { cuisine, groups, price_level: priceLevel },
+    tripAdvisorDetails: {
+      cuisine,
+      groups,
+      price_level: priceLevel,
+      subcategory,
+    },
   } = useContext(ParamContext);
 
-  const subcategory = useMemo(() => cuisine ?? groups ?? {}, [cuisine, groups]);
+  const subcategoryString = useMemo(
+    () => cuisine ?? groups ?? subcategory,
+    [cuisine, groups, subcategory],
+  );
 
   return (
     <Typography {...detailTypographyProps}>
-      {priceLevel} <SubcategoryEl subcategory={subcategory} />
+      {priceLevel} <SubcategoryEl subcategory={subcategoryString} />
     </Typography>
   );
 });
