@@ -28,7 +28,7 @@ function DetailsStack({ children, ...rest }) {
   );
 }
 
-export default React.memo(function DetailsComponent({ children, ...rest }) {
+export default React.memo(function DetailsWrapper({ children, ...rest }) {
   const isSmBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   return (

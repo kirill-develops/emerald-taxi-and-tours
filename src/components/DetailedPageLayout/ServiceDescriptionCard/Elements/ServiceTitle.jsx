@@ -1,6 +1,5 @@
 import React, { useContext, useMemo } from 'react';
 import { ParamContext } from '@Form/FormContextProvider';
-import { Box } from '@mui/material';
 import CardTitle from '@elements/CardTitle';
 
 const allOtherString = 'All Other Resorts, Villas, AirBnB & Homes';
@@ -20,7 +19,7 @@ function useGetName() {
   );
 }
 
-export default function TransferTitle() {
+function TransferTitle() {
   const {
     area: { airport },
   } = useContext(ParamContext);
@@ -28,11 +27,30 @@ export default function TransferTitle() {
   const name = useGetName();
 
   return (
-    <Box>
+    <>
       <CardTitle>Private Shuttle Service:</CardTitle>
       <CardTitle>
         {airport} - {name}
       </CardTitle>
-    </Box>
+    </>
   );
+}
+
+function TourTitle() {
+  const params = useContext(ParamContext);
+
+  return (
+    <>
+      <CardTitle>{params.name}</CardTitle>
+      <CardTitle>Private Tour</CardTitle>
+    </>
+  );
+}
+
+export default function ServiceTitle() {
+  const { type } = useContext(ParamContext);
+
+  const dynamicTitle = type === 'transfer' ? <TransferTitle /> : <TourTitle />;
+
+  return <>{dynamicTitle}</>;
 }

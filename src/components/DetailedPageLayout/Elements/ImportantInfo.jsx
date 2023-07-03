@@ -6,6 +6,7 @@ import Remove from '@mui/icons-material/Remove';
 import React from 'react';
 import PageCard from '@elements/PageCard';
 import CardTitle from '@elements/CardTitle';
+import { GridItem } from '@elements/CustomGridEl';
 
 const bulletPoints = [
   { primary: 'Private Transport', secondary: 'No other guests on board.' },
@@ -29,24 +30,29 @@ const bulletPoints = [
 
 export default function ImportantInfo() {
   return (
-    <PageCard>
-      <CardTitle>Important Info</CardTitle>
-      <List>
-        {bulletPoints.map((point, i) => (
-          <ListItem
-            disablePadding
-            key={i}
-          >
-            <ListItemIcon sx={{ minWidth: '32px' }}>
-              <Remove fontSize="small" />
-            </ListItemIcon>
-            <ListItemText
-              primary={point.primary}
-              secondary={point.secondary}
-            />
-          </ListItem>
-        ))}
-      </List>
-    </PageCard>
+    <GridItem
+      xxs={12}
+      md={5}
+    >
+      <PageCard>
+        <CardTitle>Important Info</CardTitle>
+        <List>
+          {bulletPoints.map((point, i) => (
+            <ListItem
+              disablePadding
+              key={i}
+            >
+              <ListItemIcon sx={{ minWidth: '32px' }}>
+                <Remove fontSize="small" />
+              </ListItemIcon>
+              <ListItemText
+                primary={point.primary}
+                secondary={point.secondary}
+              />
+            </ListItem>
+          ))}
+        </List>
+      </PageCard>
+    </GridItem>
   );
 }

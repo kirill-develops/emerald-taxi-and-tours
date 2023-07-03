@@ -1,22 +1,19 @@
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
 import React from 'react';
 import BookingLayout from '@components/BookingLayout/BookingLayout';
-import PageCard from '@elements/PageCard';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import { useMediaQuery } from '@mui/material';
-import TransferTitle from './Elements/TransferTitle';
-import TransferDescription from './Elements/TransferDescription';
-import DetailsComponent from './DetailsComponent';
+import DetailsWrapper from './DetailsWrapper';
 import ImageOverlayWrapper from './ImageOverlayWrapper';
 import ImagesLayout from './ImagesLayout';
-import Description from './Description';
+import LocationDescription from './LocationDescriptionCard/LocationDescriptionCard';
 import RatingsAndReviews from './RatingsAndReviews';
 import ImportantInfo from './Elements/ImportantInfo';
 import Reviews from './Reviews';
 import ReviewCards from './ReviewCards';
+import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
 
 const containerStyles = {
   display: 'flex',
@@ -24,13 +21,6 @@ const containerStyles = {
   rowGap: { xxs: 0, md: 2 },
   margin: 0,
 };
-
-const TransferDescriptionCard = styled(PageCard)(({ theme }) =>
-  theme.unstable_sx({
-    py: { xxs: 2, md: 4.5 },
-    position: 'relative',
-  }),
-);
 
 function ReviewsContainer({ children, sx, ...rest }) {
   return (
@@ -59,37 +49,21 @@ export default function DetailedPageLayout() {
   return (
     <>
       <BookingLayout />
-      <DetailsComponent>
+      <DetailsWrapper>
         <ImageOverlayWrapper>
           <ImagesLayout />
         </ImageOverlayWrapper>
-      </DetailsComponent>
-
+      </DetailsWrapper>
       <MaxWidthLayoutWrapper>
         <Stack rowGap={2}>
-          <TransferDescriptionCard>
-            <TransferTitle />
-            <TransferDescription />
-          </TransferDescriptionCard>
+          <LocationDescription />
+          <ServiceDescription />
           <GridContainer
-            rowSpacing={{ xxs: 2, md: 3 }}
-            columnSpacing={{ md: 3 }}
+            rowSpacing={{ xxs: 2 }}
+            columnSpacing={{ md: 2 }}
           >
-            <GridItem xxs={12}>
-              <Description />
-            </GridItem>
-            <GridItem
-              xxs={12}
-              md={5}
-            >
-              <RatingsAndReviews />
-            </GridItem>
-            <GridItem
-              xxs={12}
-              md={5}
-            >
-              <ImportantInfo />
-            </GridItem>
+            <RatingsAndReviews />
+            <ImportantInfo />
           </GridContainer>
           <ReviewsContainer>
             <Reviews />

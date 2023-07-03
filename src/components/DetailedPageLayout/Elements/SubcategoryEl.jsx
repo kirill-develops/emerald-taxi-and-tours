@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import Typography from '@mui/material/Typography';
-import { detailTypographyProps } from '../DetailsComponent';
+import { detailTypographyProps } from '../DetailsWrapper';
 
 export default React.memo(function SubcategoryEl({ subcategory }) {
   return useMemo(

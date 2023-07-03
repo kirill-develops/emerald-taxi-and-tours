@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Typography from '@mui/material/Typography';
-import { detailTypographyProps } from '../DetailsComponent';
+import { detailTypographyProps } from '../DetailsWrapper';
 import { ParamContext } from '@Form/FormContextProvider';
 
 export default React.memo(function FormattedRankingString({}) {
