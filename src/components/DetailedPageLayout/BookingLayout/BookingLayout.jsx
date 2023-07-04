@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react';
 import StepperLayout from './StepperLayout/StepperLayout';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import BookingAccordionSummary from './Elements/BookingAccordionSummary';
 import BookingTitle from './Elements/BookingTitle';
 import { BookingAccordionDetails } from './Elements/BookingAccordionDetails';

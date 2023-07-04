@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import { Place } from '@mui/icons-material';
 import React, { useContext } from 'react';
 import DetailDevider from './DetailDevider';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import { detailTypographyProps } from '..';
 import { styled } from '@mui/material';
 import usePageLinks from '../hooks/usePageLinks';

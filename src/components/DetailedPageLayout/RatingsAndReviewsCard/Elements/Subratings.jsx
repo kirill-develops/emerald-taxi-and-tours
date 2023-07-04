@@ -2,7 +2,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 
 export default function Subratings() {
   const {

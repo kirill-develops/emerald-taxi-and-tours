@@ -4,7 +4,7 @@
     "paths": {
       "@*": ["./*"],
       "@AboutLayout/*":["components/AboutLayout/*"],
-      "@Form/*": ["components/BookingLayout/FormComponents/*"],
+      "@Form/*": ["components/DetailedPageLayout/BookingLayout/FormComponents/*"],
       "@Navbar/*": ["components/NavbarLayout/*"],
       "@NavSearch/*": ["components/NavSearch/*"],
       "@Tour/*" : ["components/ToursLayout/*"],

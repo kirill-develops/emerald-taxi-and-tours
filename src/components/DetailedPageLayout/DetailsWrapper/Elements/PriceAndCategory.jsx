@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import React, { useContext, useMemo } from 'react';
 import SubcategoryEl from '../../Elements/SubcategoryEl';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import { detailTypographyProps } from '..';
 
 export default React.memo(function PriceAndCategory() {

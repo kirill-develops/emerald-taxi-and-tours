@@ -1,6 +1,6 @@
 import { useMediaQuery } from '@mui/material';
 import React, { useContext, useMemo } from 'react';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import GridImage from './GridImage';
 
 export default React.memo(function Images({}) {

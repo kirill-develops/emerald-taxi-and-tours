@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 import { useContext, useMemo } from 'react';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import { tourSteps, transferSteps } from '../data/stepsData';
 
 export default function useStepsDataByType() {

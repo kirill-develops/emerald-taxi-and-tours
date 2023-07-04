@@ -4,7 +4,7 @@ const TextField = dynamic(() => import('@mui/material/TextField'));
 import { useFormikContext } from 'formik';
 import React from 'react';
 import usePhoneField from '@hooks/usePhoneField';
-import useFieldSizeGetter from '../components/BookingLayout/FormComponents/hooks/useFieldSizeGetter';
+import useFieldSizeGetter from '../components/DetailedPageLayout/BookingLayout/FormComponents/hooks/useFieldSizeGetter';
 
 function FormTextField({
   stepName,

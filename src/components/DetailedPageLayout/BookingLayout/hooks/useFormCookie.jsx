@@ -2,7 +2,7 @@ import isEqual from 'lodash/isEqual';
 import { useCallback, useContext, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
 import { capitalize } from '@helperFunctions';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import useFormInitValues from './useFormInitValues';
 import { getUpdatedValues } from './useFormCookieFunctions/getUpdatedValues';
 import { getParsedCookieValues } from './useFormCookieFunctions/getParsedCookieValues';

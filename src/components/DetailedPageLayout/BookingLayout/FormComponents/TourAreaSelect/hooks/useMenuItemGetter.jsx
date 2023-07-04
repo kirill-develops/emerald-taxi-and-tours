@@ -1,7 +1,7 @@
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
-import { ParamContext } from '../../FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 
 export default function useMenuItemGetter() {
   const context = useContext(ParamContext);

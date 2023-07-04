@@ -3,7 +3,7 @@ import Launch from '@mui/icons-material/Launch';
 import MailOutline from '@mui/icons-material/MailOutline';
 import Phone from '@mui/icons-material/Phone';
 import React, { useContext } from 'react';
-import { ParamContext } from '../../../BookingLayout/FormComponents/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import { PopUpLink, TelLink, MailLink } from '@elements/Links';
 
 export default function usePageLinks() {

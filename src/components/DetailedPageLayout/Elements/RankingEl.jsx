@@ -3,8 +3,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material';
 import React, { useContext } from 'react';
-
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import { detailTypographyProps } from '../DetailsWrapper';
 
 const RankingStack = styled(Stack)(({ theme }) =>

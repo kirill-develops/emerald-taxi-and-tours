@@ -1,7 +1,5 @@
-import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import React from 'react';
-import BookingLayout from '@components/BookingLayout/BookingLayout';
 import { GridContainer } from '@elements/CustomGridEl';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import { useMediaQuery } from '@mui/material';
@@ -13,6 +11,7 @@ import RatingsAndReviews from './RatingsAndReviewsCard';
 import ImportantInfo from './Elements/ImportantInfo';
 import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
 import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
+import BookingLayout from './BookingLayout/BookingLayout';
 
 function MaxWidthLayoutWrapper({ children, ...other }) {
   const isMdBreakpoint = useMediaQuery((theme) => theme.breakpoints.up('md'));

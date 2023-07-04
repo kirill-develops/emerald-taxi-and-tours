@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 import CardTitle from '@elements/CardTitle';
 
 const allOtherString = 'All Other Resorts, Villas, AirBnB & Homes';

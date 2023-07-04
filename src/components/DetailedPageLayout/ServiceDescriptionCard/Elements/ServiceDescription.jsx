@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React, { useContext } from 'react';
-import { ParamContext } from '@Form/FormContextProvider';
+import { ParamContext } from '@context/FormContextProvider';
 
 const useLocalizedDescription = (airport) =>
   airport === 'tour'
