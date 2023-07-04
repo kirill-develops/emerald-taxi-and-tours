@@ -3,7 +3,6 @@ import React, { useCallback, useContext } from 'react';
 import StepperLayout from './StepperLayout/StepperLayout';
 import { ParamContext } from '@context/FormContextProvider';
 import BookingAccordionSummary from './Elements/BookingAccordionSummary';
-import BookingTitle from './Elements/BookingTitle';
 import BookingAccordionDetails from './Elements/BookingAccordionDetails';
 import BookingPaper from './Elements/BookingPaper';
 import BookingAccordion from './Elements/BookingAccordionComponent';
@@ -11,20 +10,7 @@ import BookingFormik from './Elements/BookingFormik';
 import useExpandInit from './hooks/useExpandInit';
 import useFormCookie from './hooks/useFormCookie';
 import BookingContext from '@context/BookingContext';
-
-const backdropStyles = { zIndex: 9 };
-
-function BookingBackdrop() {
-  const { expanded, handleExpanded } = useContext(BookingContext);
-
-  return (
-    <Backdrop
-      open={expanded}
-      onClick={handleExpanded}
-      sx={backdropStyles}
-    />
-  );
-}
+import CardTitle from '@elements/CardTitle';
 
 export default React.memo(function BookingLayout() {
   const { type: bookingType } = useContext(ParamContext);
@@ -55,7 +41,7 @@ export default React.memo(function BookingLayout() {
       <BookingPaper>
         <BookingAccordion>
           <BookingAccordionSummary>
-            <BookingTitle>Book Now</BookingTitle>
+            <CardTitle uppercase>Book Now</CardTitle>
           </BookingAccordionSummary>
           <BookingAccordionDetails>
             <BookingFormik>
