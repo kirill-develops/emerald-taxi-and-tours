@@ -1,17 +1,21 @@
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 import usePageLinks from '../hooks/usePageLinks';
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  useMediaQuery,
-} from '@mui/material';
+
+const StyledBottomNavigation = styled(BottomNavigation)(({ theme }) =>
+  theme.unstable_sx({
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    height: 66,
+  }),
+);
 
 export default function LinksMobile() {
   const linksObj = usePageLinks();
-  const isXxs = useMediaQuery((theme) => theme.breakpoints.down('xs'));
 
   return (
-    <BottomNavigation showLabels>
+    <StyledBottomNavigation showLabels>
       {linksObj.map(({ LinkEl, href, label, label2, icon }) => (
         <BottomNavigationAction
           key={label}
@@ -21,6 +25,6 @@ export default function LinksMobile() {
           LinkComponent={LinkEl}
         />
       ))}
-    </BottomNavigation>
+    </StyledBottomNavigation>
   );
 }
