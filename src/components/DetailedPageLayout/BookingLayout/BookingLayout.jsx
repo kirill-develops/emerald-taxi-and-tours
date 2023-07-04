@@ -1,4 +1,3 @@
-import Backdrop from '@mui/material/Backdrop';
 import React, { useCallback, useContext } from 'react';
 import StepperLayout from './StepperLayout/StepperLayout';
 import { ParamContext } from '@context/FormContextProvider';
@@ -11,6 +10,7 @@ import useExpandInit from './hooks/useExpandInit';
 import useFormCookie from './hooks/useFormCookie';
 import BookingContext from '@context/BookingContext';
 import CardTitle from '@elements/CardTitle';
+import BookingBackdrop from './Elements/BookingBackdrop';
 
 export default React.memo(function BookingLayout() {
   const { type: bookingType } = useContext(ParamContext);
