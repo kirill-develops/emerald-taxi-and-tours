@@ -1,9 +1,10 @@
-import React, { useContext, useRef } from 'react';
+import Backdrop from '@mui/material/Backdrop';
+import React, { useCallback, useContext } from 'react';
 import StepperLayout from './StepperLayout/StepperLayout';
 import { ParamContext } from '@context/FormContextProvider';
 import BookingAccordionSummary from './Elements/BookingAccordionSummary';
 import BookingTitle from './Elements/BookingTitle';
-import { BookingAccordionDetails } from './Elements/BookingAccordionDetails';
+import BookingAccordionDetails from './Elements/BookingAccordionDetails';
 import BookingPaper from './Elements/BookingPaper';
 import BookingAccordion from './Elements/BookingAccordionComponent';
 import BookingFormik from './Elements/BookingFormik';
@@ -11,7 +12,21 @@ import useExpandInit from './hooks/useExpandInit';
 import useFormCookie from './hooks/useFormCookie';
 import BookingContext from '@context/BookingContext';
 
-function BookingLayout() {
+const backdropStyles = { zIndex: 9 };
+
+function BookingBackdrop() {
+  const { expanded, handleExpanded } = useContext(BookingContext);
+
+  return (
+    <Backdrop
+      open={expanded}
+      onClick={handleExpanded}
+      sx={backdropStyles}
+    />
+  );
+}
+
+export default React.memo(function BookingLayout() {
   const { type: bookingType } = useContext(ParamContext);
 
   const [parsedData, setCookie] = useFormCookie();
@@ -20,14 +35,18 @@ function BookingLayout() {
 
   const [expanded, setExpanded] = useExpandInit(setCookie, isBookingOpen);
 
-  const paperRef = useRef(null);
+  const handleExpanded = useCallback(() => {
+    setExpanded((prev) => {
+      setCookie({ isBookingOpen: !prev });
+      return !prev;
+    });
+  }, []);
 
   const contextValue = {
     cookieData: parsedData,
     setCookie,
-    paperRef,
     expanded,
-    setExpanded,
+    handleExpanded,
     bookingType,
   };
 
@@ -38,7 +57,6 @@ function BookingLayout() {
           <BookingAccordionSummary>
             <BookingTitle>Book Now</BookingTitle>
           </BookingAccordionSummary>
-
           <BookingAccordionDetails>
             <BookingFormik>
               <StepperLayout />
@@ -46,8 +64,7 @@ function BookingLayout() {
           </BookingAccordionDetails>
         </BookingAccordion>
       </BookingPaper>
+      <BookingBackdrop />
     </BookingContext.Provider>
   );
-}
-
-export default React.memo(BookingLayout);
+});

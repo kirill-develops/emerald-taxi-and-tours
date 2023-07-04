@@ -51,7 +51,7 @@ export default function DetailedTourCard({ tour }) {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    setExpanded((prev) => !prev);
   };
 
   return (

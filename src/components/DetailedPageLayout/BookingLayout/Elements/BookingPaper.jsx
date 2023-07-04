@@ -1,24 +1,24 @@
 import Paper from '@mui/material/Paper';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import BookingContext from '@context/BookingContext';
 
-function getPaperStyles(expanded = false) {
-  return {
-    top: { xxs: 0, sm: expanded ? 0 : 64 },
-    padding: 3,
-    backgroundColor: 'black',
-    zIndex: 10,
-  };
-}
+const paperStyles = {
+  top: { xxs: 0, sm: 63 },
+  padding: 2,
+  width: '100%',
+  backgroundColor: 'black',
+  zIndex: 10,
+  position: 'sticky',
+};
 
 export default function BookingPaper({ children, ...rest }) {
-  const { paperRef, expanded = false } = useContext(BookingContext);
+  const { expanded = false } = useContext(BookingContext);
 
-  const paperStyles = getPaperStyles(expanded);
+  const paperRef = useRef(null);
 
   useEffect(() => {
     if (expanded) {
-      paperRef.current.style.position = 'relative';
+      paperRef.current.style.position = 'absolute';
     } else {
       paperRef.current.style.position = 'sticky';
     }
@@ -29,6 +29,7 @@ export default function BookingPaper({ children, ...rest }) {
       id="bookingLayoutWrapper"
       ref={paperRef}
       square
+      elevation={1}
       sx={paperStyles}
       {...rest}
     >

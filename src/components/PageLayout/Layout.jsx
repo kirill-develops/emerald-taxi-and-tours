@@ -16,7 +16,8 @@ const GridContainer = dynamic(() =>
 const LayoutContainer = styled(Container)(({ theme }) =>
   theme.unstable_sx({
     minHeight: { sm: '100%' },
-    overflow: { sm: 'auto' },
+    // overflow: { sm: 'auto' }, //! removed to stick 'book now' button on
+    //! Details page
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
