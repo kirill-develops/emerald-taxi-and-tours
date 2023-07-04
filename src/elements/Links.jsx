@@ -7,41 +7,50 @@ const linkTypographyProps = {
   gap: 1,
 };
 
-export function PopUpLink({ href, children, ...others }) {
-  return (
-    <Link
-      href={href}
-      target="_blank"
-      {...linkTypographyProps}
-      {...others}
-    >
-      {children}
-    </Link>
-  );
-}
+export const PopUpLink = React.forwardRef(
+  ({ href, children, ...others }, ref) => {
+    return (
+      <Link
+        href={href}
+        target="_blank"
+        ref={ref}
+        {...linkTypographyProps}
+        {...others}
+      >
+        {children}
+      </Link>
+    );
+  },
+);
 
-export function TelLink({ href, children, ...others }) {
-  return (
-    <Link
-      href={`tel:${href}`}
-      target="_blank"
-      {...linkTypographyProps}
-      {...others}
-    >
-      {children}
-    </Link>
-  );
-}
+export const TelLink = React.forwardRef(
+  ({ href, children, ...others }, ref) => {
+    return (
+      <Link
+        href={`tel:${href}`}
+        target="_blank"
+        ref={ref}
+        {...linkTypographyProps}
+        {...others}
+      >
+        {children}
+      </Link>
+    );
+  },
+);
 
-export function MailLink({ href, children, ...others }) {
-  return (
-    <Link
-      href={`mailto:${href}`}
-      target="_blank"
-      {...linkTypographyProps}
-      {...others}
-    >
-      {children}
-    </Link>
-  );
-}
+export const MailLink = React.forwardRef(
+  ({ href, children, ...others }, ref) => {
+    return (
+      <Link
+        href={`mailto:${href}`}
+        target="_blank"
+        ref={ref}
+        {...linkTypographyProps}
+        {...others}
+      >
+        {children}
+      </Link>
+    );
+  },
+);

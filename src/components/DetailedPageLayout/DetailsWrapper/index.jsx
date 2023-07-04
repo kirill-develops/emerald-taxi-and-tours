@@ -1,11 +1,13 @@
 import { Container, Stack, styled, useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
 import React from 'react';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
 import DetailDevider from './Elements/DetailDevider';
 import RankingEl from '../Elements/RankingEl';
 import FormattedRankingString from '../Elements/FormattedRankingString';
 import PriceAndCategory from './Elements/PriceAndCategory';
 import LinksLaptop from './Elements/LinksLaptop';
+import LinksMobile from './Elements/LinksMobile';
 
 export const detailTypographyProps = { variant: 'body2' };
 
@@ -33,15 +35,16 @@ export default React.memo(function DetailsWrapper({ children, ...rest }) {
 
   return (
     <DetailsBox {...rest}>
-      <Container>
+      <MaxWidthContainer>
         <DetailsStack>
           <RankingEl />
           {!isSmBreakpoint && <FormattedRankingString />}
           <PriceAndCategory />
         </DetailsStack>
         {!isSmBreakpoint && <LinksLaptop />}
-      </Container>
+      </MaxWidthContainer>
       {children}
+      {isSmBreakpoint && <LinksMobile />}
     </DetailsBox>
   );
 });

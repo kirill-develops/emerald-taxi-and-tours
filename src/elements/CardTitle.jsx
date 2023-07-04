@@ -4,7 +4,7 @@ import React from 'react';
 export default function CardTitle({ children, ...rest }) {
   return (
     <Typography
-      variant="h4"
+      variant="h5"
       fontWeight={700}
       {...rest}
     >

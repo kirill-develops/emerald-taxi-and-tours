@@ -6,6 +6,7 @@ export default function TitleText({ children, ...rest }) {
     <Typography
       variant="h6"
       fontWeight={700}
+      {...rest}
     >
       {children}
     </Typography>

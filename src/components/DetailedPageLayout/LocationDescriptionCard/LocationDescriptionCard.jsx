@@ -14,15 +14,18 @@ const DescriptionCard = styled(PageCard)(({ theme }) =>
 
 export default React.memo(function LocationDescription() {
   const {
-    tripAdvisorDetails: { description, name },
+    tripAdvisorDetails: { tripAdvisorDescription, name },
+    description: localDescription,
   } = useContext(ParamContext);
 
+  const hasDescription = tripAdvisorDescription ?? localDescription;
+
   return (
-    description && (
+    hasDescription && (
       <DescriptionCard>
         <CardTitle>About</CardTitle>
         <Divider sx={{ my: 2 }} />
-        <TextCollapse>{description}</TextCollapse>
+        <TextCollapse>{hasDescription}</TextCollapse>
       </DescriptionCard>
     )
   );

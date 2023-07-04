@@ -11,29 +11,8 @@ import ImagesLayout from './ImagesLayout';
 import LocationDescription from './LocationDescriptionCard/LocationDescriptionCard';
 import RatingsAndReviews from './RatingsAndReviewsCard';
 import ImportantInfo from './Elements/ImportantInfo';
-import Reviews from './ReviewsCard';
-import ReviewCards from './ReviewCards';
 import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
-
-const containerStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  rowGap: { xxs: 0, md: 2 },
-  margin: 0,
-};
-
-function ReviewsContainer({ children, sx, ...rest }) {
-  return (
-    <Container
-      maxWidth="md"
-      disableGutters
-      sx={{ ...containerStyles, ...sx }}
-      {...rest}
-    >
-      {children}
-    </Container>
-  );
-}
+import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
 
 function MaxWidthLayoutWrapper({ children, ...other }) {
   const isMdBreakpoint = useMediaQuery((theme) => theme.breakpoints.up('md'));
@@ -46,6 +25,10 @@ function MaxWidthLayoutWrapper({ children, ...other }) {
 }
 
 export default function DetailedPageLayout() {
+  const isXxsBreakpoint = useMediaQuery((theme) =>
+    theme.breakpoints.down('md'),
+  );
+
   return (
     <>
       <BookingLayout />
@@ -57,18 +40,22 @@ export default function DetailedPageLayout() {
       <MaxWidthLayoutWrapper>
         <Stack rowGap={2}>
           <LocationDescription />
-          <ServiceDescription />
+          {isXxsBreakpoint && (
+            <>
+              <RatingsAndReviews />
+              <ServiceDescription />
+            </>
+          )}
           <GridContainer
             rowSpacing={{ xxs: 2 }}
             columnSpacing={{ md: 2 }}
           >
-            <RatingsAndReviews />
+            {!isXxsBreakpoint && <RatingsAndReviews />}
             <ImportantInfo />
           </GridContainer>
-          <ReviewsContainer>
-            <Reviews />
-            <ReviewCards />
-          </ReviewsContainer>
+
+          {!isXxsBreakpoint && <ServiceDescription />}
+          <ReviewsLayout />
         </Stack>
       </MaxWidthLayoutWrapper>
     </>

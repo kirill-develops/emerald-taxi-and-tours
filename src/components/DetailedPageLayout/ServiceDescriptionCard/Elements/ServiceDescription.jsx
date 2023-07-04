@@ -4,7 +4,7 @@ import { ParamContext } from '@Form/FormContextProvider';
 
 const useLocalizedDescription = (airport) =>
   airport === 'tour'
-    ? `Experience the ultimate in personalized service with our private island tours. Discover the hidden gems and breathtaking beauty of Jamaica with our exclusive tours tailored to your preferences. Leave the crowds behind and embark on a journey of exploration and adventure, accompanied by our knowledgeable guides. Whether you want to visit pristine beaches, explore historic landmarks, or immerse yourself in the local culture, our private island tours offer a seamless and unforgettable experience. Sit back, relax, and let us take care of all the details while you create lasting memories in this tropical paradise.`
+    ? `Discover the hidden gems and breathtaking beauty of Jamaica with our exclusive private island tours. Tailored to your preferences, these tours offer the ultimate in personalized service. Leave the crowds behind and embark on a journey of exploration and adventure, accompanied by our knowledgeable guides. From pristine beaches to historic landmarks and immersive cultural experiences, our tours cover it all. Sit back, relax, and let us handle all the details while you create lasting memories in this tropical paradise.`
     : `Experience the ultimate in personalized service with our private airport
         transfers from ${airport}. Say goodbye to tedious stops along the way and
         hello to a direct journey to your hotel or villa in the comfort of your

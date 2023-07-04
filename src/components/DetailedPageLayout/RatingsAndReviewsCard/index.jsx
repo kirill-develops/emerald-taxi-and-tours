@@ -8,6 +8,7 @@ import RankingEl from '../Elements/RankingEl';
 import FormattedRankingString from '../Elements/FormattedRankingString';
 import Subratings from './Elements/Subratings';
 import { GridItem } from '@elements/CustomGridEl';
+import CardTitle from '@elements/CardTitle';
 
 export default React.memo(function RatingsAndReviews() {
   const {
@@ -24,17 +25,17 @@ export default React.memo(function RatingsAndReviews() {
       md={5}
     >
       <PageCard>
-        <Stack spacing={1}>
-          <Typography variant="h6">Ratings and reviews</Typography>
+        <Stack spacing={0.5}>
+          <CardTitle>Ratings and reviews</CardTitle>
           <RankingEl>
             <Typography variant="h6">{rating}</Typography>
           </RankingEl>
           <FormattedRankingString />
         </Stack>
-
-        <Divider sx={{ my: 4 }} />
+        <Divider sx={{ my: 2 }} />
         <Typography
-          variant="subtitle2"
+          variant="subtitle1"
+          fontWeight={500}
           gutterBottom
         >
           Ratings

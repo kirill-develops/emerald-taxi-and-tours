@@ -10,7 +10,7 @@ import { ParamContext } from '@Form/FormContextProvider';
 const OverlayBox = styled(Box)(({ theme }) =>
   theme.unstable_sx({
     position: 'relative',
-    marginY: 2,
+    mt: 2,
   }),
 );
 
@@ -22,7 +22,7 @@ const OverlayLink = styled(PopUpLink)(({ theme }) =>
     left: 7,
     gap: 0.5,
     alignItems: 'flex-end',
-    color: theme.palette.text.primary,
+    color: theme.palette.info.main,
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
@@ -39,10 +39,7 @@ export default function ImageOverlayWrapper({ children, ...rest }) {
   } = useContext(ParamContext);
 
   return seeAllPicUrl ? (
-    <MaxWidthContainer
-      disableGutters
-      {...rest}
-    >
+    <>
       <OverlayBox>
         <OverlayLink href={seeAllPicUrl}>
           <LocalSeeOutlined fontSize="small" />
@@ -56,7 +53,7 @@ export default function ImageOverlayWrapper({ children, ...rest }) {
         </OverlayLink>
         {children}
       </OverlayBox>
-    </MaxWidthContainer>
+    </>
   ) : (
     <MaxWidthContainer
       disableGutters
