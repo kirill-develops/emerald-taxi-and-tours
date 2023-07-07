@@ -27,10 +27,12 @@ const backdropStyles = { zIndex: 1 };
 
 const speedDialStyles = {
   position: 'absolute',
-  bottom: { xxs: 105, sm: 45 },
-  right: 45,
+  bottom: { xxs: 85, sm: 35 },
+  right: 25,
   zIndex: 10,
   [`& .${speedDialClasses.fab}`]: {
+    height: 40,
+    width: 40,
     backgroundColor: (theme) => theme.palette.info.main,
   },
 };
