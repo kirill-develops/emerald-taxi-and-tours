@@ -11,7 +11,7 @@ export default React.memo(function PriceAndCategory() {
       groups,
       price_level: priceLevel,
       subcategory,
-    },
+    } = {},
   } = useContext(ParamContext);
 
   const subcategoryString = useMemo(

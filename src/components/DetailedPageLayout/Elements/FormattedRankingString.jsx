@@ -7,7 +7,7 @@ export default React.memo(function FormattedRankingString({}) {
   const {
     tripAdvisorDetails: {
       ranking_data: { ranking_string: rankingString = '' } = {},
-    },
+    } = {},
   } = useContext(ParamContext);
 
   const numberRegex = /#[0-9]+/;
@@ -20,16 +20,18 @@ export default React.memo(function FormattedRankingString({}) {
     const formattedTextPart = textPart.replace(/&amp;/g, '&');
 
     return (
-      <Typography {...detailTypographyProps}>
-        <Typography
-          component="span"
-          fontWeight="bold"
-          {...detailTypographyProps}
-        >
-          {numberPart}
+      rankingString.length > 0 && (
+        <Typography {...detailTypographyProps}>
+          <Typography
+            component="span"
+            fontWeight="bold"
+            {...detailTypographyProps}
+          >
+            {numberPart}
+          </Typography>
+          {formattedTextPart}
         </Typography>
-        {formattedTextPart}
-      </Typography>
+      )
     );
   }
 

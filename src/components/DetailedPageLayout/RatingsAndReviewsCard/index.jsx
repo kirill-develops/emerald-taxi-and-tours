@@ -11,9 +11,8 @@ import { GridItem } from '@elements/CustomGridEl';
 import CardTitle from '@elements/CardTitle';
 
 export default React.memo(function RatingsAndReviews() {
-  const {
-    tripAdvisorDetails: { rating, subratings },
-  } = useContext(ParamContext);
+  const { tripAdvisorDetails: { rating, subratings } = {} } =
+    useContext(ParamContext);
 
   if (!subratings) {
     return null;

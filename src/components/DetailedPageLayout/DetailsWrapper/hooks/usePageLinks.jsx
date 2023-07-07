@@ -8,7 +8,7 @@ import { PopUpLink, TelLink, MailLink } from '@elements/Links';
 
 export default function usePageLinks() {
   const {
-    tripAdvisorDetails: { email, phone, web_url: webUrl, website },
+    tripAdvisorDetails: { email, phone, web_url: webUrl, website } = {},
   } = useContext(ParamContext);
 
   const websiteLinkData = website && {

@@ -14,7 +14,7 @@ const DescriptionCard = styled(PageCard)(({ theme }) =>
 
 export default React.memo(function LocationDescription() {
   const {
-    tripAdvisorDetails: { tripAdvisorDescription, name },
+    tripAdvisorDetails: { tripAdvisorDescription, name } = {},
     description: localDescription,
   } = useContext(ParamContext);
 

@@ -15,16 +15,18 @@ export default function LinksMobile() {
   const linksObj = usePageLinks();
 
   return (
-    <StyledBottomNavigation showLabels>
-      {linksObj.map(({ LinkEl, href, label, label2, icon }) => (
-        <BottomNavigationAction
-          key={label}
-          label={label2 ?? label}
-          icon={icon}
-          href={href}
-          LinkComponent={LinkEl}
-        />
-      ))}
-    </StyledBottomNavigation>
+    linksObj?.length > 0 && (
+      <StyledBottomNavigation showLabels>
+        {linksObj.map(({ LinkEl, href, label, label2, icon }) => (
+          <BottomNavigationAction
+            key={label}
+            label={label2 ?? label}
+            icon={icon}
+            href={href}
+            LinkComponent={LinkEl}
+          />
+        ))}
+      </StyledBottomNavigation>
+    )
   );
 }

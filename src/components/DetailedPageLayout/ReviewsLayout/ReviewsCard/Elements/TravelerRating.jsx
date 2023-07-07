@@ -52,33 +52,35 @@ export default function TravelerRating() {
     tripAdvisorDetails: {
       review_rating_count: ratingCountObj,
       num_reviews: numReviews,
-    },
+    } = {},
   } = useContext(ParamContext);
 
   return (
-    <Stack
-      direction="column"
-      spacing={1}
-    >
-      {Object.values(ratingCountObj)
-        .reverse()
-        .map((value, i) => {
-          const percentValue = (Number(value) / Number(numReviews)) * 100;
+    ratingCountObj && (
+      <Stack
+        direction="column"
+        spacing={1}
+      >
+        {Object.values(ratingCountObj)
+          .reverse()
+          .map((value, i) => {
+            const percentValue = (Number(value) / Number(numReviews)) * 100;
 
-          return (
-            <RatingStack key={value}>
-              <TitleText noWrap>{qualityStringObj[i]}</TitleText>
-              <RatingBar value={percentValue} />
-              <Typography
-                variant="caption"
-                noWrap
-                sx={valueTextStyles}
-              >
-                {value}
-              </Typography>
-            </RatingStack>
-          );
-        })}
-    </Stack>
+            return (
+              <RatingStack key={value}>
+                <TitleText noWrap>{qualityStringObj[i]}</TitleText>
+                <RatingBar value={percentValue} />
+                <Typography
+                  variant="caption"
+                  noWrap
+                  sx={valueTextStyles}
+                >
+                  {value}
+                </Typography>
+              </RatingStack>
+            );
+          })}
+      </Stack>
+    )
   );
 }

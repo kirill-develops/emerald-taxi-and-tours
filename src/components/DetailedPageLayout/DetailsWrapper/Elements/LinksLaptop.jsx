@@ -16,32 +16,34 @@ export default React.memo(function LinksLaptop() {
   const {
     tripAdvisorDetails: {
       address_obj: { address_string: addressString = '' } = {},
-    },
+    } = {},
   } = useContext(ParamContext);
 
   const linksObj = usePageLinks();
 
   return (
-    <>
-      <Stack
-        direction="row"
-        spacing={2}
-        divider={<DetailDevider />}
-      >
-        {linksObj.map(({ LinkEl, href, label, icon }) => (
-          <LinkEl
-            href={href}
-            key={label}
-          >
-            {icon}
-            {label}
-          </LinkEl>
-        ))}
-      </Stack>
-      <AddressText {...detailTypographyProps}>
-        <Place fontSize="small" />
-        {addressString}
-      </AddressText>
-    </>
+    linksObj.length > 0 && (
+      <>
+        <Stack
+          direction="row"
+          spacing={2}
+          divider={<DetailDevider />}
+        >
+          {linksObj.map(({ LinkEl, href, label, icon }) => (
+            <LinkEl
+              href={href}
+              key={label}
+            >
+              {icon}
+              {label}
+            </LinkEl>
+          ))}
+        </Stack>
+        <AddressText {...detailTypographyProps}>
+          <Place fontSize="small" />
+          {addressString}
+        </AddressText>
+      </>
+    )
   );
 });

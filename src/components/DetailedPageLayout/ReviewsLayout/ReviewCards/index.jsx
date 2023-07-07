@@ -7,13 +7,15 @@ export default function ReviewCards({}) {
   const { tripAdvisorReviews } = useContext(ParamContext);
 
   return (
-    <Stack spacing={{ xxs: 2, md: 0 }}>
-      {tripAdvisorReviews.map((review) => (
-        <ReviewCard
-          key={review.id}
-          reviewId={review.id}
-        />
-      ))}
-    </Stack>
+    tripAdvisorReviews?.length > 0 && (
+      <Stack spacing={{ xxs: 2, md: 0 }}>
+        {tripAdvisorReviews.map((review) => (
+          <ReviewCard
+            key={review.id}
+            reviewId={review.id}
+          />
+        ))}
+      </Stack>
+    )
   );
 }

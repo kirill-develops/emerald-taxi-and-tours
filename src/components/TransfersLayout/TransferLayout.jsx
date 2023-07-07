@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { transferData } from '@data/transfers';
+import transferData from '@data/transferData.json';
 import AreaAccordions from './AreaAccordions/AreaAccordions';
 import SectionLayoutStack from './Element/SectionLayoutStack';
 

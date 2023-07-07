@@ -11,29 +11,30 @@ const RankingStack = styled(Stack)(({ theme }) =>
 );
 
 export default React.memo(function RankingEl({ children }) {
-  const {
-    tripAdvisorDetails: { rating, num_reviews: numReviews },
-  } = useContext(ParamContext);
+  const { tripAdvisorDetails: { rating, num_reviews: numReviews } = {} } =
+    useContext(ParamContext);
 
   return (
-    <RankingStack
-      direction="row"
-      spacing={0.5}
-    >
-      {children}
-      <Rating
-        defaultValue={Number(rating)}
-        precision={0.1}
-        size="small"
-        readOnly
-      />
-      <Typography
-        {...detailTypographyProps}
-        fontWeight={500}
-        noWrap
+    rating && (
+      <RankingStack
+        direction="row"
+        spacing={0.5}
       >
-        {numReviews && `${numReviews} reviews`}
-      </Typography>
-    </RankingStack>
+        {children}
+        <Rating
+          defaultValue={Number(rating)}
+          precision={0.1}
+          size="small"
+          readOnly
+        />
+        <Typography
+          {...detailTypographyProps}
+          fontWeight={500}
+          noWrap
+        >
+          {numReviews && `${numReviews} reviews`}
+        </Typography>
+      </RankingStack>
+    )
   );
 });
