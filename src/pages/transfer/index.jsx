@@ -1,9 +1,9 @@
 import React from 'react';
 import PageLayout from '@components/PageLayout/Layout';
 import Head from 'next/head';
-import TransferLayout from '../components/TransfersLayout/TransferLayout';
+import TransferLayout from '@components/TransfersLayout/TransferLayout';
 
-function Transfer() {
+export default function Transfer() {
   return (
     <>
       <Head>
@@ -15,5 +15,3 @@ function Transfer() {
     </>
   );
 }
-
-export default Transfer;
