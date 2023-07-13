@@ -14,6 +14,7 @@ import ExpandMoreButton from './Elements/ExpandMoreButton';
 import { Box } from '@mui/material';
 import CardImage from '../../ToursByType/SwiperTourCard.jsx/Elements/CardImage';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
+import { getToursUrl } from '@pages/tours/[area]/[tour]';
 
 const cardContentStyles = {
   py: 0,
@@ -45,14 +46,24 @@ function Description({ description, sx, ...rest }) {
 }
 
 export default function DetailedTourCard({ tour }) {
-  const { name, area, link, type, price, description, tripAdvisorPhotos } =
-    tour;
+  const {
+    name,
+    area,
+    link,
+    areaLink,
+    type,
+    price,
+    description,
+    tripAdvisorPhotos,
+  } = tour;
 
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded((prev) => !prev);
   };
+
+  const url = getToursUrl(areaLink, link);
 
   return (
     <GridItem
@@ -101,7 +112,7 @@ export default function DetailedTourCard({ tour }) {
               disableSpacing
               sx={cardActionsStyles}
             >
-              <BookNowButton url={link} />
+              <BookNowButton url={url} />
               <ExpandMoreButton
                 expanded={expanded}
                 handleExpandClick={handleExpandClick}

@@ -6,11 +6,14 @@ import GridCard from '@elements/GridCard';
 import BookNowButton from '../../AllTours/DetailedTourCard/Elements/BookNowButton';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import CardImage from './Elements/CardImage';
+import { getToursUrl } from '@pages/tours/[area]/[tour]';
 
 const cardActionsStyles = { p: 2 };
 
 export default function SwiperTourCard({ tour }) {
-  const { name, area, link, tripAdvisorPhotos } = tour;
+  const { name, area, link, areaLink, tripAdvisorPhotos } = tour;
+
+  const url = getToursUrl(areaLink, link);
 
   return (
     <GridCard sx={{ height: 150 }}>
@@ -36,7 +39,7 @@ export default function SwiperTourCard({ tour }) {
             disableSpacing
             sx={cardActionsStyles}
           >
-            <BookNowButton url={link} />
+            <BookNowButton url={url} />
           </CardActions>
         </GridItem>
       </GridContainer>

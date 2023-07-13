@@ -10,10 +10,14 @@ import getLocationId from '@hooks/getTripAdvisorLocationId';
 import getTripAdvisorData from '@hooks/getTripAdvisorData';
 import DetailedPageLayout from '@components/DetailedPageLayout/DetailedPageLayout';
 
+export function getToursUrl(areaLink, link) {
+  return `tours/${areaLink}/${link}`;
+}
+
 export async function getStaticPaths() {
   const paths = tourData.map((tour) => ({
     params: {
-      category: 'tours',
+      area: tour.areaLink,
       tour: tour.link,
     },
   }));
@@ -38,7 +42,7 @@ async function updateTourData(updatedTourParams = {}) {
 export async function getStaticProps({ params }) {
   const tourParams = tourData.find((tour) => tour.link === params.tour);
 
-  if (!tourParams || params.category !== 'tours') {
+  if (!tourParams || !params.area || !params.tour) {
     return {
       notFound: true,
     };
@@ -80,7 +84,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-function DynamicTour({ tourParams }) {
+export default function DynamicTour({ tourParams }) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -108,5 +112,3 @@ function DynamicTour({ tourParams }) {
     </>
   );
 }
-
-export default DynamicTour;

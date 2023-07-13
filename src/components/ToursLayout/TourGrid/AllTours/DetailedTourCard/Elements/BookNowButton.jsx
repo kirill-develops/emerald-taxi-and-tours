@@ -8,7 +8,7 @@ export default function BookNowButton({ url }) {
       variant="contained"
       color="secondary"
       LinkComponent={Link}
-      href={`/tours/${url}`}
+      href={url}
     >
       Book Now
     </Button>
