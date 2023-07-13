@@ -1,10 +1,8 @@
 import React, { useMemo } from 'react';
-import transferData from '@data/transferData.json';
+
 import AreaAccordions from './AreaAccordions/AreaAccordions';
 import SectionLayoutStack from './Element/SectionLayoutStack';
-
-const filterTransferData = (passedAirportLink) =>
-  transferData.filter(({ airportLink }) => passedAirportLink === airportLink);
+import { filterTransferData } from '@helperFunctions';
 
 export default function TransferLayout() {
   const sangsterTransferData = useMemo(() => filterTransferData('MBJ'), []);
