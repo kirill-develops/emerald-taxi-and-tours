@@ -4,7 +4,7 @@ import ToursLayout from '@Tour/ToursLayout';
 import Head from 'next/head';
 import TourContext from '@context/TourContext';
 
-function tours() {
+export default function tours() {
   return (
     <>
       <Head>
@@ -18,5 +18,3 @@ function tours() {
     </>
   );
 }
-
-export default tours;
