@@ -10,9 +10,6 @@ const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('@elements/LayoutTitle'));
 const Copyright = dynamic(() => import('../Copyright'));
 const Navbar = dynamic(() => import('@components/NavbarLayout/'));
-const GridContainer = dynamic(() =>
-  import('@elements/CustomGridEl').then((mod) => mod.GridContainer),
-);
 
 const LayoutContainer = styled(Container)(({ theme }) =>
   theme.unstable_sx({
