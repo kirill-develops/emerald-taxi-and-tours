@@ -14,6 +14,10 @@ const StyledBottomNavigation = styled(BottomNavigation)(({ theme }) =>
 export default function LinksMobile() {
   const linksObj = usePageLinks();
 
+  if (!linksObj || linksObj.length < 1) {
+    return null;
+  }
+
   return (
     linksObj?.length > 0 && (
       <StyledBottomNavigation showLabels>

@@ -5,6 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import usePageTransition from './hooks/usePageTransition';
+const Stack = dynamic(() => import('@mui/material/Stack'));
 const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('@elements/LayoutTitle'));
 const Copyright = dynamic(() => import('../Copyright'));
@@ -24,10 +25,11 @@ const LayoutContainer = styled(Container)(({ theme }) =>
   }),
 );
 
-const LayoutGrid = styled(GridContainer)(({ theme }) =>
+const LayoutGrid = styled(Stack)(({ theme }) =>
   theme.unstable_sx({
     flexGrow: 1,
     flexDirection: 'column',
+    height: '100%',
   }),
 );
 
