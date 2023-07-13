@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import TransferGrid from './Elements/TransferGridContainer';
 import DestinationCards from './Elements/DestinationCards';
 import AccordionSummaryEl from './Elements/AccordionSummaryEl';
-import SectionTitle from './Elements/TransferSectionTitle';
+import SectionTitle from '@elements/SectionTitle';
 
 export default React.memo(function AreaAccordionArr({ transferData, title }) {
   const [expanded, setExpanded] = useState(false);
@@ -44,7 +44,7 @@ export default React.memo(function AreaAccordionArr({ transferData, title }) {
 
   return (
     <Stack rowGap={1}>
-      <SectionTitle>{title}</SectionTitle>
+      <SectionTitle maxWidth="xl">{title}</SectionTitle>
       <Container maxWidth="lg">{renderedAccordions}</Container>
     </Stack>
   );

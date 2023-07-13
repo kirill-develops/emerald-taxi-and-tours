@@ -4,8 +4,8 @@ export const GridContainer = ({ children, sx, ...other }) => {
   return (
     <Grid
       container
-      {...other}
       sx={{ ...sx }}
+      {...other}
     >
       {children}
     </Grid>

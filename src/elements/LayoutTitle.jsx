@@ -12,6 +12,7 @@ function TitleEl({ children }) {
     <SectionTitle
       component="h1"
       color="primary.light"
+      disableGutters
       sx={titleStyles}
     >
       {children}

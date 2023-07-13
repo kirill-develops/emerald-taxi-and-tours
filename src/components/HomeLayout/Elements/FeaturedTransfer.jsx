@@ -1,6 +1,4 @@
 import React from 'react';
-import MaxWidthContainer from '@elements/MaxWidthContainer';
-import SectionTitle from '@elements/SectionTitle';
 import {
   Card,
   CardActionArea,
@@ -12,6 +10,7 @@ import {
 import Link from '@material/Link';
 import CardTitle from '@elements/CardTitle';
 import Image from 'next/image';
+import HomeSection from './HomeSection';
 
 const airportTransfersLinks = [
   {
@@ -93,28 +92,25 @@ function TransportCard({ title, caption, image, url, children, sx, ...rest }) {
 
 export default function FeaturedTransfer() {
   return (
-    <MaxWidthContainer sx={{ py: 5 }}>
-      <Stack rowGap={3}>
-        <SectionTitle>Plan Your Private Transportation:</SectionTitle>
-        <Stack
-          direction={{ xxs: 'column', sm: 'row' }}
-          width={'100%'}
-          justifyContent={'space-between'}
-          columnGap={4}
-          rowGap={2}
-          sx={{ overflowX: 'scroll' }}
-        >
-          {airportTransfersLinks.map(({ title, caption, url, image }) => (
-            <TransportCard
-              key={url}
-              title={<CardTitle>{title}</CardTitle>}
-              caption={<Typography variant="body1">{caption}</Typography>}
-              image={image}
-              url={url}
-            />
-          ))}
-        </Stack>
+    <HomeSection title={'Plan Your Private Transportation:'}>
+      <Stack
+        direction={{ xxs: 'column', sm: 'row' }}
+        width={'100%'}
+        justifyContent={'space-between'}
+        columnGap={4}
+        rowGap={2}
+        sx={{ overflowX: 'scroll' }}
+      >
+        {airportTransfersLinks.map(({ title, caption, url, image }) => (
+          <TransportCard
+            key={url}
+            title={<CardTitle>{title}</CardTitle>}
+            caption={<Typography variant="body1">{caption}</Typography>}
+            image={image}
+            url={url}
+          />
+        ))}
       </Stack>
-    </MaxWidthContainer>
+    </HomeSection>
   );
 }
