@@ -11,7 +11,7 @@ import getTripAdvisorData from '@hooks/getTripAdvisorData';
 import DetailedPageLayout from '@components/DetailedPageLayout/DetailedPageLayout';
 
 export function getToursUrl(areaLink, link) {
-  return `tours/${areaLink}/${link}`;
+  return `/tours/${areaLink}/${link}`;
 }
 
 export async function getStaticPaths() {
