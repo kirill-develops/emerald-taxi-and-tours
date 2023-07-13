@@ -1,15 +1,13 @@
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import Image from 'next/image';
 import React from 'react';
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Stack,
-  Typography,
-  styled,
-} from '@mui/material';
 import Link from '@material/Link';
 import CardTitle from '@elements/CardTitle';
-import Image from 'next/image';
 import HomeSection from './HomeSection';
 
 const airportTransfersLinks = [
@@ -46,12 +44,12 @@ const StyledCard = styled(Card)(({ theme }) =>
   }),
 );
 
-const MuiImage = styled(Image)(({ theme }) => ({
+const MuiImage = styled(Image)({
   objectFit: 'cover',
-}));
+});
 
 function TransportCard({ title, caption, image, url, children, sx, ...rest }) {
-  if (!!url) return null;
+  if (!!url) return null; //! should be single exclamation
 
   return (
     <StyledCard
@@ -103,7 +101,7 @@ export default function FeaturedTransfer() {
       >
         {airportTransfersLinks.map(({ title, caption, url, image }) => (
           <TransportCard
-            key={url}
+            key={image}
             title={<CardTitle>{title}</CardTitle>}
             caption={<Typography variant="body1">{caption}</Typography>}
             image={image}
