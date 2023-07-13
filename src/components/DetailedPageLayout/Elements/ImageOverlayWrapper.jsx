@@ -10,7 +10,6 @@ import { ParamContext } from '@context/FormContextProvider';
 const OverlayBox = styled(Box)(({ theme }) =>
   theme.unstable_sx({
     position: 'relative',
-    mt: 2,
   }),
 );
 
@@ -57,6 +56,7 @@ export default function ImageOverlayWrapper({ children, ...rest }) {
   ) : (
     <MaxWidthContainer
       disableGutters
+      disableStack
       {...rest}
     >
       {children}

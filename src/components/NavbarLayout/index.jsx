@@ -30,7 +30,10 @@ export default function NavbarLayout(props) {
     <NavBreakpointContext.Provider value={menuBreakpoint}>
       <ElevationScroll {...props}>
         <SiteAppBar elevation={1}>
-          <MaxWidthContainer disableGutters>
+          <MaxWidthContainer
+            disableGutters
+            disableStack
+          >
             <Toolbar sx={{ ...loadingTransitionStyle }}>
               <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
               <TitleWrapper />

@@ -37,7 +37,6 @@ const iconButtonStyles = (position) => ({
 const gridItemStyles = {
   width: '100%',
   flexDirection: 'column',
-  marginBottom: 2,
 };
 
 const navBackButtonStyles = (isBeginning) => ({
@@ -50,7 +49,10 @@ const navNextButtonStyles = (isEnd) => ({
   display: isEnd ? 'none' : 'inline-flex',
 });
 
-const TourSwiperComponent = React.memo(({ tours, type }) => {
+const TourSwiperComponent = React.memo(function TourSwiperComponent({
+  tours,
+  type,
+}) {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
@@ -113,9 +115,8 @@ const TourSwiperComponent = React.memo(({ tours, type }) => {
     </GridItem>
   );
 });
-TourSwiperComponent.displayName = 'TourSwiperComponent';
 
-function ToursByType() {
+export default React.memo(function ToursByType() {
   const [state, actions] = useTour();
   const { tourData } = state;
 
@@ -140,6 +141,4 @@ function ToursByType() {
       key={`${type}-${index}`}
     />
   ));
-}
-
-export default React.memo(ToursByType);
+});

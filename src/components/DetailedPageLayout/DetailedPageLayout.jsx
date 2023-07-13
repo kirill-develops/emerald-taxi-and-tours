@@ -1,4 +1,3 @@
-import Stack from '@mui/material/Stack';
 import React from 'react';
 import { GridContainer } from '@elements/CustomGridEl';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
@@ -16,10 +15,14 @@ import BookingLayout from './BookingLayout/BookingLayout';
 function MaxWidthLayoutWrapper({ children, ...other }) {
   const isMdBreakpoint = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
-  return isMdBreakpoint ? (
-    <MaxWidthContainer {...other}>{children}</MaxWidthContainer>
-  ) : (
-    children
+  return (
+    <MaxWidthContainer
+      disableGutters={!isMdBreakpoint}
+      rowGap={2}
+      {...other}
+    >
+      {children}
+    </MaxWidthContainer>
   );
 }
 
@@ -37,25 +40,23 @@ export default function DetailedPageLayout() {
         </ImageOverlayWrapper>
       </DetailsWrapper>
       <MaxWidthLayoutWrapper>
-        <Stack rowGap={2}>
-          <LocationDescription />
-          {isXxsBreakpoint && (
-            <>
-              <RatingsAndReviews />
-              <ServiceDescription />
-            </>
-          )}
-          <GridContainer
-            rowSpacing={{ xxs: 2 }}
-            columnSpacing={{ md: 2 }}
-          >
-            {!isXxsBreakpoint && <RatingsAndReviews />}
-            <ImportantInfo />
-          </GridContainer>
+        <LocationDescription />
+        {isXxsBreakpoint && (
+          <>
+            <RatingsAndReviews />
+            <ServiceDescription />
+          </>
+        )}
+        <GridContainer
+          rowSpacing={{ xxs: 2 }}
+          columnSpacing={{ md: 2 }}
+        >
+          {!isXxsBreakpoint && <RatingsAndReviews />}
+          <ImportantInfo />
+        </GridContainer>
 
-          {!isXxsBreakpoint && <ServiceDescription />}
-          <ReviewsLayout />
-        </Stack>
+        {!isXxsBreakpoint && <ServiceDescription />}
+        <ReviewsLayout />
       </MaxWidthLayoutWrapper>
     </>
   );

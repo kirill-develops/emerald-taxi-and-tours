@@ -20,7 +20,7 @@ export default React.memo(function PageCard({ children, ...rest }) {
       variant="outlined"
       {...rest}
     >
-      <MaxWidthContainer>{children}</MaxWidthContainer>
+      <MaxWidthContainer rowGap={0}>{children}</MaxWidthContainer>
     </StyledPageCard>
   );
 });

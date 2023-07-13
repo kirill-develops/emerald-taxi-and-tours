@@ -22,6 +22,7 @@ export default React.memo(function TourOptions({ sx, ...rest }) {
   return (
     <MaxWidthContainer
       disableGutters
+      disableStack
       sx={sx}
       {...rest}
     >

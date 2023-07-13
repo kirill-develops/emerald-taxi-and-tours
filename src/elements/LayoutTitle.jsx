@@ -52,7 +52,7 @@ export default function LayoutTitle({ title, subheader, airport }) {
   if (title.length > 0)
     return (
       <>
-        <MaxWidthContainer>
+        <MaxWidthContainer rowGap={0}>
           <TitleEl>{title}</TitleEl>
           {subheaderEl}
           {airportEl}

@@ -1,5 +1,6 @@
-import { Container, Stack, styled, useMediaQuery } from '@mui/material';
-import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
 import React from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import DetailDevider from './Elements/DetailDevider';
@@ -11,8 +12,8 @@ import LinksMobile from './Elements/LinksMobile';
 
 export const detailTypographyProps = { variant: 'body2' };
 
-const DetailsBox = styled(Box)(({ theme }) =>
-  theme.unstable_sx({ py: { xxs: 1.5, sm: 2, md: 3 } }),
+const DetailsBox = styled(Stack)(({ theme }) =>
+  theme.unstable_sx({ py: { xxs: 1.5, sm: 2, md: 3 }, rowGap: 2 }),
 );
 
 function DetailsStack({ children, ...rest }) {
@@ -35,7 +36,10 @@ export default React.memo(function DetailsWrapper({ children, ...rest }) {
 
   return (
     <DetailsBox {...rest}>
-      <MaxWidthContainer>
+      <MaxWidthContainer
+        rowGap={0.5}
+        maxWidth="md"
+      >
         <DetailsStack>
           <RankingEl />
           {!isSmBreakpoint && <FormattedRankingString />}

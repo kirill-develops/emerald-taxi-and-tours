@@ -8,10 +8,12 @@ export default function HomeSection({ title, sx, children, ...rest }) {
     <Stack
       rowGap={3}
       sx={{ py: 5, height: '100%', ...sx }}
+      {...rest}
     >
       <SectionTitle maxWidth="xl">{title}</SectionTitle>
       <MaxWidthContainer
         maxWidth="lg"
+        disableStack
         sx={{ zIndex: 1 }}
       >
         {children}

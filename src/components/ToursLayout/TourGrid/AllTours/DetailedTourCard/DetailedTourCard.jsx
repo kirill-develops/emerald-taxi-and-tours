@@ -27,7 +27,6 @@ const cardContentStyles = {
 const gridItemStyles = {
   width: '100%',
   flexDirection: 'column',
-  marginBottom: 2,
 };
 
 const cardActionsStyles = { p: 2 };
@@ -45,7 +44,7 @@ function Description({ description, sx, ...rest }) {
   );
 }
 
-export default function DetailedTourCard({ tour }) {
+export default function DetailedTourCard({ tour, sx, ...rest }) {
   const {
     name,
     area,
@@ -68,7 +67,8 @@ export default function DetailedTourCard({ tour }) {
   return (
     <GridItem
       xxs={12}
-      sx={gridItemStyles}
+      sx={{ ...gridItemStyles, ...sx }}
+      {...rest}
     >
       <GridCard>
         <GridContainer sx={{ height: '100%' }}>

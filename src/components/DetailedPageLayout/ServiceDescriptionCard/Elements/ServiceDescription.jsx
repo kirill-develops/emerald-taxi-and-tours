@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 
-const useLocalizedDescription = (airport) =>
+const getLocalizedDescription = (airport) =>
   airport === 'tour'
     ? `Discover the hidden gems and breathtaking beauty of Jamaica with our exclusive private island tours. Tailored to your preferences, these tours offer the ultimate in personalized service. Leave the crowds behind and embark on a journey of exploration and adventure, accompanied by our knowledgeable guides. From pristine beaches to historic landmarks and immersive cultural experiences, our tours cover it all. Sit back, relax, and let us handle all the details while you create lasting memories in this tropical paradise.`
     : `Experience the ultimate in personalized service with our private airport
@@ -19,17 +19,10 @@ export default function ServiceDescription() {
   let localizedDescription;
 
   if (type === 'tour') {
-    localizedDescription = useLocalizedDescription(type);
+    localizedDescription = getLocalizedDescription(type);
   } else {
-    localizedDescription = useLocalizedDescription(airport);
+    localizedDescription = getLocalizedDescription(airport);
   }
 
-  return (
-    <Typography
-      variant="body1"
-      paragraph
-    >
-      {localizedDescription}
-    </Typography>
-  );
+  return <Typography variant="body1">{localizedDescription}</Typography>;
 }
