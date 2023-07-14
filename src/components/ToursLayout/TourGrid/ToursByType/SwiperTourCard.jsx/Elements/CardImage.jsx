@@ -16,13 +16,16 @@ const StyledNextImage = styled(Image)(({ theme }) => ({
 
 export default function CardImage({ picData, ...rest }) {
   const {
+    breakpoints: { values: breakpoints },
+  } = useTheme();
+
+  if (!picData) {
+    return null;
+  }
+  const {
     caption,
     images: { original: { url = picData.images.large.url } = { images: {} } },
   } = picData;
-
-  const {
-    breakpoints: { values: breakpoints },
-  } = useTheme();
 
   const muiImageSizes = `
     (max-width: ${breakpoints.sm}) 30dvw, 
