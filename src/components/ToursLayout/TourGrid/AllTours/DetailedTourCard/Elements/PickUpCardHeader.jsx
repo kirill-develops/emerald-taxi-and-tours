@@ -62,7 +62,9 @@ function PickUpCardHeader({ price }) {
 
   return useMemo(
     () =>
-      Boolean(startLocationFilter.length > 0) && <Stack>{startArrayEl}</Stack>,
+      Boolean(startLocationFilter.length > 0) && (
+        <Stack sx={{ mt: 2 }}>{startArrayEl}</Stack>
+      ),
     [startArrayEl, startLocationFilter.length],
   );
 }

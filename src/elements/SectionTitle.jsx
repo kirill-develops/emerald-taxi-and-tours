@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
@@ -11,8 +11,8 @@ export default function SectionTitle({
   return (
     <Container
       maxWidth={maxWidth}
-      sx={{ zIndex: 1 }}
       disableGutters={disableGutters}
+      sx={{ zIndex: 1 }}
     >
       <Typography
         variant="h4"

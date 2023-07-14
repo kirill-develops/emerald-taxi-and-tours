@@ -4,7 +4,7 @@ import React from 'react';
 
 const stackStyles = { flexWrap: 'wrap', gap: 1 };
 
-function TourType({ typeArr }) {
+function TourType({ typeArr, variant = 'outlined', ...rest }) {
   return (
     <Stack
       direction="row"
@@ -15,7 +15,8 @@ function TourType({ typeArr }) {
           key={type}
           label={type}
           size="small"
-          variant="outlined"
+          variant={variant}
+          {...rest}
         />
       ))}
     </Stack>
