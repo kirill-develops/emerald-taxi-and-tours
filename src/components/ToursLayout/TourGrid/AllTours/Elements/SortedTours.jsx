@@ -1,4 +1,4 @@
-import TourCard from '../DetailedTourCard/DetailedTourCard';
+import TourCard from '../DetailedTourCard/DetailedCard';
 import React, { useMemo } from 'react';
 import useSortData from '../../hooks/useSortData';
 import { useTour } from '../../../hooks/useTour';

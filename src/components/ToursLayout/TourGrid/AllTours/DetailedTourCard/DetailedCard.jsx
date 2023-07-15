@@ -18,7 +18,7 @@ const cardContentStyles = {
   pb: '0 !important',
 };
 
-export default function DetailedTourCard({ tour, sx, ...rest }) {
+export default function DetailedCard({ tour, sx, ...rest }) {
   const {
     name,
     area,
