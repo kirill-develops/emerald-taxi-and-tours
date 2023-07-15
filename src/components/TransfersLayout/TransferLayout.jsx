@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import AreaAccordions from './AreaAccordions/AreaAccordions';
-import SectionLayoutStack from './Element/SectionLayoutStack';
+import PageLayoutStack from '@elements/PageLayoutStack';
 import { filterTransferData } from '@helperFunctions';
 
 export default function TransferLayout() {
@@ -9,7 +9,7 @@ export default function TransferLayout() {
   const normanManleyTransferData = useMemo(() => filterTransferData('KIN'), []);
 
   return (
-    <SectionLayoutStack>
+    <PageLayoutStack>
       <AreaAccordions
         transferData={sangsterTransferData}
         title="Sangster International, Montego Bay"
@@ -18,6 +18,6 @@ export default function TransferLayout() {
         transferData={normanManleyTransferData}
         title="Norman Manley International, Kingston"
       />
-    </SectionLayoutStack>
+    </PageLayoutStack>
   );
 }

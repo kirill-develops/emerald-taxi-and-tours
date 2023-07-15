@@ -1,16 +1,11 @@
 import React from 'react';
 import { gridSpacingProps } from '@material/theme';
-import TourOptions from './TourOptions/TourOptions';
 import FilterOptions from './FilterOptions/FilterOptions';
 import TourGrid from './TourGrid/TourGrid';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
-import { styled } from '@mui/material';
+import PageLayoutStack from '@elements/PageLayoutStack';
 
 const gridItemStyles = { display: { xxs: 'none', sm: 'block' } };
-
-const TabletTourOptions = styled(TourOptions)(({ theme }) =>
-  theme.unstable_sx({ display: { xxs: 'none', sm: 'block' } }),
-);
 
 function Aside({ children, sx, ...rest }) {
   return (
@@ -43,8 +38,7 @@ function Content({ children, sx, ...rest }) {
 
 export default React.memo(function TourLayout() {
   return (
-    <>
-      <TabletTourOptions />
+    <PageLayoutStack>
       <GridContainer spacing={gridSpacingProps}>
         <Aside>
           <FilterOptions />
@@ -53,6 +47,6 @@ export default React.memo(function TourLayout() {
           <TourGrid />
         </Content>
       </GridContainer>
-    </>
+    </PageLayoutStack>
   );
 });

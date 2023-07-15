@@ -6,7 +6,7 @@ import TourAreaContext from '@context/TourAreaContext';
 import { gridSpacingProps } from '@material/theme';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import ItemCard from './ItemCard/ItemCard';
-import SectionLayoutStack from '../TransfersLayout/Element/SectionLayoutStack';
+import PageLayoutStack from '@elements/PageLayoutStack';
 
 export default function ToursByLocationLayout() {
   const { locations, name } = useContext(TourAreaContext);
@@ -14,7 +14,7 @@ export default function ToursByLocationLayout() {
   const isSmBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   return (
-    <SectionLayoutStack>
+    <PageLayoutStack>
       <MaxWidthContainer
         maxWidth="sm"
         disableStack
@@ -40,6 +40,6 @@ export default function ToursByLocationLayout() {
           ))}
         </GridContainer>
       </MaxWidthContainer>
-    </SectionLayoutStack>
+    </PageLayoutStack>
   );
 }

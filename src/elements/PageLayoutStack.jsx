@@ -1,10 +1,10 @@
 import Stack from '@mui/material/Stack';
 import React from 'react';
 
-export default function SectionLayoutStack({ children, ...rest }) {
+export default function PageLayoutStack({ children, ...rest }) {
   return (
     <Stack
-      rowGap={2}
+      rowGap={{ xxs: 2, sm: 4, md: 6 }}
       sx={{ py: 3 }}
       {...rest}
     >
