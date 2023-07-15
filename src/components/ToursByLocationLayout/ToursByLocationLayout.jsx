@@ -1,20 +1,20 @@
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { useContext } from 'react';
 import { GridContainer } from '@elements/CustomGridEl';
 import TourAreaContext from '@context/TourAreaContext';
-import DetailedTourCard from '../ToursLayout/TourGrid/AllTours/DetailedTourCard/DetailedTourCard';
 import { gridSpacingProps } from '@material/theme';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import ItemCard from './ItemCard/ItemCard';
+import SectionLayoutStack from '../TransfersLayout/Element/SectionLayoutStack';
 
 export default function ToursByLocationLayout() {
   const { locations, name } = useContext(TourAreaContext);
 
+  const isSmBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
   return (
-    <Stack
-      sx={{ py: 3 }}
-      rowGap={2}
-    >
+    <SectionLayoutStack>
       <MaxWidthContainer
         maxWidth="sm"
         disableStack
@@ -27,12 +27,12 @@ export default function ToursByLocationLayout() {
       </MaxWidthContainer>
 
       <MaxWidthContainer
-        maxWidth="lg"
+        maxWidth={isSmBreakpoint ? 'sm' : 'lg'}
         disableStack
       >
         <GridContainer spacing={gridSpacingProps}>
           {locations.map((location) => (
-            <DetailedTourCard
+            <ItemCard
               key={location.link}
               md={6}
               tour={location}
@@ -40,6 +40,6 @@ export default function ToursByLocationLayout() {
           ))}
         </GridContainer>
       </MaxWidthContainer>
-    </Stack>
+    </SectionLayoutStack>
   );
 }
