@@ -1,31 +1,36 @@
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import React from 'react';
+import React, { useMemo } from 'react';
 
-export default function MaxWidthContainer({
+export default React.memo(function MaxWidthContainer({
   maxWidth = 'xl',
-  children,
   disableStack = false,
   rowGap = 3,
+  children,
   ...others
 }) {
-  const containerProps = {
-    maxWidth,
-    ...others,
-  };
+  const containerProps = useMemo(
+    () => ({
+      maxWidth,
+      ...others,
+    }),
+    [maxWidth, others],
+  );
 
-  return (
-    <Container {...containerProps}>
-      {!disableStack ? (
+  const content = useMemo(() => {
+    if (disableStack) {
+      return children;
+    } else {
+      return (
         <Stack
           direction="column"
           rowGap={rowGap}
         >
           {children}
         </Stack>
-      ) : (
-        children
-      )}
-    </Container>
-  );
-}
+      );
+    }
+  }, [disableStack, rowGap, children]);
+
+  return <Container {...containerProps}>{content}</Container>;
+});
