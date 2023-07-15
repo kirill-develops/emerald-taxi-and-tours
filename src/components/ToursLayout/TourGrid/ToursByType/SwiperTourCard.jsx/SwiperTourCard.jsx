@@ -1,48 +1,27 @@
-import CardHeader from '@mui/material/CardHeader';
-import Divider from '@mui/material/Divider';
-import CardActions from '@mui/material/CardActions';
 import React from 'react';
-import GridCard from '@elements/GridCard';
-import BookNowButton from '../../AllTours/DetailedTourCard/Elements/BookNowButton';
-import { GridContainer, GridItem } from '@elements/CustomGridEl';
-import CardImage from './Elements/CardImage';
+import GridCard from '@components/GridCard/GridCard';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
 
-const cardActionsStyles = { p: 2 };
+export default function SwiperTourCard({ tour, sx, ...rest }) {
+  const { name, area, link, type, price, areaLink, tripAdvisorPhotos } = tour;
 
-export default function SwiperTourCard({ tour }) {
-  const { name, area, link, areaLink, tripAdvisorPhotos } = tour;
+  const areaPrice = price.reduce((acc, priceObj) =>
+    priceObj.price < acc ? (acc = priceObj.price) : acc,
+  );
 
   const url = getToursUrl(areaLink, link);
 
   return (
-    <GridCard sx={{ height: 150 }}>
-      <GridContainer sx={{ height: '100%' }}>
-        <CardImage
-          picData={tripAdvisorPhotos[0]}
-          xxs={5}
-        />
-        <GridItem
-          xxs={7}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
-        >
-          <CardHeader
-            title={name}
-            subheader={area}
-          />
-          <Divider variant="middle" />
-          <CardActions
-            disableSpacing
-            sx={cardActionsStyles}
-          >
-            <BookNowButton url={url} />
-          </CardActions>
-        </GridItem>
-      </GridContainer>
-    </GridCard>
+    <GridCard
+      type={type}
+      price={areaPrice.price}
+      picData={tripAdvisorPhotos[0]}
+      bookNowUrl={url}
+      name={name}
+      area={area}
+      sx={{ height: 190, ...sx }}
+      disableRipple
+      {...rest}
+    />
   );
 }
