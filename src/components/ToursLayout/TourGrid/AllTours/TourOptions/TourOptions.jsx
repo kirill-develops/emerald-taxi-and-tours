@@ -1,14 +1,14 @@
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Collapse from '@mui/material/Collapse';
 import React from 'react';
 import MobileFilterButton from './Elements/FilterButtonMobile';
-import FilterOptions from '../FilterOptions/FilterOptions';
+import FilterOptions from '../../../FilterOptions/FilterOptions';
 import SortButton from './Elements/SortButton';
-import MaxWidthContainer from '../../../elements/MaxWidthContainer';
-import { useTour } from '../hooks/useTour';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
+import { useTour } from '../../../hooks/useTour';
 
-const boxStyles = {
-  display: 'flex',
+const stackStyles = {
+  flexDirection: 'row',
   alignItems: 'center',
   justifyContent: { xxs: 'space-between', sm: 'flex-end' },
   m: { sm: 1 },
@@ -26,10 +26,10 @@ export default React.memo(function TourOptions({ sx, ...rest }) {
       sx={sx}
       {...rest}
     >
-      <Box sx={boxStyles}>
+      <Stack sx={stackStyles}>
         <MobileFilterButton />
         <SortButton />
-      </Box>
+      </Stack>
       <Collapse
         in={filterExpand}
         sx={collapseStyles}

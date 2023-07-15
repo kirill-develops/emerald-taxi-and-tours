@@ -3,7 +3,7 @@ import FilterAltOutlined from '@mui/icons-material/FilterAltOutlined';
 import { useMediaQuery } from '@mui/material';
 import Button from '@mui/material/Button';
 import React, { useLayoutEffect } from 'react';
-import { useTour } from '../../hooks/useTour';
+import { useTour } from '../../../../hooks/useTour';
 
 const filterButtonStyles = {
   width: '40%',
