@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 import PageCard from '@elements/PageCard';
 import Divider from '@mui/material/Divider';
-import TextCollapse from './Elements/TextCollapse';
+import TextCollapse from '@elements/TextCollapse';
 import { styled } from '@mui/material';
 import CardTitle from '@elements/CardTitle';
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import ReviewContext from '@context/ReviewContext';
 import { Box, Divider } from '@mui/material';
-import TextCollapse from '../../../LocationDescriptionCard/Elements/TextCollapse';
+import TextCollapse from '@elements/TextCollapse';
 
 export default function DescriptionText({ ...rest }) {
   const { text } = useContext(ReviewContext);

@@ -4,7 +4,7 @@ import { ParamContext } from '@context/FormContextProvider';
 import PageCard from '@elements/PageCard';
 import AvatarEl from './Elements/AvatarEl';
 import ReviewDetails from './ReviewDetails';
-import DescriptionText from './Elements/DescriptionText';
+import DescriptionText from '@Elements/DescriptionText';
 import ReviewedDateText from './Elements/ReviewedText';
 import ReviewContext from '@context/ReviewContext';
 
