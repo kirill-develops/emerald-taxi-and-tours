@@ -2,8 +2,8 @@ import TextField from '@mui/material/TextField';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import Link from '@material/Link';
-import GroupHeader from '@elements/GroupHeader';
-import GroupItems from '@elements/GroupItems';
+import GroupHeader from './Elements/GroupHeader';
+import GroupItems from './Elements/GroupItems';
 
 export const listBoxProps = {
   style: {

@@ -2,7 +2,7 @@ import { Search } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import React, { useState } from 'react';
-import SearchModal from '@NavSearch/SearchModal';
+import SearchModal from './NavSearch/SearchModal';
 import { useMediaQuery } from '@mui/material';
 
 function MobileSearchButton({ dissapearingBreakpoint }) {
