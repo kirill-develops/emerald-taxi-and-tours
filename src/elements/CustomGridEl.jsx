@@ -22,6 +22,7 @@ export const GridItem = ({ children, sx, ...other }) => {
   return (
     <Grid
       item
+      xxs={12}
       sx={gridStyles}
       {...other}
     >

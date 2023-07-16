@@ -33,7 +33,6 @@ export default function FeatureTours() {
           {tourPickupAreas.map(({ name, link }) => (
             <GridItem
               key={link}
-              xxs={12}
               sm={6}
             >
               <CardActionArea

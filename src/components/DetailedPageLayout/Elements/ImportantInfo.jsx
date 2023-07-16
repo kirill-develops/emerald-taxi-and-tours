@@ -30,10 +30,7 @@ const bulletPoints = [
 
 export default function ImportantInfo() {
   return (
-    <GridItem
-      xxs={12}
-      md={5}
-    >
+    <GridItem md={5}>
       <PageCard>
         <CardTitle>Important Info</CardTitle>
         <List>

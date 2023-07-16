@@ -19,10 +19,7 @@ export default React.memo(function RatingsAndReviews() {
   }
 
   return (
-    <GridItem
-      xxs={12}
-      md={5}
-    >
+    <GridItem md={5}>
       <PageCard>
         <Stack spacing={0.5}>
           <CardTitle>Ratings and reviews</CardTitle>

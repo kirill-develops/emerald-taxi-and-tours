@@ -27,14 +27,7 @@ const CardGridItemStyles = {
 };
 
 function CardGridItem({ children }) {
-  return (
-    <GridItem
-      xxs={12}
-      sx={CardGridItemStyles}
-    >
-      {children}
-    </GridItem>
-  );
+  return <GridItem sx={CardGridItemStyles}>{children}</GridItem>;
 }
 
 export default React.memo(function GridCard({

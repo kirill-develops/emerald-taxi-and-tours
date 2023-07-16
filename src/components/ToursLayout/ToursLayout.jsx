@@ -24,7 +24,6 @@ function Aside({ children, sx, ...rest }) {
 function Content({ children, sx, ...rest }) {
   return (
     <GridItem
-      xxs={12}
       sm={8}
       md={9}
       lg={9.5}
