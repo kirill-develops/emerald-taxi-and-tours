@@ -1,6 +1,6 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandIconButton from '@elements/ExpandIconButton';
 import React from 'react';
+import ExpandIconButton from '@elements/ExpandIconButton';
 
 export default function AccordionSummaryEl({ link, children, ...rest }) {
   return (

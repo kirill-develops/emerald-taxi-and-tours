@@ -1,5 +1,5 @@
 import React from 'react';
-import DestinationCard from '../DestinationCard/DestinationCard';
+import DestinationCard from './DestinationCard';
 
 export default React.memo(function DestinationCards({
   areaData: { destinations, ...areaData },

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-import AreaAccordions from './AreaAccordions/AreaAccordions';
+import AreaAccordions from './AreaAccordion/AreaAccordions';
 import PageLayoutStack from '@elements/PageLayoutStack';
 import { filterTransferData } from '@helperFunctions';
 
