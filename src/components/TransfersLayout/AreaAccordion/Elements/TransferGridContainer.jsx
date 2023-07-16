@@ -1,5 +1,5 @@
 import React from 'react';
-import { gridSpacingProps } from '@material/theme';
+import { layoutGridSpacingProp } from '@elements/CustomGridEl';
 import { GridContainer } from '@elements/CustomGridEl';
 
 const gridContainerStyles = { alignItems: 'stretch' };
@@ -7,7 +7,7 @@ const gridContainerStyles = { alignItems: 'stretch' };
 export default function TransferGridContainer({ children }) {
   return (
     <GridContainer
-      spacing={gridSpacingProps}
+      spacing={layoutGridSpacingProp}
       sx={gridContainerStyles}
     >
       {children}

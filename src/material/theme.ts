@@ -9,8 +9,6 @@ export const roboto = Roboto({
   fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
-export const gridSpacingProps = { xxs: 1, xs: 1.5, sm: 2, md: 3, lg: 4.5 };
-
 const themeBreakpoints = { values: { xxs: 0, xs: 320, sm: 670, md: 900, lg: 1200, xl: 1536 } }
 
 const themeTypography = {

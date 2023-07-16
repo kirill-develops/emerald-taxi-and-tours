@@ -3,7 +3,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { useContext } from 'react';
 import { GridContainer } from '@elements/CustomGridEl';
 import TourAreaContext from '@context/TourAreaContext';
-import { gridSpacingProps } from '@material/theme';
+import { layoutGridSpacingProp } from '@elements/CustomGridEl';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import ItemCard from './ItemCard/ItemCard';
 import PageLayoutStack from '@elements/PageLayoutStack';
@@ -30,7 +30,7 @@ export default function ToursByLocationLayout() {
         maxWidth={isSmBreakpoint ? 'sm' : 'lg'}
         disableStack
       >
-        <GridContainer spacing={gridSpacingProps}>
+        <GridContainer spacing={layoutGridSpacingProp}>
           {locations.map((location) => (
             <ItemCard
               key={location.link}

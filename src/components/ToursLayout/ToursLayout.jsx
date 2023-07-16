@@ -1,5 +1,5 @@
 import React from 'react';
-import { gridSpacingProps } from '@material/theme';
+import { layoutGridSpacingProp } from '@elements/CustomGridEl';
 import FilterOptions from './FilterOptions/FilterOptions';
 import TourGrid from './TourGrid/TourGrid';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
@@ -39,7 +39,7 @@ function Content({ children, sx, ...rest }) {
 export default React.memo(function TourLayout() {
   return (
     <PageLayoutStack>
-      <GridContainer spacing={gridSpacingProps}>
+      <GridContainer spacing={layoutGridSpacingProp}>
         <Aside>
           <FilterOptions />
         </Aside>

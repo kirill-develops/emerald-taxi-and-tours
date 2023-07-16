@@ -8,7 +8,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import 'swiper/swiper.min.css';
 
 import { GridItem } from '@elements/CustomGridEl';
-import { gridSpacingProps } from '@material/theme';
+import { layoutGridSpacingProp } from '@elements/CustomGridEl';
 import DividerRight from '@elements/DividerRight';
 import SectionTitle from '@elements/SectionTitle';
 import SwiperTourCard from './SwiperTourCard.jsx/SwiperTourCard';
@@ -17,7 +17,7 @@ import { useTour } from '../../hooks/useTour';
 const TourSwiper = styled(Swiper)(({ theme }) =>
   theme.unstable_sx({
     padding: '3.5px !important',
-    marginTop: { ...gridSpacingProps },
+    marginTop: { ...layoutGridSpacingProp },
   }),
 );
 
