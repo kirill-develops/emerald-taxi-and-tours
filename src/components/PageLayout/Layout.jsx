@@ -7,7 +7,7 @@ import React from 'react';
 import usePageTransition from './hooks/usePageTransition';
 const Stack = dynamic(() => import('@mui/material/Stack'));
 const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
-const LayoutTitle = dynamic(() => import('@elements/LayoutTitle'));
+const LayoutTitle = dynamic(() => import('./Elements/LayoutTitle'));
 const Copyright = dynamic(() => import('../Copyright'));
 const Navbar = dynamic(() => import('@components/NavbarLayout/'));
 

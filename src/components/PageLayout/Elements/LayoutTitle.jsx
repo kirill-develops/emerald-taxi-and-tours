@@ -2,8 +2,8 @@ import dynamic from 'next/dynamic';
 const Typography = dynamic(() => import('@mui/material/Typography'));
 import React from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
-import DividerRight from './DividerRight';
 import SectionTitle from '@elements/SectionTitle';
+import DividerRight from '@elements/DividerRight';
 
 function TitleEl({ children }) {
   const titleStyles = { mt: '0.35em', textTransform: 'uppercase' };
