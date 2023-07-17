@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import GridCard from '@components/GridCard/GridCard';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
 
 export default function SwiperTourCard({ tour, sx, ...rest }) {
-  const { name, area, link, type, price, areaLink, tripAdvisorPhotos } = tour;
+  const { name, area, link, price, areaLink, tripAdvisorPhotos } = tour;
 
   const areaPrice = price.reduce((acc, priceObj) =>
     priceObj.price < acc ? (acc = priceObj.price) : acc,
@@ -11,17 +11,22 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
 
   const url = getToursUrl(areaLink, link);
 
+  const cardStyles = useMemo(
+    () => ({ height: { xxs: 155, sm: 190 }, ...sx }),
+    [sx],
+  );
+
   return (
     <GridCard
-      type={type}
+      disableRipple
+      noWrap
+      noGrid
       price={areaPrice.price}
       picData={tripAdvisorPhotos[0]}
       bookNowUrl={url}
       name={name}
       area={area}
-      sx={{ height: 190, ...sx }}
-      disableRipple
-      noWrap
+      sx={cardStyles}
       {...rest}
     />
   );

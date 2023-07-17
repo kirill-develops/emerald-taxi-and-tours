@@ -67,10 +67,7 @@ export default React.memo(function TourSwiper({ tours, type }) {
       >
         {tours.map((tour) => (
           <TourSwiperSlide key={tour.link}>
-            <SwiperTourCard
-              tour={tour}
-              cardType={true}
-            />
+            <SwiperTourCard tour={tour} />
           </TourSwiperSlide>
         ))}
         <NavigationButtons

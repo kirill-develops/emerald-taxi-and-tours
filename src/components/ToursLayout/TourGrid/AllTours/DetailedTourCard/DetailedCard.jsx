@@ -57,6 +57,7 @@ export default function DetailedCard({ tour, sx, ...rest }) {
           handleExpandClick={handleExpandClick}
         />
       }
+      {...rest}
     >
       <Collapse
         in={expanded}
