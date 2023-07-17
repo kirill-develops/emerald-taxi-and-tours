@@ -1,5 +1,6 @@
 import CardContent from '@mui/material/CardContent';
 import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
 import React, { useState } from 'react';
 import GridCard from '@components/GridCard/GridCard';
 import ExpandMoreButton from '../../../ToursLayout/TourGrid/AllTours/DetailedTourCard/Elements/ExpandMoreButton';
@@ -33,6 +34,7 @@ export default React.memo(function TransferCard({ destinationData, areaData }) {
   return (
     <GridCard
       variant="outlined"
+      disableRipple
       name={name}
       area={subheader}
       price={price.oneWay}
@@ -50,9 +52,10 @@ export default React.memo(function TransferCard({ destinationData, areaData }) {
         timeout="auto"
         unmountOnExit
       >
-        <CardContent sx={{ pb: '0 !important' }}>
+        <CardContent>
           <PricingText price={price} />
         </CardContent>
+        <Divider variant="middle" />
       </Collapse>
     </GridCard>
   );

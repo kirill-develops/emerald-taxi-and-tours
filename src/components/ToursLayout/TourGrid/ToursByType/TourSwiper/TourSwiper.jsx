@@ -37,9 +37,9 @@ export default React.memo(function TourSwiper({ tours, type }) {
 
   const breakpoints = useMemo(
     () => ({
-      [muiBreakpoints.xs]: { slidesPerView: 1.3 },
-      [muiBreakpoints.sm]: { slidesPerView: 1.4 },
-      [muiBreakpoints.lg]: { slidesPerView: 2.4 },
+      [muiBreakpoints.xs]: { slidesPerView: 1.2 },
+      [muiBreakpoints.sm]: { slidesPerView: 1.1 },
+      [muiBreakpoints.md]: { slidesPerView: 1.3 },
     }),
     [muiBreakpoints],
   );

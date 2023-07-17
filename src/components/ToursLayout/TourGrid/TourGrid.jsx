@@ -10,7 +10,7 @@ const gridContainerStyles = { pl: { sm: 0 }, m: 0 };
 export default React.memo(function TourGrid() {
   return (
     <MaxWidthContainer
-      maxWidth="lg"
+      maxWidth="md"
       disableStack
       sx={gridContainerStyles}
     >

@@ -19,7 +19,7 @@ export default function ToursByLocationLayout() {
         maxWidth="sm"
         disableStack
       >
-        <Typography>
+        <Typography sx={{ px: 2 }}>
           Begin your adventure from {name} Hotels. Browse a tour or activity
           below that interests you and experience the island in the best way
           possible!
@@ -27,7 +27,7 @@ export default function ToursByLocationLayout() {
       </MaxWidthContainer>
 
       <MaxWidthContainer
-        maxWidth={isSmBreakpoint ? 'sm' : 'lg'}
+        maxWidth={isSmBreakpoint ? 'sm' : 'md'}
         disableStack
       >
         <GridContainer spacing={layoutGridSpacingProp}>

@@ -5,24 +5,43 @@ import Summary from './elements/Summary';
 import AboutImage from './elements/AboutImage';
 import PageLayoutStack from '@elements/PageLayoutStack';
 
+const aboutCardStyles = {
+  height: '100%',
+  mb: 5,
+  borderRight: 'none',
+  borderLeft: 'none',
+};
+
 const AboutCard = React.memo(function AboutCard(props) {
   return (
     <PageCard
       variant="outlined"
-      sx={{ height: '100%', mb: 5 }}
+      sx={aboutCardStyles}
+      disableStack
       {...props}
     />
   );
 });
 
+function AboutStack({ children }) {
+  return (
+    <FormInputStack
+      sx={{ m: 0 }}
+      direction={{ xxs: 'column', md: 'row' }}
+    >
+      {children}
+    </FormInputStack>
+  );
+}
+
 export default React.memo(function AboutLayout() {
   return (
     <PageLayoutStack>
       <AboutCard>
-        <FormInputStack>
+        <AboutStack>
           <AboutImage />
           <Summary />
-        </FormInputStack>
+        </AboutStack>
       </AboutCard>
     </PageLayoutStack>
   );

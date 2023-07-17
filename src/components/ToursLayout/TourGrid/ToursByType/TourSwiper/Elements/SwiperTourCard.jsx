@@ -21,6 +21,7 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
       area={area}
       sx={{ height: 190, ...sx }}
       disableRipple
+      noWrap
       {...rest}
     />
   );

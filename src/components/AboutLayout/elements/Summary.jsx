@@ -4,8 +4,8 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 
 const paragraphStringArr = [
-  `Welcome to Emerald Taxi & Tour, your go-to tour company for
-          unforgettable experiences in Jamaica! Our expertly crafted tours will
+  `Your go-to tour company for
+          unforgettable experiences in Jamaica. Our expertly crafted tours will
           take you on an adventure to discover the most magical destinations on
           the island. From the stunning Dunn's River Falls to the
           breathtaking Blue Hole and YS Falls, to the iconic Rick's Cafe
@@ -23,15 +23,17 @@ const paragraphStringArr = [
           let us take you on a jour ney through the heart of the island.`,
 ];
 
-const ScriptBox = styled(Box)(({ theme }) =>
-  theme.unstable_sx({ flexGrow: 0.5, width: '100%', p: 4 }),
-);
+const ScriptBox = styled(Box)(({ theme }) => theme.unstable_sx({ p: 2 }));
 
-const Paragraph = React.memo(function Paragraph({ children, ...other }) {
+const Paragraph = React.memo(function Paragraph({
+  children,
+  isLast = false,
+  ...other
+}) {
   return (
     <Typography
       variant="body1"
-      paragraph
+      paragraph={!isLast}
       {...other}
     >
       {children}
@@ -40,15 +42,31 @@ const Paragraph = React.memo(function Paragraph({ children, ...other }) {
 });
 
 const Paragraphs = React.memo(function Paragraphs() {
-  return paragraphStringArr.map((text) => (
-    <Paragraph key={text.slice(0, 5)}>{text}</Paragraph>
-  ));
+  return paragraphStringArr.map((text, i) => {
+    const isLast = i === paragraphStringArr.length - 1;
+    return (
+      <Paragraph
+        key={text.slice(0, 5)}
+        isLast={isLast}
+      >
+        {text}
+      </Paragraph>
+    );
+  });
 });
 
 export default function Summary() {
   return (
-    <ScriptBox>
-      <Paragraphs />
-    </ScriptBox>
+    <Box sx={{ flexGrow: 0.5, width: '100%' }}>
+      <Typography
+        variant="h4"
+        color="primary"
+      >
+        Welcome to Emerald Taxi & Tour!
+      </Typography>
+      <ScriptBox>
+        <Paragraphs />
+      </ScriptBox>
+    </Box>
   );
 }

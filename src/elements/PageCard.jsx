@@ -14,13 +14,22 @@ const StyledPageCard = styled(Card)(({ theme, sx }) => {
   });
 });
 
-export default React.memo(function PageCard({ children, ...rest }) {
+export default React.memo(function PageCard({
+  children,
+  disableStack = false,
+  ...rest
+}) {
   return (
     <StyledPageCard
       variant="outlined"
       {...rest}
     >
-      <MaxWidthContainer rowGap={0}>{children}</MaxWidthContainer>
+      <MaxWidthContainer
+        rowGap={0}
+        disableStack={disableStack}
+      >
+        {children}
+      </MaxWidthContainer>
     </StyledPageCard>
   );
 });

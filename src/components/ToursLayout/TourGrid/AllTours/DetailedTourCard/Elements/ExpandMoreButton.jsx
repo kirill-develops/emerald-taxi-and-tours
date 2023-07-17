@@ -1,10 +1,13 @@
 import ExpandMore from '@elements/ExpandMore';
 import ExpandMoreIcon from '@mui/icons-material/ExpandCircleDown';
+import { useMediaQuery } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import Zoom from '@mui/material/Zoom';
 import React from 'react';
 
 export default function ExpandMoreButton({ expanded, handleExpandClick }) {
+  const isMdBreakpoint = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
   return (
     <ExpandMore
       expand={expanded}
@@ -19,7 +22,7 @@ export default function ExpandMoreButton({ expanded, handleExpandClick }) {
       >
         <ExpandMoreIcon
           color="primary"
-          fontSize="large"
+          fontSize={isMdBreakpoint ? 'large' : 'medium'}
         />
       </Tooltip>
     </ExpandMore>

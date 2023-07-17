@@ -10,7 +10,7 @@ const ImageWrapper = styled(Box)(({ theme }) =>
     position: 'relative',
     flexGrow: 1,
     width: '100%',
-    height: { xxs: '50vh', sm: 'initial' },
+    height: { xxs: '50vh', md: 'unset' },
   }),
 );
 
@@ -25,17 +25,18 @@ const getImageProps = (breakPoint) => ({
 export default React.memo(function AboutImage() {
   const {
     breakpoints: {
-      values: { sm },
+      values: { md },
     },
   } = useTheme();
 
-  const imageProps = useMemo(() => getImageProps(sm), [sm]);
+  const imageProps = useMemo(() => getImageProps(md), [md]);
 
   return (
     <ImageWrapper>
       <Image
         src={aboutImageFile}
         alt="Photo of happy driver & vehicle"
+        priority
         {...imageProps}
       />
     </ImageWrapper>
