@@ -30,9 +30,19 @@ export async function getStaticProps({ params }) {
 
   const { price, ...filteredParams } = paramDetails;
 
-  const filteredLocations = tourData.filter(
-    (tour) => tour.price.find(({ link }) => link === params.area) && tour,
-  );
+  const filteredLocations = tourData
+    .filter(
+      (tour) => tour.price.find(({ link }) => link === params.area) && tour,
+    )
+    .map(({ name, area, link, areaLink, type, price, tripAdvisorPhotos }) => ({
+      name,
+      area,
+      link,
+      areaLink,
+      type,
+      price,
+      photoObj: tripAdvisorPhotos[0],
+    }));
 
   const tourParams = {
     ...filteredParams,

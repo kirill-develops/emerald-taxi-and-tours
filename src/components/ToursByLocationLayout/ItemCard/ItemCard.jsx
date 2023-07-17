@@ -4,7 +4,7 @@ import TourAreaContext from '@context/TourAreaContext';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
 
 export default function ItemCard({ tour, sx, ...rest }) {
-  const { name, area, link, areaLink, type, price, tripAdvisorPhotos } = tour;
+  const { name, area, link, areaLink, type, price, photoObj } = tour;
 
   const { link: pickupLink } = useContext(TourAreaContext);
 
@@ -17,7 +17,7 @@ export default function ItemCard({ tour, sx, ...rest }) {
       url={url}
       type={type}
       price={areaPrice.price}
-      picData={tripAdvisorPhotos[0]}
+      picData={photoObj}
       name={name}
       area={area}
       {...rest}
