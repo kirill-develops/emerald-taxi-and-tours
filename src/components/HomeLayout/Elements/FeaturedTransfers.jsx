@@ -15,19 +15,19 @@ const airportTransfersLinks = [
     title: 'Montego Bay Airport',
     caption: 'Private transport to and from the Montego Bay Airport',
     image: '/images/101.png',
-    url: '',
+    url: '/transfer/MBJ',
   },
   {
     title: 'Kingston Airport',
     caption: 'Private transport to and from the Kingston Airport',
     image: '/images/99.jpeg',
-    url: '',
+    url: '/transfer/KIN',
   },
   {
     title: 'Resort Transfers',
     caption: 'Private transport Between resorts',
     image: '/images/negril-beach-jamaica.jpeg',
-    url: '',
+    url: '/transfer/resort',
   },
 ];
 
@@ -49,7 +49,7 @@ const MuiImage = styled(Image)({
 });
 
 function TransportCard({ title, caption, image, url, children, sx, ...rest }) {
-  if (!!url) return null; //! should be single exclamation
+  if (!url) return null;
 
   return (
     <StyledCard
