@@ -12,7 +12,7 @@ export default React.memo(function SubcategoryEl({ subcategory }) {
           {...detailTypographyProps}
         >
           {localized_name}
-          {i !== subcategory.length - 1 && ', '}
+          {i !== subcategory.slice(0, 3).length - 1 && ', '}
         </Typography>
       )),
     [subcategory],
