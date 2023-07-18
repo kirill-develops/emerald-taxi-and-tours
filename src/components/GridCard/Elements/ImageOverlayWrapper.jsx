@@ -15,7 +15,7 @@ const OverlayBox = styled(Box)(({ theme }) =>
 const OverlayItem1 = styled(Box)(({ theme }) =>
   theme.unstable_sx({
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 2,
     bottom: 11,
     left: 11,
   }),
@@ -24,7 +24,7 @@ const OverlayItem1 = styled(Box)(({ theme }) =>
 const OverlayItem2 = styled(Box)(({ theme }) =>
   theme.unstable_sx({
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 2,
     top: 11,
     left: 11,
     borderRadius: 0.5,

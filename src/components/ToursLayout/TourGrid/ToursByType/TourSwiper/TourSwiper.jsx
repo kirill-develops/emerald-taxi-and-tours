@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
-
 import { styled, useTheme } from '@mui/material/styles';
 import React, { useCallback, useMemo, useState } from 'react';
 
@@ -15,14 +14,11 @@ import NavigationButtons from './Elements/NavigationButtons';
 
 const StyledTourSwiper = styled(Swiper)(({ theme }) =>
   theme.unstable_sx({
-    padding: '3.5px !important',
     marginTop: { ...layoutGridSpacingProp },
   }),
 );
 
-const TourSwiperSlide = styled(SwiperSlide)({
-  // height: 'unset !important',
-});
+const TourSwiperSlide = styled(SwiperSlide)({});
 
 const gridItemStyles = {
   width: '100%',

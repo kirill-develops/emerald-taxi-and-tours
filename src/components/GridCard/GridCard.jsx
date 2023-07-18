@@ -83,7 +83,7 @@ function GridCard({
             </ImageOverlayWrapper>
           </GridItem>
           <CardContentGridItem xxs={7}>
-            <Box sx={{ p: 2 }}>
+            <Box sx={{ py: 1.25, px: 2 }}>
               <NoWrapCardHeader
                 title={name}
                 subheader={area}

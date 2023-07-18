@@ -5,11 +5,15 @@ import React from 'react';
 
 const iconButtonStyles = (position) => ({
   position: 'absolute',
-  top: '50%',
-  padding: 0.5,
-  [position]: 10,
-  zIndex: 10,
-  backdropFilter: 'brightness(50%)',
+  top: 0,
+  height: '100%',
+  borderRadius: 0,
+  padding: 0,
+  [position]: -1,
+  zIndex: 1,
+  '&: hover': { color: (theme) => theme.palette.primary.main },
+  backgroundColor: (theme) => theme.palette.background.default,
+  backdropFilter: 'brightness(30%) blur(0.5px)',
 });
 
 const navBackButtonStyles = (isStart) => ({
@@ -29,13 +33,13 @@ export default React.memo(function NavigationButtons({ isStart, isEnd }) {
         className="swiper-button-prev"
         sx={navBackButtonStyles(isStart)}
       >
-        <NavigateBefore color="primary" />
+        <NavigateBefore />
       </IconButton>
       <IconButton
         className="swiper-button-next"
         sx={navNextButtonStyles(isEnd)}
       >
-        <NavigateNext color="primary" />
+        <NavigateNext />
       </IconButton>
     </>
   );
