@@ -5,7 +5,7 @@ import tourData from '@data/tourData.json';
 import PageLayout from '@components/PageLayout/Layout';
 import TourAreaContext from '@context/TourAreaContext';
 import Fallback from '@components/Fallback';
-import ToursByLocationLayout from '../../../components/ToursByLocationLayout/ToursByLocationLayout';
+import ToursByLocationLayout from '@components/ToursByLocationLayout/ToursByLocationLayout';
 
 export async function getStaticPaths() {
   const paths = tourData.map((tour) => ({
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const paramDetails = tourData
     .find((tour) => tour.price.find(({ link }) => link === params.area))
-    .price.find(({ link }) => link === params.area);
+    ?.price.find(({ link }) => link === params.area);
 
   if (!paramDetails || !params.area) {
     return {
