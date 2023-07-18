@@ -6,7 +6,7 @@ import { ParamContext } from '@context/FormContextProvider';
 export default function useMenuItemGetter() {
   const context = useContext(ParamContext);
 
-  const JSX = context?.tourParams?.price?.map(({ link, name, price }) => (
+  const JSX = context?.price?.map(({ link, name, price }) => (
     <MenuItem
       value={link}
       key={link}
