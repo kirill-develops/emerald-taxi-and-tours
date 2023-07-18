@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import React, { createContext, useContext, useState } from 'react';
 import Link from '@material/Link';
-import sitePages from '@data/sitePages';
+import menuLinkArr from './data/menuLinkArr';
 import { styled } from '@mui/material';
 import NavIconButton from './Elements/NavIconButton';
 import NavMenu from './Elements/NavMenu';
@@ -44,14 +44,14 @@ export default React.memo(function MobilePagesMenu() {
           <MenuIcon />
         </NavIconButton>
         <NavMenu>
-          {sitePages.map(({ name, link }) => (
+          {menuLinkArr.map(({ name, link }) => (
             <MenuItem
               key={link}
               onClick={handleCloseNavMenu}
             >
               <Typography
                 component={Link}
-                href={`/${link}`}
+                href={link}
                 textAlign="center"
                 sx={{ textDecoration: 'none' }}
               >

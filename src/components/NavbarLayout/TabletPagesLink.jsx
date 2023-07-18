@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import pages from '@data/sitePages';
+import menuLinkArr from './data/menuLinkArr';
 import NavTabs from './Elements/NavTabs';
 import TabLink from './Elements/TabLink';
 import useFindCurrentPage from './hooks/useFindCurrentPage';
 
 export default React.memo(function TabletPagesLink() {
-  const foundCurrentPage = useFindCurrentPage(pages);
+  const foundCurrentPage = useFindCurrentPage(menuLinkArr);
 
   const [value, setValue] = useState(foundCurrentPage ?? false);
 
@@ -18,11 +18,11 @@ export default React.memo(function TabletPagesLink() {
       value={value}
       onChange={handleChange}
     >
-      {pages.map(({ name, link }) => (
+      {menuLinkArr.map(({ name, link }) => (
         <TabLink
           key={link}
           label={name}
-          href={`/${link}`}
+          href={link}
           value={link}
         />
       ))}
