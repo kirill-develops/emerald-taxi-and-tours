@@ -8,7 +8,7 @@ import usePageTransition from './hooks/usePageTransition';
 const Stack = dynamic(() => import('@mui/material/Stack'));
 const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('./Elements/LayoutTitle'));
-const Copyright = dynamic(() => import('../Copyright'));
+const FooterLayout = dynamic(() => import('../FooterLayout/FooterLayout'));
 const Navbar = dynamic(() => import('@components/NavbarLayout/'));
 
 const LayoutContainer = styled(Container)(({ theme }) =>
@@ -60,7 +60,7 @@ export default function PageLayout({
           />
           {children}
         </LayoutGrid>
-        <Copyright />
+        <FooterLayout />
         {isXsBreakpoint && <Offset />}
       </LayoutContainer>
       <ContactSpeedDial />
