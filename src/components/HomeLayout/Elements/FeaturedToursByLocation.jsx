@@ -1,33 +1,48 @@
 import Image from 'next/image';
 import { Box, CardActionArea, Stack, Typography, styled } from '@mui/material';
-import Place from '@mui/icons-material/Place';
+import PlaceIcon from '@mui/icons-material/Place';
 import React from 'react';
 import HomeSection from './HomeSection';
 import { extractProps } from '../../ToursLayout/hooks/useTour';
-import tourData from '@data/tourData.json';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import Link from '@material/Link';
 
 const MuiImage = styled(Image)({ objectFit: 'cover', zIndex: 0 });
 
+const headingStackStyles = {
+  paddingY: 1.5,
+  paddingX: 2,
+  backgroundColor: 'rgba(0, 0, 0, 0.58)',
+  alignItems: 'center',
+  height: '100%',
+};
+
+function HeadingStack({ children }) {
+  return (
+    <Stack
+      sx={headingStackStyles}
+      direction="row"
+      columnGap={1}
+    >
+      {children}
+    </Stack>
+  );
+}
+
+const gridContainerStyles = {
+  zIndex: 1,
+  alignItems: 'stretch',
+  width: 'calc(100% +16px)',
+};
+
 export default function FeatureTours() {
   const tourPickupAreas = extractProps('price');
 
-  const toursByAreaObj = tourPickupAreas.map(({ link }) => {
-    const filteredData = tourData.filter((tour) =>
-      tour.price.some(({ link: priceLink }) => {
-        return link === priceLink;
-      }),
-    );
-
-    return { link, ...filteredData };
-  });
-
   return (
     <Box sx={{ position: 'relative' }}>
-      <HomeSection title="Browse Private Island Tours By Location">
+      <HomeSection title="Browse Private Island Tours By Pickup Location">
         <GridContainer
-          sx={{ zIndex: 1 }}
+          sx={gridContainerStyles}
           spacing={2}
         >
           {tourPickupAreas.map(({ name, link }) => (
@@ -39,19 +54,10 @@ export default function FeatureTours() {
                 LinkComponent={Link}
                 href={`tours/${link}`}
               >
-                <Stack
-                  sx={{
-                    paddingY: 1.5,
-                    paddingX: 2,
-                    backgroundColor: 'rgba(0, 0, 0, 0.527)',
-                    alignItems: 'center',
-                  }}
-                  direction="row"
-                  columnGap={1}
-                >
-                  <Place fontSize="small" />
+                <HeadingStack>
+                  <PlaceIcon fontSize="small" />
                   <Typography color="primary.light">{name}</Typography>
-                </Stack>
+                </HeadingStack>
               </CardActionArea>
             </GridItem>
           ))}

@@ -32,7 +32,7 @@ export default function DetailedCard({ tour, sx, ...rest }) {
 
   const [expanded, setExpanded] = useState(false);
 
-  const handleExpandClick = () => {
+  const handleExpand = () => {
     setExpanded((prev) => !prev);
   };
 
@@ -54,7 +54,7 @@ export default function DetailedCard({ tour, sx, ...rest }) {
       cardActions={
         <ExpandMoreButton
           expanded={expanded}
-          handleExpandClick={handleExpandClick}
+          handleExpand={handleExpand}
         />
       }
       {...rest}

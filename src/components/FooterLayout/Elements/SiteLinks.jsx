@@ -26,6 +26,20 @@ function FooterLink({ children, ...rest }) {
   );
 }
 
+const iconStyles = {
+  transform: 'scaleX(-1)',
+  color: (theme) => theme.palette.text.primary,
+};
+
+function ReturnIcon() {
+  return (
+    <KeyboardReturn
+      fontSize="small"
+      sx={iconStyles}
+    />
+  );
+}
+
 export default function SiteLinks() {
   return (
     <MaxWidthContainer>
@@ -41,17 +55,10 @@ export default function SiteLinks() {
               <Stack>
                 {nestedLinks?.map(({ name: nestedName, link: nestedLink }) => (
                   <FooterLink
-                    href={`${link}${nestedLink}
-                        `}
+                    href={`${link}${nestedLink}`}
                     key={nestedLink}
                   >
-                    <KeyboardReturn
-                      fontSize="small"
-                      sx={{
-                        transform: 'scaleX(-1)',
-                        color: (theme) => theme.palette.text.primary,
-                      }}
-                    />
+                    <ReturnIcon />
                     {nestedName}
                   </FooterLink>
                 ))}

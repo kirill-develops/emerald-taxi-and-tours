@@ -27,7 +27,7 @@ export default React.memo(function TransferCard({ destinationData, areaData }) {
 
   const [expanded, setExpanded] = useState(false);
 
-  const handleExpandClick = () => {
+  const handleExpand = () => {
     setExpanded(!expanded);
   };
 
@@ -43,7 +43,7 @@ export default React.memo(function TransferCard({ destinationData, areaData }) {
       cardActions={
         <ExpandMoreButton
           expanded={expanded}
-          handleExpandClick={handleExpandClick}
+          handleExpand={handleExpand}
         />
       }
     >
