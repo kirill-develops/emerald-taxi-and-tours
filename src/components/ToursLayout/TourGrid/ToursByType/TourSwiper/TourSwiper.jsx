@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
-import { styled, useTheme } from '@mui/material/styles';
-import React, { useCallback, useMemo, useState } from 'react';
+import { styled } from '@mui/material/styles';
+import React, { useCallback, useState } from 'react';
 
 import 'swiper/swiper.min.css';
 
@@ -11,6 +11,7 @@ import SectionTitle from '@elements/SectionTitle';
 import SwiperTourCard from './Elements/SwiperTourCard';
 import { layoutGridSpacingProp } from '@elements/CustomGridEl';
 import NavigationButtons from './Elements/NavigationButtons';
+import useSwiperBreakpoints from './hooks/useSwiperBreakpoints';
 
 const StyledTourSwiper = styled(Swiper)(({ theme }) =>
   theme.unstable_sx({
@@ -29,20 +30,11 @@ export default React.memo(function TourSwiper({ tours, type }) {
   const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
-  const muiBreakpoints = useTheme().breakpoints.values;
-
-  const breakpoints = useMemo(
-    () => ({
-      [muiBreakpoints.xs]: { slidesPerView: 1.2 },
-      [muiBreakpoints.sm]: { slidesPerView: 1.1 },
-      [muiBreakpoints.md]: { slidesPerView: 1.3 },
-    }),
-    [muiBreakpoints],
-  );
+  const breakpoints = useSwiperBreakpoints();
 
   const handleSwiperPosition = useCallback((swiper) => {
-    setIsStart(swiper.isBeginning ? true : false);
-    setIsEnd(swiper.isEnd ? true : false);
+    setIsStart(swiper.isBeginning);
+    setIsEnd(swiper.isEnd);
   }, []);
 
   return (
