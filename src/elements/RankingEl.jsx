@@ -3,31 +3,45 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material';
 import React from 'react';
-import { detailTypographyProps } from '../components/DetailedPageLayout/DetailsWrapper';
 
 const RankingStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({ alignItems: 'center' }),
 );
 
-export default function RankingEl({ rating, numReviews, children }) {
+const ratingStyles = { fontSize: '1rem' };
+
+function StyledRating({ defaultValue }) {
+  return (
+    <Rating
+      defaultValue={defaultValue}
+      precision={0.1}
+      sx={ratingStyles}
+      readOnly
+    />
+  );
+}
+
+export default function RankingEl({
+  rating,
+  numReviews,
+  textVariant = 'body2',
+  children,
+}) {
   return rating ? (
     <RankingStack
       direction="row"
-      spacing={0.5}
+      spacing={0.85}
     >
       {children}
-      <Rating
-        defaultValue={Number(rating)}
-        precision={0.1}
-        size="small"
-        readOnly
-      />
+      <StyledRating defaultValue={Number(rating)} />
       <Typography
-        {...detailTypographyProps}
-        fontWeight={500}
+        variant={textVariant}
         noWrap
       >
-        {numReviews && `${numReviews} reviews`}
+        {numReviews &&
+          `${numReviews}
+          ${textVariant !== 'smallCaption' ? ` reviews` : ''}
+          `}
       </Typography>
     </RankingStack>
   ) : null;

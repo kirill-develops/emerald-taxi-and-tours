@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
-import SmallCard from '../../../../../GridCard/SmallCard';
+import SmallCard from '@components/GridCard/SmallCard';
 import RankingEl from '@elements/RankingEl';
 
 function getSubcategoryString(subcategory) {
@@ -66,6 +66,7 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
       <RankingEl
         rating={rating}
         numReviews={numReviews}
+        textVariant="smallCaption"
       />
     </SmallCard>
   );
