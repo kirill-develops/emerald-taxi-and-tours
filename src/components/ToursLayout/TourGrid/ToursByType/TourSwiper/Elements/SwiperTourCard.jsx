@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import GridCard from '@components/GridCard/GridCard';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
+import SmallCard from '../../../../../GridCard/SmallCard';
 import RankingEl from '@elements/RankingEl';
 
 function getSubcategoryString(subcategory) {
@@ -52,8 +52,7 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
   }`;
 
   return (
-    <GridCard
-      disableRipple
+    <SmallCard
       noWrap
       noGrid
       price={areaPrice}
