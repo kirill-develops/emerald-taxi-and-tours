@@ -9,6 +9,7 @@ import ExpandMoreButton from './Elements/ExpandMoreButton';
 
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
 import CardDescription from './Elements/CardDescription';
+import RankingEl from '@elements/RankingEl';
 
 const cardContentStyles = {
   display: 'flex',
@@ -28,6 +29,7 @@ export default function DetailedCard({ tour, sx, ...rest }) {
     price,
     description,
     tripAdvisorPhotos,
+    tripAdvisorDetails: { rating, num_reviews: numReviews } = {},
   } = tour;
 
   const [expanded, setExpanded] = useState(false);
@@ -53,6 +55,12 @@ export default function DetailedCard({ tour, sx, ...rest }) {
       titleVariant="cardTitle"
       subheader={area}
       subheaderVariant="cardCaption"
+      rankingEl={
+        <RankingEl
+          rating={rating}
+          numReviews={numReviews}
+        />
+      }
       cardActions={
         <ExpandMoreButton
           expanded={expanded}

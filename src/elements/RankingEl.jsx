@@ -2,15 +2,16 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material';
-import React from 'react';
+import React, { useMemo } from 'react';
+import { detailTypographyProps } from '../components/DetailedPageLayout/DetailsWrapper';
 
 const RankingStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({ alignItems: 'center' }),
 );
 
-const ratingStyles = { fontSize: '1rem' };
+function StyledRating({ defaultValue, isDefault }) {
+  const ratingStyles = { fontSize: isDefault ? '1.125rem' : '0.9rem' };
 
-function StyledRating({ defaultValue }) {
   return (
     <Rating
       defaultValue={defaultValue}
@@ -24,24 +25,38 @@ function StyledRating({ defaultValue }) {
 export default function RankingEl({
   rating,
   numReviews,
-  textVariant = 'body2',
+  textVariant = detailTypographyProps.variant,
   children,
 }) {
+  const isDefault = useMemo(
+    () => textVariant === detailTypographyProps.variant,
+    [textVariant],
+  );
+
+  const rankingString = useMemo(
+    () =>
+      numReviews &&
+      `${numReviews}
+          ${isDefault ? ` reviews` : ''}
+          `,
+    [numReviews, isDefault],
+  );
+
   return rating ? (
     <RankingStack
       direction="row"
       spacing={0.85}
     >
       {children}
-      <StyledRating defaultValue={Number(rating)} />
+      <StyledRating
+        defaultValue={Number(rating)}
+        isDefault={isDefault}
+      />
       <Typography
         variant={textVariant}
         noWrap
       >
-        {numReviews &&
-          `${numReviews}
-          ${textVariant !== 'smallCaption' ? ` reviews` : ''}
-          `}
+        {rankingString}
       </Typography>
     </RankingStack>
   ) : null;

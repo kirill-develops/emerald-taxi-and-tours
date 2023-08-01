@@ -25,13 +25,13 @@ function CardGridItem({ children }) {
 
 function SmallCard({
   props: {
-    children,
     url = '',
     type,
     price,
     picData,
     title,
     subheader,
+    rankingEl,
     noWrap = false,
     ...rest
   } = {},
@@ -66,7 +66,7 @@ function SmallCard({
               subheaderVariant="smallCaption"
               noWrap={noWrap}
             />
-            {children}
+            {rankingEl}
           </Box>
         </Stack>
       </CardActionArea>

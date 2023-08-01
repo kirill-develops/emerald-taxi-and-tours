@@ -38,7 +38,7 @@ function GridCard({
     subheader,
     subheaderVariant,
     noWrap = false,
-    noGrid,
+    rankingEl,
     bookNowUrl,
     cardActions,
     disableRipple = false,
@@ -93,6 +93,7 @@ function GridCard({
                 subheaderVariant={subheaderVariant}
                 noWrap={noWrap}
               />
+              {rankingEl}
             </Box>
             <Divider variant="middle" />
             {children}

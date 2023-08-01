@@ -60,14 +60,15 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
       url={url}
       title={name}
       subheader={subheading}
+      rankingEl={
+        <RankingEl
+          rating={rating}
+          numReviews={numReviews}
+          textVariant="smallCaption"
+        />
+      }
       sx={cardStyles}
       {...rest}
-    >
-      <RankingEl
-        rating={rating}
-        numReviews={numReviews}
-        textVariant="smallCaption"
-      />
-    </SmallCard>
+    />
   );
 }
