@@ -10,7 +10,7 @@ export default React.memo(function AllToursHeader() {
   return useMemo(
     () => (
       <GridItem>
-        <SectionTitle>All Tours</SectionTitle>
+        <SectionTitle>Top Tours of Jamaica</SectionTitle>
         <DividerRight sx={headerDividerStyles} />
         <TourOptions />
       </GridItem>
