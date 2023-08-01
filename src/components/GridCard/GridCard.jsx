@@ -27,19 +27,17 @@ function CardGridItem({ children }) {
 }
 
 function GridCard({
-  props: {
+  cardProps: {
     children,
-    url,
+    url = '',
     type,
     price,
     picData,
-    name,
-    area,
-    noWrap,
+    noWrap = false,
     noGrid,
     bookNowUrl,
     cardActions,
-    disableRipple,
+    disableRipple = false,
     ...rest
   },
 }) {
@@ -110,41 +108,14 @@ function GridCard({
 }
 
 export default React.memo(function GridCardWrapper({
-  children,
-  url = '',
-  type,
-  price,
-  picData,
-  name,
-  area,
-  bookNowUrl,
-  cardActions,
-  noWrap = false,
   noGrid = false,
-  disableRipple = false,
   ...rest
 }) {
-  const props = {
-    children,
-    url,
-    type,
-    price,
-    picData,
-    name,
-    area,
-    noWrap,
-    noGrid,
-    bookNowUrl,
-    cardActions,
-    disableRipple,
-    ...rest,
-  };
-
   return noGrid ? (
-    <GridCard props={props} />
+    <GridCard cardProps={rest} />
   ) : (
     <CardGridItem>
-      <GridCard props={props} />
+      <GridCard cardProps={rest} />
     </CardGridItem>
   );
 });
