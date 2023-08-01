@@ -16,6 +16,8 @@ const iconButtonStyles = (position) => ({
   backdropFilter: 'brightness(30%) blur(0.5px)',
 });
 
+const svgStyles = { width: '1rem' };
+
 const navBackButtonStyles = (isStart) => ({
   ...iconButtonStyles('left'),
   display: isStart ? 'none' : 'inline-flex',
@@ -33,13 +35,13 @@ export default React.memo(function NavigationButtons({ isStart, isEnd }) {
         className="swiper-button-prev"
         sx={navBackButtonStyles(isStart)}
       >
-        <NavigateBefore />
+        <NavigateBefore sx={svgStyles} />
       </IconButton>
       <IconButton
         className="swiper-button-next"
         sx={navNextButtonStyles(isEnd)}
       >
-        <NavigateNext />
+        <NavigateNext sx={svgStyles} />
       </IconButton>
     </>
   );

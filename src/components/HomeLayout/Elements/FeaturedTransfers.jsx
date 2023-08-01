@@ -90,7 +90,7 @@ function TransportCard({ title, caption, image, url, children, sx, ...rest }) {
 
 export default function FeaturedTransfer() {
   return (
-    <HomeSection title={'Plan Your Private Transportation:'}>
+    <HomeSection title={'Plan Your Private Transportation'}>
       <Stack
         direction={{ xxs: 'column', sm: 'row' }}
         width={'100%'}
