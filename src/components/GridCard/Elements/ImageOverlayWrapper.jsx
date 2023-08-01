@@ -52,8 +52,8 @@ export default function ImageOverlayWrapper({ type, price = '', children }) {
       </OverlayItem1>
       {price && (
         <OverlayItem2>
-          <Typography variant="caption">FROM</Typography>
-          <Typography variant="subtitle2">$ {price}</Typography>
+          <Typography variant="smallCaption">FROM</Typography>
+          <Typography variant="smallBold">${price}</Typography>
         </OverlayItem2>
       )}
       {children}

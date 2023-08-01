@@ -18,8 +18,8 @@ export default function ItemCard({ tour, sx, ...rest }) {
       type={type}
       price={areaPrice.price}
       picData={photoObj}
-      name={name}
-      area={area}
+      title={name}
+      subheader={area}
       {...rest}
     />
   );

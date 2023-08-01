@@ -44,7 +44,7 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
     [tripAdvisorSubcategory],
   );
 
-  const subheading = `${area} | ${priceLevel ? `${priceLevel} | ` : ''}${
+  const subheading = `${priceLevel ? `${priceLevel} ∙ ` : ''}${area} ∙ ${
     subcategoryString || ''
   }`;
 
@@ -55,9 +55,9 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
       noGrid
       price={areaPrice}
       picData={tripAdvisorPhotos[0]}
-      bookNowUrl={url}
-      name={name}
-      area={subheading}
+      url={url}
+      title={name}
+      subheader={subheading}
       sx={cardStyles}
       {...rest}
     />

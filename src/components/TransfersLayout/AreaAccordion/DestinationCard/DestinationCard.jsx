@@ -35,8 +35,8 @@ export default React.memo(function TransferCard({ destinationData, areaData }) {
     <GridCard
       variant="outlined"
       disableRipple
-      name={name}
-      area={subheader}
+      title={name}
+      subheader={subheader}
       price={price.oneWay}
       picData={tripAdvisorPhotos?.[0]}
       bookNowUrl={destinationURL}

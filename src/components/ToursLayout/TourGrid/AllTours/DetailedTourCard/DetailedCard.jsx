@@ -49,8 +49,10 @@ export default function DetailedCard({ tour, sx, ...rest }) {
       price={areaPrice.price}
       picData={tripAdvisorPhotos[0]}
       bookNowUrl={url}
-      name={name}
-      area={area}
+      title={name}
+      titleVariant="cardTitle"
+      subheader={area}
+      subheaderVariant="cardCaption"
       cardActions={
         <ExpandMoreButton
           expanded={expanded}

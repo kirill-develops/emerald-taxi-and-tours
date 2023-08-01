@@ -33,6 +33,10 @@ function GridCard({
     type,
     price,
     picData,
+    title,
+    titleVariant,
+    subheader,
+    subheaderVariant,
     noWrap = false,
     noGrid,
     bookNowUrl,
@@ -83,8 +87,10 @@ function GridCard({
           <CardContentGridItem xxs={7}>
             <Box sx={{ py: 1.25, px: 2 }}>
               <NoWrapCardHeader
-                title={name}
-                subheader={area}
+                title={title}
+                titleVariant={titleVariant}
+                subheader={subheader}
+                subheaderVariant={subheaderVariant}
                 noWrap={noWrap}
               />
             </Box>
