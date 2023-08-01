@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import GridCard from '@components/GridCard/GridCard';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
+import RankingEl from '@elements/RankingEl';
 
 function getSubcategoryString(subcategory) {
   return subcategory
@@ -21,6 +22,8 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
       cuisine,
       groups,
       price_level: priceLevel,
+      rating,
+      num_reviews: numReviews,
       subcategory,
     } = {},
   } = tour;
@@ -60,6 +63,11 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
       subheader={subheading}
       sx={cardStyles}
       {...rest}
-    />
+    >
+      <RankingEl
+        rating={rating}
+        numReviews={numReviews}
+      />
+    </SmallCard>
   );
 }

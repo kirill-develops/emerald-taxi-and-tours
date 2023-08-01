@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 import PageCard from '@elements/PageCard';
-import RankingEl from '../Elements/RankingEl';
+import RankingEl from '../Elements/RankingWrapper';
 import FormattedRankingString from '../Elements/FormattedRankingString';
 import Subratings from './Elements/Subratings';
 import { GridItem } from '@elements/CustomGridEl';

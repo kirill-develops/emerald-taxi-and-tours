@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import React from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import DetailDevider from './Elements/DetailDevider';
-import RankingEl from '../Elements/RankingEl';
+import RankingEl from '../Elements/RankingWrapper';
 import FormattedRankingString from '../Elements/FormattedRankingString';
 import PriceAndCategory from './Elements/PriceAndCategory';
 import LinksLaptop from './Elements/LinksLaptop';
