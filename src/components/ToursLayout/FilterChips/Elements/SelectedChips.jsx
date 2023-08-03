@@ -19,12 +19,13 @@ export default React.memo(function TourType({
       sx={stackStyles}
       {...rest}
     >
-      {typeArr.map((type) => (
+      {typeArr.map(({ name, handleCheckboxToggle }) => (
         <Chip
-          key={type}
-          label={type}
+          key={name}
+          label={name}
           size="small"
           variant={variant}
+          onDelete={handleCheckboxToggle}
           {...rest}
         />
       ))}

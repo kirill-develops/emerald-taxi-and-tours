@@ -6,6 +6,7 @@ import FilterOptions from '../../../FilterOptions/FilterOptions';
 import SortButton from './Elements/SortButton';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import { useTour } from '../../../hooks/useTour';
+import FilterChips from '../../../FilterChips/FilterChips';
 
 const stackStyles = {
   flexDirection: 'row',
@@ -30,6 +31,7 @@ export default React.memo(function TourOptions({ sx, ...rest }) {
         <MobileFilterButton />
         <SortButton />
       </Stack>
+      <FilterChips />
       <Collapse
         in={filterExpand}
         sx={collapseStyles}
