@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { Theme, createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { Roboto } from '@next/font/google';
 
 
@@ -11,7 +11,13 @@ export const roboto = Roboto({
 
 const themeBreakpoints = { values: { xxs: 0, xs: 320, sm: 670, md: 900, lg: 1200, xl: 1536 } }
 
-const mediaQueryObj = { sm: `@media (min-width: ${themeBreakpoints.values.sm}px)` }
+const mediaQueryObj = {
+  xs: `@media (min-width: ${themeBreakpoints.values.xs}px)`,
+  sm: `@media (min-width: ${themeBreakpoints.values.sm}px)`,
+  md: `@media (min-width: ${themeBreakpoints.values.md}px)`,
+  lg: `@media (min-width: ${themeBreakpoints.values.lg}px)`,
+  xl: `@media (min-width: ${themeBreakpoints.values.xl}px)`,
+};
 
 
 const themeTypography = {
@@ -46,10 +52,38 @@ const themeTypography = {
     fontSize: '0.75rem',
     lineHeight: 1.66,
     letterSpacing: '0.03333em'
+  },
+  chip: {
+    fontWeight: 500,
+    fontSize: '0.77rem',
+    lineHeight: 1.15,
+    letterSpacing: '0.03333em',
+    [mediaQueryObj.sm]: {
+      lineHeight: 1.2,
+      fontSize: '0.72rem'
+    }
   }
 }
 
+function getResponsiveTypographyVariant(theme: Theme, variant: string) {
+  const variantProps = theme.typography[variant];
+  const styleOverrides = { ...variantProps };
+
+  Object.keys(mediaQueryObj).forEach((key) => {
+    if (variantProps[mediaQueryObj[key]]) {
+      styleOverrides[mediaQueryObj[key]] = variantProps[mediaQueryObj[key]];
+    }
+  });
+
+  return styleOverrides;
+}
+
 const themeComponents = {
+  MuiChip: {
+    styleOverrides: {
+      root: ({ theme }) => getResponsiveTypographyVariant(theme, 'chip')
+    }
+  },
   MuiTabs: {
     styleOverrides: {
       root: {
