@@ -1,7 +1,8 @@
 import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
-import FilterCheckboxGroup from './Elements/FilterCheckboxGroup';
+import FilterListGroup from './Elements/FilterListGroup';
 
 const cardStyles = {
   m: { xxs: 2, sm: 0 },
@@ -11,30 +12,31 @@ const cardStyles = {
   top: { sm: 80 },
 };
 
-function FilterOptions() {
+export default React.memo(function FilterOptions() {
   return (
     <Card
       variant="outlined"
       sx={cardStyles}
     >
-      <Typography>Starting Location</Typography>
-      <FilterCheckboxGroup
-        filterState="filterStartLocation"
-        dataFilter="price"
-      />
-      <Typography>Attraction Type</Typography>
-      <FilterCheckboxGroup
-        filterState="filterType"
-        dataFilter="type"
-      />
-      <Typography>Attraction Region</Typography>
-      <FilterCheckboxGroup
-        filterState="filterArea"
-        dataFilter="area"
-      />
-      <Typography>Price Range</Typography>
+      <List>
+        <ListSubheader color="primary">Filters</ListSubheader>
+        <FilterListGroup
+          filterState="filterStartLocation"
+          optionKey="price"
+          headerString="Starting Location"
+        />
+        <FilterListGroup
+          filterState="filterType"
+          optionKey="type"
+          headerString="Attraction Type"
+        />
+        <FilterListGroup
+          filterState="filterArea"
+          optionKey="area"
+          headerString="Attraction Region"
+        />
+        <ListSubheader>Price Range</ListSubheader>
+      </List>
     </Card>
   );
-}
-
-export default React.memo(FilterOptions);
+});
