@@ -1,14 +1,11 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
 import React, { createContext, useContext, useState } from 'react';
-import Link from '@material/Link';
-import menuLinkArr from './data/menuLinkArr';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import NavIconButton from './Elements/NavIconButton';
-import NavMenu from './Elements/NavMenu';
 import NavBreakpointContext from '@context/NavBreakpointContext';
+import Drawer from '@mui/material/Drawer';
+import MobileDrawerLinks from './Elements/MobileDrawerLinks';
 
 export const MobileMenuContext = createContext();
 
@@ -25,42 +22,30 @@ const Wrapper = styled(Box)(({ theme, dissapearingbreakpoint }) =>
 export default React.memo(function MobilePagesMenu() {
   const dissapearingBreakpoint = useContext(NavBreakpointContext);
 
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [open, setOpen] = useState(false);
 
-  const handleOpenNavMenu = (e) => {
-    setAnchorElNav(e.currentTarget);
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
 
-  const handleCloseNavMenu = (e) => {
-    setAnchorElNav(null);
+  const handleDrawerClose = () => {
+    setOpen(false);
   };
-
-  const contextValue = { anchorElNav, handleOpenNavMenu, handleCloseNavMenu };
 
   return (
-    <MobileMenuContext.Provider value={contextValue}>
+    <>
       <Wrapper dissapearingbreakpoint={dissapearingBreakpoint}>
-        <NavIconButton handleOpenNavMenu={handleOpenNavMenu}>
+        <NavIconButton handleDrawerOpen={handleDrawerOpen}>
           <MenuIcon />
         </NavIconButton>
-        <NavMenu>
-          {menuLinkArr.map(({ name, link }) => (
-            <MenuItem
-              key={link}
-              onClick={handleCloseNavMenu}
-            >
-              <Typography
-                component={Link}
-                href={link}
-                textAlign="center"
-                sx={{ textDecoration: 'none' }}
-              >
-                {name}
-              </Typography>
-            </MenuItem>
-          ))}
-        </NavMenu>
       </Wrapper>
-    </MobileMenuContext.Provider>
+      <Drawer
+        open={open}
+        onClose={handleDrawerClose}
+        PaperProps={{ sx: { minWidth: 350 } }}
+      >
+        <MobileDrawerLinks handleDrawerClose={handleDrawerClose} />
+      </Drawer>
+    </>
   );
 });

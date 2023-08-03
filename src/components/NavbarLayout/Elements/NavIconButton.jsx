@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function NavIconButton({
   children,
-  handleOpenNavMenu,
+  handleDrawerOpen,
   ...other
 }) {
   return (
@@ -12,7 +12,7 @@ export default function NavIconButton({
       aria-label="menu of pages"
       aria-controls="menu-appbar"
       aria-haspopup="true"
-      onClick={handleOpenNavMenu}
+      onClick={handleDrawerOpen}
       {...other}
     >
       {children}
