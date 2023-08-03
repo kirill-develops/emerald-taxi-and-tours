@@ -39,8 +39,14 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
       <ExpandMoreWrapper
         expand={openCollapse[link]}
         onClick={handleExpandClick}
+        disableRipple
+        sx={{
+          '&:hover': {
+            color: (theme) => theme.palette.primary.main,
+          },
+        }}
       >
-        <ExpandMore />
+        <ExpandMore color={openCollapse[link] ? 'primary' : 'inherit'} />
       </ExpandMoreWrapper>
     );
   }
@@ -49,7 +55,7 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
     <List>
       {menuLinkArr.map(({ name, link, icon, nested }) => {
         return (
-          <>
+          <React.Fragment key={link}>
             <ListItem
               key={link}
               secondaryAction={
@@ -95,7 +101,7 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
                 </List>
               </Collapse>
             ) : null}
-          </>
+          </React.Fragment>
         );
       })}
       <Divider />
