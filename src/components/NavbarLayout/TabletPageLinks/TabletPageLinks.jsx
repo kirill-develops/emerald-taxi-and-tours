@@ -25,6 +25,7 @@ export default React.memo(function TabletPagesLink() {
     handleMouseLeave,
     handleMouseOnMenu,
     closeNavMenu,
+    menuRef,
   } = useNavMenu(setValue);
 
   const { link, nested } = useMemo(
@@ -56,6 +57,7 @@ export default React.memo(function TabletPagesLink() {
         open={open}
         closeNavMenu={closeNavMenu}
         handleMouseOnMenu={handleMouseOnMenu}
+        menuRef={menuRef}
       />
     </>
   );

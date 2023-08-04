@@ -2,6 +2,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Link from '@material/Link';
 import React from 'react';
 import NavMenu from '../../Elements/NavMenu';
+import useFindCurrentPage from '../../hooks/useFindCurrentPage';
 
 export default function NavMenuJsx({
   open,
@@ -9,7 +10,10 @@ export default function NavMenuJsx({
   closeNavMenu,
   nested,
   link,
+  menuRef,
 }) {
+  const selected = useFindCurrentPage(nested);
+
   return nested ? (
     <NavMenu
       anchorEl={open?.target}
@@ -18,6 +22,7 @@ export default function NavMenuJsx({
       PaperProps={{
         onMouseLeave: closeNavMenu,
         onMouseEnter: handleMouseOnMenu,
+        ref: menuRef,
       }}
       sx={{ zIndex: 1000 }}
     >
@@ -27,6 +32,7 @@ export default function NavMenuJsx({
           key={nestedLink}
           component={Link}
           href={`${link}${nestedLink}`}
+          selected={selected === nestedLink}
         >
           {nestedName}
         </MenuItem>
