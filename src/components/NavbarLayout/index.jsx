@@ -6,7 +6,7 @@ import React from 'react';
 import MobilePagesMenu from './MobilePagesMenu';
 import MobileSearchButton from './MobileSearchButton';
 import TabletSearchButton from './TabletSearchButton';
-import TabletPagesLink from './TabletPagesLink';
+import TabletPageLinks from './TabletPageLinks/TabletPageLinks';
 import ElevationScroll from './Elements/ElevationScroll';
 import TitleWrapper from './TitleWrapper';
 import useLoadingTransition from './hooks/useLoadingTransition';
@@ -37,7 +37,7 @@ export default function NavbarLayout(props) {
             <Toolbar sx={{ ...loadingTransitionStyle }}>
               <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
               <TitleWrapper />
-              <TabletPagesLink />
+              <TabletPageLinks />
               <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
               <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
             </Toolbar>

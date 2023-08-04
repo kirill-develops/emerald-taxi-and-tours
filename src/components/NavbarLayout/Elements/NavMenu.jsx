@@ -1,40 +1,41 @@
 import Menu from '@mui/material/Menu';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import React, { useContext } from 'react';
-
-import { MobileMenuContext } from '../MobilePagesMenu';
+import React, { useContext, useMemo } from 'react';
 import NavBreakpointContext from '@context/NavBreakpointContext';
 
-export default function NavMenu({ children }) {
+export default function NavMenu({ anchorEl, children, sx, ...rest }) {
   const dissapearingBreakpoint = useContext(NavBreakpointContext);
+
+  const menuStyles = useMemo(
+    () => ({
+      display: {
+        xxs: 'none',
+        [dissapearingBreakpoint]: 'block',
+      },
+      ...sx,
+    }),
+    [dissapearingBreakpoint, sx],
+  );
 
   const isSmAndUpBreakpoint = useMediaQuery((theme) =>
     theme.breakpoints.up('sm'),
   );
 
-  const { anchorElNav, handleCloseNavMenu } = useContext(MobileMenuContext);
-
   return (
     <Menu
       id="menu-appbar"
-      anchorEl={anchorElNav}
+      anchorEl={anchorEl}
       anchorOrigin={{
         vertical: isSmAndUpBreakpoint ? 'bottom' : 'top',
         horizontal: 'left',
       }}
-      keepMounted
       transformOrigin={{
         vertical: isSmAndUpBreakpoint ? 'top' : 'bottom',
         horizontal: 'left',
       }}
-      open={Boolean(anchorElNav)}
-      onClose={handleCloseNavMenu}
-      sx={{
-        display: {
-          xxs: 'block',
-          [dissapearingBreakpoint]: 'none',
-        },
-      }}
+      open={Boolean(anchorEl)}
+      sx={menuStyles}
+      {...rest}
     >
       {children}
     </Menu>
