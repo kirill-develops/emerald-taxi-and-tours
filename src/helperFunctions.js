@@ -29,3 +29,7 @@ export function checkDepartDate(dataDate, initialDate, departDate) {
 
 export const filterTransferData = (passedAirportLink) =>
   transferData.filter(({ airportLink }) => passedAirportLink === airportLink);
+
+export function isObjEmpty(obj) {
+  return !obj || Object.keys(obj).length === 0;
+}

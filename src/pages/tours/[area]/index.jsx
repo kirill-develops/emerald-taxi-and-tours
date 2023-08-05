@@ -6,6 +6,7 @@ import PageLayout from '@components/PageLayout/Layout';
 import TourAreaContext from '@context/TourAreaContext';
 import Fallback from '@components/Fallback';
 import ToursByLocationLayout from '@components/ToursByLocationLayout/ToursByLocationLayout';
+import { isObjEmpty } from '../../../helperFunctions';
 
 export async function getStaticPaths() {
   const paths = tourData.map((tour) => ({
@@ -22,7 +23,7 @@ export async function getStaticProps({ params }) {
     .find((tour) => tour.price.find(({ link }) => link === params.area))
     ?.price.find(({ link }) => link === params.area);
 
-  if (!paramDetails || !params.area) {
+  if (isObjEmpty(paramDetails) || !params.area) {
     return {
       notFound: true,
     };

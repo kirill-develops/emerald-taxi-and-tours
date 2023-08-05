@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { isObjEmpty } from '../helperFunctions';
 
 const API_KEY = process.env.TRIP_ADVISOR_API_KEY;
 
@@ -61,10 +62,6 @@ async function getReviews(locationId) {
 
     return null;
   }
-}
-
-function isObjEmpty(obj) {
-  return !obj || Object.keys(obj).length === 0;
 }
 
 export default async function getTripAdvisorData(params, retryCount = 0) {
