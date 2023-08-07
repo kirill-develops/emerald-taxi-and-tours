@@ -1,36 +1,22 @@
-import { useMediaQuery } from '@mui/material';
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 import GridImage from './GridImage';
+import useImageBreakpoints from '../hooks/useImageBreakpoints';
 
-export default React.memo(function Images({}) {
+export default React.memo(function Images() {
   const { tripAdvisorPhotos: photos } = useContext(ParamContext);
 
-  const isXxsBreakpoint = useMediaQuery((theme) =>
-    theme.breakpoints.only('xxs'),
-  );
-  const isXsBreakpoint =
-    useMediaQuery((theme) => theme.breakpoints.only('xs')) && 3;
-  const isSmBreakpoint =
-    useMediaQuery((theme) => theme.breakpoints.only('sm')) && 4;
+  const { breakpointImageLength, muiImageSizes } = useImageBreakpoints();
 
-  const breakpointImageLength = useMemo(() => {
-    if (isXxsBreakpoint) return 1;
-    if (isXsBreakpoint) return 3;
-    if (isSmBreakpoint) return 4;
-    return 5;
-  }, [isXxsBreakpoint, isXsBreakpoint, isSmBreakpoint]);
+  if (!photos) return null;
 
-  return useMemo(() => {
-    if (!photos) return null;
+  const length = breakpointImageLength || photos.length - 1;
 
-    const length = breakpointImageLength || photos.length - 1;
-
-    return photos.slice(0, length).map((picData) => (
-      <GridImage
-        picData={picData}
-        key={picData.id}
-      />
-    ));
-  }, [, photos, breakpointImageLength]);
+  return photos.slice(0, length).map((picData) => (
+    <GridImage
+      picData={picData}
+      muiImageSizes={muiImageSizes}
+      key={picData.id}
+    />
+  ));
 });
