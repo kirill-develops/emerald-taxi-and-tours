@@ -1,16 +1,22 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
 import React from 'react';
 import ExpandIconButton from '@elements/ExpandIconButton';
+import { CardActionArea } from '@mui/material';
 
 export default function AccordionSummaryEl({ link, children, ...rest }) {
   return (
-    <AccordionSummary
-      expandIcon={<ExpandIconButton />}
-      aria-controls={`${link}-transfers-content`}
-      id={`${link}-transfers-header`}
-      {...rest}
+    <CardActionArea
+      component="div"
+      disableRipple
     >
-      {children}
-    </AccordionSummary>
+      <AccordionSummary
+        expandIcon={<ExpandIconButton disableRipple />}
+        aria-controls={`${link}-transfers-content`}
+        id={`${link}-transfers-header`}
+        {...rest}
+      >
+        {children}
+      </AccordionSummary>
+    </CardActionArea>
   );
 }
