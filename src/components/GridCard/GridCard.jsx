@@ -1,21 +1,26 @@
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import Link from '@material/Link';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import ImageOverlayWrapper from './Elements/ImageOverlayWrapper';
 import CardImage from './Elements/CardImage';
 import CardContentGridItem from './Elements/CardContentGridItem';
-import BookNowButton from './Elements/BookNowButton';
 import NoWrapCardHeader from './Elements/NoWrapCardHeader';
+import { ButtonBase } from '@mui/material';
 
 const heightStyles = { height: '100%' };
 
-const cardActionsStyles = { p: 2, justifyContent: 'space-between' };
+const cardContentStyles = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignContent: 'center',
+  rowGap: 0.5,
+};
 
 const CardGridItemStyles = {
   width: '100%',
@@ -26,39 +31,56 @@ function CardGridItem({ children }) {
   return <GridItem sx={CardGridItemStyles}>{children}</GridItem>;
 }
 
+const linkStyles = {
+  textDecoration: 'none',
+  color: (theme) => theme.palette.text.primary,
+  '&:hover': {
+    textDecoration: 'underline',
+  },
+};
+
+function StyledLink({ href, children }) {
+  return (
+    <Link
+      href={href}
+      variant="cardCaption"
+      sx={linkStyles}
+    >
+      {children}
+    </Link>
+  );
+}
+
 function GridCard({
   cardProps: {
     children,
-    url = '',
-    type,
+    noWrap = false,
     price,
     picData,
-    title,
-    titleVariant,
+    rankingEl,
+    reviews,
     subheader,
     subheaderVariant,
-    noWrap = false,
-    rankingEl,
-    bookNowUrl,
-    cardActions,
-    disableRipple = false,
+    title,
+    titleVariant,
+    type,
+    url = '',
     ...rest
   },
 }) {
-  const disableRippleStyles = useMemo(
-    () => (disableRipple ? { cursor: 'unset' } : undefined),
-    [disableRipple],
-  );
+  const reviewsClone = structuredClone(reviews);
 
-  const cardActionAreaStyles = useMemo(
-    () => ({ ...heightStyles, ...disableRippleStyles }),
-    [disableRippleStyles],
-  );
-
-  const cardLinkComponent = disableRipple ? 'div' : undefined;
-  const buttonLinkComponent = disableRipple ? undefined : 'div';
-  const dynamicUrl = !disableRipple ? undefined : url || bookNowUrl;
-
+  const reviewsJsx = reviewsClone
+    ?.sort((a, b) => b.rating - a.rating)
+    .slice(0, 2)
+    .map(({ id, title }) => (
+      <StyledLink
+        href={`${url}#${id}`}
+        key={id}
+      >
+        &quot;{title}&quot;
+      </StyledLink>
+    ));
   return (
     <Card
       square
@@ -66,47 +88,51 @@ function GridCard({
       {...rest}
     >
       <CardActionArea
-        href={url}
-        component={cardLinkComponent}
-        LinkComponent={Link}
-        disableRipple={disableRipple}
-        sx={cardActionAreaStyles}
+        component="div"
+        sx={heightStyles}
       >
         <GridContainer sx={heightStyles}>
           <GridItem
             xxs={5}
             sx={heightStyles}
           >
-            <ImageOverlayWrapper
-              type={type}
-              price={price}
+            <CardActionArea
+              href={url}
+              LinkComponent={Link}
+              sx={heightStyles}
+              disableRipple
+              disableTouchRipple
             >
-              <CardImage picData={picData} />
-            </ImageOverlayWrapper>
+              <ImageOverlayWrapper
+                type={type}
+                price={price}
+              >
+                <CardImage picData={picData} />
+              </ImageOverlayWrapper>
+            </CardActionArea>
           </GridItem>
           <CardContentGridItem xxs={7}>
-            <Box sx={{ py: 1.25, px: 2 }}>
-              <NoWrapCardHeader
-                title={title}
-                titleVariant={titleVariant}
-                subheader={subheader}
-                subheaderVariant={subheaderVariant}
-                noWrap={noWrap}
-              />
-              {rankingEl}
-            </Box>
-            <Divider variant="middle" />
-            {children}
-            <CardActions
-              disableSpacing
-              sx={cardActionsStyles}
+            <ButtonBase
+              href={url}
+              LinkComponent={Link}
+              sx={{ ...heightStyles, justifyContent: 'flex-start' }}
+              disableRipple
+              disableTouchRipple
             >
-              <BookNowButton
-                url={dynamicUrl}
-                component={buttonLinkComponent}
-              />
-              {cardActions}
-            </CardActions>
+              <Box sx={{ py: 1.25, px: 2 }}>
+                <NoWrapCardHeader
+                  title={title}
+                  titleVariant={titleVariant}
+                  subheader={subheader}
+                  subheaderVariant={subheaderVariant}
+                  noWrap={noWrap}
+                />
+                {rankingEl}
+              </Box>
+            </ButtonBase>
+            <Divider variant="middle" />
+            <CardContent sx={cardContentStyles}>{reviewsJsx}</CardContent>
+            {children}
           </CardContentGridItem>
         </GridContainer>
       </CardActionArea>

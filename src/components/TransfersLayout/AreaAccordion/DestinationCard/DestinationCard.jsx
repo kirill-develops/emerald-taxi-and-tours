@@ -1,9 +1,7 @@
 import CardContent from '@mui/material/CardContent';
-import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
-import React, { useState } from 'react';
+import React from 'react';
 import GridCard from '@components/GridCard/GridCard';
-import ExpandMoreButton from '../../../ToursLayout/TourGrid/AllTours/DetailedTourCard/Elements/ExpandMoreButton';
 import PricingText from './Elements/PricingText';
 
 function getSubheader(areaLink, destination, area) {
@@ -19,44 +17,27 @@ function getSubheader(areaLink, destination, area) {
 
 export default React.memo(function TransferCard({ destinationData, areaData }) {
   const { name: areaName, link: areaLink, airportLink } = areaData;
-  const { name, link, price, tripAdvisorPhotos } = destinationData;
+  const { name, link, price, tripAdvisorPhotos, tripAdvisorReviews } =
+    destinationData;
 
-  const destinationURL = `/transfer/${airportLink}/${areaLink}/${link}`;
+  const destinationURL = `/transfer/${airportLink}/${areaLink}/${link}#top`;
 
   const subheader = getSubheader(areaLink, destinationData, areaName);
-
-  const [expanded, setExpanded] = useState(false);
-
-  const handleExpand = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <GridCard
       variant="outlined"
-      disableRipple
       title={name}
       subheader={subheader}
       price={price.oneWay}
       picData={tripAdvisorPhotos?.[0]}
-      bookNowUrl={destinationURL}
-      cardActions={
-        <ExpandMoreButton
-          expanded={expanded}
-          handleExpand={handleExpand}
-        />
-      }
+      url={destinationURL}
+      reviews={tripAdvisorReviews}
     >
-      <Collapse
-        in={expanded}
-        timeout="auto"
-        unmountOnExit
-      >
-        <CardContent>
-          <PricingText price={price} />
-        </CardContent>
-        <Divider variant="middle" />
-      </Collapse>
+      <Divider variant="middle" />
+      <CardContent>
+        <PricingText price={price} />
+      </CardContent>
     </GridCard>
   );
 });

@@ -1,22 +1,13 @@
-import Stack from '@mui/material/Stack';
-import CardContent from '@mui/material/CardContent';
-import Collapse from '@mui/material/Collapse';
-import Divider from '@mui/material/Divider';
-import React, { useState } from 'react';
-import PriceTable from './Elements/PriceTable';
+import React from 'react';
 import GridCard from '@components/GridCard/GridCard';
-import ExpandMoreButton from './Elements/ExpandMoreButton';
-
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
-import CardDescription from './Elements/CardDescription';
 import RankingEl from '@elements/RankingEl';
 
 const cardContentStyles = {
   display: 'flex',
   flexDirection: 'column',
   alignContent: 'center',
-  rowGap: 1,
-  pb: '0 !important',
+  rowGap: 0.5,
 };
 
 export default function DetailedCard({ tour, sx, ...rest }) {
@@ -27,17 +18,10 @@ export default function DetailedCard({ tour, sx, ...rest }) {
     areaLink,
     type,
     price,
-    description,
     tripAdvisorPhotos,
     tripAdvisorDetails: { rating, num_reviews: numReviews } = {},
+    tripAdvisorReviews,
   } = tour;
-
-  const [expanded, setExpanded] = useState(false);
-
-  const handleExpand = () => {
-    setExpanded((prev) => !prev);
-  };
-
   const url = getToursUrl(areaLink, link);
 
   const areaPrice = price.reduce((acc, priceObj) =>
@@ -46,42 +30,22 @@ export default function DetailedCard({ tour, sx, ...rest }) {
 
   return (
     <GridCard
-      disableRipple
       type={type}
       price={areaPrice.price}
       picData={tripAdvisorPhotos[0]}
-      bookNowUrl={url}
+      url={`${url}#top`}
       title={name}
       titleVariant="cardTitle"
       subheader={area}
       subheaderVariant="cardCaption"
+      reviews={tripAdvisorReviews}
       rankingEl={
         <RankingEl
           rating={rating}
           numReviews={numReviews}
         />
       }
-      cardActions={
-        <ExpandMoreButton
-          expanded={expanded}
-          handleExpand={handleExpand}
-        />
-      }
       {...rest}
-    >
-      <Collapse
-        in={expanded}
-        timeout="auto"
-        unmountOnExit
-      >
-        <CardContent sx={cardContentStyles}>
-          <Stack rowGap={2}>
-            <CardDescription description={description} />
-            <PriceTable pricesArr={price} />
-            <Divider />
-          </Stack>
-        </CardContent>
-      </Collapse>
-    </GridCard>
+    />
   );
 }

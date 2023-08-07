@@ -8,13 +8,22 @@ import DescriptionText from '@Elements/DescriptionText';
 import ReviewedDateText from './Elements/ReviewedText';
 import ReviewContext from '@context/ReviewContext';
 
+const pageCardStyles = { maxWidth: { md: 750 } };
+
+const innerStackStyles = { flexBasis: '90%' };
+
 function ReviewStack({ children, sx, ...rest }) {
+  const reviewStackStyles = useMemo(
+    () => ({ position: 'relative', ...sx }),
+    [sx],
+  );
+
   return (
     <Stack
       rowGap={1.5}
       columnGap={2}
       direction={{ xxs: 'column', md: 'row' }}
-      sx={{ position: 'relative', ...sx }}
+      sx={reviewStackStyles}
       {...rest}
     >
       {children}
@@ -33,13 +42,16 @@ export default function ReviewCard({ reviewId, ...other }) {
   return useMemo(
     () => (
       <ReviewContext.Provider value={contextValue}>
-        <PageCard sx={{ maxWidth: { md: 750 } }}>
+        <PageCard
+          sx={pageCardStyles}
+          id={contextValue.id}
+        >
           <ReviewStack>
             <AvatarEl
               showName
               showLocation
             />
-            <Stack sx={{ flexBasis: '90%' }}>
+            <Stack sx={innerStackStyles}>
               <ReviewDetails />
               <DescriptionText />
               <ReviewedDateText />

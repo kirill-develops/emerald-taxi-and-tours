@@ -45,12 +45,13 @@ export default function PageLayout({
   return (
     <>
       <Navbar />
-      {!isXsBreakpoint && <Offset />}
+      {!isXsBreakpoint && <Offset id="top" />}
       <LayoutContainer
         component="main"
         maxWidth="false"
         className={`component-fade ${showComponent ? 'show' : ''}`}
         disableGutters
+        id={isXsBreakpoint ? 'top' : undefined}
       >
         <LayoutGrid>
           <LayoutTitle
