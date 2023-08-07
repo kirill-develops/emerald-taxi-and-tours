@@ -1,11 +1,11 @@
 import React from 'react';
 import PageLayout from '@components/PageLayout/Layout';
 import Head from 'next/head';
-import TransferLayout from '@components/TransfersLayout/TransferLayout';
 import Fallback from '@components/Fallback';
 import transferData from '@data/transferData';
 import { useRouter } from 'next/router';
 import { isObjEmpty } from '../../../helperFunctions';
+import TransfersByAirportLayout from '@components/TransfersByAirportLayout/TransfersByAirportLayout';
 
 export async function getStaticPaths() {
   const uniqueAirportLinks = [
@@ -61,6 +61,7 @@ export default function AirportTransfer({ transferParams }) {
         <title>{name} Transfers | EMERALD Taxi & Tours</title>
       </Head>
       <PageLayout title={`Transfers: ${name}`}>
+        <TransfersByAirportLayout airportData={transferParams} />
       </PageLayout>
     </>
   );
