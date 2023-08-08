@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Fallback from '@components/Fallback';
 import transferData from '@data/transferData';
 import { useRouter } from 'next/router';
-import { isObjEmpty } from '../../../helperFunctions';
+import { isObjEmpty } from '@helperFunctions';
 import TransfersByAirportLayout from '@components/TransfersByAirportLayout/TransfersByAirportLayout';
 
 export async function getStaticPaths() {
@@ -91,7 +91,10 @@ export default function AirportTransfer({ transferParams }) {
       <Head>
         <title>{name} Transfers | EMERALD Taxi & Tours</title>
       </Head>
-      <PageLayout title={`Transfers: ${name}`}>
+      <PageLayout
+        title={name}
+        subheader="Transfers"
+      >
         <TransfersByAirportLayout airportData={transferParams} />
       </PageLayout>
     </>

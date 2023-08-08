@@ -1,11 +1,13 @@
-import { Search } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
+import Search from '@mui/icons-material/Search';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import React, { useMemo, useState } from 'react';
-import SearchModal from './NavSearch/SearchModal';
-import { useMediaQuery } from '@mui/material';
+import SearchModal from '../NavSearch/SearchModal';
 
-function MobileSearchButton({ dissapearingBreakpoint }) {
+export default React.memo(function MobileSearchButton({
+  dissapearingBreakpoint,
+}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -45,6 +47,4 @@ function MobileSearchButton({ dissapearingBreakpoint }) {
       />
     </Box>
   );
-}
-
-export default MobileSearchButton;
+});

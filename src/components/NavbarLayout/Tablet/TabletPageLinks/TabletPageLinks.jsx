@@ -1,11 +1,11 @@
 import MenuItem from '@mui/material/MenuItem';
 import React, { useMemo, useState } from 'react';
 import Link from '@material/Link';
-import menuLinkArr from '../data/menuLinkArr';
-import NavMenu from '../Elements/NavMenu';
-import NavTabs from '../Elements/NavTabs';
-import TabLink from '../Elements/TabLink';
-import useFindCurrentPage from '../hooks/useFindCurrentPage';
+import menuLinkArr from '../../data/menuLinkArr';
+import NavMenu from '../PageLinks/Elements/NavMenu';
+import NavTabs from '../PageLinks/Elements/NavTabs';
+import TabLink from '../PageLinks/Elements/TabLink';
+import useFindCurrentPage from '../../hooks/useFindCurrentPage';
 import useNavMenu from './hooks/useNavMenu';
 import useNavMenuJsx from './Elements/NavMenuJsx';
 import NavMenuJsx from './Elements/NavMenuJsx';

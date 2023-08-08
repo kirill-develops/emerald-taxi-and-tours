@@ -11,6 +11,8 @@ import React, { useState } from 'react';
 import menuLinkArr from '../data/menuLinkArr';
 import ExpandMoreWrapper from '@elements/ExpandMore';
 
+const borderRadiusStyles = { borderRadius: 4 };
+
 function DrawerListItemButton({ children, ...rest }) {
   return (
     <ListItemButton
@@ -39,7 +41,6 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
       <ExpandMoreWrapper
         expand={openCollapse[link]}
         onClick={handleExpandClick}
-        disableRipple
         sx={{
           '&:hover': {
             color: (theme) => theme.palette.primary.main,
@@ -68,6 +69,7 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
               <DrawerListItemButton
                 href={link}
                 onClick={handleDrawerClose}
+                sx={{ ...borderRadiusStyles, pr: 0, mr: 3 }}
               >
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={name} />
@@ -90,6 +92,7 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
                       <DrawerListItemButton
                         href={`${link}${nestedLink}`}
                         onClick={handleDrawerClose}
+                        sx={borderRadiusStyles}
                       >
                         <ListItemText
                           primary={nestedName}

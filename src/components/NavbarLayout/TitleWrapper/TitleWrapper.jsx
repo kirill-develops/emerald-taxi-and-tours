@@ -16,7 +16,7 @@ const TitleWrapper = styled(Stack)(({ theme }) =>
   }),
 );
 
-export default function NavTitle() {
+export default React.memo(function NavTitle() {
   const isXsBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   return (
@@ -28,4 +28,4 @@ export default function NavTitle() {
       {!isXsBreakpoint && <TitleScript />}
     </TitleWrapper>
   );
-}
+});

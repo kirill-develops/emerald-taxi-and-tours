@@ -3,12 +3,12 @@ import Toolbar from '@mui/material/Toolbar';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 
-import MobilePagesMenu from './MobilePagesMenu';
-import MobileSearchButton from './MobileSearchButton';
+import MobileDrawerButton from './Mobile/DrawerButton/MobileDrawerButton';
+import MobileSearchButton from './Mobile/MobileSearchButton';
 import TabletSearchButton from './Tablet/SearchButton/TabletSearchButton';
-import TabletPageLinks from './TabletPageLinks/TabletPageLinks';
+import TabletPageLinks from './Tablet/PageLinks/TabletPageLinks';
 import ElevationScroll from './Elements/ElevationScroll';
-import TitleWrapper from './TitleWrapper';
+import TitleWrapper from './TitleWrapper/TitleWrapper';
 import useLoadingTransition from './hooks/useLoadingTransition';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import NavBreakpointContext from '@context/NavBreakpointContext';
@@ -29,14 +29,14 @@ export default function NavbarLayout(props) {
   return (
     <NavBreakpointContext.Provider value={menuBreakpoint}>
       <ElevationScroll {...props}>
-        <SiteAppBar elevation={1}>
+        <SiteAppBar>
           <MaxWidthContainer
             maxWidth="lg"
             disableGutters
             disableStack
           >
             <Toolbar sx={{ ...loadingTransitionStyle }}>
-              <MobilePagesMenu dissapearingBreakpoint={menuBreakpoint} />
+              <MobileDrawerButton dissapearingBreakpoint={menuBreakpoint} />
               <TitleWrapper />
               <TabletPageLinks />
               <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />

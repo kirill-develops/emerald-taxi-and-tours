@@ -1,8 +1,8 @@
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@material/Link';
 import React from 'react';
-import NavMenu from '../../Elements/NavMenu';
-import useFindCurrentPage from '../../hooks/useFindCurrentPage';
+import NavMenu from '../../PageLinks/Elements/NavMenu';
+import useFindCurrentPage from '../../../hooks/useFindCurrentPage';
 
 export default function NavMenuJsx({
   open,

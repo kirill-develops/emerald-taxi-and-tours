@@ -1,11 +1,11 @@
-import MenuIcon from '@mui/icons-material/Menu';
+import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import React, { createContext, useContext, useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
+import React, { createContext, useContext, useState } from 'react';
 import NavIconButton from './Elements/NavIconButton';
 import NavBreakpointContext from '@context/NavBreakpointContext';
-import Drawer from '@mui/material/Drawer';
-import MobileDrawerLinks from './Elements/MobileDrawerLinks';
+import MobileDrawerLinks from '../MobileDrawerLinks';
 
 export const MobileMenuContext = createContext();
 
@@ -19,7 +19,9 @@ const Wrapper = styled(Box)(({ theme, dissapearingbreakpoint }) =>
   }),
 );
 
-export default React.memo(function MobilePagesMenu() {
+const paperProps = { sx: { minWidth: 350 } };
+
+export default React.memo(function MobileDrawerButton() {
   const dissapearingBreakpoint = useContext(NavBreakpointContext);
 
   const [open, setOpen] = useState(false);
@@ -42,7 +44,7 @@ export default React.memo(function MobilePagesMenu() {
       <Drawer
         open={open}
         onClose={handleDrawerClose}
-        PaperProps={{ sx: { minWidth: 350 } }}
+        PaperProps={paperProps}
       >
         <MobileDrawerLinks handleDrawerClose={handleDrawerClose} />
       </Drawer>
