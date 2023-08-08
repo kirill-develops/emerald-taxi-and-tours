@@ -1,8 +1,6 @@
-import CardContent from '@mui/material/CardContent';
-import Divider from '@mui/material/Divider';
 import React from 'react';
 import GridCard from '@components/GridCard/GridCard';
-import PricingText from './Elements/PricingText';
+import RankingEl from '@elements/RankingEl';
 
 function getSubheader(areaLink, destination, area) {
   switch (areaLink) {
@@ -17,8 +15,14 @@ function getSubheader(areaLink, destination, area) {
 
 export default React.memo(function TransferCard({ destinationData, areaData }) {
   const { name: areaName, link: areaLink, airportLink } = areaData;
-  const { name, link, price, tripAdvisorPhotos, tripAdvisorReviews } =
-    destinationData;
+  const {
+    name,
+    link,
+    price,
+    tripAdvisorPhotos,
+    tripAdvisorReviews,
+    tripAdvisorDetails: { rating, num_reviews: numReviews } = {},
+  } = destinationData;
 
   const destinationURL = `/transfer/${airportLink}/${areaLink}/${link}#top`;
 
@@ -26,18 +30,21 @@ export default React.memo(function TransferCard({ destinationData, areaData }) {
 
   return (
     <GridCard
-      variant="outlined"
-      title={name}
-      subheader={subheader}
-      price={price.oneWay}
       picData={tripAdvisorPhotos?.[0]}
-      url={destinationURL}
+      price={price.oneWay}
       reviews={tripAdvisorReviews}
-    >
-      <Divider variant="middle" />
-      <CardContent>
-        <PricingText price={price} />
-      </CardContent>
-    </GridCard>
+      subheader={subheader}
+      subheaderVariant="cardCaption"
+      title={name}
+      titleVariant="cardTitle"
+      url={destinationURL}
+      variant="outlined"
+      rankingEl={
+        <RankingEl
+          rating={rating}
+          numReviews={numReviews}
+        />
+      }
+    />
   );
 });

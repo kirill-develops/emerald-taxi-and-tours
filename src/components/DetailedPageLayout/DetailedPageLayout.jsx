@@ -1,23 +1,42 @@
-import React from 'react';
-import { GridContainer } from '@elements/CustomGridEl';
-import MaxWidthContainer from '@elements/MaxWidthContainer';
-import { useMediaQuery } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import React, { useContext } from 'react';
+import BookingLayout from './BookingLayout/BookingLayout';
 import DetailsWrapper from './DetailsWrapper';
-import ImageOverlayWrapper from './Elements/ImageOverlayWrapper';
 import ImagesLayout from './ImagesLayout';
+import ImageOverlayWrapper from './Elements/ImageOverlayWrapper';
+import ImportantInfo from './Elements/ImportantInfo';
 import LocationDescription from './LocationDescriptionCard/LocationDescriptionCard';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
+import PricingCard from './PricingCard';
 import RatingsAndReviews from './RatingsAndReviewsCard';
 import ImportantInfo from './Elements/ImportantInfo';
 import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
 import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
 import BookingLayout from './BookingLayout/BookingLayout';
 
+const overflowStyles = { overflowX: 'scroll' };
+
+const stackStyles = (theme, isBelowMdBreakpoint = false) => ({
+  minWidth: () => {
+    const halfDifference =
+      (theme.breakpoints.values.lg - theme.breakpoints.values.md) / 10;
+
+    const minWidth = theme.breakpoints.values.md + halfDifference;
+
+    return isBelowMdBreakpoint ? '' : minWidth;
+  },
+});
+
 function MaxWidthLayoutWrapper({ children, ...other }) {
-  const isMdBreakpoint = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const isBelowMdBreakpoint = useMediaQuery((theme) =>
+    theme.breakpoints.down('md'),
+  );
 
   return (
     <MaxWidthContainer
-      disableGutters={!isMdBreakpoint}
+      disableGutters={isBelowMdBreakpoint}
       rowGap={2}
       {...other}
     >
@@ -27,37 +46,59 @@ function MaxWidthLayoutWrapper({ children, ...other }) {
 }
 
 export default function DetailedPageLayout() {
-  const isXxsBreakpoint = useMediaQuery((theme) =>
+  const isBelowMdBreakpoint = useMediaQuery((theme) =>
     theme.breakpoints.down('md'),
   );
 
   return (
     <>
       <BookingLayout />
+      {/* HERO SECTION */}
       <DetailsWrapper>
         <ImageOverlayWrapper>
           <ImagesLayout />
         </ImageOverlayWrapper>
       </DetailsWrapper>
-      <MaxWidthLayoutWrapper>
-        <LocationDescription />
-        {isXxsBreakpoint && (
-          <>
-            <RatingsAndReviews />
-            <ServiceDescription />
-          </>
-        )}
-        <GridContainer
-          rowSpacing={{ xxs: 2 }}
-          columnSpacing={{ md: 2 }}
-        >
-          {!isXxsBreakpoint && <RatingsAndReviews />}
-          <ImportantInfo />
-        </GridContainer>
+      {/* Next Section */}
+      <Stack
+        spacing={2}
+        alignItems="center"
+      >
+        <MaxWidthLayoutWrapper>
+          <LocationDescription />
+          {isBelowMdBreakpoint && (
+            <>
+              <RatingsAndReviews />
+              <ServiceDescription />
+            </>
+          )}
+        </MaxWidthLayoutWrapper>
 
-        {!isXxsBreakpoint && <ServiceDescription />}
-        <ReviewsLayout />
-      </MaxWidthLayoutWrapper>
+        {/* Tablet */}
+        <MaxWidthContainer
+          maxWidth="lg"
+          disableGutters
+        >
+          <Box sx={overflowStyles}>
+            <Stack
+              direction={isBelowMdBreakpoint ? 'column' : 'row'}
+              flexWrap={true}
+              spacing={2}
+              alignItems="flex-start"
+              sx={(theme) => stackStyles(theme, isBelowMdBreakpoint)}
+            >
+              {!isBelowMdBreakpoint && <RatingsAndReviews />}
+              <ImportantInfo />
+              
+              <PricingCard />
+            </Stack>
+          </Box>
+        </MaxWidthContainer>
+        <MaxWidthLayoutWrapper>
+          {!isBelowMdBreakpoint && <ServiceDescription />}
+          <ReviewsLayout />
+        </MaxWidthLayoutWrapper>
+      </Stack>
     </>
   );
 }

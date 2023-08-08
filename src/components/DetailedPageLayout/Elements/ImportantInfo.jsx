@@ -6,7 +6,6 @@ import Remove from '@mui/icons-material/Remove';
 import React from 'react';
 import PageCard from '@elements/PageCard';
 import CardTitle from '@elements/CardTitle';
-import { GridItem } from '@elements/CustomGridEl';
 
 const bulletPoints = [
   { primary: 'Private Transport', secondary: 'No other guests on board.' },
@@ -28,28 +27,33 @@ const bulletPoints = [
   { primary: null, secondary: 'Last minute bookings accepted.' },
 ];
 
-export default function ImportantInfo() {
+const pageCardStyles = { minWidth: 320 };
+
+const listIconStyles = { minWidth: '28px' };
+
+const removeStyles = { fontSize: '1.2rem' };
+
+export default React.memo(function ImportantInfo() {
   return (
-    <GridItem md={5}>
-      <PageCard>
-        <CardTitle>Important Info</CardTitle>
-        <List>
-          {bulletPoints.map((point, i) => (
-            <ListItem
-              disablePadding
-              key={i}
-            >
-              <ListItemIcon sx={{ minWidth: '32px' }}>
-                <Remove fontSize="small" />
-              </ListItemIcon>
-              <ListItemText
-                primary={point.primary}
-                secondary={point.secondary}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </PageCard>
-    </GridItem>
+    <PageCard sx={pageCardStyles}>
+      <CardTitle>Important Info</CardTitle>
+      <List>
+        {bulletPoints.map((point, i) => (
+          <ListItem
+            disablePadding
+            dense
+            key={i}
+          >
+            <ListItemIcon sx={listIconStyles}>
+              <Remove sx={removeStyles} />
+            </ListItemIcon>
+            <ListItemText
+              primary={point.primary}
+              secondary={point.secondary}
+            />
+          </ListItem>
+        ))}
+      </List>
+    </PageCard>
   );
-}
+});

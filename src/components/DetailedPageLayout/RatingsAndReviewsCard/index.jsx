@@ -7,39 +7,43 @@ import PageCard from '@elements/PageCard';
 import RankingEl from '../Elements/RankingWrapper';
 import FormattedRankingString from '../Elements/FormattedRankingString';
 import Subratings from './Elements/Subratings';
-import { GridItem } from '@elements/CustomGridEl';
 import CardTitle from '@elements/CardTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box } from '@mui/material';
+
+const pageCardStyles = (theme, isBreakpoint) => ({
+  maxWidth: isBreakpoint ? 'fit-content' : 'unset',
+});
+
+const dividerStyles = { my: 2 };
 
 export default React.memo(function RatingsAndReviews() {
   const { tripAdvisorDetails: { rating, subratings } = {} } =
     useContext(ParamContext);
+
+  const isMinMdBreakpoint = useMediaQuery((theme) =>
+    theme.breakpoints.up('md'),
+  );
 
   if (!subratings) {
     return null;
   }
 
   return (
-    <GridItem md={5}>
-      <PageCard>
-        <Stack spacing={0.5}>
-          <CardTitle>Ratings and reviews</CardTitle>
-          <RankingEl>
-            <Typography variant="h6">{rating}</Typography>
-          </RankingEl>
-          <FormattedRankingString />
-        </Stack>
-        <Divider sx={{ my: 2 }} />
-        <Typography
-          variant="subtitle1"
-          fontWeight={500}
-          gutterBottom
-        >
-          Ratings
-        </Typography>
-        <Stack spacing={0.5}>
-          <Subratings />
-        </Stack>
-      </PageCard>
-    </GridItem>
+    <PageCard sx={(theme) => pageCardStyles(theme, isMinMdBreakpoint)}>
+      <CardTitle>Ratings and reviews</CardTitle>
+      <Stack spacing={0.2}>
+        <RankingEl>
+          <Typography variant="subtitle1">{rating}</Typography>
+        </RankingEl>
+        <FormattedRankingString />
+        <Box>
+          <Divider sx={dividerStyles} />
+        </Box>
+        <Typography variant="cardTitle">Ratings</Typography>
+
+        <Subratings />
+      </Stack>
+    </PageCard>
   );
 });
