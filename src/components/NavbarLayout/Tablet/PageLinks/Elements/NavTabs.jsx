@@ -7,7 +7,7 @@ export default function NavTabs({ children, ...rest }) {
 
   return (
     <Tabs
-      indicatorColor="secondary"
+      indicatorColor="primary"
       aria-label="page links"
       centered
       sx={{

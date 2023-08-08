@@ -2,16 +2,19 @@ import Tab from '@mui/material/Tab';
 import React from 'react';
 import Link from '@material/Link';
 
-export default React.memo(function TabLink(props) {
-  const tabStyles = {
-    color: 'text.primary',
-    textDecoration: 'none',
-  };
+const tabStyles = (isOpen) => ({
+  color: isOpen ? 'primary.main' : 'text.primary',
+  textDecoration: 'none',
+  '&:hover': { color: (theme) => theme.palette.primary.main },
+});
+
+export default React.memo(function TabLink({ open, value, ...props }) {
+  const isMenuOpen = open?.link === value;
 
   return (
     <Tab
       component={Link}
-      sx={tabStyles}
+      sx={() => tabStyles(isMenuOpen)}
       {...props}
     />
   );

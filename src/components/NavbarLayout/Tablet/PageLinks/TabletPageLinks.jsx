@@ -35,6 +35,7 @@ export default React.memo(function TabletPagesLink() {
         value={value}
         onChange={handleChange}
         onMouseLeave={handleMouseLeave}
+        textColor="inherit"
       >
         {menuLinkArr.map(({ name, link }) => (
           <TabLink
@@ -42,6 +43,7 @@ export default React.memo(function TabletPagesLink() {
             label={name}
             href={link}
             value={link}
+            open={open}
             onMouseEnter={(e) => openNavMenu({ e, link })}
           />
         ))}
