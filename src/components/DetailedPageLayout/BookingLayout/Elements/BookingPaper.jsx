@@ -1,9 +1,37 @@
 import Paper from '@mui/material/Paper';
 import React, { useContext, useEffect, useRef } from 'react';
 import BookingContext from '@context/BookingContext';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
+
+function usePreventScroll(expanded, paperRef) {
+  useEffect(() => {
+    const preventScroll = (e) => {
+      e.preventDefault();
+    };
+
+    const element = paperRef.current;
+
+    if (element) {
+      if (expanded) {
+        element.addEventListener('wheel', preventScroll, {
+          passive: false,
+        });
+      } else {
+        element.removeEventListener('wheel', preventScroll);
+      }
+
+      return () => {
+        element.removeEventListener('wheel', preventScroll);
+      };
+    }
+  }, [expanded]);
+}
 
 const paperStyles = {
-  top: { xxs: 0, sm: 63 },
+  top: {
+    xxs: 0,
+    sm: 63,
+  },
   padding: 2,
   width: '100%',
   backgroundColor: 'black',
@@ -11,18 +39,11 @@ const paperStyles = {
   position: 'sticky',
 };
 
-export default function BookingPaper({ children, ...rest }) {
+export default React.memo(function BookingPaper({ children, ...rest }) {
   const { expanded = false } = useContext(BookingContext);
-
   const paperRef = useRef(null);
 
-  useEffect(() => {
-    if (expanded) {
-      paperRef.current.style.position = 'absolute';
-    } else {
-      paperRef.current.style.position = 'sticky';
-    }
-  }, [expanded, paperRef]);
+  usePreventScroll(expanded, paperRef);
 
   return (
     <Paper
@@ -33,7 +54,7 @@ export default function BookingPaper({ children, ...rest }) {
       sx={paperStyles}
       {...rest}
     >
-      {children}
+      <MaxWidthContainer disableStack>{children}</MaxWidthContainer>
     </Paper>
   );
-}
+});

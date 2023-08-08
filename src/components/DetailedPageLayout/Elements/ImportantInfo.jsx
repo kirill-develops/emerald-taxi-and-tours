@@ -1,3 +1,4 @@
+import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -27,6 +28,8 @@ const bulletPoints = [
   { primary: null, secondary: 'Last minute bookings accepted.' },
 ];
 
+const dividerStyles = { mt: 2, mb: 1 };
+
 const pageCardStyles = { minWidth: 320 };
 
 const listIconStyles = { minWidth: '28px' };
@@ -37,6 +40,8 @@ export default React.memo(function ImportantInfo() {
   return (
     <PageCard sx={pageCardStyles}>
       <CardTitle>Important Info</CardTitle>
+      <Divider sx={dividerStyles} />
+
       <List>
         {bulletPoints.map((point, i) => (
           <ListItem

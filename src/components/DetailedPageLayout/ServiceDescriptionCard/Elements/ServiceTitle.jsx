@@ -4,6 +4,19 @@ import CardTitle from '@elements/CardTitle';
 
 const allOtherString = 'All Other Resorts, Villas, AirBnB & Homes';
 
+function CardSubtitle({ children }) {
+  return (
+    <CardTitle
+      variant="subtitle1"
+      sx={{
+        color: (theme) => theme.palette.text.secondary,
+      }}
+    >
+      {children}
+    </CardTitle>
+  );
+}
+
 function useGetName() {
   const params = useContext(ParamContext);
   const { airportLink, name: areaName } = params.area;
@@ -28,10 +41,10 @@ function TransferTitle() {
 
   return (
     <>
-      <CardTitle>Private Shuttle Service:</CardTitle>
       <CardTitle>
         {airport} - {name}
       </CardTitle>
+      <CardSubtitle>Private Shuttle Service</CardSubtitle>
     </>
   );
 }
@@ -42,7 +55,7 @@ function TourTitle() {
   return (
     <>
       <CardTitle>{params.name}</CardTitle>
-      <CardTitle>Private Tour</CardTitle>
+      <CardSubtitle>Private Tour</CardSubtitle>
     </>
   );
 }

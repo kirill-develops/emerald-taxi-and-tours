@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -8,31 +9,24 @@ import RankingEl from '../Elements/RankingWrapper';
 import FormattedRankingString from '../Elements/FormattedRankingString';
 import Subratings from './Elements/Subratings';
 import CardTitle from '@elements/CardTitle';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Box } from '@mui/material';
-
-const pageCardStyles = (theme, isBreakpoint) => ({
-  maxWidth: isBreakpoint ? 'fit-content' : 'unset',
-});
 
 const dividerStyles = { my: 2 };
 
-export default React.memo(function RatingsAndReviews() {
+export default React.memo(function RatingsAndReviews({ sx }) {
   const { tripAdvisorDetails: { rating, subratings } = {} } =
     useContext(ParamContext);
-
-  const isMinMdBreakpoint = useMediaQuery((theme) =>
-    theme.breakpoints.up('md'),
-  );
 
   if (!subratings) {
     return null;
   }
 
   return (
-    <PageCard sx={(theme) => pageCardStyles(theme, isMinMdBreakpoint)}>
+    <PageCard sx={sx}>
       <CardTitle>Ratings and reviews</CardTitle>
-      <Stack spacing={0.2}>
+      <Stack
+        spacing={0.2}
+        maxWidth="fit-content"
+      >
         <RankingEl>
           <Typography variant="subtitle1">{rating}</Typography>
         </RankingEl>

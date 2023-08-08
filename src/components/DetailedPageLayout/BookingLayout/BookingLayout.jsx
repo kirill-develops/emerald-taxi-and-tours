@@ -26,7 +26,7 @@ export default React.memo(function BookingLayout() {
       setCookie({ isBookingOpen: !prev });
       return !prev;
     });
-  }, []);
+  }, [setExpanded, setCookie]);
 
   const contextValue = {
     cookieData: parsedData,

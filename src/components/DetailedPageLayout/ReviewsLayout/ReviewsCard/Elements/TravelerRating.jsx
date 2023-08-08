@@ -37,7 +37,7 @@ const TitleText = styled(Typography)(({ theme }) =>
   theme.unstable_sx({ flex: 1, minWidth: '75px' }),
 );
 
-const valueTextStyles = { flex: 0.5, minWidth: '30px' };
+const valueTextStyles = { flex: 0.5, minWidth: '35px' };
 
 const qualityStringObj = [
   'Excellent',

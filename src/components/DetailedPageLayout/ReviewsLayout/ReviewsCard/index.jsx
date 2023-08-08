@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -5,16 +6,21 @@ import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 import PageCard from '@elements/PageCard';
 import TravelerRating from './Elements/TravelerRating';
+import CardTitle from '@elements/CardTitle';
 
-export default function Reviews() {
+const dividerStyles = { my: 1 };
+
+const pageCardStyles = { maxWidth: 'unset' };
+
+export default React.memo(function Reviews() {
   const { tripAdvisorDetails: { num_reviews: numReviews } = {} } =
     useContext(ParamContext);
 
   return (
     numReviews && (
-      <PageCard>
+      <PageCard sx={pageCardStyles}>
         <Stack spacing={1}>
-          <Typography variant="h6">
+          <CardTitle>
             Reviews{' '}
             <Typography
               as="span"
@@ -23,11 +29,13 @@ export default function Reviews() {
             >
               ({numReviews})
             </Typography>
-          </Typography>
-          <Divider sx={{ my: 4 }} />
+          </CardTitle>
+          <Box>
+            <Divider sx={dividerStyles} />
+          </Box>
           <TravelerRating />
         </Stack>
       </PageCard>
     )
   );
-}
+});

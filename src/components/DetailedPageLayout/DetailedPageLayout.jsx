@@ -1,7 +1,6 @@
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import React, { useContext } from 'react';
+import React from 'react';
 import BookingLayout from './BookingLayout/BookingLayout';
 import DetailsWrapper from './DetailsWrapper';
 import ImagesLayout from './ImagesLayout';
@@ -46,11 +45,11 @@ export default function DetailedPageLayout() {
           <ImagesLayout />
         </ImageOverlayWrapper>
       </DetailsWrapper>
-      {/* Next Section */}
       <Stack
         spacing={2}
         alignItems="center"
       >
+        {/* Next Section */}
         <MaxWidthLayoutWrapper>
           <LocationDescription />
           {isBelowMdBreakpoint && (
@@ -60,8 +59,7 @@ export default function DetailedPageLayout() {
             </>
           )}
         </MaxWidthLayoutWrapper>
-
-        {/* Tablet */}
+        {/* Tablet Horizontal 3 Card Component */}
         <MaxWidthLayoutWrapper maxWidth="lg">
           <CardStack isBreakpoint={isBelowMdBreakpoint}>
             {!isBelowMdBreakpoint && <RatingsAndReviews />}
@@ -70,6 +68,7 @@ export default function DetailedPageLayout() {
             <PricingCard />
           </CardStack>
         </MaxWidthLayoutWrapper>
+        {/* Next Section */}
         <MaxWidthLayoutWrapper>
           {!isBelowMdBreakpoint && <ServiceDescription />}
           <ReviewsLayout />
