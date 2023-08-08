@@ -75,7 +75,7 @@ export let darkTheme = createTheme({
     },
     background: {
       default: '#1F1B16',
-      paper: '#202C37',
+      paper: '#252930',
     },
     text: {
       disabled: '#414941',

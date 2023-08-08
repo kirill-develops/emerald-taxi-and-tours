@@ -7,7 +7,6 @@ const footerBoxStyles = {
   backgroundColor: (theme) => theme.palette.background.paper,
   overflow: 'auto',
   py: '1em',
-  mt: 5,
 };
 
 function FooterStack({ children }) {

@@ -5,6 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import usePageTransition from './hooks/usePageTransition';
+const RateUs = dynamic(() => import('../HomeLayout/Elements/RateUs'));
 const Stack = dynamic(() => import('@mui/material/Stack'));
 const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('./Elements/LayoutTitle'));
@@ -14,8 +15,6 @@ const Navbar = dynamic(() => import('@components/NavbarLayout/'));
 const LayoutContainer = styled(Container)(({ theme }) =>
   theme.unstable_sx({
     minHeight: { sm: '100%' },
-    // overflow: { sm: 'auto' }, //! removed to stick 'book now' button on
-    //! Details page
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -60,6 +59,7 @@ export default function PageLayout({
           />
           {children}
         </LayoutGrid>
+        <RateUs />
         <FooterLayout />
         {isXsBreakpoint && <Offset />}
       </LayoutContainer>
