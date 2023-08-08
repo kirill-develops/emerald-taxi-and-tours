@@ -2,15 +2,9 @@ import React from 'react';
 import GridCard from '@components/GridCard/GridCard';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
 import RankingEl from '@elements/RankingEl';
+import PickUpCardHeader from './Elements/PickUpCardHeader';
 
-const cardContentStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignContent: 'center',
-  rowGap: 0.5,
-};
-
-export default function DetailedCard({ tour, sx, ...rest }) {
+export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
   const {
     name,
     area,
@@ -48,6 +42,8 @@ export default function DetailedCard({ tour, sx, ...rest }) {
         />
       }
       {...rest}
-    />
+    >
+      <PickUpCardHeader price={price} />
+    </GridCard>
   );
-}
+});

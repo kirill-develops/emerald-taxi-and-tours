@@ -1,3 +1,5 @@
+import CardContent from '@mui/material/CardContent';
+import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React, { useMemo } from 'react';
@@ -14,7 +16,7 @@ function checkObjectValues(obj) {
   return trueProps;
 }
 
-function PickUpCardHeader({ price }) {
+export default React.memo(function PickUpCardHeader({ price }) {
   const [{ filterStartLocation }] = useTour();
 
   const startLocationFilter = checkObjectValues(filterStartLocation);
@@ -63,10 +65,11 @@ function PickUpCardHeader({ price }) {
   return useMemo(
     () =>
       Boolean(startLocationFilter.length > 0) && (
-        <Stack sx={{ mt: 2 }}>{startArrayEl}</Stack>
+        <CardContent sx={{ pt: 0 }}>
+          <Divider sx={{ mb: 2 }} />
+          <Stack spacing={0.5}>{startArrayEl}</Stack>
+        </CardContent>
       ),
     [startArrayEl, startLocationFilter.length],
   );
-}
-
-export default React.memo(PickUpCardHeader);
+});
