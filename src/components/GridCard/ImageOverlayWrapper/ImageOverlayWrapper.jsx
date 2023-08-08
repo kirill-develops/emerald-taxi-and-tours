@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import React from 'react';
-import TourType from '../../ToursLayout/TourGrid/AllTours/DetailedTourCard/Elements/TourType';
-import { Typography } from '@mui/material';
+import TourType from './Elements/TourType';
 
 const OverlayBox = styled(Box)(({ theme }) =>
   theme.unstable_sx({
@@ -37,7 +37,13 @@ const OverlayItem2 = styled(Box)(({ theme }) =>
   }),
 );
 
-export default function ImageOverlayWrapper({ type, price = '', children }) {
+const tourTypeStyles = { borderRadius: 0.5 };
+
+export default React.memo(function ImageOverlayWrapper({
+  type,
+  price = '',
+  children,
+}) {
   return (
     <OverlayBox>
       <OverlayItem1>
@@ -46,7 +52,7 @@ export default function ImageOverlayWrapper({ type, price = '', children }) {
             typeArr={type}
             variant="filled"
             color="info"
-            sx={{ borderRadius: 0.5 }}
+            sx={tourTypeStyles}
           />
         )}
       </OverlayItem1>
@@ -59,4 +65,4 @@ export default function ImageOverlayWrapper({ type, price = '', children }) {
       {children}
     </OverlayBox>
   );
-}
+});

@@ -1,16 +1,13 @@
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
-import Divider from '@mui/material/Divider';
-import React, { useMemo } from 'react';
-
+import Stack from '@mui/material/Stack';
+import React from 'react';
 import Link from '@material/Link';
 import { GridItem } from '@elements/CustomGridEl';
-import ImageOverlayWrapper from './Elements/ImageOverlayWrapper';
+import ImageOverlayWrapper from './ImageOverlayWrapper/ImageOverlayWrapper';
 import CardImage from './Elements/CardImage';
 import NoWrapCardHeader from './Elements/NoWrapCardHeader';
-import { Stack } from '@mui/material';
-import RankingEl from '../../elements/RankingEl';
 
 const heightStyles = { height: '100%' };
 

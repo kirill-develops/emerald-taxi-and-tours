@@ -1,17 +1,16 @@
 import Box from '@mui/material/Box';
+import ButtonBase from '@mui/material/ButtonBase';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
 import React from 'react';
-
 import Link from '@material/Link';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
-import ImageOverlayWrapper from './Elements/ImageOverlayWrapper';
+import ImageOverlayWrapper from './ImageOverlayWrapper/ImageOverlayWrapper';
 import CardImage from './Elements/CardImage';
 import CardContentGridItem from './Elements/CardContentGridItem';
 import NoWrapCardHeader from './Elements/NoWrapCardHeader';
-import { ButtonBase } from '@mui/material';
 
 const heightStyles = { height: '100%' };
 
