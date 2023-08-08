@@ -44,7 +44,9 @@ export default function ItemCard({ tour, sx, ...rest }) {
       price={areaPrice.price}
       picData={photoObj}
       title={name}
+      titleVariant="cardTitle"
       subheader={subheading}
+      subheaderVariant="cardCaption"
       reviews={reviews}
       rankingEl={
         <RankingEl

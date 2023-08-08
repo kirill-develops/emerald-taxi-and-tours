@@ -4,6 +4,8 @@ import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 
+const ratingStyles = { fontSize: '0.95rem' };
+
 export default function Subratings() {
   const {
     tripAdvisorDetails: { subratings },
@@ -23,7 +25,7 @@ export default function Subratings() {
       <Rating
         defaultValue={Number(value)}
         precision={0.1}
-        size="small"
+        sx={ratingStyles}
         readOnly
       />
     </Stack>

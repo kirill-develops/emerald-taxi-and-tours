@@ -14,20 +14,7 @@ import RatingsAndReviews from './RatingsAndReviewsCard';
 import ImportantInfo from './Elements/ImportantInfo';
 import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
 import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
-import BookingLayout from './BookingLayout/BookingLayout';
-
-const overflowStyles = { overflowX: 'scroll' };
-
-const stackStyles = (theme, isBelowMdBreakpoint = false) => ({
-  minWidth: () => {
-    const halfDifference =
-      (theme.breakpoints.values.lg - theme.breakpoints.values.md) / 10;
-
-    const minWidth = theme.breakpoints.values.md + halfDifference;
-
-    return isBelowMdBreakpoint ? '' : minWidth;
-  },
-});
+import CardStack from './Elements/CardStack';
 
 function MaxWidthLayoutWrapper({ children, ...other }) {
   const isBelowMdBreakpoint = useMediaQuery((theme) =>
@@ -75,25 +62,13 @@ export default function DetailedPageLayout() {
         </MaxWidthLayoutWrapper>
 
         {/* Tablet */}
-        <MaxWidthContainer
-          maxWidth="lg"
-          disableGutters
-        >
-          <Box sx={overflowStyles}>
-            <Stack
-              direction={isBelowMdBreakpoint ? 'column' : 'row'}
-              flexWrap={true}
-              spacing={2}
-              alignItems="flex-start"
-              sx={(theme) => stackStyles(theme, isBelowMdBreakpoint)}
-            >
-              {!isBelowMdBreakpoint && <RatingsAndReviews />}
-              <ImportantInfo />
-              
-              <PricingCard />
-            </Stack>
-          </Box>
-        </MaxWidthContainer>
+        <MaxWidthLayoutWrapper maxWidth="lg">
+          <CardStack isBreakpoint={isBelowMdBreakpoint}>
+            {!isBelowMdBreakpoint && <RatingsAndReviews />}
+            <ImportantInfo />
+            <PricingCard />
+          </CardStack>
+        </MaxWidthLayoutWrapper>
         <MaxWidthLayoutWrapper>
           {!isBelowMdBreakpoint && <ServiceDescription />}
           <ReviewsLayout />
