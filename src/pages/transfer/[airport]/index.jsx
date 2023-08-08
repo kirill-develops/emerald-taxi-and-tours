@@ -22,20 +22,51 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const paramDetails = transferData.filter(
+  const areaParams = transferData.filter(
     ({ airportLink }) => airportLink === params.airport,
   );
 
-  if (isObjEmpty(paramDetails) || !params.airport) {
+  if (isObjEmpty(areaParams) || !params.airport) {
     return {
       notFound: true,
     };
   }
 
+  const filteredAreaParams = areaParams?.map(({ destinations, ...rest }) => {
+    const filteredDestinations = destinations?.map(
+      ({
+        tripAdvisorDetails,
+        tripAdvisorPhotos,
+        tripAdvisorReviews,
+        ...rest
+      }) => {
+        const filteredPhotos = tripAdvisorPhotos?.[0] ?? null;
+
+        const filteredDetails = {
+          rating: tripAdvisorDetails?.rating ?? null,
+          num_reviews: tripAdvisorDetails?.numReviews ?? null,
+        };
+
+        const filteredReviews = tripAdvisorReviews?.map(
+          ({ rating, title, id }) => ({ rating, title, id }),
+        );
+
+        return {
+          tripAdvisorPhotos: [filteredPhotos],
+          tripAdvisorDetails: filteredDetails,
+          tripAdvisorReviews: filteredReviews ?? null,
+          ...rest,
+        };
+      },
+    );
+
+    return { ...rest, destinations: filteredDestinations };
+  });
+
   const transferParams = {
-    name: paramDetails[0]?.airport,
-    link: paramDetails[0]?.airportLink,
-    areas: paramDetails,
+    name: areaParams[0]?.airport,
+    link: areaParams[0]?.airportLink,
+    areas: filteredAreaParams,
   };
 
   return {
