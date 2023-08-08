@@ -1,5 +1,5 @@
 import { experimental_extendTheme, responsiveFontSizes } from "@mui/material";
-import { roboto } from "@material/theme";
+import { roboto } from "@material/themeConfig/typography";
 
 export let experimentalTheme = experimental_extendTheme({
   typography: {

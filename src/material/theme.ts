@@ -1,132 +1,16 @@
-import { Theme, createTheme, responsiveFontSizes } from "@mui/material/styles";
-import { Roboto } from '@next/font/google';
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { themeBreakpoints } from "./themeConfig/breakpoints";
+import { themeTypography } from "./themeConfig/typography";
+import { themeComponents } from "./themeConfig/components";
 
-
-export const roboto = Roboto({
-  weight: ['300', '400', '500', '700', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  fallback: ['Helvetica', 'Arial', 'sans-serif'],
-});
-
-const themeBreakpoints = { values: { xxs: 0, xs: 320, sm: 670, md: 900, lg: 1200, xl: 1536 } }
-
-const mediaQueryObj = {
-  xs: `@media (min-width: ${themeBreakpoints.values.xs}px)`,
-  sm: `@media (min-width: ${themeBreakpoints.values.sm}px)`,
-  md: `@media (min-width: ${themeBreakpoints.values.md}px)`,
-  lg: `@media (min-width: ${themeBreakpoints.values.lg}px)`,
-  xl: `@media (min-width: ${themeBreakpoints.values.xl}px)`,
-};
-
-
-const themeTypography = {
-  fontFamily: roboto.style.fontFamily,
-  cardTitle: {
-    fontWeight: 500,
-    fontSize: '1.1rem',
-    lineHeight: 1.15,
-    letterSpacing: '0.0175em',
-  },
-  cardCaption: {
-    fontWeight: 300,
-    fontSize: '0.75rem',
-    lineHeight: 1.66,
-    letterSpacing: '0.03333em',
-    [mediaQueryObj.sm]: {
-      fontSize: '0.875rem'
-    }
-  },
-  smallBold: {
-    fontWeight: 700,
-    fontSize: '0.9rem',
-    lineHeight: 1.15,
-    letterSpacing: '0.0075em',
-    [mediaQueryObj.sm]: {
-      lineHeight: 1.2,
-      fontSize: '0.85rem'
-    }
-  },
-  smallCaption: {
-    fontWeight: 300,
-    fontSize: '0.75rem',
-    lineHeight: 1.66,
-    letterSpacing: '0.03333em'
-  },
-  chip: {
-    fontWeight: 500,
-    fontSize: '0.77rem',
-    lineHeight: 1.15,
-    letterSpacing: '0.03333em',
-    [mediaQueryObj.sm]: {
-      lineHeight: 1.2,
-      fontSize: '0.72rem'
-    }
-  }
-}
-
-function getResponsiveTypographyVariant(theme: Theme, variant: string) {
-  const variantProps = theme.typography[variant];
-  const styleOverrides = { ...variantProps };
-
-  Object.keys(mediaQueryObj).forEach((key) => {
-    if (variantProps[mediaQueryObj[key]]) {
-      styleOverrides[mediaQueryObj[key]] = variantProps[mediaQueryObj[key]];
-    }
-  });
-
-  return styleOverrides;
-}
-
-const themeComponents = {
-  MuiChip: {
-    styleOverrides: {
-      root: ({ theme }) => getResponsiveTypographyVariant(theme, 'chip')
-    }
-  },
-  MuiTabs: {
-    styleOverrides: {
-      root: {
-      },
-      fixed: {
-        display: 'flex',
-        height: '100%',
-        alignSelf: 'center'
-      }
-    }
-  },
-  MuiIconButton: {
-    styleOverrides: {
-      root: {
-        borderRadius: 16
-      }
-    }
-  },
-  MuiSelect: {
-    styleOverrides: {
-      select: {
-        display: 'grid'
-      },
-    },
-  },
-  MuiTypography: {
-    defaultProps: {
-      variantMapping: {
-        h1: 'h1',
-        smallBold: 'h5',
-        smallCaption: 'h6'
-      }
-    }
-  }
-}
-
-const responsiveFontOptions = { factor: 100 };
-
-
-export let theme = createTheme({
+const defaultThemeProps = {
   breakpoints: themeBreakpoints,
   typography: themeTypography,
   components: themeComponents,
+}
+
+export let theme = createTheme({
+  ...defaultThemeProps,
   palette: {
     mode: 'light',
     primary: {
@@ -163,12 +47,9 @@ export let theme = createTheme({
   },
 });
 
-theme = responsiveFontSizes(theme, responsiveFontOptions);
 
 export let darkTheme = createTheme({
-  breakpoints: themeBreakpoints,
-  typography: themeTypography,
-  components: themeComponents,
+  ...defaultThemeProps,
   palette: {
     mode: 'dark',
     primary: {
@@ -245,4 +126,7 @@ export let darkTheme = createTheme({
     "0px 11px 15px -7px rgba(255,255,255,0.2),0px 24px 38px 3px rgba(255,255,255,0.14),0px 9px 46px 8px rgba(255,255,255,0.12)"],
 });
 
+const responsiveFontOptions = { factor: 100 };
+
+theme = responsiveFontSizes(theme, responsiveFontOptions);
 darkTheme = responsiveFontSizes(darkTheme, responsiveFontOptions);

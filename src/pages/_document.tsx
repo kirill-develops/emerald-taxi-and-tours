@@ -2,7 +2,8 @@ import * as React from 'react';
 import { getInitColorSchemeScript } from '@mui/material';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import { roboto, theme } from '@material/theme';
+import { theme } from '@material/theme';
+import { roboto } from '@material/themeConfig/typography';
 import createEmotionCache from '@material/createEmotionCache';
 import Favicon from '@components/Favicon';
 
