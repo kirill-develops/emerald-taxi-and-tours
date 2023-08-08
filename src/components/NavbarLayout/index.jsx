@@ -5,7 +5,7 @@ import React from 'react';
 
 import MobilePagesMenu from './MobilePagesMenu';
 import MobileSearchButton from './MobileSearchButton';
-import TabletSearchButton from './TabletSearchButton';
+import TabletSearchButton from './Tablet/SearchButton/TabletSearchButton';
 import TabletPageLinks from './TabletPageLinks/TabletPageLinks';
 import ElevationScroll from './Elements/ElevationScroll';
 import TitleWrapper from './TitleWrapper';
@@ -31,6 +31,7 @@ export default function NavbarLayout(props) {
       <ElevationScroll {...props}>
         <SiteAppBar elevation={1}>
           <MaxWidthContainer
+            maxWidth="lg"
             disableGutters
             disableStack
           >
