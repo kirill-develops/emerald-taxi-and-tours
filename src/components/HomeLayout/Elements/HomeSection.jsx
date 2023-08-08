@@ -3,12 +3,17 @@ import React, { useMemo } from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import SectionTitle from '@elements/SectionTitle';
 
-const containerStyles = { zIndex: 1 };
+const containerStyles = (center) => ({
+  zIndex: 1,
+  display: center ? 'grid' : null,
+  justifyContent: center ? 'center' : null,
+});
 
 export default React.memo(function HomeSection({
   title,
   sx,
   children,
+  center = false,
   ...rest
 }) {
   const stackStyles = useMemo(() => ({ py: 5, height: '100%', ...sx }), [sx]);
@@ -19,11 +24,11 @@ export default React.memo(function HomeSection({
       sx={stackStyles}
       {...rest}
     >
-      <SectionTitle maxWidth="lg">{title}</SectionTitle>
+      {title ? <SectionTitle maxWidth="lg">{title}</SectionTitle> : null}
       <MaxWidthContainer
         maxWidth="md"
         disableStack
-        sx={containerStyles}
+        sx={containerStyles(center)}
       >
         {children}
       </MaxWidthContainer>
