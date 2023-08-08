@@ -6,6 +6,7 @@ import React, { createContext, useContext, useState } from 'react';
 import NavIconButton from './Elements/NavIconButton';
 import NavBreakpointContext from '@context/NavBreakpointContext';
 import MobileDrawerLinks from '../MobileDrawerLinks';
+import CloseDrawerButton from './Elements/CloseDrawerButton';
 
 export const MobileMenuContext = createContext();
 
@@ -19,7 +20,10 @@ const Wrapper = styled(Box)(({ theme, dissapearingbreakpoint }) =>
   }),
 );
 
-const paperProps = { sx: { minWidth: 350 } };
+const paperProps = {
+  sx: { minWidth: 350 },
+  elevation: 10,
+};
 
 export default React.memo(function MobileDrawerButton() {
   const dissapearingBreakpoint = useContext(NavBreakpointContext);
@@ -46,6 +50,7 @@ export default React.memo(function MobileDrawerButton() {
         onClose={handleDrawerClose}
         PaperProps={paperProps}
       >
+        <CloseDrawerButton clickHandler={handleDrawerClose} />
         <MobileDrawerLinks handleDrawerClose={handleDrawerClose} />
       </Drawer>
     </>

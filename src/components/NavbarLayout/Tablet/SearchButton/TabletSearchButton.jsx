@@ -11,7 +11,7 @@ import {
 const textFieldStyles = {
   '& .MuiInputBase-root': {
     borderRadius: 3.5,
-    backgroundColor: (theme) => theme.palette.background.default,
+    backgroundColor: (theme) => theme.palette.background.paper,
     cursor: 'pointer',
     '& input': { cursor: 'pointer', py: 0.8125 },
   },

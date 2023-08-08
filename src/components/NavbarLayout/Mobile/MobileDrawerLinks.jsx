@@ -53,7 +53,7 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
   }
 
   return (
-    <List>
+    <List sx={{ mt: 10 }}>
       {menuLinkArr.map(({ name, link, icon, nested }) => {
         return (
           <React.Fragment key={link}>

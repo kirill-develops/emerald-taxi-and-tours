@@ -23,6 +23,7 @@ export default function NavMenuJsx({
         onMouseLeave: closeNavMenu,
         onMouseEnter: handleMouseOnMenu,
         ref: menuRef,
+        elevation: 4,
       }}
       sx={{ zIndex: 1000 }}
     >
