@@ -10,8 +10,8 @@ import ImportantInfo from './Elements/ImportantInfo';
 import LocationDescription from './LocationDescriptionCard/LocationDescriptionCard';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import PricingCard from './PricingCard';
+import PriceTable from './PriceTable/PriceTable';
 import RatingsAndReviews from './RatingsAndReviewsCard';
-import ImportantInfo from './Elements/ImportantInfo';
 import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
 import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
 import CardStack from './Elements/CardStack';
@@ -66,6 +66,7 @@ export default function DetailedPageLayout() {
           <CardStack isBreakpoint={isBelowMdBreakpoint}>
             {!isBelowMdBreakpoint && <RatingsAndReviews />}
             <ImportantInfo />
+            <PriceTable />
             <PricingCard />
           </CardStack>
         </MaxWidthLayoutWrapper>
