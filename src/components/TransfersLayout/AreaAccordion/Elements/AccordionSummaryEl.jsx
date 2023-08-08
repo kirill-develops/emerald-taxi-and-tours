@@ -1,6 +1,7 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
 import React from 'react';
-import ExpandIconButton from '@elements/ExpandIconButton';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import { CardActionArea } from '@mui/material';
 
 export default function AccordionSummaryEl({ link, children, ...rest }) {
@@ -10,7 +11,7 @@ export default function AccordionSummaryEl({ link, children, ...rest }) {
       disableRipple
     >
       <AccordionSummary
-        expandIcon={<ExpandIconButton disableRipple />}
+        expandIcon={<ExpandMoreIcon />}
         aria-controls={`${link}-transfers-content`}
         id={`${link}-transfers-header`}
         {...rest}

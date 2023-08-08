@@ -1,9 +1,9 @@
 import { useFormikContext } from 'formik';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 import { transferData } from '@data/transfers';
 
-function useTransferPrice() {
+export default function useTransferPrice() {
   const { values } = useFormikContext();
 
   const {
@@ -18,11 +18,13 @@ function useTransferPrice() {
     .find((area) => area.link === areaLink)
     .destinations.find(
       (destination) => destination.link === transferLink,
-    ).price;
+    )?.price;
 
-  return values?.flightDetails?.transferType === 'roundtrip'
-    ? extraGuestTwoWay
-    : extraGuestOneWay;
+  return useMemo(
+    () =>
+      values?.flightDetails?.transferType === 'roundtrip'
+        ? extraGuestTwoWay
+        : extraGuestOneWay,
+    [values, extraGuestOneWay, extraGuestTwoWay],
+  );
 }
-
-export default useTransferPrice;

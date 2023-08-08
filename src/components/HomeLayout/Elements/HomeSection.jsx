@@ -1,23 +1,32 @@
 import Stack from '@mui/material/Stack';
-import React from 'react';
+import React, { useMemo } from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import SectionTitle from '@elements/SectionTitle';
 
-export default function HomeSection({ title, sx, children, ...rest }) {
+const containerStyles = { zIndex: 1 };
+
+export default React.memo(function HomeSection({
+  title,
+  sx,
+  children,
+  ...rest
+}) {
+  const stackStyles = useMemo(() => ({ py: 5, height: '100%', ...sx }), [sx]);
+
   return (
     <Stack
       rowGap={3}
-      sx={{ py: 5, height: '100%', ...sx }}
+      sx={stackStyles}
       {...rest}
     >
-      <SectionTitle maxWidth="xl">{title}</SectionTitle>
+      <SectionTitle maxWidth="lg">{title}</SectionTitle>
       <MaxWidthContainer
-        maxWidth="lg"
+        maxWidth="md"
         disableStack
-        sx={{ zIndex: 1 }}
+        sx={containerStyles}
       >
         {children}
       </MaxWidthContainer>
     </Stack>
   );
-}
+});

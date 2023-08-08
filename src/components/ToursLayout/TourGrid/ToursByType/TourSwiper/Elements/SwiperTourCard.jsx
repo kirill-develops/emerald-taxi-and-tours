@@ -39,15 +39,17 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
     subcategory,
   });
 
+  const destinationURL = `${url}#top`;
+
   return (
     <SmallCard
       noWrap
       noGrid
       price={areaPrice}
       picData={tripAdvisorPhotos[0]}
-      url={url}
       title={name}
       subheader={subheading}
+      url={destinationURL}
       rankingEl={
         <RankingEl
           rating={rating}

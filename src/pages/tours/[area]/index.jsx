@@ -98,7 +98,10 @@ export default function AreaPage({ tourParams }) {
         </title>
       </Head>
 
-      <PageLayout title={`${name}, ${parish} - Tours `}>
+      <PageLayout
+        title={`${name}, ${parish}`}
+        subheader="Tours"
+      >
         <TourAreaContext.Provider value={tourParams}>
           <ToursByLocationLayout />
         </TourAreaContext.Provider>

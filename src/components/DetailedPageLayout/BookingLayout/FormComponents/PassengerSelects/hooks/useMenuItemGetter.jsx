@@ -1,6 +1,6 @@
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 import useTransferPrice from '../../hooks/useTransferPrice';
 import { useFormikContext } from 'formik';
@@ -56,5 +56,5 @@ export default function useMenuItems(valueName) {
       );
   }
 
-  return menuItems;
+  return useMemo(() => menuItems, [menuItems]);
 }

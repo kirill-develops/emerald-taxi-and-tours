@@ -39,15 +39,15 @@ export default function ItemCard({ tour, sx, ...rest }) {
 
   return (
     <GridCard
-      url={url}
-      type={type}
       price={areaPrice.price}
       picData={photoObj}
-      title={name}
-      titleVariant="cardTitle"
+      reviews={reviews}
       subheader={subheading}
       subheaderVariant="cardCaption"
-      reviews={reviews}
+      title={name}
+      titleVariant="cardTitle"
+      type={type}
+      url={url}
       rankingEl={
         <RankingEl
           rating={rating}

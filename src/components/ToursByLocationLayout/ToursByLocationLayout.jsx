@@ -20,9 +20,8 @@ export default function ToursByLocationLayout() {
         disableStack
       >
         <Typography sx={{ px: 2 }}>
-          Begin your adventure from {name} Hotels. Browse a tour or activity
-          below that interests you and experience the island in the best way
-          possible!
+          Begin your adventure from {name}. Browse a tour or activity below that
+          interests you and experience the island in the best way possible!
         </Typography>
       </MaxWidthContainer>
 

@@ -15,6 +15,7 @@ function getSubheader(areaLink, destination, area) {
 
 export default React.memo(function TransferCard({ destinationData, areaData }) {
   const { name: areaName, link: areaLink, airportLink } = areaData;
+
   const {
     name,
     link,
@@ -30,8 +31,8 @@ export default React.memo(function TransferCard({ destinationData, areaData }) {
 
   return (
     <GridCard
-      picData={tripAdvisorPhotos?.[0]}
       price={price.oneWay}
+      picData={tripAdvisorPhotos?.[0]}
       reviews={tripAdvisorReviews}
       subheader={subheader}
       subheaderVariant="cardCaption"

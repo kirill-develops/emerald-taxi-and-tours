@@ -24,21 +24,23 @@ export default function DetailedCard({ tour, sx, ...rest }) {
   } = tour;
   const url = getToursUrl(areaLink, link);
 
+  const destinationURL = `${url}#top`;
+
   const areaPrice = price.reduce((acc, priceObj) =>
     priceObj.price < acc ? (acc = priceObj.price) : acc,
   );
 
   return (
     <GridCard
-      type={type}
       price={areaPrice.price}
-      picData={tripAdvisorPhotos[0]}
-      url={`${url}#top`}
-      title={name}
-      titleVariant="cardTitle"
+      picData={tripAdvisorPhotos?.[0]}
+      reviews={tripAdvisorReviews}
       subheader={area}
       subheaderVariant="cardCaption"
-      reviews={tripAdvisorReviews}
+      title={name}
+      titleVariant="cardTitle"
+      type={type}
+      url={destinationURL}
       rankingEl={
         <RankingEl
           rating={rating}

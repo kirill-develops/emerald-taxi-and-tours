@@ -1,6 +1,7 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
-import { darken } from '@mui/material/';
-import ExpandIconButton from '@elements/ExpandIconButton';
+import { CardActionArea, darken } from '@mui/material/';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import React from 'react';
 
 export default function BookingAccordionSummary({ children, ...rest }) {
@@ -9,13 +10,15 @@ export default function BookingAccordionSummary({ children, ...rest }) {
     borderRadius: 1,
   };
   return (
-    <AccordionSummary
-      expandIcon={<ExpandIconButton />}
-      aria-controls="location-booking-form"
-      sx={accordionSummaryStyles}
-      {...rest}
-    >
-      {children}
-    </AccordionSummary>
+    <CardActionArea component="div">
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="location-booking-form"
+        sx={accordionSummaryStyles}
+        {...rest}
+      >
+        {children}
+      </AccordionSummary>
+    </CardActionArea>
   );
 }

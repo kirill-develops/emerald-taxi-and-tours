@@ -1,7 +1,7 @@
 import { Search } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import SearchModal from './NavSearch/SearchModal';
 import { useMediaQuery } from '@mui/material';
 
@@ -14,18 +14,21 @@ function MobileSearchButton({ dissapearingBreakpoint }) {
     theme.breakpoints.down(dissapearingBreakpoint),
   );
 
+  const boxStyles = useMemo(
+    () => ({
+      flexGrow: 1,
+      justifyContent: 'flex-end',
+      display: { xxs: 'flex', [dissapearingBreakpoint]: 'none' },
+    }),
+    [],
+  );
+
   if (!isMobile) {
     return null;
   }
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        justifyContent: 'flex-end',
-        display: { xxs: 'flex', [dissapearingBreakpoint]: 'none' },
-      }}
-    >
+    <Box sx={boxStyles}>
       <IconButton
         size="large"
         aria-label="search tours & taxi fares"

@@ -95,6 +95,13 @@ const themeComponents = {
       }
     }
   },
+  MuiIconButton: {
+    styleOverrides: {
+      root: {
+        borderRadius: 16
+      }
+    }
+  },
   MuiSelect: {
     styleOverrides: {
       select: {
