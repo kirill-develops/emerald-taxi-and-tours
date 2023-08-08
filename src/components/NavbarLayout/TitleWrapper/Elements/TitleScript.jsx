@@ -16,7 +16,7 @@ const HighlightedText = styled(Typography)(({ theme }) =>
     textDecoration: 'none',
     textTransform: 'uppercase',
     fontWeight: 500,
-    color: (theme) => theme.palette.secondary.light,
+    color: (theme) => theme.palette.primary,
   }),
 );
 

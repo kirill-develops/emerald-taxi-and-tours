@@ -18,7 +18,8 @@ const SiteAppBar = styled(AppBar)(({ theme }) =>
     position: { xxs: 'fixed' },
     top: { xxs: 'auto', sm: '0' },
     bottom: { xxs: 0, sm: 'initial' },
-    backgroundColor: (theme) => theme.palette.background.default,
+    backdropFilter: 'blur(10.5px)',
+    backgroundColor: (theme) => `${theme.palette.background.default}bf`,
   }),
 );
 
@@ -28,23 +29,23 @@ export default function NavbarLayout(props) {
 
   return (
     <NavBreakpointContext.Provider value={menuBreakpoint}>
-      <ElevationScroll {...props}>
-        <SiteAppBar>
-          <MaxWidthContainer
-            maxWidth="lg"
-            disableGutters
-            disableStack
-          >
-            <Toolbar sx={{ ...loadingTransitionStyle }}>
-              <MobileDrawerButton dissapearingBreakpoint={menuBreakpoint} />
-              <TitleWrapper />
-              <TabletPageLinks />
-              <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
-              <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
-            </Toolbar>
-          </MaxWidthContainer>
-        </SiteAppBar>
-      </ElevationScroll>
+      {/* <ElevationScroll {...props}> */}
+      <SiteAppBar elevation={0}>
+        <MaxWidthContainer
+          maxWidth="lg"
+          disableGutters
+          disableStack
+        >
+          <Toolbar sx={{ ...loadingTransitionStyle }}>
+            <MobileDrawerButton dissapearingBreakpoint={menuBreakpoint} />
+            <TitleWrapper />
+            <TabletPageLinks />
+            <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
+            <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
+          </Toolbar>
+        </MaxWidthContainer>
+      </SiteAppBar>
+      {/* </ElevationScroll> */}
     </NavBreakpointContext.Provider>
   );
 }
