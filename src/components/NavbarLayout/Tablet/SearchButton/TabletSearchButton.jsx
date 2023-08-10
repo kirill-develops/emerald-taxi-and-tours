@@ -1,14 +1,21 @@
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import SearchModal from '../../NavSearch/SearchModal';
 import {
   SearchEndAdornment,
   SearchStartAdornment,
 } from './Elements/SearchAdornments';
 
+const inputProps = {
+  readOnly: true,
+  startAdornment: <SearchStartAdornment />,
+  endAdornment: <SearchEndAdornment />,
+};
+
 const textFieldStyles = {
+  flexGrow: 1,
+  flexBasis: '20%',
   '& .MuiInputBase-root': {
     borderRadius: 3.5,
     backgroundColor: (theme) => theme.palette.background.paper,
@@ -28,33 +35,19 @@ export default React.memo(function TabletSearchButton({
     theme.breakpoints.up(dissapearingBreakpoint),
   );
 
-  const boxStyles = useMemo(
-    () => ({
-      flexGrow: 1,
-      flexBasis: '20%',
-      justifyContent: 'flex-end',
-      display: { xxs: 'none', [dissapearingBreakpoint]: 'flex' },
-    }),
-    [dissapearingBreakpoint],
-  );
-
   if (!isTablet) {
     return null;
   }
 
   return (
-    <Box sx={boxStyles}>
+    <>
       <TextField
         hiddenLabel
         placeholder="Search"
         focused={false}
         onClick={handleOpen}
         variant="outlined"
-        InputProps={{
-          readOnly: true,
-          startAdornment: <SearchStartAdornment />,
-          endAdornment: <SearchEndAdornment />,
-        }}
+        InputProps={inputProps}
         sx={textFieldStyles}
       />
       <SearchModal
@@ -62,6 +55,6 @@ export default React.memo(function TabletSearchButton({
         handleOpen={handleOpen}
         handleClose={handleClose}
       />
-    </Box>
+    </>
   );
 });

@@ -10,13 +10,21 @@ import Link from '@material/Link';
 import React, { useState } from 'react';
 import menuLinkArr from '../data/menuLinkArr';
 import ExpandMoreWrapper from '@elements/ExpandMore';
+import DarkModeSwitch from './DrawerButton/Elements/DarkModeSwitch';
 
 const borderRadiusStyles = { borderRadius: 4 };
 
-function DrawerListItemButton({ children, ...rest }) {
+const drawerListItemButtonStyles = (nested) => ({
+  ...borderRadiusStyles,
+  pr: nested ? 0 : null,
+  mr: nested ? 3 : null,
+});
+
+function DrawerListItemButton({ children, nested, ...rest }) {
   return (
     <ListItemButton
       LinkComponent={Link}
+      sx={() => drawerListItemButtonStyles(nested)}
       {...rest}
     >
       {children}
@@ -69,7 +77,7 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
               <DrawerListItemButton
                 href={link}
                 onClick={handleDrawerClose}
-                sx={{ ...borderRadiusStyles, pr: 0, mr: 3 }}
+                nested={nested}
               >
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={name} />
@@ -108,6 +116,9 @@ export default function MobileDrawerLinks({ handleDrawerClose }) {
         );
       })}
       <Divider />
+      <ListItem secondaryAction={<ExpandClickIcon />}>
+        <DarkModeSwitch />
+      </ListItem>
     </List>
   );
 }

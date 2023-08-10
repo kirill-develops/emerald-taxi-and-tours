@@ -1,5 +1,7 @@
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 
@@ -12,6 +14,7 @@ import TitleWrapper from './TitleWrapper/TitleWrapper';
 import useLoadingTransition from './hooks/useLoadingTransition';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import NavBreakpointContext from '@context/NavBreakpointContext';
+import DarkModeSwitch from './Mobile/DrawerButton/Elements/DarkModeSwitch';
 
 const SiteAppBar = styled(AppBar)(({ theme }) =>
   theme.unstable_sx({
@@ -27,6 +30,10 @@ export default function NavbarLayout(props) {
   const menuBreakpoint = 'md';
   const loadingTransitionStyle = useLoadingTransition();
 
+  const isTablet = useMediaQuery((theme) =>
+    theme.breakpoints.up(menuBreakpoint),
+  );
+
   return (
     <NavBreakpointContext.Provider value={menuBreakpoint}>
       {/* <ElevationScroll {...props}> */}
@@ -40,8 +47,14 @@ export default function NavbarLayout(props) {
             <MobileDrawerButton dissapearingBreakpoint={menuBreakpoint} />
             <TitleWrapper />
             <TabletPageLinks />
+
             <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
             <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
+            {isTablet ? (
+              <Box sx={{ pl: 2 }}>
+                <DarkModeSwitch isTablet />
+              </Box>
+            ) : null}
           </Toolbar>
         </MaxWidthContainer>
       </SiteAppBar>
