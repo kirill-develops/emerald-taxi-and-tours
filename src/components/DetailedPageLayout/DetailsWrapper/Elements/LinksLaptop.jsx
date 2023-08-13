@@ -33,6 +33,7 @@ export default React.memo(function LinksLaptop() {
             <LinkEl
               href={href}
               key={label}
+              color="secondary.containerText"
             >
               {icon}
               {label}

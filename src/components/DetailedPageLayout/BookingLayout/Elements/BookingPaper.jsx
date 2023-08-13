@@ -24,7 +24,7 @@ function usePreventScroll(expanded, paperRef) {
         element.removeEventListener('wheel', preventScroll);
       };
     }
-  }, [expanded]);
+  }, [expanded, paperRef]);
 }
 
 const paperStyles = {
@@ -38,7 +38,7 @@ const paperStyles = {
   position: 'sticky',
   borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
   backdropFilter: 'blur(10.5px)',
-  backgroundColor: (theme) => `${theme.palette.background.default}bf`,
+  backgroundColor: (theme) => `${theme.palette.background.paper}bf`,
 };
 
 export default React.memo(function BookingPaper({ children, ...rest }) {

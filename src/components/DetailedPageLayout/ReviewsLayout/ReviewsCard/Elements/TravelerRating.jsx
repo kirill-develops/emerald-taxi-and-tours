@@ -1,9 +1,9 @@
 import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material';
 import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
-import { styled } from '@mui/material';
 
 function RatingStack({ children, ...other }) {
   return (
@@ -13,6 +13,7 @@ function RatingStack({ children, ...other }) {
       justifyContent="space-between"
       alignItems="center"
       width={'100%'}
+      {...other}
     >
       {children}
     </Stack>
@@ -47,7 +48,7 @@ const qualityStringObj = [
   'Terrible',
 ];
 
-export default function TravelerRating() {
+export default React.memo(function TravelerRating() {
   const {
     tripAdvisorDetails: {
       review_rating_count: ratingCountObj,
@@ -69,7 +70,10 @@ export default function TravelerRating() {
             return (
               <RatingStack key={`${value}${i}`}>
                 <TitleText noWrap>{qualityStringObj[i]}</TitleText>
-                <RatingBar value={percentValue} />
+                <RatingBar
+                  value={percentValue}
+                  color="secondary"
+                />
                 <Typography
                   variant="caption"
                   noWrap
@@ -83,4 +87,4 @@ export default function TravelerRating() {
       </Stack>
     )
   );
-}
+});

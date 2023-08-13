@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
-import RankingEl from '../../../elements/RankingEl';
+import RankingEl from '@elements/RankingEl';
 
 export default React.memo(function RankingWrapper({ children }) {
   const { tripAdvisorDetails: { rating, num_reviews: numReviews } = {} } =
@@ -10,6 +10,8 @@ export default React.memo(function RankingWrapper({ children }) {
     <RankingEl
       rating={rating}
       numReviews={numReviews}
+      ratingColor={(theme) => theme.palette.secondary.main}
+      ratingOutlineColor={(theme) => theme.palette.secondary.main}
     >
       {children}
     </RankingEl>

@@ -4,14 +4,20 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import usePageLinks from '../hooks/usePageLinks';
 
+const contrastTextStyles = {
+  color: (theme) => theme.palette.secondary.contrastText,
+};
+
 const StyledBottomNavigation = styled(BottomNavigation)(({ theme }) =>
   theme.unstable_sx({
+    ...contrastTextStyles,
+    backgroundColor: (theme) => theme.palette.secondary.main,
     borderBottom: `1px solid ${theme.palette.divider}`,
     height: 66,
   }),
 );
 
-export default function LinksMobile() {
+export default React.memo(function LinksMobile() {
   const linksObj = usePageLinks();
 
   if (!linksObj || linksObj.length < 1) {
@@ -28,9 +34,10 @@ export default function LinksMobile() {
             icon={icon}
             href={href}
             LinkComponent={LinkEl}
+            sx={contrastTextStyles}
           />
         ))}
       </StyledBottomNavigation>
     )
   );
-}
+});

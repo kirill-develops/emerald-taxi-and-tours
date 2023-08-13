@@ -22,7 +22,7 @@ const SiteAppBar = styled(AppBar)(({ theme }) =>
     top: { xxs: 'auto', sm: '0' },
     bottom: { xxs: 0, sm: 'initial' },
     backdropFilter: 'blur(10.5px)',
-    backgroundColor: (theme) => `${theme.palette.background.default}bf`,
+    backgroundColor: (theme) => `${theme.palette.background.paper}bf`,
   }),
 );
 

@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import React, { useContext } from 'react';
 import ReviewContext from '@context/ReviewContext';
-import RankingEl from './Elements/RankingEl';
+import RankingWrapper from './Elements/RankingWrapper';
 import TravelDateAndType from './Elements/TraveDateAndType';
 import TitleText from './Elements/TitleText';
 
@@ -10,7 +10,7 @@ export default function ReviewDetails() {
 
   return (
     <Stack rowGap={0}>
-      <RankingEl />
+      <RankingWrapper />
       <TitleText>{title}</TitleText>
       <TravelDateAndType />
     </Stack>

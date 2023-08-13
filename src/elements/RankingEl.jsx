@@ -35,6 +35,7 @@ export default function RankingEl({
   ratingColor = (theme) => theme.palette.primary.main,
   ratingOutlineColor = (theme) => theme.palette.primary.main,
   children,
+  ...other
 }) {
   const isDefault = useMemo(
     () => textVariant === detailTypographyProps.variant,
@@ -61,6 +62,7 @@ export default function RankingEl({
         isDefault={isDefault}
         color={ratingColor}
         outlineColor={ratingOutlineColor}
+        {...other}
       />
       <Typography
         variant={textVariant}
