@@ -1,33 +1,29 @@
 import Image from 'next/image';
-import { Box, CardActionArea, Stack, Typography, styled } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
 import PlaceIcon from '@mui/icons-material/Place';
 import React from 'react';
 import HomeSection from './HomeSection';
 import { extractProps } from '../../ToursLayout/hooks/useTour';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import Link from '@material/Link';
+import { amber } from '@mui/material/colors';
 
 const MuiImage = styled(Image)({ objectFit: 'cover', zIndex: 0 });
 
-const headingStackStyles = {
-  paddingY: 1.5,
-  paddingX: 2,
-  backgroundColor: 'rgba(0, 0, 0, 0.58)',
-  alignItems: 'center',
-  height: '100%',
-};
+const titleStyles = { color: (theme) => theme.palette.common.white };
 
-function HeadingStack({ children }) {
-  return (
-    <Stack
-      sx={headingStackStyles}
-      direction="row"
-      columnGap={1}
-    >
-      {children}
-    </Stack>
-  );
-}
+const buttonStyles = {
+  backgroundColor: 'rgba(0, 0, 0, 0.675)',
+  borderRadius: '16px',
+  '&:hover': {
+    backgroundColor: 'rgba(38,38,38,0.625)',
+    borderColor: amber[700],
+  },
+  backdropFilter: 'blur(0.875px)',
+  color: amber[500],
+};
 
 const gridContainerStyles = {
   zIndex: 1,
@@ -40,7 +36,10 @@ export default function FeatureTours() {
 
   return (
     <Box sx={{ position: 'relative' }}>
-      <HomeSection title="Browse Private Island Tours By Pickup Location">
+      <HomeSection
+        title="Browse Private Island Tours By Pickup Location"
+        titleStyles={titleStyles}
+      >
         <GridContainer
           sx={gridContainerStyles}
           spacing={2}
@@ -50,15 +49,16 @@ export default function FeatureTours() {
               key={link}
               sm={6}
             >
-              <CardActionArea
+              <Button
                 LinkComponent={Link}
                 href={`tours/${link}`}
+                variant="outlined"
+                startIcon={<PlaceIcon fontSize="small" />}
+                fullWidth
+                sx={buttonStyles}
               >
-                <HeadingStack>
-                  <PlaceIcon fontSize="small" />
-                  <Typography color="primary.light">{name}</Typography>
-                </HeadingStack>
-              </CardActionArea>
+                {name}
+              </Button>
             </GridItem>
           ))}
         </GridContainer>

@@ -20,9 +20,7 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
 
   const destinationURL = `${url}#top`;
 
-  const areaPrice = price.reduce((acc, priceObj) =>
-    priceObj.price < acc ? (acc = priceObj.price) : acc,
-  );
+  const cardStyles = { borderRadius: 4, ...sx };
 
   return (
     <GridCard
@@ -35,6 +33,7 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
       titleVariant="cardTitle"
       type={type}
       url={destinationURL}
+      sx={cardStyles}
       rankingEl={
         <RankingEl
           rating={rating}

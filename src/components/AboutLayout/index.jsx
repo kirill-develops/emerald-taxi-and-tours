@@ -36,7 +36,7 @@ function AboutStack({ children }) {
 
 export default React.memo(function AboutLayout() {
   return (
-    <PageLayoutStack>
+    <PageLayoutStack alignItems="center">
       <AboutCard>
         <AboutStack>
           <AboutImage />

@@ -11,7 +11,6 @@ function TitleEl({ children }) {
   return (
     <SectionTitle
       component="h1"
-      color="primary.light"
       disableGutters
       sx={titleStyles}
     >
@@ -23,7 +22,9 @@ function TitleEl({ children }) {
 export default function LayoutTitle({ title, subheader, airport }) {
   const isAirport = airport.length > 0;
 
-  const subheaderColor = isAirport ? 'text.primary' : 'secondary.light';
+  const subheaderColor = isAirport
+    ? 'background.variantText'
+    : 'text.secondary';
 
   const subheaderMargin = !isAirport && { mb: '0.25em' };
 
@@ -42,7 +43,7 @@ export default function LayoutTitle({ title, subheader, airport }) {
     <Typography
       variant="h6"
       component="h3"
-      color="secondary.light"
+      color="text.secondary"
       sx={{ mb: '0.25em' }}
     >
       {airport}

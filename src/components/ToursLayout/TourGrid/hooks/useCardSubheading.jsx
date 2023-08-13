@@ -24,8 +24,8 @@ export default function useCardSubheading({
     [tripAdvisorSubcategory],
   );
 
-  const subheading = `${priceLevel ? `${priceLevel} ∙ ` : ''}${area} ∙ ${
-    subcategoryString || ''
+  const subheading = `${priceLevel ? `${priceLevel} ∙ ` : ''}${area}${
+    subcategoryString ? ` ∙ ${subcategoryString}` : ''
   }`;
 
   return subheading;

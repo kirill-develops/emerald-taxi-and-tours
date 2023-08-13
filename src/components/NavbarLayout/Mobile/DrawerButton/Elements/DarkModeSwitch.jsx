@@ -8,7 +8,7 @@ import { capitalize } from '@helperFunctions';
 
 const borderRadiusStyles = { borderRadius: 4 };
 
-export default React.memo(function DarkModeSwitch(props) {
+export default React.memo(function DarkModeSwitch({ isTablet, ...props }) {
   const theme = useTheme();
   const context = useContext(DarkModeContext);
 
@@ -30,7 +30,7 @@ export default React.memo(function DarkModeSwitch(props) {
         sx={{
           transform: isSpinning ? 'rotateX(90deg)' : 'rotateX(0deg)',
           transition: 'transform 0.3s ease-in-out',
-          minWidth: props.isTablet ? 'unset' : null,
+          minWidth: isTablet ? 'unset' : null,
           width: 'fit-content',
         }}
       >
@@ -40,7 +40,7 @@ export default React.memo(function DarkModeSwitch(props) {
           <Brightness4Icon />
         )}
       </ListItemIcon>
-      {!props.isTablet ? (
+      {!isTablet ? (
         <ListItemText primary={`${capitalize(theme.palette.mode)} Mode`} />
       ) : null}
     </ListItemButton>

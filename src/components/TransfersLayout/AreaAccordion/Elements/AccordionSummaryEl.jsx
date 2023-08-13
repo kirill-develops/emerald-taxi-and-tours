@@ -1,17 +1,24 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
-import React from 'react';
+import CardActionArea from '@mui/material/CardActionArea';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React from 'react';
 
-import { CardActionArea } from '@mui/material';
+const accordionSummaryStyles = {
+  color: (theme) => theme.palette.secondary.contrastText,
+};
 
-export default function AccordionSummaryEl({ link, children, ...rest }) {
+export default React.memo(function AccordionSummaryEl({
+  link,
+  children,
+  ...rest
+}) {
   return (
     <CardActionArea
       component="div"
       disableRipple
     >
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon sx={accordionSummaryStyles} />}
         aria-controls={`${link}-transfers-content`}
         id={`${link}-transfers-header`}
         {...rest}
@@ -20,4 +27,4 @@ export default function AccordionSummaryEl({ link, children, ...rest }) {
       </AccordionSummary>
     </CardActionArea>
   );
-}
+});

@@ -29,7 +29,15 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
 
   const url = useMemo(() => getToursUrl(areaLink, link), [areaLink, link]);
 
-  const cardStyles = useMemo(() => ({ height: { xxs: 155 }, ...sx }), [sx]);
+  const cardStyles = useMemo(
+    () => ({
+      height: { xxs: 155 },
+      backgroundColor: (theme) => theme.palette.secondary.main,
+      color: (theme) => theme.palette.tertiary.container,
+      ...sx,
+    }),
+    [sx],
+  );
 
   const subheading = useCardSubheading({
     priceLevel,
@@ -49,12 +57,15 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
       picData={tripAdvisorPhotos[0]}
       title={name}
       subheader={subheading}
+      variant="outlined"
       url={destinationURL}
       rankingEl={
         <RankingEl
           rating={rating}
           numReviews={numReviews}
           textVariant="smallCaption"
+          ratingColor={(theme) => theme.palette.tertiary.container}
+          ratingOutlineColor={(theme) => theme.palette.tertiary.container}
         />
       }
       sx={cardStyles}

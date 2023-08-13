@@ -14,6 +14,11 @@ function getResponsiveTypographyVariant(theme: Theme, variant: string) {
 }
 
 export const themeComponents = {
+   MuiInputBase: {
+      styleOverrides: {
+         root: ({ theme }) => ({ '&.Mui-focused': { backgroundColor: theme.palette.secondary.container } })
+      }
+   },
    MuiChip: {
       styleOverrides: {
          root: ({ theme }) => getResponsiveTypographyVariant(theme, 'chip')

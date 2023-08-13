@@ -1,4 +1,4 @@
-import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import React, { useContext, useEffect, useRef } from 'react';
 import BookingContext from '@context/BookingContext';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
@@ -34,9 +34,11 @@ const paperStyles = {
   },
   padding: 2,
   width: '100%',
-  backgroundColor: 'black',
   zIndex: 10,
   position: 'sticky',
+  borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+  backdropFilter: 'blur(10.5px)',
+  backgroundColor: (theme) => `${theme.palette.background.default}bf`,
 };
 
 export default React.memo(function BookingPaper({ children, ...rest }) {
@@ -46,15 +48,18 @@ export default React.memo(function BookingPaper({ children, ...rest }) {
   usePreventScroll(expanded, paperRef);
 
   return (
-    <Paper
+    <Box
       id="bookingLayoutWrapper"
       ref={paperRef}
-      square
-      elevation={1}
       sx={paperStyles}
       {...rest}
     >
-      <MaxWidthContainer disableStack>{children}</MaxWidthContainer>
-    </Paper>
+      <MaxWidthContainer
+        disableStack
+        disableGutters
+      >
+        {children}
+      </MaxWidthContainer>
+    </Box>
   );
 });

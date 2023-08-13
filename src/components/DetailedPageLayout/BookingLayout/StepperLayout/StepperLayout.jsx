@@ -16,6 +16,7 @@ const StyledForm = styled(Form)(({ theme }) =>
     alignItems: 'center',
     my: 3,
     minHeight: '20vh',
+    maxWidth: (theme) => theme.breakpoints.values.sm,
     width: '90%',
     alignSelf: 'center',
   }),

@@ -31,6 +31,20 @@ function MaxWidthLayoutWrapper({ children, ...other }) {
   );
 }
 
+const styleStacks = { pb: 3 };
+
+function StyledStack({ children, ...rest }) {
+  return (
+    <Stack
+      spacing={2}
+      alignItems="center"
+      sx={styleStacks}
+    >
+      {children}
+    </Stack>
+  );
+}
+
 export default function DetailedPageLayout() {
   const isBelowMdBreakpoint = useMediaQuery((theme) =>
     theme.breakpoints.down('md'),
@@ -45,10 +59,7 @@ export default function DetailedPageLayout() {
           <ImagesLayout />
         </ImageOverlayWrapper>
       </DetailsWrapper>
-      <Stack
-        spacing={2}
-        alignItems="center"
-      >
+      <StyledStack>
         {/* Next Section */}
         <MaxWidthLayoutWrapper>
           <LocationDescription />
@@ -73,7 +84,7 @@ export default function DetailedPageLayout() {
           {!isBelowMdBreakpoint && <ServiceDescription />}
           <ReviewsLayout />
         </MaxWidthLayoutWrapper>
-      </Stack>
+      </StyledStack>
     </>
   );
 }

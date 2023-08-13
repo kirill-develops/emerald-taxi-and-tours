@@ -7,7 +7,16 @@ import CardTitle from '@elements/CardTitle';
 import DestinationCards from './DestinationCard/DestinationCards';
 import TransferGridContainer from './Elements/TransferGridContainer';
 
-export default function AreaAccordion({ areaData, expanded, handleExpand }) {
+const accordionStyles = {
+  backgroundColor: (theme) => theme.palette.secondary.main,
+  color: (theme) => theme.palette.secondary.contrastText,
+};
+
+export default React.memo(function AreaAccordion({
+  areaData,
+  expanded,
+  handleExpand,
+}) {
   const { link, name } = areaData;
   const isExpanded = expanded === link;
 
@@ -17,6 +26,7 @@ export default function AreaAccordion({ areaData, expanded, handleExpand }) {
       expanded={isExpanded}
       onChange={handleExpand(link)}
       TransitionProps={{ unmountOnExit: true }}
+      sx={accordionStyles}
     >
       <AccordionSummaryEl link={link}>
         <CardTitle>{name}</CardTitle>
@@ -28,4 +38,4 @@ export default function AreaAccordion({ areaData, expanded, handleExpand }) {
       </AccordionDetails>
     </Accordion>
   );
-}
+});

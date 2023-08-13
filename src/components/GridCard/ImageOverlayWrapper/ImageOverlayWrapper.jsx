@@ -27,17 +27,22 @@ const OverlayItem2 = styled(Box)(({ theme }) =>
     zIndex: 2,
     top: 11,
     left: 11,
-    borderRadius: 0.5,
+    borderRadius: 1,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    color: 'silver',
     backgroundColor: 'rgba(0,0,0,0.65)',
     px: 0.75,
     py: 0.5,
   }),
 );
 
-const tourTypeStyles = { borderRadius: 0.5 };
+const tourTypeStyles = {
+  borderRadius: 0.5,
+  backgroundColor: (theme) => theme.palette.tertiary.container,
+  color: (theme) => theme.palette.tertiary.containerText,
+};
 
 export default React.memo(function ImageOverlayWrapper({
   type,
@@ -51,7 +56,7 @@ export default React.memo(function ImageOverlayWrapper({
           <TourType
             typeArr={type}
             variant="filled"
-            color="info"
+            color="tertiary"
             sx={tourTypeStyles}
           />
         )}

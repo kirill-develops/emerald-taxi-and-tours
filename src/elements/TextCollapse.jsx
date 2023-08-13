@@ -15,6 +15,26 @@ const ExpandButton = styled(ExpandMore)(({ theme, expand }) =>
   }),
 );
 
+const linkStyles = {
+  display: 'inline-block',
+  cursor: 'pointer',
+};
+
+function StyledLink({ children, ...rest }) {
+  return (
+    <Link
+      color="tertiary.main"
+      fontWeight={500}
+      sx={linkStyles}
+      {...rest}
+    >
+      {children}
+    </Link>
+  );
+}
+
+const iconStyles = { color: (theme) => theme.palette.tertiary.main };
+
 export default function TextCollapse({ children }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -42,19 +62,13 @@ export default function TextCollapse({ children }) {
         aria-expanded={expanded}
         aria-label="show more"
       >
-        <ExpandMoreIcon color="secondary" />
+        <ExpandMoreIcon sx={iconStyles} />
       </ExpandButton>
       <Typography variant="body1">
         {expanded ? children : first30Words}
-        <Link
-          color="secondary"
-          onClick={handleClick}
-          sx={{
-            display: expanded ? 'block' : 'inline',
-          }}
-        >
+        <StyledLink onClick={handleClick}>
           {expanded ? '...Less' : '...Read More'}
-        </Link>
+        </StyledLink>
       </Typography>
     </>
   );

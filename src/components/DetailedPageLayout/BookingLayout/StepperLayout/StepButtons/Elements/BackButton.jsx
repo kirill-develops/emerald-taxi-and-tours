@@ -10,6 +10,7 @@ export default React.memo(function BackButton({ ...rest }) {
       onClick={handleBackClick}
       disabled={isFirstStep}
       variant="outlined"
+      color="secondary"
       {...rest}
     >
       Prev

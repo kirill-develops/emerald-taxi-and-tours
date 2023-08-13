@@ -28,7 +28,16 @@ export default React.memo(function ProgressBar(props) {
 
         return (
           <Step key={label}>
-            <StepLabel>{labelString}</StepLabel>
+            <StepLabel
+              sx={{
+                '& .MuiStepIcon-root.Mui-active, & .MuiStepIcon-root.Mui-completed':
+                  {
+                    color: (theme) => theme.palette.tertiary.main,
+                  },
+              }}
+            >
+              {labelString}
+            </StepLabel>
           </Step>
         );
       })}

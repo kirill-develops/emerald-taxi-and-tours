@@ -10,6 +10,8 @@ import React, { useCallback, useState } from 'react';
 import { useTour, extractProps } from '../../hooks/useTour';
 import ExpandMoreWrapper from '@elements/ExpandMore';
 
+const listItemButtonStyles = { borderRadius: 16 };
+
 const getCheckboxInputProps = (label) => ({ 'aria-label': label });
 
 export default function FilterListGroup({
@@ -34,7 +36,10 @@ export default function FilterListGroup({
 
   return (
     <>
-      <ListItemButton onClick={() => handleExpand(filterState)}>
+      <ListItemButton
+        onClick={() => handleExpand(filterState)}
+        sx={listItemButtonStyles}
+      >
         <ListItemText
           primary={headerString}
           primaryTypographyProps={{ variant: 'cardCaption' }}
@@ -72,7 +77,10 @@ export default function FilterListGroup({
                 disablePadding
                 dense
               >
-                <ListItemButton onClick={() => handleCheckboxToggle(link)}>
+                <ListItemButton
+                  onClick={() => handleCheckboxToggle(link)}
+                  sx={listItemButtonStyles}
+                >
                   <ListItemIcon>
                     <Checkbox
                       size="small"

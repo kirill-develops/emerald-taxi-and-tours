@@ -11,6 +11,11 @@ export default function BookingAccordionComponent({ children, ...rest }) {
       onChange={handleExpanded}
       TransitionProps={{ unmountOnExit: true }}
       elevation={0}
+      sx={{
+        '& .MuiCollapse-root': {
+          backgroundColor: (theme) => theme.palette.background.variant,
+        },
+      }}
       {...rest}
     >
       {children}

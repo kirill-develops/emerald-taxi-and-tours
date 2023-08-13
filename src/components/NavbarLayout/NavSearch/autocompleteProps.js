@@ -18,8 +18,10 @@ export const renderInputProp = (params) => (
     placeholder="Search"
     type='search'
     sx={{
+      backgroundColor: theme => theme.palette.tertiary.container,
       '& .MuiOutlinedInput-root': {
-        paddingRight: theme => `${theme.spacing(1)} !important`
+        paddingRight: theme => `${theme.spacing(1)} !important`,
+        color: theme => theme.palette.tertiary.containerText,
       }
     }}
     InputProps={{

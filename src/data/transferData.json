@@ -23932,7 +23932,7 @@
          {
             "name": "South Coast",
             "parish": "Westmoreland",
-            "link": "st_elizabeth",
+            "link": "south_coast",
             "price": {
                "oneWay": 250,
                "roundTrip": 500,

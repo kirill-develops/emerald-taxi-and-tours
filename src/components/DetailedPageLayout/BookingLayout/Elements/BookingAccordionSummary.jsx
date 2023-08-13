@@ -1,18 +1,22 @@
 import AccordionSummary from '@mui/material/AccordionSummary';
-import { CardActionArea, darken } from '@mui/material/';
+import CardActionArea from '@mui/material/CardActionArea';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import React from 'react';
 
+const accordionSummaryStyles = {
+  backgroundColor: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.primary.contrastText,
+  borderRadius: 1,
+};
+
+const iconStyles = { color: (theme) => theme.palette.primary.contrastText };
+
 export default function BookingAccordionSummary({ children, ...rest }) {
-  const accordionSummaryStyles = {
-    backgroundColor: (theme) => darken(theme.palette.secondary.main, 0.2),
-    borderRadius: 1,
-  };
   return (
     <CardActionArea component="div">
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon sx={iconStyles} />}
         aria-controls="location-booking-form"
         sx={accordionSummaryStyles}
         {...rest}

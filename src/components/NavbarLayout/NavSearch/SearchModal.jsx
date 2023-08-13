@@ -7,9 +7,8 @@ import Fade from '@mui/material/Fade';
 
 import React from 'react';
 import { useRouter } from 'next/router';
-import { modalStyles, searchStyles } from './searchModalStyles';
+import { searchStyles } from './searchModalStyles';
 import {
-  listBoxProps,
   renderGroupProp,
   renderInputProp,
   renderOptionProp,
@@ -17,19 +16,26 @@ import {
 import useSearchListner from './hooks/useSearchListner';
 import useSearchFilterOptions from './hooks/useSearchFilterOptions';
 
-const StyledAutocompletePopper = styled('div')(({ theme }) => ({
-  [`& .${autocompleteClasses.paper}`]: {
-    boxShadow: 'none',
-    margin: 0,
-    color: 'inherit',
-  },
-  [`& .${autocompleteClasses.listbox}`]: {
-    backgroundColor: theme.palette.background.default,
-  },
-  [`&.${autocompleteClasses.popperDisablePortal}`]: {
-    position: 'relative',
-  },
-}));
+const StyledAutocompletePopper = styled('div')(({ theme }) =>
+  theme.unstable_sx({
+    width: '100%',
+    minWidth: 150,
+    maxWidth: 400,
+    boxShadow: 5,
+    [`& .${autocompleteClasses.paper}`]: {
+      boxShadow: 0,
+      margin: 0,
+    },
+    [`& .${autocompleteClasses.listbox}`]: {
+      color: (theme) => theme.palette.background.variantText,
+      backgroundColor: (theme) => theme.palette.background.variant,
+      p: 0,
+    },
+    [`&.${autocompleteClasses.popperDisablePortal}`]: {
+      position: 'relative',
+    },
+  }),
+);
 
 function SearchModal({ open, handleOpen, handleClose }) {
   const router = useRouter();
@@ -75,9 +81,7 @@ function SearchModal({ open, handleOpen, handleClose }) {
             options={searchOptions}
             groupBy={(option) => option.type}
             getOptionLabel={(option) => option.name}
-            ListboxProps={listBoxProps}
             PopperComponent={StyledAutocompletePopper}
-            componentsProps={{ popper: { style: modalStyles } }}
             renderInput={renderInputProp}
             filterOptions={filterOptionsProp}
             renderGroup={renderGroupProp}

@@ -8,9 +8,9 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 import Link from '@material/Link';
 import React, { useState } from 'react';
-import menuLinkArr from '../data/menuLinkArr';
+import menuLinkArr from '../../../data/menuLinkArr';
 import ExpandMoreWrapper from '@elements/ExpandMore';
-import DarkModeSwitch from './DrawerButton/Elements/DarkModeSwitch';
+import DarkModeSwitch from './DarkModeSwitch';
 
 const borderRadiusStyles = { borderRadius: 4 };
 

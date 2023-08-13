@@ -6,8 +6,13 @@ export default function SectionTitle({
   maxWidth = false,
   disableGutters = false,
   children,
+  sx,
   ...rest
 }) {
+  const textStyles = {
+    color: (theme) => theme.palette.secondary.containerText,
+    ...sx,
+  };
   return (
     <Container
       maxWidth={maxWidth}
@@ -17,6 +22,7 @@ export default function SectionTitle({
       <Typography
         variant="h4"
         fontWeight={500}
+        sx={textStyles}
         {...rest}
       >
         {children}

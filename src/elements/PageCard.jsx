@@ -14,6 +14,8 @@ const StyledPageCard = styled(Card)(({ theme, sx }) => {
     minWidth: 'fit-content',
     maxWidth: isBelowMdBreakpoint ? 'unset' : 'fit-content',
     flexGrow: 1,
+    backgroundColor: (theme) => theme.palette.secondary.container,
+    color: (theme) => theme.palette.secondary.containerText,
     py: { xxs: 2, md: 3 },
     borderRadius: 0,
     borderLeft: { xxs: 'none', md: `1px solid ${theme.palette.divider}` },

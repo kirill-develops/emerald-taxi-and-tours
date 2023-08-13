@@ -7,10 +7,12 @@ import {
   SearchStartAdornment,
 } from './Elements/SearchAdornments';
 
+const textColor = (theme) => theme.palette.tertiary.contrastText;
+
 const inputProps = {
   readOnly: true,
-  startAdornment: <SearchStartAdornment />,
-  endAdornment: <SearchEndAdornment />,
+  startAdornment: <SearchStartAdornment color={textColor} />,
+  endAdornment: <SearchEndAdornment color={textColor} />,
 };
 
 const textFieldStyles = {
@@ -18,7 +20,8 @@ const textFieldStyles = {
   flexBasis: '20%',
   '& .MuiInputBase-root': {
     borderRadius: 3.5,
-    backgroundColor: (theme) => theme.palette.background.paper,
+    backgroundColor: (theme) => theme.palette.tertiary.main,
+    color: textColor,
     cursor: 'pointer',
     '& input': { cursor: 'pointer', py: 0.8125 },
   },

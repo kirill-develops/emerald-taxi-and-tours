@@ -15,6 +15,7 @@ export default React.memo(function TabLink({ open, value, ...props }) {
     <Tab
       component={Link}
       sx={() => tabStyles(isMenuOpen)}
+      value={value}
       {...props}
     />
   );

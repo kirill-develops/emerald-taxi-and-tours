@@ -14,6 +14,12 @@ import NoWrapCardHeader from './Elements/NoWrapCardHeader';
 
 const heightStyles = { height: '100%' };
 
+const cardStyles = {
+  ...heightStyles,
+  backgroundColor: (theme) => theme.palette.primary.container,
+  color: (theme) => theme.palette.primary.containerText,
+};
+
 const cardContentStyles = {
   display: 'flex',
   flexDirection: 'column',
@@ -64,6 +70,7 @@ function GridCard({
     titleVariant,
     type,
     url = '',
+    sx,
     ...rest
   },
 }) {
@@ -80,10 +87,13 @@ function GridCard({
         &quot;{title}&quot;
       </StyledLink>
     ));
+
+  const dynamicCardStyles = { ...cardStyles, ...sx };
+
   return (
     <Card
       square
-      sx={heightStyles}
+      sx={dynamicCardStyles}
       {...rest}
     >
       <CardActionArea
@@ -124,6 +134,9 @@ function GridCard({
                   titleVariant={titleVariant}
                   subheader={subheader}
                   subheaderVariant={subheaderVariant}
+                  subheaderColor={(theme) =>
+                    theme.palette.secondary.containerText
+                  }
                   noWrap={noWrap}
                 />
                 {rankingEl}

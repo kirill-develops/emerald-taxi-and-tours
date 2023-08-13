@@ -8,6 +8,7 @@ export default function NoWrapCardHeader({
   subheader,
   titleVariant = 'h5',
   subheaderVariant = 'caption',
+  subheaderColor = (theme) => theme.palette.secondary.contrastText,
   noWrap = false,
 }) {
   const headerTypographyProp = useMemo(
@@ -29,6 +30,7 @@ export default function NoWrapCardHeader({
     () => ({
       ...headerTypographyProp,
       variant: subheaderVariant,
+      sx: { color: subheaderColor },
     }),
     [headerTypographyProp, subheaderVariant],
   );

@@ -37,6 +37,8 @@ export default function ItemCard({ tour, sx, ...rest }) {
     subcategory,
   });
 
+  const cardStyles = { borderRadius: 4, ...sx };
+
   return (
     <GridCard
       price={areaPrice.price}
@@ -48,6 +50,7 @@ export default function ItemCard({ tour, sx, ...rest }) {
       titleVariant="cardTitle"
       type={type}
       url={url}
+      sx={cardStyles}
       rankingEl={
         <RankingEl
           rating={rating}

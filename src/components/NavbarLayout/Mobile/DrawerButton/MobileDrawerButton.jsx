@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import React, { createContext, useContext, useState } from 'react';
 import NavIconButton from './Elements/NavIconButton';
 import NavBreakpointContext from '@context/NavBreakpointContext';
-import MobileDrawerLinks from '../MobileDrawerLinks';
+import MobileDrawerLinks from './Elements/MobileDrawerLinks';
 import CloseDrawerButton from './Elements/CloseDrawerButton';
 
 export const MobileMenuContext = createContext();
@@ -21,7 +21,11 @@ const Wrapper = styled(Box)(({ theme, dissapearingbreakpoint }) =>
 );
 
 const paperProps = {
-  sx: { minWidth: 350 },
+  sx: {
+    minWidth: 350,
+    backgroundColor: (theme) => theme.palette.background.variant,
+    color: (theme) => theme.palette.background.variantText,
+  },
   elevation: 10,
 };
 

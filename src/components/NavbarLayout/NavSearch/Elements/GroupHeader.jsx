@@ -8,11 +8,11 @@ const GroupHeader = styled('div')(({ theme }) => ({
   fontSize: '0.875rem',
   padding: '4px 16px',
   position: 'sticky',
-  top: '0',
+  top: 0,
   zIndex: 1,
   backgroundColor:
     theme.palette.mode === 'light'
-      ? lighten(theme.palette.secondary.light, 0.85)
+      ? lighten(theme.palette.secondary.main, 0.6)
       : darken(theme.palette.secondary.main, 0.8),
 }));
 

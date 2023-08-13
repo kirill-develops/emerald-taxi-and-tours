@@ -9,8 +9,14 @@ const RankingStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({ alignItems: 'center' }),
 );
 
-function StyledRating({ defaultValue, isDefault }) {
-  const ratingStyles = { fontSize: isDefault ? '1.125rem' : '0.9rem' };
+function StyledRating({ defaultValue, isDefault, color, outlineColor }) {
+  const ratingStyles = {
+    fontSize: isDefault ? '1.125rem' : '0.9rem',
+    color: color,
+    '& .MuiRating-iconEmpty': {
+      color: outlineColor,
+    },
+  };
 
   return (
     <Rating
@@ -26,6 +32,8 @@ export default function RankingEl({
   rating,
   numReviews,
   textVariant = detailTypographyProps.variant,
+  ratingColor = (theme) => theme.palette.primary.main,
+  ratingOutlineColor = (theme) => theme.palette.primary.main,
   children,
 }) {
   const isDefault = useMemo(
@@ -51,6 +59,8 @@ export default function RankingEl({
       <StyledRating
         defaultValue={Number(rating)}
         isDefault={isDefault}
+        color={ratingColor}
+        outlineColor={ratingOutlineColor}
       />
       <Typography
         variant={textVariant}

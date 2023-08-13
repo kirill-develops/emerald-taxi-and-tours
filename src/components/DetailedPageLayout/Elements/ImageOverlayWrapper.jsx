@@ -1,11 +1,11 @@
-import { LocalSeeOutlined } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import LocalSeeOutlined from '@mui/icons-material/LocalSeeOutlined';
+import { styled } from '@mui/material';
 import React, { useContext } from 'react';
+import { ParamContext } from '@context/FormContextProvider';
 import { PopUpLink } from '@elements/Links';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
-import { styled } from '@mui/material';
-import { ParamContext } from '@context/FormContextProvider';
 
 const OverlayBox = styled(Box)(({ theme }) =>
   theme.unstable_sx({
@@ -21,7 +21,7 @@ const OverlayLink = styled(PopUpLink)(({ theme }) =>
     left: 7,
     gap: 0.5,
     alignItems: 'flex-end',
-    color: theme.palette.info.main,
+    color: 'black',
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
@@ -29,7 +29,7 @@ const OverlayLink = styled(PopUpLink)(({ theme }) =>
   }),
 );
 
-export default function ImageOverlayWrapper({ children, ...rest }) {
+export default React.memo(function ImageOverlayWrapper({ children, ...rest }) {
   const {
     tripAdvisorDetails: {
       photo_count: photoCount,
@@ -62,4 +62,4 @@ export default function ImageOverlayWrapper({ children, ...rest }) {
       {children}
     </MaxWidthContainer>
   );
-}
+});

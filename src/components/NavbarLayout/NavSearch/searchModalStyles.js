@@ -1,4 +1,4 @@
-export const modalStyles = {
+const modalStyles = {
   width: '100%',
   minWidth: 150,
   maxWidth: 400,

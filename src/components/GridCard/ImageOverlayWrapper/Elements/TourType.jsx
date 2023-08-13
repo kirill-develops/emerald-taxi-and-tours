@@ -8,26 +8,14 @@ export default React.memo(function TourType({
   sx,
   ...rest
 }) {
-  const stackStyles = useMemo(
-    () => ({ flexWrap: 'wrap', gap: 1, ...sx }),
-    [sx],
-  );
-
-  return (
-    <Stack
-      direction="row"
-      sx={stackStyles}
+  return typeArr.map((type) => (
+    <Chip
+      key={type}
+      label={type}
+      size="small"
+      variant={variant}
+      sx={sx}
       {...rest}
-    >
-      {typeArr.map((type) => (
-        <Chip
-          key={type}
-          label={type}
-          size="small"
-          variant={variant}
-          {...rest}
-        />
-      ))}
-    </Stack>
-  );
+    />
+  ));
 });

@@ -11,6 +11,7 @@ const containerStyles = (center) => ({
 
 export default React.memo(function HomeSection({
   title,
+  titleStyles,
   sx,
   children,
   center = false,
@@ -24,7 +25,14 @@ export default React.memo(function HomeSection({
       sx={stackStyles}
       {...rest}
     >
-      {title ? <SectionTitle maxWidth="lg">{title}</SectionTitle> : null}
+      {title ? (
+        <SectionTitle
+          maxWidth="lg"
+          sx={titleStyles}
+        >
+          {title}
+        </SectionTitle>
+      ) : null}
       <MaxWidthContainer
         maxWidth="md"
         disableStack

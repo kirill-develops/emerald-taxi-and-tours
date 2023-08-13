@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import usePageTransition from './hooks/usePageTransition';
-const RateUs = dynamic(() => import('../HomeLayout/Elements/RateUs'));
+const RateUsButton = dynamic(() => import('./RateUsButton/RateUs'));
 const Stack = dynamic(() => import('@mui/material/Stack'));
 const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('./Elements/LayoutTitle'));
@@ -59,7 +59,7 @@ export default function PageLayout({
           />
           {children}
         </LayoutGrid>
-        <RateUs />
+        <RateUsButton />
         <FooterLayout />
         {isXsBreakpoint && <Offset />}
       </LayoutContainer>
