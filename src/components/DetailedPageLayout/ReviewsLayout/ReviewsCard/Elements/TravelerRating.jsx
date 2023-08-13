@@ -67,7 +67,7 @@ export default function TravelerRating() {
             const percentValue = (Number(value) / Number(numReviews)) * 100;
 
             return (
-              <RatingStack key={value}>
+              <RatingStack key={`${value}${i}`}>
                 <TitleText noWrap>{qualityStringObj[i]}</TitleText>
                 <RatingBar value={percentValue} />
                 <Typography

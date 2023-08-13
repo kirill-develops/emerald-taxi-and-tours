@@ -7,12 +7,17 @@ import ReviewContext from '@context/ReviewContext';
 dayjs.extend(relativeTime);
 
 const useFormatRelativeTime = (dateString) => {
-  const formattedDate = useMemo(
-    () => dayjs(dateString).fromNow(),
-    [dateString],
-  );
+  try {
+    const formattedDate = useMemo(
+      () => dayjs(dateString).fromNow(),
+      [dateString],
+    );
 
-  return useMemo(() => formattedDate, [formattedDate]);
+    return formattedDate;
+  } catch (error) {
+    console.error('Error parsing date:', error);
+    return 'Invalid Date';
+  }
 };
 
 export default function WrittenText({ ...rest }) {
