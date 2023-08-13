@@ -1,30 +1,29 @@
-function getLowestPrice(locationData, filteredLocations) {
+function calculatePrice(locationData, filteredLocations, reducer, startValue) {
   const filteredLocationsSet = new Set(filteredLocations);
-  return locationData
-    .filter((location) => filteredLocationsSet.has(location.link))
-    .reduce((lowest, item) => {
-      if (item.price < lowest) {
-        return item.price;
-      }
 
-      return lowest;
-    }, Infinity);
+  return locationData
+    .filter(
+      ({ link }) =>
+        !filteredLocationsSet.size || filteredLocationsSet.has(link),
+    )
+    .reduce(reducer, startValue);
 }
 
-function getHighestPrice(locationData, filteredLocations) {
-  const filteredLocationsSet = new Set(filteredLocations);
-  return locationData
-    .filter((location) => filteredLocationsSet.has(location.link))
-    .reduce((highest, item) => {
-      if (item.price > highest) {
-        return item.price;
-      }
+export function getLowestPrice(locationData, filteredLocations) {
+  const reducer = (acc, { price }) => Math.min(acc, price);
+  const startValue = Number.MAX_SAFE_INTEGER;
 
-      return highest;
-    }, -Infinity);
+  return calculatePrice(locationData, filteredLocations, reducer, startValue);
 }
 
-function useSortData(data, sortBy = '', filterStartLocation) {
+export function getHighestPrice(locationData, filteredLocations) {
+  const reducer = (acc, { price }) => Math.max(acc, price);
+  const startValue = 0;
+
+  return calculatePrice(locationData, filteredLocations, reducer, startValue);
+}
+
+export default function useDataSorter(data, sortBy = '', filterStartLocation) {
   const clonedData = structuredClone(data);
 
   switch (sortBy) {
@@ -60,5 +59,3 @@ function useSortData(data, sortBy = '', filterStartLocation) {
       return clonedData.sort((a, b) => a.area.localeCompare(b.area));
   }
 }
-
-export default useSortData;

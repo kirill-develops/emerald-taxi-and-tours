@@ -1,6 +1,5 @@
-import { useTheme } from '@emotion/react';
 import FilterAltOutlined from '@mui/icons-material/FilterAltOutlined';
-import { useMediaQuery } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Button from '@mui/material/Button';
 import React, { useLayoutEffect } from 'react';
 import { useTour } from '../../../../hooks/useTour';
@@ -11,13 +10,11 @@ const filterButtonStyles = {
   display: { sm: 'none' },
 };
 
-function FilterButtonMobile() {
-  const [state, setState] = useTour();
-  const { filterExpand } = state;
+export default React.memo(function FilterButtonMobile() {
+  const [{ filterExpand }, setState] = useTour();
   const { toggleFilterExpand } = setState;
 
-  const theme = useTheme();
-  const isXsBreakpoint = useMediaQuery(theme.breakpoints.down('sm'));
+  const isXsBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   useLayoutEffect(() => {
     if (isXsBreakpoint === false) {
@@ -38,6 +35,4 @@ function FilterButtonMobile() {
       Filter
     </Button>
   );
-}
-
-export default React.memo(FilterButtonMobile);
+});

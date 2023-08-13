@@ -1,12 +1,16 @@
 import TourCard from '../DetailedTourCard/DetailedCard';
 import React, { useMemo } from 'react';
-import useSortData from '../../hooks/useSortData';
+import useDataSorter from '../../hooks/useDataSorter';
 import { useTour } from '../../../hooks/useTour';
 
 export default function SortedTours() {
-  const [{ sort, filteredData, filterStartLocation }] = useTour();
+  const [{ sortBy, filteredData, filterStartLocation }] = useTour();
 
-  const sortedTourData = useSortData(filteredData, sort, filterStartLocation);
+  const sortedTourData = useDataSorter(
+    filteredData,
+    sortBy,
+    filterStartLocation,
+  );
 
   return useMemo(
     () =>

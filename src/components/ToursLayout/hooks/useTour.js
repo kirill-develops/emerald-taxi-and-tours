@@ -49,7 +49,7 @@ export function extractProps(key, data = tourData) {
 export const tourStore = createStore({
   name: 'tour Store',
   initialState: {
-    sort: '',
+    sortBy: '',
     filterExpand: false,
     filterStartLocation: initFilter(tourData, 'price'),
     filterType: initFilter(tourData, 'type'),
@@ -60,7 +60,7 @@ export const tourStore = createStore({
   actions: {
     setSort:
       (option) => ({ setState }) => {
-        setState({ sort: option })
+        setState({ sortBy: option })
       },
     toggleFilterExpand:
       (boolean) => ({ setState, getState }) => {
