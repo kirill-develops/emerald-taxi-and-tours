@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import dynamic from 'next/dynamic';
 import React from 'react';
-import BookingLayout from './BookingLayout/BookingLayout';
 import DetailsWrapper from './DetailsWrapper';
 import ImagesLayout from './ImagesLayout';
 import ImageOverlayWrapper from './Elements/ImageOverlayWrapper';
@@ -14,6 +14,13 @@ import RatingsAndReviews from './RatingsAndReviewsCard';
 import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
 import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
 import CardStack from './Elements/CardStack';
+const BookingLayout = dynamic(() => import('./BookingLayout/BookingLayout'));
+
+const StripeElementsProvider = dynamic(() =>
+  import(
+    './BookingLayout/StepperLayout/StripeElementsProvider/StripeElementsProvider'
+  ),
+);
 
 function MaxWidthLayoutWrapper({ children, ...other }) {
   const isBelowMdBreakpoint = useMediaQuery((theme) =>
@@ -50,41 +57,45 @@ export default function DetailedPageLayout() {
     theme.breakpoints.down('md'),
   );
 
+  console.log('rerender');
+
   return (
     <>
-      <BookingLayout />
-      {/* HERO SECTION */}
-      <DetailsWrapper>
-        <ImageOverlayWrapper>
-          <ImagesLayout />
-        </ImageOverlayWrapper>
-      </DetailsWrapper>
-      <StyledStack>
-        {/* Next Section */}
-        <MaxWidthLayoutWrapper>
-          <LocationDescription />
-          {isBelowMdBreakpoint && (
-            <>
-              <RatingsAndReviews />
-              <ServiceDescription />
-            </>
-          )}
-        </MaxWidthLayoutWrapper>
-        {/* Tablet Horizontal 3 Card Component */}
-        <MaxWidthLayoutWrapper maxWidth="lg">
-          <CardStack isBreakpoint={isBelowMdBreakpoint}>
-            {!isBelowMdBreakpoint && <RatingsAndReviews />}
-            <ImportantInfo />
-            <PriceTable />
-            <PricingCard />
-          </CardStack>
-        </MaxWidthLayoutWrapper>
-        {/* Next Section */}
-        <MaxWidthLayoutWrapper>
-          {!isBelowMdBreakpoint && <ServiceDescription />}
-          <ReviewsLayout />
-        </MaxWidthLayoutWrapper>
-      </StyledStack>
+      <StripeElementsProvider>
+        <BookingLayout />
+        {/* HERO SECTION */}
+        <DetailsWrapper>
+          <ImageOverlayWrapper>
+            <ImagesLayout />
+          </ImageOverlayWrapper>
+        </DetailsWrapper>
+        <StyledStack>
+          {/* Next Section */}
+          <MaxWidthLayoutWrapper>
+            <LocationDescription />
+            {isBelowMdBreakpoint && (
+              <>
+                <RatingsAndReviews />
+                <ServiceDescription />
+              </>
+            )}
+          </MaxWidthLayoutWrapper>
+          {/* Tablet Horizontal 3 Card Component */}
+          <MaxWidthLayoutWrapper maxWidth="lg">
+            <CardStack isBreakpoint={isBelowMdBreakpoint}>
+              {!isBelowMdBreakpoint && <RatingsAndReviews />}
+              <ImportantInfo />
+              <PriceTable />
+              <PricingCard />
+            </CardStack>
+          </MaxWidthLayoutWrapper>
+          {/* Next Section */}
+          <MaxWidthLayoutWrapper>
+            {!isBelowMdBreakpoint && <ServiceDescription />}
+            <ReviewsLayout />
+          </MaxWidthLayoutWrapper>
+        </StyledStack>
+      </StripeElementsProvider>
     </>
   );
 }

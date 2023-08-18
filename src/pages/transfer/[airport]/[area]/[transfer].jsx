@@ -172,7 +172,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-function DynamicTransfer({ params }) {
+export default React.memo(function DynamicTransfer({ params }) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -200,6 +200,4 @@ function DynamicTransfer({ params }) {
       </PageLayout>
     </>
   );
-}
-
-export default DynamicTransfer;
+});
