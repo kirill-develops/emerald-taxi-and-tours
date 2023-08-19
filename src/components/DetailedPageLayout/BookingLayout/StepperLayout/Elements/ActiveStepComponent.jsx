@@ -1,20 +1,8 @@
 import React from 'react';
-import { useMemo } from 'react';
-import useStepsDataByType from '../hooks/useStepsDataByType';
-
-function useActiveStep() {
-  const { stepsDataByType, bookingStep } = useStepsDataByType();
-
-  const { component: activeStepComponent } = useMemo(
-    () => stepsDataByType[bookingStep],
-    [bookingStep, stepsDataByType],
-  );
-
-  return activeStepComponent;
-}
+import useStepperData from '../hooks/useStepperData';
 
 export default React.memo(function ActiveStepComponent() {
-  const activeStepComponent = useActiveStep();
+  const { activeStepData } = useStepperData();
 
-  return React.cloneElement(activeStepComponent);
+  return React.cloneElement(activeStepData?.component);
 });

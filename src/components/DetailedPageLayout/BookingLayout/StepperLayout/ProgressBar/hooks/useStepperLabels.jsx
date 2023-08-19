@@ -1,10 +1,10 @@
 import useDataByKey from '@hooks/useDataByKey';
-import useStepsDataByType from '../../hooks/useStepsDataByType';
+import useStepperData from '../../hooks/useStepperData';
 
 export default function useStepperLabels() {
-  const { stepsDataByType } = useStepsDataByType();
+  const { stepsData } = useStepperData();
 
-  const stepperLabels = useDataByKey('label', stepsDataByType);
+  const stepperLabels = useDataByKey('label', stepsData);
 
   return stepperLabels;
 }
