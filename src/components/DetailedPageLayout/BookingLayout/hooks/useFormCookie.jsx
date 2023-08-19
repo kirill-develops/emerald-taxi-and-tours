@@ -5,7 +5,7 @@ import { capitalize } from '@helperFunctions';
 import { ParamContext } from '@context/FormContextProvider';
 import useFormInitValues from './useFormInitValues';
 import { getUpdatedValues } from './useFormCookieFunctions/getUpdatedValues';
-import { getParsedCookieValues } from './useFormCookieFunctions/getParsedCookieValues';
+import useCookieParser from './useFormCookieFunctions/useCookieParser';
 import getFilteredCookieValues from './useFormCookieFunctions/getFilteredCookieValues';
 
 const cookieOptions = {
@@ -13,28 +13,17 @@ const cookieOptions = {
   maxAge: 60 * 60 * 24 * 7, // 1 week
 };
 
-function useFormCookie() {
+const getCookieName = (bookingType) =>
+  `Emerald${capitalize(bookingType)}FormCache`;
+
+export default function useFormCookie() {
   const { type: bookingType } = useContext(ParamContext);
-
   const initialValues = useFormInitValues();
-
-  const cookieName = useMemo(
-    () => `Emerald${capitalize(bookingType)}FormCache`,
-    [bookingType],
-  );
-
+  const cookieName = getCookieName(bookingType);
   const [formCookie, setFormCookie] = useCookies([cookieName]);
 
-  const cookieData = useMemo(
-    () => formCookie[cookieName],
-    [formCookie, cookieName],
-  );
-
-  const parsedCookieValues = getParsedCookieValues(
-    initialValues,
-    cookieData,
-    bookingType,
-  );
+  const cookieData = formCookie[cookieName];
+  const parsedCookieValues = useCookieParser(cookieData, bookingType);
 
   const updateFormCookie = useCallback(
     (values) => {
@@ -46,9 +35,7 @@ function useFormCookie() {
       if (!isEqual(filteredCookieValues, values)) {
         const updatedValues = getUpdatedValues(values, cookieData, bookingType);
 
-        const stringifiedValues = JSON.stringify(updatedValues);
-
-        setFormCookie(cookieName, stringifiedValues, cookieOptions);
+        setFormCookie(cookieName, JSON.stringify(updatedValues), cookieOptions);
       }
     },
     [cookieName, parsedCookieValues, setFormCookie, cookieData, bookingType],
@@ -75,5 +62,3 @@ function useFormCookie() {
     [parsedCookie, updateFormCookie],
   );
 }
-
-export default useFormCookie;

@@ -5,15 +5,16 @@ import BookingContext from '@context/BookingContext';
 
 export default function useSaveFormToCookie() {
   const { values, errors, touched } = useFormikContext();
-
-  const context = useContext(ParamContext);
-
+  const { type } = useContext(ParamContext);
   const { setCookie } = useContext(BookingContext);
 
-  const valueSubclass = useMemo(
-    () => (context.type === 'transfer' ? 'flightDetails' : 'tourDetails'),
-    [context.type],
-  );
+  const valueSubclass = useMemo(() => {
+    if (values.bookingStep === 1) {
+      return 'personalDetails';
+    } else {
+      return type === 'transfer' ? 'flightDetails' : 'tourDetails';
+    }
+  }, [type, values.bookingStep]);
 
   const valuesWithoutErrors = useMemo(() => {
     const filteredValues = Object.entries(values[valueSubclass] || {}).reduce(
@@ -22,9 +23,10 @@ export default function useSaveFormToCookie() {
 
         const isTouched = touched[valueSubclass]?.[key];
 
-        if (!hasError && isTouched) {
+        if (!hasError && value) {
           acc[key] = value;
         }
+
         return acc;
       },
       {},
@@ -34,7 +36,10 @@ export default function useSaveFormToCookie() {
   }, [errors, touched, values, valueSubclass]);
 
   useEffect(() => {
-    if (Object.keys(valuesWithoutErrors[valueSubclass]).length) {
+    const hasValuesToSave =
+      Object.keys(valuesWithoutErrors[valueSubclass]).length > 0;
+
+    if (hasValuesToSave) {
       setCookie(valuesWithoutErrors);
     }
   }, [valuesWithoutErrors, valueSubclass, setCookie]);
