@@ -2,37 +2,34 @@ import { useFormikContext } from 'formik';
 import { useCallback, useContext } from 'react';
 import BookingContext from '@context/BookingContext';
 import useStepperData from '../../hooks/useStepperData';
+import StripePayContext from '@context/StripePayContext';
 
 export default function useNextButton() {
   const {
     setFieldValue,
     validateForm,
     setTouched,
-    submitForm,
     values: { bookingStep },
   } = useFormikContext();
-
   const { setCookie } = useContext(BookingContext);
-
   const { activeStepUrl, stepperLength } = useStepperData();
-
+  const { isLoading, handleSubmit } = useContext(StripePayContext);
   const isLastStep = stepperLength === bookingStep;
 
   const handleNextClick = useCallback(
     async (step) => {
       const res = await validateForm();
 
-      if (!res[activeStepUrl]) {
+      const formErrors = res[activeStepUrl];
+
+      if (!formErrors) {
         setFieldValue('bookingStep', step, false);
         setCookie({ bookingStep: step });
       } else {
-        const touchedValues = Object.keys(res[activeStepUrl]).reduce(
-          (acc, value) => {
-            acc[value] = true;
-            return acc;
-          },
-          {},
-        );
+        const touchedValues = Object.keys(formErrors).reduce((acc, value) => {
+          acc[value] = true;
+          return acc;
+        }, {});
 
         setTouched({ [activeStepUrl]: touchedValues });
       }
@@ -40,10 +37,26 @@ export default function useNextButton() {
     [activeStepUrl, setCookie, setFieldValue, setTouched, validateForm],
   );
 
+  const handleStripeSubmit = useCallback(async () => {
+    const errors = await handleSubmit();
+
+    if (errors) {
+      console.error(errors);
+    }
+  }, [handleSubmit]);
+
+  function buttonFunctionProvider(bookingStep, stepperLength) {
+    const isStripeSection =
+      bookingStep === stepperLength - 1 || bookingStep === stepperLength;
+
+    return isStripeSection
+      ? handleStripeSubmit
+      : () => handleNextClick(bookingStep + 1);
+  }
+
   return {
-    handleNextClick: isLastStep
-      ? submitForm
-      : () => handleNextClick(bookingStep + 1),
-    buttonScript: isLastStep ? 'Submit' : 'Next',
+    handleNextClick: buttonFunctionProvider(bookingStep, stepperLength),
+    buttonScript: isLoading ? 'Loading' : isLastStep ? 'Confirm' : 'Next',
+    isLoading,
   };
 }
