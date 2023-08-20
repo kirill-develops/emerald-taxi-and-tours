@@ -15,11 +15,8 @@ import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard'
 import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
 import CardStack from './Elements/CardStack';
 const BookingLayout = dynamic(() => import('./BookingLayout/BookingLayout'));
-
 const StripeElementsProvider = dynamic(() =>
-  import(
-    './BookingLayout/StepperLayout/StripeElementsProvider/StripeElementsProvider'
-  ),
+  import('./StripeElementsProvider/StripeElementsProvider'),
 );
 
 function MaxWidthLayoutWrapper({ children, ...other }) {

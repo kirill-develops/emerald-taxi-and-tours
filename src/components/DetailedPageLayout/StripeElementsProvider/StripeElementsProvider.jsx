@@ -1,6 +1,6 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import React, { memo, useContext, useEffect, useMemo, useState } from 'react';
+import React, { memo, useContext, useEffect, useState } from 'react';
 import StripeContext from '@context/StripeContext';
 import useStripeElementsOptionsGetter from './hooks/useStripeElementsOptionsGetter';
 import { ParamContext } from '@context/FormContextProvider';
