@@ -18,8 +18,8 @@ const getCookieName = (bookingType) =>
 
 export default function useFormCookie() {
   const { type: bookingType } = useContext(ParamContext);
-  const initialValues = useFormInitValues();
   const cookieName = getCookieName(bookingType);
+  const initialValues = useFormInitValues();
   const [formCookie, setFormCookie] = useCookies([cookieName]);
 
   const cookieData = formCookie[cookieName];

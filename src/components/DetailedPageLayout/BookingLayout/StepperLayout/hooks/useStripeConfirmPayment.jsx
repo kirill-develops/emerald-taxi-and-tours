@@ -1,5 +1,5 @@
 import { useStripe } from '@stripe/react-stripe-js';
-import  { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import StripeContext from '@context/StripeContext';
 import { useRouter } from 'next/router';
 

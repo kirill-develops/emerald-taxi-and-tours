@@ -10,13 +10,13 @@ export default function parseDetails(data, initialValues, type) {
     accomName,
     date: initialTourDate,
     time: initialTourTime,
-  } = initialDetails;
+  } = initialDetails || {};
   const {
     arrive: dataArrive,
     depart: dataDepart,
     date: dataTourDate,
     time: dataTourTime,
-  } = dataDetails;
+  } = dataDetails || {};
 
   const parsedArrive = dataArrive
     ? checkTime(dataArrive, initialArrive)

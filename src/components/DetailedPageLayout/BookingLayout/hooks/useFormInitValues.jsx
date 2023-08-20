@@ -29,10 +29,12 @@ export function useAccomName() {
 
 export default function useFormInitValues() {
   const accomName = useAccomName();
-
-  const transferInitialValues = getTransferInitialValues(accomName);
-
   const { type } = useContext(ParamContext);
+
+  const transferInitialValues = useMemo(
+    () => getTransferInitialValues(accomName),
+    [accomName],
+  );
 
   return useMemo(
     () => (type === 'tour' ? tourInitialValues : transferInitialValues),
