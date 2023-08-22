@@ -14,6 +14,7 @@ export default function useNextButton() {
   const { setCookie } = useContext(BookingContext);
   const { activeStepUrl, stepperLength } = useStepperData();
   const { isLoading, handleSubmit } = useContext(StripePayContext);
+
   const isLastStep = stepperLength === bookingStep;
 
   const handleNextClick = useCallback(
@@ -45,14 +46,20 @@ export default function useNextButton() {
     }
   }, [handleSubmit]);
 
-  function buttonFunctionProvider(bookingStep, stepperLength) {
-    const isStripeSection =
-      bookingStep === stepperLength - 1 || bookingStep === stepperLength;
-
-    return isStripeSection
-      ? handleStripeSubmit
-      : () => handleNextClick(bookingStep + 1);
-  }
+  const buttonFunctionProvider = (bookingStep, stepperLength) => {
+    if (bookingStep === stepperLength - 1) {
+      return () => {
+        handleStripeSubmit();
+        handleNextClick(bookingStep + 1);
+      };
+    } else if (bookingStep === stepperLength) {
+      return handleStripeSubmit;
+    } else {
+      return () => {
+        handleNextClick(bookingStep + 1);
+      };
+    }
+  };
 
   return {
     handleNextClick: buttonFunctionProvider(bookingStep, stepperLength),

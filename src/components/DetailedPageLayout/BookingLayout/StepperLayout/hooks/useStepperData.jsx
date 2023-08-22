@@ -1,18 +1,13 @@
 import { useFormikContext } from 'formik';
-import { useContext, useMemo } from 'react';
-import { ParamContext } from '@context/FormContextProvider';
-import { tourSteps, transferSteps } from '../data/stepsData';
+import { useMemo } from 'react';
+import useStepData from '@hooks/useStepData';
 
 export default function useStepperData() {
   const {
     values: { bookingStep },
   } = useFormikContext();
-  const { type } = useContext(ParamContext);
 
-  const stepsData = useMemo(
-    () => (type === 'transfer' ? transferSteps : tourSteps),
-    [type],
-  );
+  const stepsData = useStepData();
 
   const activeStepData = useMemo(
     () => stepsData[bookingStep],

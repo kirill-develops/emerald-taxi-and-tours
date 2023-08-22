@@ -25,7 +25,7 @@ export default function useStripeConfirmPayment(paymentMethodId) {
         clientSecret,
         confirmParams: {
           payment_method: paymentMethodId,
-          return_url: `http://localhost:3000${currentUrl}?session_id={${paymentIntent.id}}`,
+          return_url: `http://localhost:3000${currentUrl}?session_id=${paymentIntent.id}`,
         },
       });
 
