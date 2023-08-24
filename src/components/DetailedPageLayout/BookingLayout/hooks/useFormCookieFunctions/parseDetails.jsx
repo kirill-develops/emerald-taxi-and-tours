@@ -2,7 +2,7 @@ import { checkDepartDate, checkTime, checkDate } from '@helperFunctions';
 
 export default function parseDetails(data, initialValues, type) {
   const initialDetails = initialValues[`${type}Details`];
-  const dataDetails = data[`${type}Details`] || {};
+  const dataDetails = data?.[`${type}Details`] || {};
 
   const {
     arrive: initialArrive,

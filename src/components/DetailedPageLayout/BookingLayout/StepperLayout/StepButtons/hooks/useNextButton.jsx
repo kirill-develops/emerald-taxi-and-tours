@@ -20,15 +20,18 @@ export default function useNextButton() {
   const handleNextClick = useCallback(
     async (step) => {
       const res = await validateForm();
-
       const formErrors = res[activeStepUrl];
 
       if (!formErrors) {
         setFieldValue('bookingStep', step, false);
-        setCookie({ bookingStep: step });
+
+        if (step !== 3) {
+          setCookie({ bookingStep: step });
+        }
       } else {
         const touchedValues = Object.keys(formErrors).reduce((acc, value) => {
           acc[value] = true;
+
           return acc;
         }, {});
 
@@ -38,22 +41,11 @@ export default function useNextButton() {
     [activeStepUrl, setCookie, setFieldValue, setTouched, validateForm],
   );
 
-  const handleStripeSubmit = useCallback(async () => {
-    const errors = await handleSubmit();
-
-    if (errors) {
-      console.error(errors);
-    }
-  }, [handleSubmit]);
-
   const buttonFunctionProvider = (bookingStep, stepperLength) => {
     if (bookingStep === stepperLength - 1) {
-      return () => {
-        handleStripeSubmit();
-        handleNextClick(bookingStep + 1);
-      };
+      return () => handleSubmit(() => handleNextClick(bookingStep + 1));
     } else if (bookingStep === stepperLength) {
-      return handleStripeSubmit;
+      return handleSubmit;
     } else {
       return () => {
         handleNextClick(bookingStep + 1);
@@ -64,6 +56,6 @@ export default function useNextButton() {
   return {
     handleNextClick: buttonFunctionProvider(bookingStep, stepperLength),
     buttonScript: isLoading ? 'Loading' : isLastStep ? 'Confirm' : 'Next',
-    isLoading,
+    isLoading: isLoading,
   };
 }

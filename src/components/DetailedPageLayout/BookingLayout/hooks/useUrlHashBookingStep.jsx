@@ -18,9 +18,14 @@ export default function useUrlHashBookingStep(setCookie, bookingStep) {
       (step) => step.link === hashValue,
     );
 
-    if (matchedStepIndex !== -1 && matchedStepIndex !== bookingStep) {
-      setCookie({ bookingStep: matchedStepIndex });
-      return matchedStepIndex;
+    if (matchedStepIndex !== 1) {
+      if (matchedStepIndex === 3) {
+        return 2;
+      } else if (matchedStepIndex !== bookingStep && matchedStepIndex > -1) {
+        setCookie({ bookingStep: matchedStepIndex });
+
+        return matchedStepIndex;
+      }
     }
     return null;
   }, [router.asPath, stepsData, bookingStep, setCookie]);

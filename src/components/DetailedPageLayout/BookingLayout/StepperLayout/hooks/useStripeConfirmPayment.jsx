@@ -32,10 +32,9 @@ export default function useStripeConfirmPayment(paymentMethodId) {
       if (error) {
         setErrorMessage(error.message);
       }
-
-      setLoading(false);
     } catch (err) {
       setErrorMessage(err);
+    } finally {
       setLoading(false);
     }
   };
