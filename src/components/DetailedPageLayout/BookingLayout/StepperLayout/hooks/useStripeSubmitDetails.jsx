@@ -35,8 +35,7 @@ export default function useStripeSubmitDetails() {
         // Trigger form validation and wallet collection
         const { error: submitError } = await elements.submit();
         if (submitError) {
-          handleError(submitError);
-          console.log('object', submitError?.message);
+          console.error(submitError?.message);
           return;
         } else {
           setMessage(null);
