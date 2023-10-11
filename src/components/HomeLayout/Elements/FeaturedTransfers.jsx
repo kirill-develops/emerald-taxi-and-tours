@@ -77,6 +77,7 @@ function TransportCard({ title, caption, image, url, children, sx, ...rest }) {
             width: '100%',
             zIndex: 2,
             backgroundColor: 'rgba(0, 0, 0, 0.445)',
+            color: (theme) => theme.palette.common.white,
             backdropFilter: 'blur(1px)',
           }}
         >
