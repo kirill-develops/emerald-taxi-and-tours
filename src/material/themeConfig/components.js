@@ -1,6 +1,7 @@
+import { Theme } from "@mui/material";
 import { mediaQueryObj } from "./breakpoints";
 
-function getResponsiveTypographyVariant(theme: Theme, variant: string) {
+function getResponsiveTypographyVariant(theme, variant) {
    const variantProps = theme.typography[variant];
    const styleOverrides = { ...variantProps };
 

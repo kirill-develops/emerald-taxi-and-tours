@@ -41,8 +41,11 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "next.config.js"  ],
+    "**/*.tsx",
+     "next.config.js",
+ "src/material/theme.js", 
+ "src/material/themeConfig/components.js" 
+],
   "exclude": [
     "node_modules"
   ]
