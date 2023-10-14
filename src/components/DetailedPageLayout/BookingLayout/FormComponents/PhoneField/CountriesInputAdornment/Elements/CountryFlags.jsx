@@ -1,6 +1,6 @@
 import MenuItem from '@mui/material/MenuItem';
 import React from 'react';
-import { countries } from '@Data/countries';
+import { countries } from '@data/countries';
 import { MuiFlagIcon } from './MuiFlagIcon';
 
 export default function useCountryFlags() {

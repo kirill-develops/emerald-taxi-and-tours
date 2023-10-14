@@ -3,7 +3,7 @@ import Backdrop from '@mui/material/Backdrop';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import SpeedDial, { speedDialClasses } from '@mui/material/SpeedDial';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import WhatsappIcon from '@mui/icons-material/Whatsapp';
+import WhatsappIcon from '@mui/icons-material/WhatsApp';
 import { QuestionAnswer } from '@mui/icons-material';
 import Link from '@material/Link';
 

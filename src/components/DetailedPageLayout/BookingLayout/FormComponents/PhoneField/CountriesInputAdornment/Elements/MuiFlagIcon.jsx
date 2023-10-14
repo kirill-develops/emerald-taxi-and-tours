@@ -1,6 +1,6 @@
 import { FlagIcon } from 'react-flag-kit';
 import { styled } from '@mui/material/styles';
-import { countries } from '@Data/countries';
+import { countries } from '@data/countries';
 
 export const StyledFlagIcon = styled(FlagIcon)(({ theme }) =>
   theme.unstable_sx({
