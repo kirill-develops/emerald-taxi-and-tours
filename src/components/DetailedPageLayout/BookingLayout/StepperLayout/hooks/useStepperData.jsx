@@ -1,24 +1,30 @@
+import { useFormikContext } from 'formik';
 import { useMemo } from 'react';
-import useStepsDataByType from './useStepsDataByType';
+import useStepData from '@hooks/useStepData';
 
 export default function useStepperData() {
-  const { stepsDataByType, bookingStep } = useStepsDataByType();
+  const {
+    values: { bookingStep },
+  } = useFormikContext();
 
-  const { link: activeStepUrl } = useMemo(
-    () => stepsDataByType[bookingStep],
-    [bookingStep, stepsDataByType],
+  const stepsData = useStepData();
+
+  const activeStepData = useMemo(
+    () => stepsData[bookingStep],
+    [stepsData, bookingStep],
   );
 
-  const stepperLength = useMemo(
-    () => stepsDataByType.length - 1,
-    [stepsDataByType],
-  );
+  const stepperLength = stepsData.length - 1;
 
-  return useMemo(
-    () => ({
-      activeStepUrl,
+  return useMemo(() => {
+    const { link } = activeStepData;
+
+    return {
+      stepsData,
+      bookingStep,
+      activeStepData,
+      activeStepUrl: link,
       stepperLength,
-    }),
-    [activeStepUrl, stepperLength],
-  );
+    };
+  }, [activeStepData, bookingStep, stepsData, stepperLength]);
 }

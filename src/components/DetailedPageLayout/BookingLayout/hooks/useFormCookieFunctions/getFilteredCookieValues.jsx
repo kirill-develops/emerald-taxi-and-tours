@@ -13,6 +13,7 @@ export default function getFilteredCookieValues(
       if (parsedCookieValues[valueSubclass]?.hasOwnProperty(key)) {
         acc[valueSubclass][key] = parsedCookieValues[valueSubclass][key];
       }
+
       return acc;
     },
     { [valueSubclass]: {} },

@@ -8,6 +8,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
 
 import '@splidejs/react-splide/css/core';
+import useSwiperBreakpoints from './useSwiperBreakpoints';
 
 const ImageSwiperEl = styled(Splide)(({ theme }) =>
   theme.unstable_sx({ marginTop: 1.5 }),
@@ -16,11 +17,18 @@ const ImageSwiperEl = styled(Splide)(({ theme }) =>
 const ImageSwiperOptions = {
   pagination: false,
   lazyLoad: 'nearby',
-  type: 'fade',
+  perPage: 1,
+  perMove: 1,
+  type: 'slide',
+  gap: 10,
+  padding: 0,
 };
 
 const ImageSwiperTrack = styled(SplideTrack)(({ theme }) =>
-  theme.unstable_sx({ paddingX: `${theme.spacing(3)} !important` }),
+  theme
+    .unstable_sx
+    // { paddingX: `${theme.spacing(3)} !important` }
+    (),
 );
 
 const ImageSwiperSlide = styled(SplideSlide)(({ theme }) =>
@@ -89,7 +97,7 @@ function ImageSwiper({ photos }) {
     <ImageSwiperEl
       aria-label="Image Carousel"
       hasTrack={false}
-      options={ImageSwiperOptions}
+      options={{ ...ImageSwiperOptions, breakpoints: breakpoints }}
       onActive={handleSplidePosition}
     >
       <Box className="splide__arrows">

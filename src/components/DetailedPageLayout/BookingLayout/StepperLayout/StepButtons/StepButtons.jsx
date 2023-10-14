@@ -19,7 +19,7 @@ function StepButtonsStack({ children, ...rest }) {
   );
 }
 
-export default React.memo(function StepButtons({ backButton, nextButton }) {
+export default React.memo(function StepButtons() {
   return (
     <StepButtonsStack>
       <BackButton />

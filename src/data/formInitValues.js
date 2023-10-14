@@ -23,7 +23,7 @@ const commonInitialValues = {
   },
 };
 
-export const getTransferInitialValues = accomName => ({
+export const getTransferInitialValues = (accomName = '') => ({
   ...commonInitialValues,
   flightDetails: {
     airline: '',

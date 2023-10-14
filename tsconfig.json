@@ -41,12 +41,10 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-     "next.config.js",
- "src/material/theme.js", 
- "src/material/themeConfig/components.js",
- "public/**/*.png",
- "public/**/*.PNG",
-],
+    "next.config.js",
+    "src/material/theme.js", 
+    "src/material/themeConfig/components.js",
+  ],
   "exclude": [
     "node_modules"
   ]

@@ -10,7 +10,12 @@ export default function usePathChangeEffect(executableFn) {
     const prevPathname = prevPathnameRef.current;
     const currentPathname = router.asPath;
 
-    if (prevPathname && prevPathname !== currentPathname) {
+    const hasPathnameChanged = determinePathnameChange(
+      prevPathname,
+      currentPathname,
+    );
+
+    if (hasPathnameChanged) {
       executableFn();
       setHasChanged(true);
     }
@@ -19,4 +24,20 @@ export default function usePathChangeEffect(executableFn) {
   }, [router.asPath, executableFn]);
 
   return hasChanged;
+}
+
+function determinePathnameChange(prevPathname, currentPathname) {
+  if (currentPathname?.includes('?')) {
+    return (
+      prevPathname &&
+      prevPathname?.split('?')[0] !== currentPathname?.split('?')[0]
+    );
+  } else if (currentPathname?.includes('#')) {
+    return (
+      prevPathname &&
+      prevPathname?.split('#')[0] !== currentPathname?.split('#')[0]
+    );
+  } else {
+    return prevPathname && prevPathname !== currentPathname;
+  }
 }
