@@ -130,6 +130,4 @@ export let experimentalTheme = experimental_extendTheme({
       }
     }
   }
-})
-
-experimentalTheme = responsiveFontSizes(experimentalTheme);
+});

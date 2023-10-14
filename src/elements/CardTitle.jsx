@@ -15,7 +15,7 @@ export default function CardTitle({
     if (capitalize) textTransform.push('capitalize');
 
     return { textTransform: textTransform.join(' '), ...sx };
-  }, [uppercase, capitalize]);
+  }, [uppercase, capitalize, sx]);
 
   return (
     <Typography

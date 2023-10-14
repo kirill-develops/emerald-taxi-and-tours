@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 import { transferData } from '@data/transfers';
 
@@ -20,11 +20,7 @@ export default function useTransferPrice() {
       (destination) => destination.link === transferLink,
     )?.price;
 
-  return useMemo(
-    () =>
-      values?.flightDetails?.transferType === 'roundtrip'
-        ? extraGuestTwoWay
-        : extraGuestOneWay,
-    [values, extraGuestOneWay, extraGuestTwoWay],
-  );
+  return values?.flightDetails?.transferType === 'roundtrip'
+    ? extraGuestTwoWay
+    : extraGuestOneWay;
 }

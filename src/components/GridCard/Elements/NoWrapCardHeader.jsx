@@ -32,7 +32,7 @@ export default function NoWrapCardHeader({
       variant: subheaderVariant,
       sx: { color: subheaderColor },
     }),
-    [headerTypographyProp, subheaderVariant],
+    [headerTypographyProp, subheaderVariant, subheaderColor],
   );
 
   return (

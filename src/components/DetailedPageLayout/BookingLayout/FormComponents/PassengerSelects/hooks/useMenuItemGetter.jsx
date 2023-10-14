@@ -18,7 +18,7 @@ export default function useMenuItems(valueName) {
 
   const transferPrice = useTransferPrice();
 
-  const menuItems = [];
+  const menuItems = useMemo(() => [], []);
 
   for (let index = 0; index < passengers; index++) {
     const value = isChildPassengers ? index : index + 1;

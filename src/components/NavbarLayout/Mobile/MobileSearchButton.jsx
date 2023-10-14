@@ -22,7 +22,7 @@ export default React.memo(function MobileSearchButton({
       justifyContent: 'flex-end',
       display: { xxs: 'flex', [dissapearingBreakpoint]: 'none' },
     }),
-    [],
+    [dissapearingBreakpoint],
   );
 
   if (!isMobile) {
