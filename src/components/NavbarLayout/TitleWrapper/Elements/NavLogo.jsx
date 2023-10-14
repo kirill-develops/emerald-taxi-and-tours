@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import Link from '@material/Link';
-import emeraldLogo from '@Public/logo/emerald_logo_v2.png';
+import emeraldLogo from '@../public/logo/emerald_logo_v2.PNG';
 import { styled } from '@mui/material';
 
 const LogoLink = styled(Link)(({ theme }) =>
