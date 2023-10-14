@@ -11,7 +11,7 @@
       "@TourPageLayout/*" : ["components/TourPageLayout/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],
       "@TransferPageLayout/*" : ["components/TransferPageLayout/*"],
-      "@Public/*" : ["../public/*"],
+      "@public/*" : ["../public/*"],
       "@context/*": ["context/*"]
     },
     "lib": [
