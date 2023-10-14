@@ -50,8 +50,24 @@ export default React.memo(function FormConfirmDetails() {
     };
   }, []);
 
-function FormConfirmDetails() {
-  return <div>FormConfirmDetails</div>;
-}
+  const { amount, currency, payment_method } = stripeSummary || {};
+  const { billing_details, card } = payment_method || {};
+  const { brand, exp_month: expMonth, exp_year: expYear, last4 } = card || {};
+  const { email, name, phone } = billing_details || {};
 
-export default FormConfirmDetails;
+  return (
+    <div>
+      FormConfirmDetails
+      {isString(message) ? <Typography>{message}</Typography> : null}
+      {isString(amount) ? <Typography>{amount}</Typography> : null}
+      {isString(currency) ? <Typography>{currency}</Typography> : null}
+      {isString(email) ? <Typography>{email}</Typography> : null}
+      {isString(name) ? <Typography>{name}</Typography> : null}
+      {isString(phone) ? <Typography>{phone}</Typography> : null}
+      {isString(brand) ? <Typography>{brand}</Typography> : null}
+      {isString(last4) ? <Typography>{last4}</Typography> : null}
+      {isString(expMonth) ? <Typography>{expMonth}</Typography> : null}
+      {isString(expYear) ? <Typography>{expYear}</Typography> : null}
+    </div>
+  );
+});
