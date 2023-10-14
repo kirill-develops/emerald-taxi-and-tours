@@ -11,7 +11,6 @@
       "@TourPageLayout/*" : ["components/TourPageLayout/*"],
       "@Transfer/*" : ["components/TransferComponents/*"],
       "@TransferPageLayout/*" : ["components/TransferPageLayout/*"],
-      "@public/*" : ["../public/*"],
       "@context/*": ["context/*"]
     },
     "lib": [
@@ -44,7 +43,9 @@
     "**/*.tsx",
      "next.config.js",
  "src/material/theme.js", 
- "src/material/themeConfig/components.js" 
+ "src/material/themeConfig/components.js",
+ "public/**/*.png",
+ "public/**/*.PNG",
 ],
   "exclude": [
     "node_modules"

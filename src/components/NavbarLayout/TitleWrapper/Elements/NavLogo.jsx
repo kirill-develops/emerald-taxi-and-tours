@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
+import { styled } from '@mui/material';
 
 import Link from '@material/Link';
-import { styled } from '@mui/material';
+import navLogo from './emerald_logo_v2.PNG';
 
 const LogoLink = styled(Link)(({ theme }) =>
   theme.unstable_sx({ display: 'flex', alignItems: 'center' }),
@@ -12,12 +13,12 @@ export default function NavLogo() {
   return (
     <LogoLink href="/">
       <Image
-        src="/logo/emerald_logo_v2.png"
+        src={navLogo}
         alt="Emerald Taxi & Tour Logo"
         width={42}
         height={42}
         quality={100}
-        blurDataURL
+        priority
       />
     </LogoLink>
   );
