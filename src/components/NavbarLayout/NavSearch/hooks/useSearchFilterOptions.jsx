@@ -38,12 +38,16 @@ export default function useSearchFilterOptions() {
           parish,
         ]);
 
+        const areaNoSpaces = area.replace(/ /, '_');
+
+        const tourUrl = `/tours/${areaNoSpaces}/${link}`;
+
         return {
           name: `${name} in ${area}`,
           tourType: type,
           from: priceName,
           parish: priceParish,
-          link: `/tours/${link}`,
+          link: tourUrl,
           type: 'Tours',
         };
       }),
