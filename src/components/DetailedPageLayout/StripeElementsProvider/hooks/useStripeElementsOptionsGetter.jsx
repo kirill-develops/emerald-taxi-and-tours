@@ -1,4 +1,4 @@
-import { useTheme } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { useMemo } from 'react';
 
 export default function useStripeElementsOptionsGetter(clientSecret) {

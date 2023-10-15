@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ReviewContext from '@context/ReviewContext';
-import { Box, Divider } from '@mui/material';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import TextCollapse from '@elements/TextCollapse';
 
 export default function DescriptionText({ ...rest }) {

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 import FormInputStack from '@elements/FormInputStack';
 import usePickerProps from './hooks/usePickerProps';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const StyledInputStack = styled(FormInputStack)(({ theme }) =>
   theme.unstable_sx({ rowGap: 1 }),

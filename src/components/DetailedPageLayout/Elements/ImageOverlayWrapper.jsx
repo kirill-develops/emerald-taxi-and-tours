@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import LocalSeeOutlined from '@mui/icons-material/LocalSeeOutlined';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 import { PopUpLink } from '@elements/Links';

@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
-import { useMediaQuery } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const StyledPageCard = styled(Card)(({ theme, sx }) => {
   const isBelowMdBreakpoint = useMediaQuery((theme) =>

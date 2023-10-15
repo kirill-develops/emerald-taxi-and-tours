@@ -1,6 +1,8 @@
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
 import React, { useContext, useState } from 'react';
 import DarkModeContext from '@context/DarkModeContext';

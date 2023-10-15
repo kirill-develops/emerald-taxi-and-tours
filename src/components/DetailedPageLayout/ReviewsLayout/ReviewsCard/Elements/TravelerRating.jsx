@@ -1,7 +1,7 @@
 import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 

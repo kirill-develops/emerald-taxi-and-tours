@@ -1,7 +1,7 @@
 import React from 'react';
 import PageCard from '@elements/PageCard';
 import Divider from '@mui/material/Divider';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import ServiceTitle from './Elements/ServiceTitle';
 import ServiceDescription from './Elements/ServiceDescription';
 

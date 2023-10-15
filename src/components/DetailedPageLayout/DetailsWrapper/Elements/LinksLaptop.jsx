@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import DetailDevider from './DetailDevider';
 import { ParamContext } from '@context/FormContextProvider';
 import { detailTypographyProps } from '..';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import usePageLinks from '../hooks/usePageLinks';
 
 const AddressText = styled(Typography)(({ theme }) =>

@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
 

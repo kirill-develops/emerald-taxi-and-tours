@@ -2,7 +2,7 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 
 import Link from '@material/Link';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const StandardText = styled(Typography)(({ theme }) =>
   theme.unstable_sx({

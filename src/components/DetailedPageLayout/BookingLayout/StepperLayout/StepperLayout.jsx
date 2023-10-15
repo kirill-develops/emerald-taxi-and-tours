@@ -1,6 +1,6 @@
 import Stack from '@mui/material/Stack';
 import { Form } from 'formik';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 import StripePayContext from '@context/StripePayContext';
 import useFormReset from './hooks/useFormReset';

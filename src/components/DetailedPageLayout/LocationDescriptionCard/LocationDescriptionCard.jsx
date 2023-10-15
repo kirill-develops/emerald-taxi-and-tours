@@ -3,7 +3,7 @@ import { ParamContext } from '@context/FormContextProvider';
 import PageCard from '@elements/PageCard';
 import Divider from '@mui/material/Divider';
 import TextCollapse from '@elements/TextCollapse';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import CardTitle from '@elements/CardTitle';
 
 const DescriptionCard = styled(PageCard)(({ theme }) =>
