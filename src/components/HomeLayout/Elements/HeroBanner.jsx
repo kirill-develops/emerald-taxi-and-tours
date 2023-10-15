@@ -22,6 +22,34 @@ const ImageWrapper = styled(Box)(({ theme }) =>
   }),
 );
 
+const OverlayStack = styled(Stack)(({ theme }) =>
+  theme.unstable_sx({
+    zIndex: 10,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%',
+    justifyContent: 'space-around',
+    color: theme.palette.common.black,
+    textShadow: `-1px -1px 0 ${theme.palette.common.white}, 
+    1px -1px 0 ${theme.palette.common.white}, 
+    -1px  1px 0 ${theme.palette.common.white}, 
+    1px  1px 0 ${theme.palette.common.white}`,
+  }),
+);
+
+const TitleText = styled(Typography)(({ theme }) =>
+  theme.unstable_sx({
+    textAlign: 'center',
+    fontWeight: 600,
+  }),
+);
+
+const HeaderText = styled(Typography)(({ theme }) =>
+  theme.unstable_sx({ textAlign: 'center', fontWeight: 500 }),
+);
+
 export default function HeroBanner() {
   return (
     <Container
@@ -37,46 +65,15 @@ export default function HeroBanner() {
           fill
           sizes="100vw"
         />
-        <Stack
-          sx={{
-            zIndex: 10,
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            width: '100%',
-            justifyContent: 'space-around',
-          }}
-        >
-          <Typography
-            variant="h2"
-            textAlign={'center'}
-            sx={{
-              textAlign: 'center',
-              fontWeight: 600,
-            }}
-          >
-            Emerald Taxi & Tours
-          </Typography>
-          <Typography
-            variant="h3"
-            sx={{
-              textAlign: 'center',
-              fontWeight: 500,
-            }}
-          >
+        <OverlayStack>
+          <TitleText variant="h2">Emerald Taxi & Tours</TitleText>
+          <HeaderText variant="h3">
             Private Airport Transportation & Island Tours
-          </Typography>
-          <Typography
-            variant="h4"
-            sx={{
-              textAlign: 'center',
-              fontWeight: 500,
-            }}
-          >
+          </HeaderText>
+          <HeaderText variant="h4">
             Your Best Vacation Begins and Ends with Emerald Taxi & Tours
-          </Typography>
-        </Stack>
+          </HeaderText>
+        </OverlayStack>
       </ImageWrapper>
     </Container>
   );
