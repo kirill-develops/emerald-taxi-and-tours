@@ -3,7 +3,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 
 import Link from '@material/Link';
-import navLogo from '@../public/logo/emerald_logo_v2.png';
+import navLogo from '@../public/logo/emerald_logo_v2.PNG';
 
 const LogoLink = styled(Link)(({ theme }) =>
   theme.unstable_sx({ display: 'flex', alignItems: 'center' }),
