@@ -35,6 +35,7 @@ export default function HeroBanner() {
           quality={100}
           priority
           fill
+          sizes="100vw"
         />
         <Stack
           sx={{
