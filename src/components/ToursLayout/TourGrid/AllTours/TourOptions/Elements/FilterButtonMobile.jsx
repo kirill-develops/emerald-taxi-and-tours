@@ -11,8 +11,7 @@ const filterButtonStyles = {
 };
 
 export default React.memo(function FilterButtonMobile() {
-  const [{ filterExpand }, setState] = useTour();
-  const { toggleFilterExpand } = setState;
+  const [{ filterExpand }, { toggleFilterExpand }] = useTour();
 
   const isXsBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 

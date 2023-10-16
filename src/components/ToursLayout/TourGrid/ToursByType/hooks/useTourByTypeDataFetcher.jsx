@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTour } from '../../../hooks/useTour';
 
 export default function useTourByTypeDataFetcher() {
-  const [state, actions] = useTour();
+  const [state] = useTour();
   const { tourData } = state;
 
   return useMemo(() => {

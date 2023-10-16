@@ -1,8 +1,5 @@
-import { tourStore } from '../components/ToursLayout/hooks/useTour';
-import { createContainer } from 'react-sweet-state';
+import { TourContainer } from '../components/ToursLayout/hooks/useTour';
 
 export default function TourContext({ children }) {
-  const TourContainer = createContainer(tourStore);
-
   return <TourContainer>{children}</TourContainer>;
 }

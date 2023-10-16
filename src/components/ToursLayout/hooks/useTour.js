@@ -1,4 +1,4 @@
-import { createStore, createHook } from 'react-sweet-state';
+import { createStore, createHook, createContainer } from 'react-sweet-state';
 import tourData from '@data/tourData.json';
 
 function initFilter(data, key) {
@@ -45,15 +45,37 @@ export function extractProps(key, data = tourData) {
   return result;
 }
 
+const filterData = () => ({ setState, getState }) => {
+  const { filterStartLocation, filterType, filterArea } = getState();
+  const isStartLocFiltered = Object.values(filterStartLocation).some(val => val);
+  const isTypeFiltered = Object.values(filterType).some(val => val);
+  const isAreaFiltered = Object.values(filterArea).some(val => val);
+
+  const filteredData = tourData.filter(item =>
+    (!isStartLocFiltered || item.price.some((p) => filterStartLocation[p.link]))
+    && (!isTypeFiltered || item.type.some((t) => filterType[t]))
+    && (!isAreaFiltered || filterArea[item.area])
+  );
+
+  setState({ filteredData: filteredData.length > 0 ? filteredData : tourData });
+}
+
+const initFilterStartLocation = initFilter(tourData, 'price');
+const initFilterType = initFilter(tourData, 'type');
+const initFilterArea = initFilter(tourData, 'area');
+
+export const TourContainer = createContainer();
+
 
 export const tourStore = createStore({
   name: 'tour Store',
+  containedBy: TourContainer,
   initialState: {
     sortBy: '',
     filterExpand: false,
-    filterStartLocation: initFilter(tourData, 'price'),
-    filterType: initFilter(tourData, 'type'),
-    filterArea: initFilter(tourData, 'area'),
+    filterStartLocation: initFilterStartLocation,
+    filterType: initFilterType,
+    filterArea: initFilterArea,
     filteredData: tourData,
     tourData: tourData
   },
@@ -72,7 +94,7 @@ export const tourStore = createStore({
         })
       },
     toggleCheckbox:
-      (stateName, value) => ({ setState, getState, dispatch }) => {
+      (stateName, value) => ({ setState, getState }) => {
         const state = getState()[stateName];
 
         setState({
@@ -82,22 +104,8 @@ export const tourStore = createStore({
           }
         });
 
-        dispatch(tourStore.actions.filterData());
+        filterData()({ setState, getState })
       },
-    filterData: () => ({ setState, getState }) => {
-      const { filterStartLocation, filterType, filterArea } = getState();
-      const isStartLocFiltered = Object.values(filterStartLocation).some(val => val);
-      const isTypeFiltered = Object.values(filterType).some(val => val);
-      const isAreaFiltered = Object.values(filterArea).some(val => val);
-
-      const filteredData = tourData.filter(item =>
-        (!isStartLocFiltered || item.price.some((p) => filterStartLocation[p.link]))
-        && (!isTypeFiltered || item.type.some((t) => filterType[t]))
-        && (!isAreaFiltered || filterArea[item.area])
-      );
-
-      setState({ filteredData: filteredData.length > 0 ? filteredData : tourData });
-    },
     findAvailableFilters: (filters) => ({ getState }) => {
       const { filteredData } = getState();
 

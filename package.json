@@ -34,7 +34,7 @@
     "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-flag-kit": "^1.1.1",
-    "react-sweet-state": "^2.6.5",
+    "react-sweet-state": "^2.7.1",
     "sharp": "^0.32.6",
     "stripe": "^12.18.0",
     "swiper": "^10.1.0",
