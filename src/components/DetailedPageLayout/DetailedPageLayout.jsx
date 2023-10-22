@@ -1,23 +1,19 @@
 import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import dynamic from 'next/dynamic';
 import React from 'react';
+
+import MaxWidthContainer from '@elements/MaxWidthContainer';
 import DetailsWrapper from './DetailsWrapper';
 import ImagesLayout from './ImagesLayout';
+import PricingCard from './PricingCard';
+import RatingsAndReviews from './RatingsAndReviewsCard';
+import LocationDescription from './LocationDescriptionCard/LocationDescriptionCard';
+import PriceTable from './PriceTable/PriceTable';
+import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
+import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
+import CardStack from './Elements/CardStack';
 import ImageOverlayWrapper from './Elements/ImageOverlayWrapper';
 import ImportantInfo from './Elements/ImportantInfo';
-import LocationDescription from './LocationDescriptionCard/LocationDescriptionCard';
-import MaxWidthContainer from '@elements/MaxWidthContainer';
-import PricingCard from './PricingCard';
-import PriceTable from './PriceTable/PriceTable';
-import RatingsAndReviews from './RatingsAndReviewsCard';
-import ServiceDescription from './ServiceDescriptionCard/ServiceDescriptionCard';
-import ReviewsLayout from './ReviewsLayout/ReviewsLayout';
-import CardStack from './Elements/CardStack';
-const BookingLayout = dynamic(() => import('./BookingLayout/BookingLayout'));
-const StripeElementsProvider = dynamic(() =>
-  import('./StripeElementsProvider/StripeElementsProvider'),
-);
 
 function MaxWidthLayoutWrapper({ children, ...other }) {
   const isBelowMdBreakpoint = useMediaQuery((theme) =>
@@ -56,41 +52,38 @@ export default function DetailedPageLayout() {
 
   return (
     <>
-      <StripeElementsProvider>
-        <BookingLayout />
-        {/* HERO SECTION */}
-        <DetailsWrapper>
-          <ImageOverlayWrapper>
-            <ImagesLayout />
-          </ImageOverlayWrapper>
-        </DetailsWrapper>
-        <StyledStack>
-          {/* Next Section */}
-          <MaxWidthLayoutWrapper>
-            <LocationDescription />
-            {isBelowMdBreakpoint && (
-              <>
-                <RatingsAndReviews />
-                <ServiceDescription />
-              </>
-            )}
-          </MaxWidthLayoutWrapper>
-          {/* Tablet Horizontal 3 Card Component */}
-          <MaxWidthLayoutWrapper maxWidth="lg">
-            <CardStack isBreakpoint={isBelowMdBreakpoint}>
-              {!isBelowMdBreakpoint && <RatingsAndReviews />}
-              <ImportantInfo />
-              <PriceTable />
-              <PricingCard />
-            </CardStack>
-          </MaxWidthLayoutWrapper>
-          {/* Next Section */}
-          <MaxWidthLayoutWrapper>
-            {!isBelowMdBreakpoint && <ServiceDescription />}
-            <ReviewsLayout />
-          </MaxWidthLayoutWrapper>
-        </StyledStack>
-      </StripeElementsProvider>
+      {/* HERO SECTION */}
+      <DetailsWrapper>
+        <ImageOverlayWrapper>
+          <ImagesLayout />
+        </ImageOverlayWrapper>
+      </DetailsWrapper>
+      <StyledStack>
+        {/* Next Section */}
+        <MaxWidthLayoutWrapper>
+          <LocationDescription />
+          {isBelowMdBreakpoint && (
+            <>
+              <RatingsAndReviews />
+              <ServiceDescription />
+            </>
+          )}
+        </MaxWidthLayoutWrapper>
+        {/* Tablet Horizontal 3 Card Component */}
+        <MaxWidthLayoutWrapper maxWidth="lg">
+          <CardStack isBreakpoint={isBelowMdBreakpoint}>
+            {!isBelowMdBreakpoint && <RatingsAndReviews />}
+            <ImportantInfo />
+            <PriceTable />
+            <PricingCard />
+          </CardStack>
+        </MaxWidthLayoutWrapper>
+        {/* Next Section */}
+        <MaxWidthLayoutWrapper>
+          {!isBelowMdBreakpoint && <ServiceDescription />}
+          <ReviewsLayout />
+        </MaxWidthLayoutWrapper>
+      </StyledStack>
     </>
   );
 }
