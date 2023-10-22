@@ -54,8 +54,6 @@ export default function DetailedPageLayout() {
     theme.breakpoints.down('md'),
   );
 
-  console.log('rerender');
-
   return (
     <>
       <StripeElementsProvider>

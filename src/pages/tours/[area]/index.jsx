@@ -88,7 +88,6 @@ export default function AreaPage({ tourParams }) {
   }
 
   const { name, parish } = tourParams;
-  console.log(tourParams);
 
   return (
     <>
