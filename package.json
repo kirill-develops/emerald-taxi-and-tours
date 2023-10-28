@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:css": "stylelint --ignore-path .gitignore '**/*.(css|jsx)'"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
@@ -41,7 +42,11 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
+    "@stylelint/postcss-css-in-js": "^0.38.0",
     "@types/node": "18.11.18",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "postcss": "^8.4.31",
+    "postcss-syntax": "^0.36.2",
+    "stylelint-config-standard": "^34.0.0"
   }
 }
