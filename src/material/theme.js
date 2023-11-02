@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { createTheme, lighten, responsiveFontSizes } from "@mui/material/styles";
 import { themeBreakpoints } from "./themeConfig/breakpoints";
 import { themeTypography } from "./themeConfig/typography";
 import { themeComponents } from "./themeConfig/components";
@@ -11,7 +11,9 @@ const defaultThemeProps = {
     common: {
       black: '#000',
       white: '#fff',
-      green: '#288c05'
+      green: '#288c05',
+      yellow: '#ffb952',
+      mint: '#b8cda1'
     }
   }
 }
