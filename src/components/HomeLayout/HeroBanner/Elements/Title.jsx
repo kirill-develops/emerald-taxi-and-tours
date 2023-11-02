@@ -45,9 +45,24 @@ function TitleText({ children, sx, ...rest }) {
 export default function Title() {
   return (
     <Stack>
-      <TitleText sx={topTextStyles}>Emerald</TitleText>
-      <TitleText sx={middleTextStyles}>Taxi & Tours</TitleText>
-      <TitleText sx={bottomTextStyles}>Jamaica</TitleText>
+      <TitleText
+        component="h1"
+        sx={topTextStyles}
+      >
+        Emerald
+      </TitleText>
+      <TitleText
+        component="h2"
+        sx={middleTextStyles}
+      >
+        Taxi & Tours
+      </TitleText>
+      <TitleText
+        component="h3"
+        sx={bottomTextStyles}
+      >
+        Jamaica
+      </TitleText>
     </Stack>
   );
 }
