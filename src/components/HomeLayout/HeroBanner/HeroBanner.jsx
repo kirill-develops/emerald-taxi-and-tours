@@ -4,49 +4,60 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Image from 'next/image';
 import React from 'react';
-import heroImage from '@../public/hero/100.jpeg';
+import heroImage from '@../public/hero/101.jpg';
 import Tagline from './Elements/Tagline';
 import Title from './Elements/Title';
 
 const ImageWrapper = styled(Box)(({ theme }) =>
   theme.unstable_sx({
-    position: 'relative',
-    flexGrow: 1,
-    height: '65dvh',
-    display: 'flex',
-    justifyContent: 'center',
+    height: { xxs: '35dvh', md: '40dvh' },
+    minHeight: { xxs: '360px', md: '480px', lg: '500px' },
     overflow: 'hidden',
+    filter: 'brightness(60%)',
   }),
 );
 
 const OverlayStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({
-    zIndex: 10,
+    zIndex: 1,
     position: 'absolute',
     top: 0,
     left: 0,
     height: '100%',
     width: '100%',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
   }),
 );
 
 export default function HeroBanner() {
   return (
-    <Container
-      disableGutters
-      maxWidth={false}
-    >
+    <BannerContainer>
       <ImageWrapper>
         <MuiImage
           src={heroImage}
           alt="hero banner"
         />
-        <OverlayStack>
-          <Title />
-          <Tagline />
-        </OverlayStack>
       </ImageWrapper>
+      <OverlayStack>
+        <Title />
+        <Tagline />
+      </OverlayStack>
+    </BannerContainer>
+  );
+}
+
+const bannerContainerStyles = {
+  position: 'relative',
+};
+
+function BannerContainer({ children }) {
+  return (
+    <Container
+      disableGutters
+      maxWidth={false}
+      sx={bannerContainerStyles}
+    >
+      {children}
     </Container>
   );
 }
@@ -64,7 +75,7 @@ function MuiImage({ src, alt, ...rest }) {
       priority
       fill
       sizes="100vw"
-      sx={muiImageStyles}
+      style={muiImageStyles}
       {...rest}
     />
   );
