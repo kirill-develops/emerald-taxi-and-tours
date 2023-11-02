@@ -1,31 +1,30 @@
-import { lighten } from '@mui/material/styles';
+import { darken } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import React from 'react';
 
-const stackStyles = (theme) => ({
-  textShadow: `-1.3px -1.3px 0 ${theme.palette.common.black}, 
-                1.3px -1.3px 0 ${theme.palette.common.black}, 
-                -1.3px  1.3px 0 ${theme.palette.common.black}, 
-                1.3px  1.3px 0 ${theme.palette.common.black}`,
-});
+const titleWhite = (theme) => darken(theme.palette.common.white, 0.135);
+const lineHeight = 1.1;
 
 const topTextStyles = (theme, styles) => ({
   fontSize: { xxs: '4rem', xs: '5rem', md: '7rem' },
-  color: theme.palette.primary.main,
+  lineHeight: lineHeight,
+  color: theme.palette.common.yellow,
   ...styles,
 });
 
 const middleTextStyles = (theme, styles) => ({
   fontSize: { xxs: '2.2rem', xs: '3rem', md: '4rem' },
-  color: lighten(theme.palette.common.green, 0.15),
+  lineHeight: lineHeight,
+  color: titleWhite,
   ...styles,
 });
 
 const bottomTextStyles = (theme, styles) => ({
   fontSize: { xxs: '2rem', sm: '2.8rem', md: '4rem' },
-  color: theme.palette.primary.main,
+  lineHeight: lineHeight,
+  color: titleWhite,
   ...styles,
 });
 
@@ -45,7 +44,7 @@ function TitleText({ children, sx, ...rest }) {
 
 export default function Title() {
   return (
-    <Stack sx={stackStyles}>
+    <Stack>
       <TitleText sx={topTextStyles}>Emerald</TitleText>
       <TitleText sx={middleTextStyles}>Taxi & Tours</TitleText>
       <TitleText sx={bottomTextStyles}>Jamaica</TitleText>
