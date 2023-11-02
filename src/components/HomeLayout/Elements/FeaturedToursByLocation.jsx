@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import PlaceIcon from '@mui/icons-material/Place';
 import React from 'react';
 import HomeSection from './HomeSection';
+import backgroundImage from '@../public/images/101.png';
 import { extractProps } from '../../ToursLayout/hooks/useTour';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import Link from '@material/Link';
@@ -64,7 +65,7 @@ export default function FeatureTours() {
         </GridContainer>
       </HomeSection>
       <MuiImage
-        src="/images/101.png"
+        src={backgroundImage}
         alt="background image"
         fill
       />
