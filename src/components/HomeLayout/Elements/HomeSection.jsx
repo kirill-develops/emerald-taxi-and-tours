@@ -17,22 +17,37 @@ export default React.memo(function HomeSection({
   center = false,
   ...rest
 }) {
-  const stackStyles = useMemo(() => ({ py: 5, height: '100%', ...sx }), [sx]);
+  const stackStyles = useMemo(
+    () => ({
+      py: 5,
+      height: '100%',
+      rowGap: 3,
+      ...sx,
+    }),
+    [sx],
+  );
+
+  const sectionTitle = useMemo(() => {
+    if (!title) {
+      return;
+    }
+
+    return (
+      <SectionTitle
+        maxWidth="lg"
+        sx={titleStyles}
+      >
+        {title}
+      </SectionTitle>
+    );
+  }, [title, titleStyles]);
 
   return (
     <Stack
-      rowGap={3}
       sx={stackStyles}
       {...rest}
     >
-      {title ? (
-        <SectionTitle
-          maxWidth="lg"
-          sx={titleStyles}
-        >
-          {title}
-        </SectionTitle>
-      ) : null}
+      {sectionTitle}
       <MaxWidthContainer
         maxWidth="lg"
         disableStack
