@@ -1,16 +1,13 @@
-import { Roboto } from "next/font/google";
+import { DM_Sans } from "next/font/google";
+import { Lobster } from "next/font/google";
 import { mediaQueryObj } from './breakpoints';
 
 
-export const roboto = Roboto({
-   weight: ['300', '400', '500', '700', '900'],
-   subsets: ['latin'],
-   display: 'swap',
-   fallback: ['Helvetica', 'Arial', 'sans-serif'],
-});
+export const dm_sans = DM_Sans({ subsets: ['latin'], display: 'swap' })
+export const lobster = Lobster({ weight: ['400'], subsets: ['latin'], display: 'swap' })
 
 export const themeTypography = {
-   fontFamily: roboto.style.fontFamily,
+   fontFamily: dm_sans.style.fontFamily,
    cardTitle: {
       fontWeight: 500,
       fontSize: '1.1rem',

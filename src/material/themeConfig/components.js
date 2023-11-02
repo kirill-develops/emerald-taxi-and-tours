@@ -1,5 +1,5 @@
-import { Theme } from "@mui/material/styles";
 import { mediaQueryObj } from "./breakpoints";
+import { dm_sans, lobster } from "./typography";
 
 function getResponsiveTypographyVariant(theme, variant) {
    const variantProps = theme.typography[variant];
@@ -57,6 +57,12 @@ export const themeComponents = {
             smallBold: 'h5',
             smallCaption: 'h6'
          }
+      },
+      styleOverrides: {
+         root: ({ ownerState }) => ({
+            fontFamily: ownerState?.altfont
+               ? lobster.style.fontFamily : dm_sans.style.fontFamily
+         }),
       }
    }
 }

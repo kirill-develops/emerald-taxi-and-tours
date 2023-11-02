@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroBanner from './Elements/HeroBanner';
+import HeroBanner from './HeroBanner/HeroBanner';
 import FeaturedTransfers from './Elements/FeaturedTransfers';
 import FeaturedToursByLocation from './Elements/FeaturedToursByLocation';
 import ToursByType from '../ToursLayout/TourGrid/ToursByType/ToursByType';

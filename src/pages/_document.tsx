@@ -3,7 +3,7 @@ import { getInitColorSchemeScript } from '@mui/material/styles';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import { theme } from '@material/theme';
-import { roboto } from '@material/themeConfig/typography';
+import { dm_sans } from '@material/themeConfig/typography';
 import createEmotionCache from '@material/createEmotionCache';
 import Favicon from '@components/Favicon';
 
@@ -11,12 +11,12 @@ import Favicon from '@components/Favicon';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" className={roboto.className}>
+      <Html lang="en" className={dm_sans.className}>
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Lobster&display=swap"
           />
           <meta name="emotion-insertion-point" content="" />
           <Favicon />
