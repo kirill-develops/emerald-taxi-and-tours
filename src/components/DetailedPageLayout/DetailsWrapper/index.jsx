@@ -38,7 +38,7 @@ export default React.memo(function DetailsWrapper({ children, ...rest }) {
     <DetailsBox {...rest}>
       <MaxWidthContainer
         rowGap={0.5}
-        maxWidth="md"
+        maxWidth="lg"
       >
         <DetailsStack>
           <RankingEl />

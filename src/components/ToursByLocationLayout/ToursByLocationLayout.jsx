@@ -16,7 +16,7 @@ export default function ToursByLocationLayout() {
   return (
     <PageLayoutStack>
       <MaxWidthContainer
-        maxWidth="sm"
+        maxWidth="md"
         disableStack
       >
         <Typography sx={{ px: 2 }}>

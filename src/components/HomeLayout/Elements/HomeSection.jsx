@@ -34,7 +34,7 @@ export default React.memo(function HomeSection({
         </SectionTitle>
       ) : null}
       <MaxWidthContainer
-        maxWidth="md"
+        maxWidth="lg"
         disableStack
         sx={containerStyles(center)}
       >

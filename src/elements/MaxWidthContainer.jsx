@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import React, { useMemo } from 'react';
 
 export default React.memo(function MaxWidthContainer({
-  maxWidth = 'md',
+  maxWidth = 'lg',
   disableStack = false,
   rowGap = 3,
   children,

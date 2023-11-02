@@ -15,7 +15,7 @@ export default React.memo(function AreaAccordionArr({ transferData, title }) {
   return (
     <Stack rowGap={{ xxs: 0.5, sm: 1, md: 2 }}>
       <SectionTitle maxWidth="lg">{title}</SectionTitle>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         {transferData.map((data) => (
           <AreaAccordion
             areaData={data}
