@@ -16917,7 +16917,11 @@
                "extraGuestTwoWay": 20,
                "extraGuestTwoWayId": "price_braco_melia_braco_village_extraGuestTwoWay"
             },
-            "stripeId": "transfer_MBJ_braco_melia_braco_village"
+            "stripeId": "transfer_MBJ_braco_melia_braco_village",
+            "tripAdvisorDetails": [],
+            "dataUpdated": "2023-11-02T23:41:03.309Z",
+            "tripAdvisorPhotos": [],
+            "tripAdvisorReviews": []
          }
       ]
    },
