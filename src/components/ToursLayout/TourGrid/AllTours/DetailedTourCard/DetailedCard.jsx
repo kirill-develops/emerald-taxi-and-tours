@@ -10,7 +10,7 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
     name,
     area,
     link,
-    areaLink,
+    area_link: areaLink,
     type,
     starting_points: startingPoints,
     tripAdvisorPhotos,

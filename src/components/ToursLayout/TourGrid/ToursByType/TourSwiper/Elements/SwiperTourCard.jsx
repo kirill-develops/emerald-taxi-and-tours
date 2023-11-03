@@ -10,7 +10,7 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
     area,
     link,
     starting_points: startingPoints,
-    areaLink,
+    area_link: areaLink,
     tripAdvisorPhotos,
     tripAdvisorDetails: {
       cuisine,

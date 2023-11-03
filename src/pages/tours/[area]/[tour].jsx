@@ -17,7 +17,7 @@ export function getToursUrl(areaLink, link) {
 export async function getStaticPaths() {
   const paths = tourData.map((tour) => ({
     params: {
-      area: tour.areaLink,
+      area: tour.area_link,
       tour: tour.link,
     },
   }));

@@ -11,7 +11,7 @@ import { isObjEmpty } from '../../../helperFunctions';
 export async function getStaticPaths() {
   const paths = tourData.map((tour) => ({
     params: {
-      area: tour.areaLink,
+      area: tour.area_link,
     },
   }));
 
@@ -40,9 +40,9 @@ export async function getStaticProps({ params }) {
         name,
         area,
         link,
-        areaLink,
+        area_link: areaLink,
         type,
-        starting_points,
+        starting_points: startingPoints,
         tripAdvisorDetails,
         tripAdvisorPhotos,
         tripAdvisorReviews,
@@ -52,7 +52,7 @@ export async function getStaticProps({ params }) {
         link,
         areaLink,
         type,
-        startingPoints: starting_points,
+        startingPoints,
         photoObj: tripAdvisorPhotos[0],
         priceLevel: tripAdvisorDetails?.price_level || null,
         cuisine: tripAdvisorDetails?.cuisine || null,
