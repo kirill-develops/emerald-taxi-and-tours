@@ -14,6 +14,7 @@ export default React.memo(function HomeSection({
   titleStyles,
   sx,
   children,
+  disableGutters = false,
   center = false,
   ...rest
 }) {
@@ -51,6 +52,7 @@ export default React.memo(function HomeSection({
       <MaxWidthContainer
         maxWidth="lg"
         disableStack
+        disableGutters={disableGutters}
         sx={containerStyles(center)}
       >
         {children}
