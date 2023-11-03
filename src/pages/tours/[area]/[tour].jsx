@@ -40,12 +40,20 @@ async function updateTourData(updatedTourParams = {}) {
 }
 
 export async function getStaticProps({ params }) {
-  const tourParams = tourData.find((tour) => tour.link === params.tour);
+  const { tour: tourParam, area: areaParam } = params;
 
-  if (!tourParams || !params.area || !params.tour) {
+  if (!areaParam || !tourParam) {
     return {
       notFound: true,
     };
+  }
+
+  const tourParams = tourData.find(
+    (tour) => tourParam === tour.link && areaParam === tour.area_link,
+  );
+
+  if (!tourParams) {
+    return { notFound: true };
   }
 
   if (!tourParams.location_id) {
