@@ -21,16 +21,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) =>
   }),
 );
 
-export default React.memo(function StyledTableRowComponent({
-  name,
-  parish,
-  price,
-}) {
+export default React.memo(function StyledTableRowComponent({ name, price }) {
   return (
     <StyledTableRow>
       <StyledTableCell scope="row">{name}</StyledTableCell>
-      <StyledTableCell align="center">{parish}</StyledTableCell>
-      <StyledTableCell align="right">${price}</StyledTableCell>
+      <StyledTableCell align="center">$ADD</StyledTableCell>
+      <StyledTableCell align="center">${price}</StyledTableCell>
     </StyledTableRow>
   );
 });

@@ -1,36 +1,18 @@
-import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
 import React, { useContext } from 'react';
 import PageCard from '@elements/PageCard';
 import StyledTableRowComponent from './Elements/StyledTableRowComponent';
 import { ParamContext } from '@context/FormContextProvider';
-
-const StyledHeaderTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+import TableHeaders from './Elements/TableHeaders';
 
 const tableContainerStyles = {
   maxWidth: 500,
   width: '100%',
   overflowX: 'unset',
 };
-
-const headerObjs = [
-  { name: 'Region' },
-  { name: 'Parish', align: 'center' },
-  { name: 'Price', align: 'right' },
-];
 
 export default React.memo(function PriceTable() {
   const { starting_points: startingPoints } = useContext(ParamContext);
@@ -42,35 +24,42 @@ export default React.memo(function PriceTable() {
   return (
     <PageCard>
       <TableContainer sx={tableContainerStyles}>
-        <Table
-          size="small"
-          aria-label="regional price table"
-        >
-          <caption>All prices in USD & include pickup and return</caption>
-          <TableHead>
-            <TableRow>
-              {headerObjs.map((header) => (
-                <StyledHeaderTableCell
-                  align={header?.align}
-                  key={header.name}
-                >
-                  {header.name}
-                </StyledHeaderTableCell>
-              ))}
-            </TableRow>
-          </TableHead>
+        <StyledTable>
+          <Caption>All prices in USD & include pickup and return</Caption>
+          <TableHeaders />
           <TableBody>
-            {startingPoints?.map(({ name, parish, link, price }) => (
+            {startingPoints?.map(({ name, link, price }) => (
               <StyledTableRowComponent
                 name={name}
-                parish={parish}
                 price={price}
                 key={link}
               />
             ))}
           </TableBody>
-        </Table>
+        </StyledTable>
       </TableContainer>
     </PageCard>
-  ) : null;
+  );
 });
+
+function StyledTable({ children }) {
+  return (
+    <Table
+      size="small"
+      aria-label="regional price table"
+    >
+      {children}
+    </Table>
+  );
+}
+
+function Caption({ children }) {
+  return (
+    <Typography
+      variant="caption"
+      component="caption"
+    >
+      {children}
+    </Typography>
+  );
+}
