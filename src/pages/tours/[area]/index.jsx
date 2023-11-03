@@ -20,8 +20,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const paramDetails = tourData
-    .find((tour) => tour.price.find(({ link }) => link === params.area))
-    ?.price.find(({ link }) => link === params.area);
+    .flatMap((tour) => tour.starting_points)
+    .find(({ link }) => link === params.area);
 
   if (isObjEmpty(paramDetails) || !params.area) {
     return {
@@ -32,8 +32,8 @@ export async function getStaticProps({ params }) {
   const { price, ...filteredParams } = paramDetails;
 
   const filteredLocations = tourData
-    .filter(
-      (tour) => tour.price.find(({ link }) => link === params.area) && tour,
+    .filter((tour) =>
+      tour.starting_points.some(({ link }) => link === params.area),
     )
     .map(
       ({
@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
         link,
         areaLink,
         type,
-        price,
+        starting_points,
         tripAdvisorDetails,
         tripAdvisorPhotos,
         tripAdvisorReviews,
@@ -52,17 +52,18 @@ export async function getStaticProps({ params }) {
         link,
         areaLink,
         type,
-        price,
+        startingPoints: starting_points,
         photoObj: tripAdvisorPhotos[0],
         priceLevel: tripAdvisorDetails?.price_level || null,
         cuisine: tripAdvisorDetails?.cuisine || null,
         groups: tripAdvisorDetails?.groups || null,
         numReviews: tripAdvisorDetails?.num_reviews || null,
         rating: tripAdvisorDetails?.rating || null,
-        reviews: tripAdvisorReviews?.map((review) => ({
-          title: review?.title,
-          id: review?.id,
-        })),
+        reviews:
+          tripAdvisorReviews?.map((review) => ({
+            title: review?.title,
+            id: review?.id,
+          })) || [],
         subcategory: tripAdvisorDetails?.subcategory || null,
       }),
     );

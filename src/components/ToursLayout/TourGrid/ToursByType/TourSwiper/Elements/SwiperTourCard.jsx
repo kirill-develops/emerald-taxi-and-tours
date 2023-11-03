@@ -9,7 +9,7 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
     name,
     area,
     link,
-    price,
+    starting_points: startingPoints,
     areaLink,
     tripAdvisorPhotos,
     tripAdvisorDetails: {
@@ -22,9 +22,10 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
     } = {},
   } = tour;
 
-  const areaPrice = price.reduce(
-    (acc, priceObj) => (priceObj.price < acc ? priceObj.price : acc),
-    price[0].price,
+  const areaPrice = startingPoints.reduce(
+    (acc, startingPoint) =>
+      startingPoint.price < acc ? startingPoint.price : acc,
+    startingPoints[0].price,
   );
 
   const url = useMemo(() => getToursUrl(areaLink, link), [areaLink, link]);

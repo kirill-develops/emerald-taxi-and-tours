@@ -9,7 +9,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -607,7 +607,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -1287,7 +1287,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -1909,7 +1909,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -2618,7 +2618,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -3303,7 +3303,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -3963,7 +3963,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -4579,7 +4579,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -5207,7 +5207,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -5877,7 +5877,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -6569,7 +6569,7 @@
       "type": [
          "Restaurant"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -7222,7 +7222,7 @@
       "type": [
          "Shopping Tour"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -7747,7 +7747,7 @@
       "type": [
          "Shopping Tour"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -8240,7 +8240,7 @@
       "type": [
          "Shopping Tour"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Lucea",
             "parish": "Hanover",
@@ -8475,7 +8475,7 @@
       "type": [
          "Shopping Tour"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -8985,7 +8985,7 @@
       "type": [
          "Casino"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -9540,7 +9540,7 @@
       "type": [
          "Casino"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -10026,7 +10026,7 @@
       "type": [
          "Casino"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -10547,7 +10547,7 @@
       "type": [
          "Golf Course"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -11178,7 +11178,7 @@
       "type": [
          "Golf Course"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -11705,7 +11705,7 @@
       "type": [
          "Golf Course"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -12321,7 +12321,7 @@
       "type": [
          "Golf Course"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -13080,7 +13080,7 @@
       "type": [
          "Attraction"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -13600,7 +13600,7 @@
       "type": [
          "Attraction"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -14236,7 +14236,7 @@
       "type": [
          "Attraction"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -14766,7 +14766,7 @@
       "type": [
          "Attraction"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -15278,7 +15278,7 @@
       "type": [
          "Attraction"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -15832,7 +15832,7 @@
       "type": [
          "Attraction"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -16373,7 +16373,7 @@
       "type": [
          "Attraction"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",
@@ -16983,7 +16983,7 @@
       "type": [
          "Attraction"
       ],
-      "price": [
+      "starting_points": [
          {
             "name": "Falmouth & Duncans",
             "parish": "Trelawny",

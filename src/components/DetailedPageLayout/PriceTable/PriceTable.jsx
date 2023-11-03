@@ -33,8 +33,13 @@ const headerObjs = [
 ];
 
 export default React.memo(function PriceTable() {
-  const { price } = useContext(ParamContext);
-  return price?.length ? (
+  const { starting_points: startingPoints } = useContext(ParamContext);
+
+  if (!startingPoints?.length) {
+    return;
+  }
+
+  return (
     <PageCard>
       <TableContainer sx={tableContainerStyles}>
         <Table
@@ -55,7 +60,7 @@ export default React.memo(function PriceTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {price?.map(({ name, parish, link, price }) => (
+            {startingPoints?.map(({ name, parish, link, price }) => (
               <StyledTableRowComponent
                 name={name}
                 parish={parish}

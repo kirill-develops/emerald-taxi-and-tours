@@ -7,7 +7,7 @@ import FilterListGroup from './Elements/FilterListGroup';
 const filterTypes = [
   {
     filterState: 'filterStartLocation',
-    optionKey: 'price',
+    optionKey: 'starting_points',
     headerString: 'Starting Location',
   },
   {

@@ -12,7 +12,7 @@ export default function ItemCard({ tour, sx, ...rest }) {
     link,
     areaLink,
     type,
-    price,
+    startingPoints,
     photoObj,
     priceLevel,
     cuisine,
@@ -25,7 +25,9 @@ export default function ItemCard({ tour, sx, ...rest }) {
 
   const { link: pickupLink } = useContext(TourAreaContext);
 
-  const areaPrice = price.find((priceObj) => priceObj.link === pickupLink);
+  const startingPoint = startingPoints.find(
+    (priceObj) => priceObj.link === pickupLink,
+  );
 
   const url = getToursUrl(areaLink, link);
 
@@ -41,7 +43,7 @@ export default function ItemCard({ tour, sx, ...rest }) {
 
   return (
     <GridCard
-      price={areaPrice.price}
+      price={startingPoint.price}
       picData={photoObj}
       reviews={reviews}
       subheader={subheading}

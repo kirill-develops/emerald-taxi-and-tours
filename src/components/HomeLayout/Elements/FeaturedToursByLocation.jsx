@@ -33,7 +33,7 @@ const gridContainerStyles = {
 };
 
 export default function FeatureTours() {
-  const tourPickupAreas = extractProps('price');
+  const tourPickupAreas = extractProps('starting_points');
 
   return (
     <Box sx={{ position: 'relative' }}>

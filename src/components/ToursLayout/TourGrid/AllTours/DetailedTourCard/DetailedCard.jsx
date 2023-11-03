@@ -12,7 +12,7 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
     link,
     areaLink,
     type,
-    price,
+    starting_points: startingPoints,
     tripAdvisorPhotos,
     tripAdvisorDetails: { rating, num_reviews: numReviews } = {},
     tripAdvisorReviews,
@@ -22,7 +22,7 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
 
   const destinationURL = `${url}#top`;
 
-  const areaPrice = price.reduce((acc, priceObj) => {
+  const startingPoint = startingPoints.reduce((acc, priceObj) => {
     const startLocationActive =
       Object.values(filterStartLocation).includes(true);
 
@@ -39,7 +39,7 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
 
   return (
     <GridCard
-      price={areaPrice}
+      price={startingPoint}
       picData={tripAdvisorPhotos?.[0]}
       reviews={tripAdvisorReviews}
       subheader={area}
@@ -57,7 +57,7 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
       }
       {...rest}
     >
-      <PickUpCardHeader price={price} />
+      <PickUpCardHeader price={startingPoints} />
     </GridCard>
   );
 });

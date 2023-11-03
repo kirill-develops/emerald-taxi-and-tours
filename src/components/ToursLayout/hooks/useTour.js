@@ -6,7 +6,7 @@ function initFilter(data, key) {
     const names = Array.isArray(obj[key]) ? obj[key] : [obj[key]];
 
     names.forEach((name) => {
-      const id = key === 'price' ? name.link : name;
+      const id = key === 'starting_points' ? name.link : name;
 
       if (!result[id]) {
         result[id] = false;
@@ -26,12 +26,12 @@ export function extractProps(key, data = tourData) {
     const names = Array.isArray(obj[key]) ? obj[key] : [obj[key]];
 
     for (const name of names) {
-      const keyName = key === 'price' ? name.link : name;
+      const keyName = key === 'starting_points' ? name.link : name;
 
       if (!uniqueNames.has(keyName)) {
         uniqueNames.add(keyName);
 
-        if (key === 'price') {
+        if (key === 'starting_points') {
           result.push({ name: name.name, link: name.link });
         } else {
           result.push(name);
@@ -40,7 +40,7 @@ export function extractProps(key, data = tourData) {
     }
   }
 
-  result.sort(key === 'price' ? (a, b) => a.name.localeCompare(b.name) : undefined);
+  result.sort(key === 'starting_points' ? (a, b) => a.name.localeCompare(b.name) : undefined);
 
   return result;
 }
@@ -52,7 +52,7 @@ const filterData = () => ({ setState, getState }) => {
   const isAreaFiltered = Object.values(filterArea).some(val => val);
 
   const filteredData = tourData.filter(item =>
-    (!isStartLocFiltered || item.price.some((p) => filterStartLocation[p.link]))
+    (!isStartLocFiltered || item.starting_points?.some((p) => filterStartLocation[p.link]))
     && (!isTypeFiltered || item.type.some((t) => filterType[t]))
     && (!isAreaFiltered || filterArea[item.area])
   );
@@ -60,7 +60,7 @@ const filterData = () => ({ setState, getState }) => {
   setState({ filteredData: filteredData.length > 0 ? filteredData : tourData });
 }
 
-const initFilterStartLocation = initFilter(tourData, 'price');
+const initFilterStartLocation = initFilter(tourData, 'starting_points');
 const initFilterType = initFilter(tourData, 'type');
 const initFilterArea = initFilter(tourData, 'area');
 
@@ -112,7 +112,7 @@ export const tourStore = createStore({
       return filters.reduce((availableFilters, filter) => {
         if (typeof filter === 'object') {
           const match = filteredData.find((item) =>
-            item.price?.some((price) => price.link === filter.link),
+            item.starting_points?.some((start) => start.link === filter.link),
           );
 
           availableFilters[filter.link] = Boolean(match);

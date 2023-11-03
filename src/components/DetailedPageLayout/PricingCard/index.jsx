@@ -8,7 +8,7 @@ import PricingText from './Elements/PricingText';
 export default React.memo(function PricingCard({ sx }) {
   const { price } = useContext(ParamContext);
 
-  if (Array.isArray(price)) {
+  if (Array.isArray(price) || !price) {
     return null;
   }
 
