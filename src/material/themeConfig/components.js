@@ -53,16 +53,23 @@ export const themeComponents = {
    MuiTypography: {
       defaultProps: {
          variantMapping: {
-            h1: 'h1',
             smallBold: 'h5',
             smallCaption: 'h6'
          }
       },
       styleOverrides: {
-         root: ({ ownerState }) => ({
-            fontFamily: ownerState?.altfont
-               ? lobster.style.fontFamily : dm_sans.style.fontFamily
-         }),
+         root: ({ ownerState }) => {
+
+            if (ownerState?.altfont) {
+               return ({
+                  fontFamily: lobster.style.fontFamily
+               })
+            } else if (ownerState?.body) {
+               return ({
+                  fontFamily: dm_sans.style.fontFamily
+               })
+            }
+         }
       }
    }
 }

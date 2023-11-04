@@ -3,7 +3,7 @@ import { getInitColorSchemeScript } from '@mui/material/styles';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import { theme } from '@material/theme';
-import { dm_sans } from '@material/themeConfig/typography';
+import { dm_sans, playfair_display } from '@material/themeConfig/typography';
 import createEmotionCache from '@material/createEmotionCache';
 import Favicon from '@components/Favicon';
 
@@ -11,13 +11,11 @@ import Favicon from '@components/Favicon';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" className={dm_sans.className}>
+      <Html lang="en" className={playfair_display.className}>
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Lobster&display=swap"
-          />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Lobster&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
           <meta name="emotion-insertion-point" content="" />
           <Favicon />
           {(this.props as any).emotionStyleTags}

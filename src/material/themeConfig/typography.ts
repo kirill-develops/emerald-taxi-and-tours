@@ -1,13 +1,20 @@
 import { DM_Sans } from "next/font/google";
+import { Playfair_Display } from 'next/font/google'
 import { Lobster } from "next/font/google";
 import { mediaQueryObj } from './breakpoints';
 
 
 export const dm_sans = DM_Sans({ subsets: ['latin'], display: 'swap' })
+export const playfair_display = Playfair_Display({ subsets: ['latin'], display: 'swap' })
 export const lobster = Lobster({ weight: ['400'], subsets: ['latin'], display: 'swap' })
 
 export const themeTypography = {
-   fontFamily: dm_sans.style.fontFamily,
+   fontFamily: playfair_display.style.fontFamily,
+   body1: { fontFamily: dm_sans.style.fontFamily },
+   body2: { fontFamily: dm_sans.style.fontFamily },
+   subtitle1: { fontFamily: dm_sans.style.fontFamily },
+   subtitle2: { fontFamily: dm_sans.style.fontFamily },
+   caption: { fontFamily: dm_sans.style.fontFamily },
    cardTitle: {
       fontWeight: 500,
       fontSize: '1.1rem',
