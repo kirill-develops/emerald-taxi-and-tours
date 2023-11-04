@@ -1,6 +1,6 @@
 import React from 'react';
 import HeroBanner from './HeroBanner/HeroBanner';
-import FeaturedTransfers from './Elements/FeaturedTransfers';
+import FeaturedTransfers from './FeaturedTransfers/FeaturedTransfers';
 import FeaturedToursByLocation from './Elements/FeaturedToursByLocation';
 import ToursByType from '../ToursLayout/TourGrid/ToursByType/ToursByType';
 import HomeSection from './Elements/HomeSection';
@@ -12,7 +12,7 @@ export default function HomeLayout() {
       <HeroBanner />
       <FeaturedTransfers />
       <FeaturedToursByLocation />
-      <HomeSection title="Browse Private Island Tours By Category">
+      <HomeSection title="Explore Every Niché Jamaica Has to Offer">
         <GridContainer spacing={layoutGridSpacingProp}>
           <ToursByType />
         </GridContainer>
