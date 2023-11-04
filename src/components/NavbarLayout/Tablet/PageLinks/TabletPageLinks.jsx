@@ -6,13 +6,32 @@ import useFindCurrentPage from '../../hooks/useFindCurrentPage';
 import useNavMenu from './hooks/useNavMenu';
 import NavMenuJsx from './Elements/NavMenuJsx';
 
+function samePageLinkNavigation(event) {
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 || // ignore everything but left-click
+    event.metaKey ||
+    event.ctrlKey ||
+    event.altKey ||
+    event.shiftKey
+  ) {
+    return false;
+  }
+  return true;
+}
+
 export default React.memo(function TabletPagesLink() {
   const foundCurrentPage = useFindCurrentPage(menuLinkArr);
 
   const [value, setValue] = useState(foundCurrentPage ?? false);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    if (
+      event.type !== 'click' ||
+      (event.type === 'click' && samePageLinkNavigation(event))
+    ) {
+      setValue(newValue);
+    }
   };
 
   const {
