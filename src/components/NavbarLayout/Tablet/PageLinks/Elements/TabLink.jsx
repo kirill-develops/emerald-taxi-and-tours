@@ -4,6 +4,7 @@ import Link from '@material/Link';
 
 const tabStyles = (isOpen) => ({
   color: isOpen ? 'primary.main' : 'text.primary',
+  typography: 'caption',
   textDecoration: 'none',
   '&:hover': { color: (theme) => theme.palette.primary.main },
 });

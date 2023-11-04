@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 import Image from 'next/image';
 import React from 'react';
 import heroImage from '@../public/hero/101.jpg';
-import Tagline from './Elements/Tagline';
 import Title from './Elements/Title';
 
 const ImageWrapper = styled(Box)(({ theme }) =>
@@ -40,7 +39,6 @@ export default function HeroBanner() {
       </ImageWrapper>
       <OverlayStack>
         <Title />
-        <Tagline />
       </OverlayStack>
     </BannerContainer>
   );

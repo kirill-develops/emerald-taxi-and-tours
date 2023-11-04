@@ -20,7 +20,8 @@ export default React.memo(function HomeSection({
 }) {
   const stackStyles = useMemo(
     () => ({
-      py: 5,
+      pt: 3,
+      pb: 5,
       height: '100%',
       rowGap: 3,
       ...sx,
