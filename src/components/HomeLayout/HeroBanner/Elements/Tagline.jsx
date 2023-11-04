@@ -1,4 +1,4 @@
-import { lighten, styled } from '@mui/material/styles';
+import { darken, lighten, styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React from 'react';
@@ -15,11 +15,15 @@ export default function Tagline() {
 
 const TaglineStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({
-    color: lighten(theme.palette.common.mint, 0.125),
+    color: darken(theme.palette.common.white, 0.1),
   }),
 );
 
-const headerTextStyles = { textAlign: 'center', fontWeight: 1000 };
+const headerTextStyles = {
+  textAlign: 'center',
+  fontWeight: 900,
+  letterSpacing: -0.3,
+};
 
 const HeaderText = React.memo(function HeaderText({ children }) {
   return (
