@@ -1,13 +1,13 @@
-import { mediaQueryObj } from "./breakpoints";
+import { breakpointMediaQueries } from "./breakpoints";
 import { dm_sans, lobster } from "./typography";
 
 function getResponsiveTypographyVariant(theme, variant) {
    const variantProps = theme.typography[variant];
    const styleOverrides = { ...variantProps };
 
-   Object.keys(mediaQueryObj).forEach((key) => {
-      if (variantProps[mediaQueryObj[key]]) {
-         styleOverrides[mediaQueryObj[key]] = variantProps[mediaQueryObj[key]];
+   Object.keys(breakpointMediaQueries).forEach((breakpoint) => {
+      if (variantProps[breakpointMediaQueries[breakpoint]]) {
+         styleOverrides[breakpointMediaQueries[breakpoint]] = variantProps[breakpointMediaQueries[breakpoint]];
       }
    });
 

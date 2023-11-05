@@ -1,7 +1,7 @@
 import { DM_Sans } from "next/font/google";
 import { Playfair_Display } from 'next/font/google'
 import { Lobster } from "next/font/google";
-import { mediaQueryObj } from './breakpoints';
+import { breakpointMediaQueries } from './breakpoints';
 
 
 export const dm_sans = DM_Sans({ subsets: ['latin'], display: 'swap' })
@@ -26,7 +26,7 @@ export const themeTypography = {
       fontSize: '0.75rem',
       lineHeight: 1.66,
       letterSpacing: '0.03333em',
-      [mediaQueryObj.sm]: {
+      [breakpointMediaQueries.sm]: {
          fontSize: '0.875rem'
       }
    },
@@ -35,7 +35,7 @@ export const themeTypography = {
       fontSize: '0.9rem',
       lineHeight: 1.15,
       letterSpacing: '0.0075em',
-      [mediaQueryObj.sm]: {
+      [breakpointMediaQueries.sm]: {
          lineHeight: 1.2,
          fontSize: '0.85rem'
       }
@@ -51,7 +51,7 @@ export const themeTypography = {
       fontSize: '0.77rem',
       lineHeight: 1.15,
       letterSpacing: '0.03333em',
-      [mediaQueryObj.sm]: {
+      [breakpointMediaQueries.sm]: {
          lineHeight: 1.2,
          fontSize: '0.72rem'
       }
