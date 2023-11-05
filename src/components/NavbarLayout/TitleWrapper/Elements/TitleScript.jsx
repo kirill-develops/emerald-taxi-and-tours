@@ -15,6 +15,9 @@ const highlightedTextStyles = (theme) => ({
   textDecoration: 'none',
   fontWeight: 500,
   color: theme.palette.primary,
+  display: 'flex',
+  columnGap: 1,
+  alignItems: 'center',
 });
 
 function HighlightedText({ children }) {

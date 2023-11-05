@@ -9,8 +9,7 @@ import Title from './Elements/Title';
 
 const ImageWrapper = styled(Box)(({ theme }) =>
   theme.unstable_sx({
-    height: { xxs: '35dvh', md: '40dvh' },
-    minHeight: { xxs: '360px', md: '480px', lg: '500px' },
+    minHeight: { xxs: '360px' },
     overflow: 'hidden',
     filter: 'brightness(60%)',
   }),

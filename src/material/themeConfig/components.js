@@ -50,6 +50,18 @@ export const themeComponents = {
          },
       },
    },
+   MuiButton: {
+      styleOverrides: {
+         root: ({ ownerState }) => {
+
+            if (ownerState?.body) {
+               return ({
+                  fontFamily: dm_sans.style.fontFamily
+               })
+            }
+         }
+      }
+   },
    MuiTypography: {
       defaultProps: {
          variantMapping: {

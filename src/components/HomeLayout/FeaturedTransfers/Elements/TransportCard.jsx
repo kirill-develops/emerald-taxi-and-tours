@@ -53,6 +53,7 @@ const StyledCardTitle = React.memo(function StyledCardTitle({ children }) {
   return (
     <CardTitle
       variant="h6"
+      body
       sx={cardTitleStyles}
     >
       {children}
