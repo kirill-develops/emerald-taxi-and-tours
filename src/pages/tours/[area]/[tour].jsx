@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { promises as fs } from 'fs';
 import React from 'react';
-import tourData from '@data/tourData.json';
+import { tourData } from '@data/controllers/tour';
+import { updateTourData } from '@data/controllers/updateTourData';
 import PageLayout from '@components/PageLayout/Layout';
 import Fallback from '@components/Fallback';
 import FormContextProvider from '@context/FormContextProvider';
@@ -15,28 +15,16 @@ export function getToursUrl(areaLink, link) {
 }
 
 export async function getStaticPaths() {
-  const paths = tourData.map((tour) => ({
+  const createTourPath = (tour) => ({
     params: {
       area: tour.area_link,
       tour: tour.link,
     },
-  }));
+  });
+
+  const paths = tourData.map(createTourPath);
 
   return { paths, fallback: true };
-}
-
-async function updateTourData(updatedTourParams = {}) {
-  const updatedTourData = tourData.map((tour) =>
-    tour.link === updatedTourParams.link ? updatedTourParams : tour,
-  );
-
-  const tourDataFileContent = JSON.stringify(updatedTourData);
-
-  try {
-    await fs.writeFile('src/data/tourData.json', tourDataFileContent);
-  } catch (err) {
-    console.error('Error updating tour data file:', err);
-  }
 }
 
 export async function getStaticProps({ params }) {
@@ -48,9 +36,10 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const tourParams = tourData.find(
-    (tour) => tourParam === tour.link && areaParam === tour.area_link,
-  );
+  const isCurrentTour = (tour) =>
+    tourParam === tour.link && areaParam === tour.area_link;
+
+  const tourParams = tourData.find(isCurrentTour);
 
   if (!tourParams) {
     return { notFound: true };

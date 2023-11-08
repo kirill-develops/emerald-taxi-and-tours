@@ -1,17 +1,18 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import tourData from '@data/tourData.json';
+import { startingPoints } from '@data/controllers/tour';
 import PageLayout from '@components/PageLayout/Layout';
 import TourAreaContext from '@context/TourAreaContext';
 import Fallback from '@components/Fallback';
 import ToursByLocationLayout from '@components/ToursByLocationLayout/ToursByLocationLayout';
 import { isObjEmpty } from '../../../helperFunctions';
+import { filterToursByStartingPoint } from '../../../data/controllers/tour';
 
 export async function getStaticPaths() {
-  const paths = tourData.map((tour) => ({
+  const paths = startingPoints.map((startingPoint) => ({
     params: {
-      area: tour.area_link,
+      area: startingPoint.link,
     },
   }));
 
@@ -19,9 +20,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const paramDetails = tourData
-    .flatMap((tour) => tour.starting_points)
-    .find(({ link }) => link === params.area);
+  const paramDetails = startingPoints.find(({ link }) => link === params.area);
 
   if (isObjEmpty(paramDetails) || !params.area) {
     return {
@@ -31,42 +30,38 @@ export async function getStaticProps({ params }) {
 
   const { price, ...filteredParams } = paramDetails;
 
-  const filteredLocations = tourData
-    .filter((tour) =>
-      tour.starting_points.some(({ link }) => link === params.area),
-    )
-    .map(
-      ({
-        name,
-        area,
-        link,
-        area_link: areaLink,
-        type,
-        starting_points: startingPoints,
-        tripAdvisorDetails,
-        tripAdvisorPhotos,
-        tripAdvisorReviews,
-      }) => ({
-        name,
-        area,
-        link,
-        areaLink,
-        type,
-        startingPoints,
-        photoObj: tripAdvisorPhotos[0],
-        priceLevel: tripAdvisorDetails?.price_level || null,
-        cuisine: tripAdvisorDetails?.cuisine || null,
-        groups: tripAdvisorDetails?.groups || null,
-        numReviews: tripAdvisorDetails?.num_reviews || null,
-        rating: tripAdvisorDetails?.rating || null,
-        reviews:
-          tripAdvisorReviews?.map((review) => ({
-            title: review?.title,
-            id: review?.id,
-          })) || [],
-        subcategory: tripAdvisorDetails?.subcategory || null,
-      }),
-    );
+  const filteredLocations = filterToursByStartingPoint(params.area).map(
+    ({
+      name,
+      area,
+      link,
+      area_link: areaLink,
+      type,
+      starting_points: startingPoints,
+      tripAdvisorDetails,
+      tripAdvisorPhotos,
+      tripAdvisorReviews,
+    }) => ({
+      name,
+      area,
+      link,
+      areaLink,
+      type,
+      startingPoints,
+      photoObj: tripAdvisorPhotos[0],
+      priceLevel: tripAdvisorDetails?.price_level || null,
+      cuisine: tripAdvisorDetails?.cuisine || null,
+      groups: tripAdvisorDetails?.groups || null,
+      numReviews: tripAdvisorDetails?.num_reviews || null,
+      rating: tripAdvisorDetails?.rating || null,
+      reviews:
+        tripAdvisorReviews?.map((review) => ({
+          title: review?.title,
+          id: review?.id,
+        })) || [],
+      subcategory: tripAdvisorDetails?.subcategory || null,
+    }),
+  );
 
   const tourParams = {
     ...filteredParams,
@@ -90,16 +85,19 @@ export default function AreaPage({ tourParams }) {
 
   const { name, parish } = tourParams;
 
+  const layoutTitle = `${name}${parish && `, ${parish}`}`;
+
   return (
     <>
       <Head>
         <title>
-          {name}, {parish}: Tours | EMERALD Taxi & Tours
+          {name}
+          {parish && `, ${parish}`}: Tours | EMERALD Taxi & Tours
         </title>
       </Head>
 
       <PageLayout
-        title={`${name}, ${parish}`}
+        title={layoutTitle}
         subheader="Tours"
       >
         <TourAreaContext.Provider value={tourParams}>

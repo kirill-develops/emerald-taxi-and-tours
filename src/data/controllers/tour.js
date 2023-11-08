@@ -4,6 +4,24 @@ import data from '@data/tourData.json'
 export const tourData = structuredClone(data);
 
 
+export const startingPoints = tourData
+   .flatMap(tour => tour.starting_points)
+   .reduce((uniqueStartingPoints, startingPoint) => {
+      const { link, name, parish } = startingPoint;
+      const existingPoint = uniqueStartingPoints.find(point => point.link === link);
+      if (!existingPoint) {
+         return [...uniqueStartingPoints, { link, name, parish, total: 1 }];
+      }
+      existingPoint.total++;
+      return uniqueStartingPoints;
+   }, []);
+
+export function filterToursByStartingPoint(startingPointUrl) {
+   return tourData.filter((tour) =>
+      tour.starting_points.some(({ link }) => link === startingPointUrl),
+   )
+}
+
 export function extractProps(key, data = tourData) {
    const uniqueNames = new Set();
    const result = [];

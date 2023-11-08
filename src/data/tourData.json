@@ -15288,7 +15288,7 @@
          },
          {
             "name": "Kingston, Spanish Town & Portmore",
-            "parish": "-",
+            "parish": "",
             "link": "kingston",
             "price": 45,
             "stripeId": "price_ocho_rios_dunns_river_falls_horseback_kingston"

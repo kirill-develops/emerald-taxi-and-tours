@@ -3,8 +3,8 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import React, { useMemo } from 'react';
-import { tourData } from '@data/tours';
 import { useTour } from '../../../../hooks/useTour';
+import { tourData } from '@data/controllers/tour';
 
 function checkObjectValues(obj) {
   const trueProps = [];
@@ -16,7 +16,7 @@ function checkObjectValues(obj) {
   return trueProps;
 }
 
-export default React.memo(function PickUpCardHeader({ price }) {
+export default React.memo(function PickUpCardHeader({ startingPoints }) {
   const [{ filterStartLocation }] = useTour();
 
   const startLocationFilter = checkObjectValues(filterStartLocation);
@@ -24,22 +24,24 @@ export default React.memo(function PickUpCardHeader({ price }) {
   const startLocations = useMemo(
     () =>
       startLocationFilter.map((selection) => {
-        const foundSelection = price.find((obj) => obj.link === selection);
+        const foundSelection = startingPoints.find(
+          (obj) => obj.link === selection,
+        );
 
         const notFoundName =
           !foundSelection &&
           tourData.reduce((acc, obj) => {
-            const foundPrice = obj.price.find(
-              (price) => price.link === selection && price.name,
+            const startingLocation = obj.starting_points.find(
+              (point) => point.link === selection && point.name,
             );
-            return acc || foundPrice?.name || false;
+            return acc || startingLocation?.name || false;
           }, false);
 
         return foundSelection
           ? foundSelection
           : { name: notFoundName, price: 'notFound', link: selection };
       }),
-    [price, startLocationFilter],
+    [startingPoints, startLocationFilter],
   );
 
   const startArrayEl = useMemo(
@@ -47,8 +49,8 @@ export default React.memo(function PickUpCardHeader({ price }) {
       startLocations.map((each) => {
         const stringValue =
           each.price !== 'notFound'
-            ? `Pick-Up: ${each.name} $${each.price}`
-            : `Service unavailable from ${each.name} at this time`;
+            ? `Start the Tour in ${each.name} for $${each.price}`
+            : `No pickup from ${each.name} at this time`;
 
         return (
           <Typography

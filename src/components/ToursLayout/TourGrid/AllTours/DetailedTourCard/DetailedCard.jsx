@@ -57,7 +57,7 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
       }
       {...rest}
     >
-      <PickUpCardHeader price={startingPoints} />
+      <PickUpCardHeader startingPoints={startingPoints} />
     </GridCard>
   );
 });

@@ -1,7 +1,7 @@
 import Fuse from 'fuse.js';
 import { useMemo } from 'react';
 import { transferData } from '@data/transfers';
-import { tourData } from '@data/tours';
+import { tourData } from '@data/controllers/tour';
 
 export default function useSearchFilterOptions() {
   const transferOptions = useMemo(
@@ -32,11 +32,10 @@ export default function useSearchFilterOptions() {
 
   const tourOptions = useMemo(
     () =>
-      tourData.map(({ name, link, area, type, price }) => {
-        const [priceName, priceParish] = price.map(({ name, parish }) => [
-          name,
-          parish,
-        ]);
+      tourData.map(({ name, link, area, type, starting_points }) => {
+        const [startingPoint, startingParish] = starting_points.map(
+          ({ name, parish }) => [name, parish],
+        );
 
         const areaNoSpaces = area.replace(/ /, '_');
 
@@ -45,8 +44,8 @@ export default function useSearchFilterOptions() {
         return {
           name: `${name} in ${area}`,
           tourType: type,
-          from: priceName,
-          parish: priceParish,
+          from: startingPoint,
+          parish: startingParish,
           link: tourUrl,
           type: 'Tours',
         };
