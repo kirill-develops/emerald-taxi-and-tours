@@ -7,7 +7,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import React, { useCallback, useState } from 'react';
-import { useTour, extractProps } from '../../hooks/useTour';
+import { useTour } from '../../hooks/useTour';
+import { extractProps } from '@data/controllers/tour';
 import ExpandMoreWrapper from '@elements/ExpandMore';
 
 const listItemButtonStyles = { borderRadius: 16 };

@@ -1,9 +1,10 @@
 import React from 'react';
-import { useTour, extractProps } from '../hooks/useTour';
+import { useTour } from '../hooks/useTour';
+import { extractProps } from '@data/controllers/tour';
 import SelectedChips from './Elements/SelectedChips';
 
 const filterObjArr = [
-  { filterState: 'filterStartLocation', optionKey: 'price' },
+  { filterState: 'filterStartLocation', optionKey: 'starting_points' },
   { filterState: 'filterType', optionKey: 'type' },
   { filterState: 'filterArea', optionKey: 'area' },
 ];

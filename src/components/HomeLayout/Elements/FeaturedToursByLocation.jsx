@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import PlaceIcon from '@mui/icons-material/Place';
 import React from 'react';
+import { extractProps } from '@data/controllers/tour';
 import HomeSection from './HomeSection';
 import { extractProps } from '../../ToursLayout/hooks/useTour';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
