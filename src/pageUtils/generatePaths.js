@@ -1,4 +1,4 @@
-export default function generatePaths(transferData) {
+export function generateAllTransferPaths(transferData) {
    const paths = [];
 
    transferData.forEach((transferArea) => {
@@ -18,6 +18,23 @@ export default function generatePaths(transferData) {
 
          paths.push(path);
       });
+   });
+
+   return paths;
+}
+
+export function generateAllTourPaths(tourData) {
+   const paths = [];
+
+   tourData.forEach((tour) => {
+      const path = {
+         params: {
+            area: tour.area_link,
+            tour: tour.link,
+         },
+      };
+
+      paths.push(path);
    });
 
    return paths;

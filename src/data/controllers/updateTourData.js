@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { tourData } from './tour';
 
-export async function updateTourData(updatedTourParams = {}) {
+export default async function updateTourData(updatedTourParams = {}) {
    const updatedTourData = tourData.map((tour) =>
       tour.link === updatedTourParams.link ? updatedTourParams : tour,
    );

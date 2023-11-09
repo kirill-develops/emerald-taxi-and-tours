@@ -26,8 +26,12 @@ export function checkDepartDate(dataDate, initialDate, departDate) {
   return isDataBeforeInitial ? departDate : dayjs(dataDate).format();
 }
 
-
-
 export function isObjEmpty(obj) {
   return !obj || Object.keys(obj).length === 0;
+}
+
+export function isDataOld(dateUpdated) {
+  const timeWindow = 48 * 60 * 60 * 1000; // 48 Hours //! change to 12 hours when live
+
+  return Date.now() - new Date(dateUpdated).getTime() > timeWindow;
 }

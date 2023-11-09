@@ -6,13 +6,13 @@ import Fallback from '@components/Fallback';
 import PageLayout from '@components/PageLayout/Layout';
 import FormContextProvider from '@context/FormContextProvider';
 import DetailedPageLayout from '@components/DetailedPageLayout/DetailedPageLayout';
-import generatePaths from '../../../../pageUtils/transfer/generatePaths';
+import { generateAllTransferPaths } from '../../../../pageUtils/generatePaths';
 import fetchAndUpdateTripAdvisorData from '../../../../pageUtils/transfer/fetchAndUpdateTripAdvisorData';
 import fetchTransferParams from '../../../../pageUtils/transfer/fetchTransferParams';
 import fetchLocationIdIfNeeded from '../../../../pageUtils/transfer/fetchLocationIdIfNeeded';
 
 export async function getStaticPaths() {
-  const paths = generatePaths(transferData);
+  const paths = generateAllTransferPaths(transferData);
 
   return { paths, fallback: true };
 }
