@@ -3,7 +3,6 @@ import data from '@data/tourData.json'
 
 export const tourData = structuredClone(data);
 
-
 export const startingPoints = tourData
    .flatMap(tour => tour.starting_points)
    .reduce((uniqueStartingPoints, startingPoint) => {
