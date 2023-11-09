@@ -2,8 +2,8 @@ import React from 'react';
 import PageLayout from '@components/PageLayout/Layout';
 import Head from 'next/head';
 import Fallback from '@components/Fallback';
-import transferData from '@data/transferData';
 import { useRouter } from 'next/router';
+import { transferData } from '@data/controllers/transfer';
 import { isObjEmpty } from '@helperFunctions';
 import TransfersByAirportLayout from '@components/TransfersByAirportLayout/TransfersByAirportLayout';
 

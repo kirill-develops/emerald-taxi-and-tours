@@ -2,11 +2,18 @@ import React, { useMemo } from 'react';
 
 import AreaAccordions from './AreaAccordion/AreaAccordions';
 import PageLayoutStack from '@elements/PageLayoutStack';
-import { filterTransferData } from '@helperFunctions';
+import { transferData } from '@data/controllers/transfer';
 
 export default function TransferLayout() {
-  const sangsterTransferData = useMemo(() => filterTransferData('MBJ'), []);
-  const normanManleyTransferData = useMemo(() => filterTransferData('KIN'), []);
+  const sangsterTransferData = useMemo(
+    () => transferData.filterByAirport('MBJ'),
+    [],
+  );
+
+  const normanManleyTransferData = useMemo(
+    () => transferData.filterByAirport('KIN'),
+    [],
+  );
 
   return (
     <PageLayoutStack>

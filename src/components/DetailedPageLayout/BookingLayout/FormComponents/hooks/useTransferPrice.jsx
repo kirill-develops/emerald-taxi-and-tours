@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 import { useContext } from 'react';
 import { ParamContext } from '@context/FormContextProvider';
-import { transferData } from '@data/transfers';
+import { transferData } from '@data/controllers/transfer';
 
 export default function useTransferPrice() {
   const { values } = useFormikContext();
@@ -15,7 +15,7 @@ export default function useTransferPrice() {
   if (type === 'tour') return '';
 
   const { extraGuestOneWay, extraGuestTwoWay } = transferData
-    .find((area) => area.link === areaLink)
+    .filterByArea(areaLink)
     .destinations.find(
       (destination) => destination.link === transferLink,
     )?.price;

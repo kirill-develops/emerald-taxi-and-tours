@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-import transferData from '@data/transferData.json';
 
 export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -27,8 +26,7 @@ export function checkDepartDate(dataDate, initialDate, departDate) {
   return isDataBeforeInitial ? departDate : dayjs(dataDate).format();
 }
 
-export const filterTransferData = (passedAirportLink) =>
-  transferData.filter(({ airportLink }) => passedAirportLink === airportLink);
+
 
 export function isObjEmpty(obj) {
   return !obj || Object.keys(obj).length === 0;

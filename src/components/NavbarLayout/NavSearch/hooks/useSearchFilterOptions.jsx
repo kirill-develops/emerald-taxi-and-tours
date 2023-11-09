@@ -1,6 +1,6 @@
 import Fuse from 'fuse.js';
 import { useMemo } from 'react';
-import { transferData } from '@data/transfers';
+import { transferData } from '@data/controllers/transfer';
 import { tourData } from '@data/controllers/tour';
 
 export default function useSearchFilterOptions() {

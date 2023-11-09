@@ -1,16 +1,16 @@
 import getLocationId from '@hooks/getTripAdvisorLocationId';
-import updateTransferData from "./updateTransferData";
+import updateTransferData from '../../data/controllers/updateTransferData';
 
-export default async function fetchLocationIdIfNeeded(transferParams, areaData) {
+export default async function fetchLocationIdIfNeeded(transferParams) {
    if (!transferParams?.location_id) {
-      const locationIdProp = { ...transferParams, area: areaData?.name };
+      const locationIdProp = { ...transferParams, area: transferParams?.area?.name };
+
       const locationId = await getLocationId(locationIdProp);
 
       if (locationId) {
          const updatedTransferParams = {
             ...transferParams,
             location_id: locationId,
-            area: areaData,
          };
 
          await updateTransferData(updatedTransferParams);
@@ -19,5 +19,5 @@ export default async function fetchLocationIdIfNeeded(transferParams, areaData) 
       }
    }
 
-   return null;
+   return transferParams?.location_id;
 }

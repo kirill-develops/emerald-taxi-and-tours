@@ -1,18 +1,13 @@
 import getTripAdvisorData from '@hooks/getTripAdvisorData';
-import updateTransferData from "./updateTransferData";
-
-function isDataOld(dateUpdated) {
-   const timeWindow = 48 * 60 * 60 * 1000; // 48 Hours //! change to 12 hours when live
-
-   return Date.now() - new Date(dateUpdated).getTime() > timeWindow;
-}
+import updateTransferData from "../../data/controllers/updateTransferData";
+import { isDataOld } from '../../helperFunctions';
 
 export default async function fetchAndUpdateTripAdvisorData(
    transferParams,
    locationId,
-   areaData
 ) {
-   const isOldData = isDataOld(transferParams.dateUpdated)
+   const isOldData = isDataOld(transferParams.dateUpdated);
+
    if (
       isOldData ||
       !transferParams?.tripAdvisorDetails ||
@@ -28,16 +23,11 @@ export default async function fetchAndUpdateTripAdvisorData(
          await getTripAdvisorData(transferProp);
 
       if (isDataUpdated) {
-         const finishedTransferParams = {
-            ...updatedParams,
-            area: areaData,
-         };
+         await updateTransferData(updatedParams);
 
-         await updateTransferData(finishedTransferParams);
-
-         return finishedTransferParams;
+         return updatedParams;
       }
    }
 
-   return transferParams;
+   return { ...transferParams };
 }

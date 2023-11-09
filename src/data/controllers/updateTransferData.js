@@ -1,8 +1,8 @@
-import transferData from '@data/transferData.json';
 import { promises as fs } from 'fs';
+import { transferData } from './transfer';
 
 export default async function updateTransferData({
-   area: { link: areaLink, airportLink },
+   area: { link: areaLink, airportLink } = {},
    ...transferParams
 } = {}) {
    const { link: transferLink } = transferParams;

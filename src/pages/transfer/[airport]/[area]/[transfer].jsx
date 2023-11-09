@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
-import transferData from '@data/transferData.json';
+import { transferData } from '@data/controllers/transfer';
 import Fallback from '@components/Fallback';
 import PageLayout from '@components/PageLayout/Layout';
 import FormContextProvider from '@context/FormContextProvider';
@@ -18,24 +18,18 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { transferParams, areaData } = await fetchTransferParams(params);
+  const transferParams = await fetchTransferParams(params);
 
-  let locationId = await fetchLocationIdIfNeeded(transferParams, areaData);
+  let locationId = await fetchLocationIdIfNeeded(transferParams);
 
   const updatedTransferParams = await fetchAndUpdateTripAdvisorData(
     transferParams,
     locationId,
-    areaData,
   );
-
-  const paramsData = {
-    ...updatedTransferParams,
-    area: areaData,
-  };
 
   return {
     props: {
-      params: paramsData,
+      params: updatedTransferParams,
     },
     revalidate: 43200,
   };
@@ -49,19 +43,19 @@ export default React.memo(function DynamicTransfer({ params }) {
   }
 
   const contextParams = { ...params, type: 'transfer' };
+  const { name, area: { name: areaName, airport } = {} } = params;
 
   return (
     <>
       <Head>
         <title>
-          Transfers: {params.name}, {params.area.name} & {params.area.airport}|
-          EMERALD Taxi & Tours
+          {name}, {areaName} {'<>'} {airport} Transfer | EMERALD Taxi & Tours
         </title>
       </Head>
       <PageLayout
-        title={params.name}
-        subheader={params.area.name}
-        airport={params.area.airport}
+        title={name}
+        subheader={areaName}
+        airport={airport}
       >
         <FormContextProvider value={contextParams}>
           <DetailedPageLayout />

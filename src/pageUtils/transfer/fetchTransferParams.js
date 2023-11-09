@@ -1,10 +1,8 @@
-import transferData from '@data/transferData.json';
+import { transferData } from "@data/controllers/transfer";
 
 
 export default async function fetchTransferParams(params) {
-   const transferAirport = transferData.filter(
-      (transferArea) => transferArea.airportLink === params.airport,
-   );
+   const transferAirport = transferData.filterByAirport(params.airport);
 
    if (!transferAirport) {
       return {
@@ -22,11 +20,11 @@ export default async function fetchTransferParams(params) {
       };
    }
 
-   const transferParams = transferArea?.destinations.find(
+   const param = transferArea?.destinations.find(
       (destination) => destination.link === params.transfer,
    );
 
-   if (!transferParams) {
+   if (!param) {
       return {
          notFound: true,
       };
@@ -34,5 +32,7 @@ export default async function fetchTransferParams(params) {
 
    const { destinations, ...areaData } = transferArea;
 
-   return { transferParams, areaData }
+   const transferParams = { ...param, area: areaData }
+
+   return transferParams;
 }
