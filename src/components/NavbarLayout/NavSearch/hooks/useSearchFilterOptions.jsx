@@ -32,24 +32,24 @@ export default function useSearchFilterOptions() {
 
   const tourOptions = useMemo(
     () =>
-      tourData.map(({ name, link, area, type, starting_points }) => {
-        const [startingPoint, startingParish] = starting_points.map(
-          ({ name, parish }) => [name, parish],
-        );
+      tourData.map(
+        ({ name, link, area, area_link: areaLink, type, starting_points }) => {
+          const [startingPoint, startingParish] = starting_points.map(
+            ({ name, parish }) => [name, parish],
+          );
 
-        const areaNoSpaces = area.replace(/ /, '_');
+          const tourUrl = `/tours/${areaLink}/${link}`;
 
-        const tourUrl = `/tours/${areaNoSpaces}/${link}`;
-
-        return {
-          name: `${name} in ${area}`,
-          tourType: type,
-          from: startingPoint,
-          parish: startingParish,
-          link: tourUrl,
-          type: 'Tours',
-        };
-      }),
+          return {
+            name: `${name} in ${area}`,
+            tourType: type,
+            from: startingPoint,
+            parish: startingParish,
+            link: tourUrl,
+            type: 'Tours',
+          };
+        },
+      ),
     [],
   );
 
