@@ -5,7 +5,7 @@ import { getToursUrl } from '@pages/tours/[area]/[tour]';
 import useCardSubheading from '../../ToursLayout/TourGrid/hooks/useCardSubheading';
 import RankingEl from '@elements/RankingEl';
 
-export default function ItemCard({ tour, sx, ...rest }) {
+export default function ItemCard({ tour, ...rest }) {
   const {
     name,
     area,
@@ -39,8 +39,6 @@ export default function ItemCard({ tour, sx, ...rest }) {
     subcategory,
   });
 
-  const cardStyles = { borderRadius: 4, ...sx };
-
   return (
     <GridCard
       price={startingPoint.price}
@@ -52,7 +50,6 @@ export default function ItemCard({ tour, sx, ...rest }) {
       titleVariant="cardTitle"
       type={type}
       url={url}
-      sx={cardStyles}
       rankingEl={
         <RankingEl
           rating={rating}

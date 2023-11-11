@@ -16,13 +16,19 @@ import MaxWidthContainer from '@elements/MaxWidthContainer';
 import NavBreakpointContext from '@context/NavBreakpointContext';
 import DarkModeSwitch from './Mobile/DrawerButton/Elements/DarkModeSwitch';
 
-const SiteAppBar = styled(AppBar)(({ theme }) =>
+const SiteAppBar = styled((props) => (
+  <AppBar
+    elevation={5}
+    {...props}
+  />
+))(({ theme }) =>
   theme.unstable_sx({
     position: { xxs: 'fixed' },
     top: { xxs: 'auto', sm: '0' },
     bottom: { xxs: 0, sm: 'initial' },
-    backdropFilter: 'blur(10.5px)',
-    backgroundColor: (theme) => `${theme.palette.background.paper}bf`,
+    backdropFilter: 'blur(8.5px)',
+    backgroundColor: `${theme.palette.background.variant}df`,
+    color: theme.palette.background.variantText,
   }),
 );
 
@@ -37,7 +43,7 @@ export default function NavbarLayout(props) {
   return (
     <NavBreakpointContext.Provider value={menuBreakpoint}>
       {/* <ElevationScroll {...props}> */}
-      <SiteAppBar elevation={0}>
+      <SiteAppBar>
         <MaxWidthContainer
           maxWidth="lg"
           disableGutters

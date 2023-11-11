@@ -1,19 +1,15 @@
-import { darken, lighten, styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
 
 const GroupHeader = styled('div')(({ theme }) => ({
+  position: 'sticky',
+  top: 0,
   lineHeight: '48px',
   listStyle: 'none',
-  color: theme.palette.primary.main,
   fontWeight: 500,
   fontSize: '0.875rem',
   padding: '4px 16px',
-  position: 'sticky',
-  top: 0,
-  zIndex: 1,
-  backgroundColor:
-    theme.palette.mode === 'light'
-      ? lighten(theme.palette.secondary.main, 0.6)
-      : darken(theme.palette.secondary.main, 0.8),
+  color: theme.palette.secondary.containerText,
+  backgroundColor: theme.palette.secondary.container,
 }));
 
 export default GroupHeader;

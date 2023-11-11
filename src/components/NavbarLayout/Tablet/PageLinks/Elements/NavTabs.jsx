@@ -1,27 +1,36 @@
 import Tabs from '@mui/material/Tabs';
 import React, { useContext } from 'react';
 import NavBreakpointContext from '@context/NavBreakpointContext';
+import { styled } from '@mui/material/styles';
 
-export default function NavTabs({ children, ...rest }) {
+const StyledTabs = styled((props) => (
+  <Tabs
+    centered
+    aria-label="page navigation links"
+    textColor="inherit"
+    {...props}
+  />
+))(({ theme, dissapearingBreakpoint }) =>
+  theme.unstable_sx({
+    alignSelf: 'stretch',
+    flexGrow: 1,
+    flexBasis: 'content',
+    display: {
+      xxs: 'none',
+      [dissapearingBreakpoint]: 'flex',
+    },
+  }),
+);
+
+export default React.memo(function NavTabs({ children, ...rest }) {
   const dissapearingBreakpoint = useContext(NavBreakpointContext);
 
   return (
-    <Tabs
-      indicatorColor="secondary"
-      aria-label="page links"
-      centered
-      sx={{
-        alignSelf: 'stretch',
-        flexGrow: 1,
-        flexBasis: 'content',
-        display: {
-          xxs: 'none',
-          [dissapearingBreakpoint]: 'flex',
-        },
-      }}
+    <StyledTabs
+      dissapearingBreakpoint={dissapearingBreakpoint}
       {...rest}
     >
       {children}
-    </Tabs>
+    </StyledTabs>
   );
-}
+});

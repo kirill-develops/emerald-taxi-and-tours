@@ -13,6 +13,25 @@ import SwiperTourCard from './Elements/SwiperTourCard';
 import NavigationButtons from './Elements/NavigationButtons';
 import useSwiperBreakpoints from './hooks/useSwiperBreakpoints';
 
+const SwiperGridItem = styled(GridItem)(({ theme }) =>
+  theme.unstable_sx({ width: '100%', flexDirection: 'column' }),
+);
+
+const SwiperPaper = styled((props) => (
+  <Paper
+    elevation={1}
+    {...props}
+  />
+))(({ theme }) =>
+  theme.unstable_sx({
+    p: 2,
+    pb: 0,
+    backgroundColor: (theme) => theme.palette.secondary.container,
+    color: (theme) => theme.palette.secondary.containerText,
+    position: 'relative',
+  }),
+);
+
 const StyledTourSwiper = styled(Swiper)(({ theme }) =>
   theme.unstable_sx({
     overflow: 'visible',
@@ -22,13 +41,6 @@ const StyledTourSwiper = styled(Swiper)(({ theme }) =>
     },
   }),
 );
-
-const TourSwiperSlide = styled(SwiperSlide)({});
-
-const gridItemStyles = {
-  width: '100%',
-  flexDirection: 'column',
-};
 
 export default React.memo(function TourSwiper({ tours, type }) {
   const [isStart, setIsStart] = useState(true);
@@ -44,17 +56,8 @@ export default React.memo(function TourSwiper({ tours, type }) {
   }, []);
 
   return (
-    <GridItem sx={gridItemStyles}>
-      <Paper
-        elevation={0}
-        sx={{
-          p: 2,
-          pb: 0,
-          backgroundColor: (theme) => theme.palette.secondary.container,
-          color: (theme) => theme.palette.secondary.containerText,
-          position: 'relative',
-        }}
-      >
+    <SwiperGridItem>
+      <SwiperPaper>
         <SectionTitle>{type}s</SectionTitle>
         <DividerRight />
         <StyledTourSwiper
@@ -71,9 +74,9 @@ export default React.memo(function TourSwiper({ tours, type }) {
           updateOnWindowResize
         >
           {tours.map((tour) => (
-            <TourSwiperSlide key={tour.link}>
+            <SwiperSlide key={tour.link}>
               <SwiperTourCard tour={tour} />
-            </TourSwiperSlide>
+            </SwiperSlide>
           ))}
         </StyledTourSwiper>
         <NavigationButtons
@@ -81,7 +84,7 @@ export default React.memo(function TourSwiper({ tours, type }) {
           isEnd={isEnd}
           type={key}
         />
-      </Paper>
-    </GridItem>
+      </SwiperPaper>
+    </SwiperGridItem>
   );
 });

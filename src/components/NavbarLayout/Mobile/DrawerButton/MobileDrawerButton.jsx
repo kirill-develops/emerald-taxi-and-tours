@@ -21,12 +21,12 @@ const Wrapper = styled(Box)(({ theme, dissapearingbreakpoint }) =>
 );
 
 const paperProps = {
-  sx: {
+  sx: (theme) => ({
     minWidth: 350,
-    backgroundColor: (theme) => theme.palette.background.variant,
-    color: (theme) => theme.palette.background.variantText,
-  },
-  elevation: 10,
+    backgroundColor: theme.palette.secondary.container,
+    color: theme.palette.secondary.containerText,
+  }),
+  elevation: 15,
 };
 
 export default React.memo(function MobileDrawerButton() {

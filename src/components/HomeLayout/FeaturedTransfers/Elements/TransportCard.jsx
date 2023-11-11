@@ -78,7 +78,7 @@ export default React.memo(function TransportCard({
 
   return (
     <StyledCard
-      elevation={8}
+      elevation={2}
       {...rest}
     >
       <StyledCardActionArea

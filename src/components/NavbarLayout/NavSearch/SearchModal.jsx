@@ -1,30 +1,29 @@
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import { styled } from '@mui/material/styles';
 import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
 import React from 'react';
 import { useRouter } from 'next/router';
-import { searchStyles } from './searchModalStyles';
 import {
+  AutocompleteTextField,
   renderGroupProp,
-  renderInputProp,
-  renderOptionProp,
+  useRenderOptionProp,
 } from './autocompleteProps';
 import useSearchListner from './hooks/useSearchListner';
 import useSearchFilterOptions from './hooks/useSearchFilterOptions';
+import ModalBox from './Elements/ModalBox';
 
 const StyledAutocompletePopper = styled('div')(({ theme }) =>
   theme.unstable_sx({
     width: '100%',
     minWidth: 150,
     maxWidth: 400,
-    boxShadow: 5,
     [`& .${autocompleteClasses.paper}`]: {
       boxShadow: 0,
-      margin: 0,
+      color: 'inherit',
+      mt: 0.5,
     },
     [`& .${autocompleteClasses.listbox}`]: {
       color: (theme) => theme.palette.background.variantText,
@@ -34,10 +33,21 @@ const StyledAutocompletePopper = styled('div')(({ theme }) =>
     [`&.${autocompleteClasses.popperDisablePortal}`]: {
       position: 'relative',
     },
+    [`& .${autocompleteClasses.option}`]: {
+      m: 1,
+      '&.Mui-focused': {
+        border: `2px solid ${theme.palette.tertiary.main}`,
+        borderRadius: 2.5,
+      },
+    },
   }),
 );
 
-function SearchModal({ open, handleOpen, handleClose }) {
+export default React.memo(function SearchModal({
+  open,
+  handleOpen,
+  handleClose,
+}) {
   const router = useRouter();
   const { searchOptions, filterOptionsProp } = useSearchFilterOptions();
 
@@ -66,36 +76,31 @@ function SearchModal({ open, handleOpen, handleClose }) {
         in={open}
         timeout={500}
       >
-        <Box
-          top={{ xxs: '60%', sm: '40%' }}
-          sx={searchStyles}
-        >
+        <ModalBox>
           <Autocomplete
             autoHighlight
             clearOnBlur={false}
             popupIcon={null}
-            open={true}
-            noOptionsText="No tours or transfers"
+            open
             disablePortal
+            noOptionsText="Sorry, no matches found"
             onChange={handleOptionSelect}
-            options={searchOptions}
             groupBy={(option) => option.type}
             getOptionLabel={(option) => option.name}
             PopperComponent={StyledAutocompletePopper}
-            renderInput={renderInputProp}
+            renderInput={AutocompleteTextField}
             filterOptions={filterOptionsProp}
+            options={searchOptions}
             renderGroup={renderGroupProp}
-            renderOption={renderOptionProp}
+            renderOption={useRenderOptionProp}
             onKeyUp={(event) => {
               if (event.key === 'Escape') {
                 handleClose();
               }
             }}
           />
-        </Box>
+        </ModalBox>
       </Fade>
     </Modal>
   );
-}
-
-export default SearchModal;
+});

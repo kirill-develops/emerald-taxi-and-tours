@@ -47,6 +47,7 @@ export const themeTypography = {
       letterSpacing: '0.03333em'
    },
    chip: {
+      fontFamily: dm_sans.style.fontFamily,
       fontWeight: 500,
       fontSize: '0.77rem',
       lineHeight: 1.15,

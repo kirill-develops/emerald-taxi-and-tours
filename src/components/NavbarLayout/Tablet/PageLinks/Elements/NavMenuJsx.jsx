@@ -24,10 +24,12 @@ export default function NavMenuJsx({
         onMouseEnter: handleMouseOnMenu,
         ref: menuRef,
         elevation: 4,
-        sx: {
-          backgroundColor: (theme) => theme.palette.background.variant,
-          color: (theme) => theme.palette.background.variantText,
-        },
+        sx: (theme) => ({
+          backgroundColor: theme.palette.background.variant,
+          color: theme.palette.background.variantText,
+          marginTop: `-${theme.spacing(0.5)}`,
+          zIndex: theme.zIndex.drawer,
+        }),
       }}
       sx={{ zIndex: 1000 }}
     >

@@ -92,7 +92,6 @@ function GridCard({
 
   return (
     <Card
-      square
       sx={dynamicCardStyles}
       {...rest}
     >

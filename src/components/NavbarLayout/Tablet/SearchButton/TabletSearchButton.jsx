@@ -6,8 +6,9 @@ import {
   SearchEndAdornment,
   SearchStartAdornment,
 } from './Elements/SearchAdornments';
+import { inputBaseClasses, outlinedInputClasses, styled } from '@mui/material';
 
-const textColor = (theme) => theme.palette.tertiary.contrastText;
+const textColor = (theme) => theme.palette.tertiary.main;
 
 const inputProps = {
   readOnly: true,
@@ -15,17 +16,33 @@ const inputProps = {
   endAdornment: <SearchEndAdornment color={textColor} />,
 };
 
-const textFieldStyles = {
-  flexGrow: 1,
-  flexBasis: '20%',
-  '& .MuiInputBase-root': {
-    borderRadius: 3.5,
-    backgroundColor: (theme) => theme.palette.tertiary.main,
-    color: textColor,
+const SearchTextField = styled((props) => (
+  <TextField
+    hiddenLabel
+    placeholder="Search"
+    focused={false}
+    variant="outlined"
+    InputProps={inputProps}
+    {...props}
+  />
+))(({ theme }) =>
+  theme.unstable_sx({
     cursor: 'pointer',
-    '& input': { cursor: 'pointer', py: 0.8125 },
-  },
-};
+    flexGrow: 1,
+    flexBasis: '20%',
+    [`& .${inputBaseClasses.root}`]: {
+      borderRadius: 6,
+      backgroundColor: theme.palette.background.paper,
+      color: textColor,
+      '& input': { cursor: 'pointer', py: 0.8125 },
+      '&:hover': {
+        [`& .${outlinedInputClasses.notchedOutline}`]: {
+          border: `1.4px solid ${theme.palette.tertiary.main}`,
+        },
+      },
+    },
+  }),
+);
 
 export default React.memo(function TabletSearchButton({
   dissapearingBreakpoint,
@@ -44,15 +61,7 @@ export default React.memo(function TabletSearchButton({
 
   return (
     <>
-      <TextField
-        hiddenLabel
-        placeholder="Search"
-        focused={false}
-        onClick={handleOpen}
-        variant="outlined"
-        InputProps={inputProps}
-        sx={textFieldStyles}
-      />
+      <SearchTextField onClick={handleOpen} />
       <SearchModal
         open={open}
         handleOpen={handleOpen}
