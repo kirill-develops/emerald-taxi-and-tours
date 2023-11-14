@@ -1,16 +1,21 @@
 import Tabs from '@mui/material/Tabs';
+import { styled } from '@mui/material/styles';
 import React, { useContext } from 'react';
 import NavBreakpointContext from '@context/NavBreakpointContext';
-import { styled } from '@mui/material/styles';
 
-const StyledTabs = styled((props) => (
-  <Tabs
-    centered
-    aria-label="page navigation links"
-    textColor="inherit"
-    {...props}
-  />
-))(({ theme, dissapearingBreakpoint }) =>
+const StyledTabs = styled(
+  (props) => (
+    <Tabs
+      centered
+      aria-label="page navigation links"
+      textColor="inherit"
+      {...props}
+    />
+  ),
+  {
+    shouldForwardProp: (prop) => prop !== 'dissapearingBreakpoint',
+  },
+)(({ theme, dissapearingBreakpoint }) =>
   theme.unstable_sx({
     alignSelf: 'stretch',
     flexGrow: 1,
