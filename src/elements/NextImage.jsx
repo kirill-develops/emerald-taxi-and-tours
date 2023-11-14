@@ -3,26 +3,33 @@ import Image from 'next/image';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 
-const StyledNextImage = styled(Image)(({ theme }) => ({
-  objectFit: 'cover',
-}));
+const StyledBox = styled(Box)({
+  position: 'relative',
+  height: '100%',
+  width: '100%',
+});
 
-export default function NextImage({ src, altCaption, muiImageSizes }) {
+export const StyledNextImage = styled(Image)({
+  objectFit: 'cover',
+});
+
+export default React.memo(function NextImage({
+  src,
+  altCaption,
+  muiImageSizes = `100vw`,
+  boxStyles,
+  ...rest
+}) {
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        height: '100%',
-        width: '100%',
-      }}
-    >
+    <StyledBox sx={boxStyles}>
       <StyledNextImage
         src={src}
         alt={altCaption}
         quality={100}
         sizes={muiImageSizes}
         fill
+        {...rest}
       />
-    </Box>
+    </StyledBox>
   );
-}
+});

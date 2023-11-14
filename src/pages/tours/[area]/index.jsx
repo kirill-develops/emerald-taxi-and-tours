@@ -28,7 +28,7 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const { price, ...filteredParams } = paramDetails;
+  const { price, image, ...filteredParams } = paramDetails;
 
   const filteredLocations = filterToursByStartingPoint(params.area).map(
     ({

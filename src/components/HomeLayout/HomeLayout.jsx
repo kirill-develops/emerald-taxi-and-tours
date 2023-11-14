@@ -1,7 +1,7 @@
 import React from 'react';
 import HeroBanner from './HeroBanner/HeroBanner';
 import FeaturedTransfers from './FeaturedTransfers/FeaturedTransfers';
-import FeaturedToursByLocation from './Elements/FeaturedToursByLocation';
+import FeaturedToursByLocation from './FeaturedToursByStartLocation/FeaturedToursByStartLocation';
 import ToursByType from '../ToursLayout/TourGrid/ToursByType/ToursByType';
 import HomeSection from './Elements/HomeSection';
 import { GridContainer, layoutGridSpacingProp } from '@elements/CustomGridEl';

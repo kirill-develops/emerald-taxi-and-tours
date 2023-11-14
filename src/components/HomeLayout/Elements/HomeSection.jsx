@@ -3,7 +3,8 @@ import React, { useMemo } from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import SectionTitle from '@elements/SectionTitle';
 
-const containerStyles = (center) => ({
+const containerStyle = (center, containerStyles) => ({
+  ...containerStyles,
   zIndex: 1,
   display: center ? 'grid' : null,
   justifyContent: center ? 'center' : null,
@@ -14,6 +15,7 @@ export default React.memo(function HomeSection({
   titleStyles,
   sx,
   children,
+  containerStyles,
   disableGutters = false,
   center = false,
   ...rest
@@ -54,7 +56,7 @@ export default React.memo(function HomeSection({
         maxWidth="lg"
         disableStack
         disableGutters={disableGutters}
-        sx={containerStyles(center)}
+        sx={containerStyle(center, containerStyles)}
       >
         {children}
       </MaxWidthContainer>

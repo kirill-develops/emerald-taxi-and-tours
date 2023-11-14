@@ -4,7 +4,7 @@ import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import ToursByType from './ToursByType/ToursByType';
 import { layoutGridSpacingProp } from '@elements/CustomGridEl';
 import AllTours from './AllTours/AllTours';
-import FeaturedToursByLocation from '@components/HomeLayout/Elements/FeaturedToursByLocation';
+import FeaturedToursByLocation from '../../HomeLayout/FeaturedToursByStartLocation/FeaturedToursByStartLocation';
 
 const gridContainerStyles = { pl: { sm: 0 }, m: 0 };
 
