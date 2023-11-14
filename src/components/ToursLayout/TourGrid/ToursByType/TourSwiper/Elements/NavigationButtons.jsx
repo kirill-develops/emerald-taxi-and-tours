@@ -1,51 +1,62 @@
+import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-import NavigateBefore from '@mui/icons-material/NavigateBefore';
-import NavigateNext from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import React from 'react';
 
-const iconButtonStyles = (position, isDisabled) => ({
+const IconWrapper = styled(IconButton)(({ theme, position, isDisabled }) => ({
   position: 'absolute',
-  bottom: '25%',
-  [position]: 8,
-  transform: 'translate(0,-50%)',
   zIndex: 2,
-  padding: 0,
-  height: 35,
-  borderRadius: 1,
-  boxShadow: (theme) => (isDisabled ? theme.shadows[0] : theme.shadows[6]),
-  '&: hover': {
-    color: (theme) => theme.palette.tertiary.container,
-    backgroundColor: (theme) => theme.palette.tertiary.containerText,
-    boxShadow: (theme) => theme.shadows[4],
+  top: '50%',
+  transform: 'translate(0,-50%)',
+  [position]: -15,
+  height: 28,
+  width: 28,
+  borderRadius: '50%',
+  boxShadow: isDisabled ? theme.shadows[0] : theme.shadows[4],
+  backgroundColor: theme.palette.background.paper,
+  color: theme.palette.tertiary.main,
+  opacity: isDisabled ? 0 : 1,
+  transition: 'opacity 0.3s, boxShadow 0.3s',
+
+  '&:hover': {
+    boxShadow: theme.shadows[3],
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.tertiary.main,
+    filter: 'brightness(96.5%)',
   },
-  color: (theme) => theme.palette.tertiary.contrastText,
-  backgroundColor: (theme) => theme.palette.tertiary.main,
-  backdropFilter: 'brightness(30%) blur(0.5px)',
-});
+
+  '&:active': {
+    boxShadow: theme.shadows[1],
+  },
+}));
 
 const svgStyles = { width: '1.2rem' };
 
-const navBackButtonStyles = (isStart) => iconButtonStyles('left', isStart);
-
-const navNextButtonStyles = (isEnd) => iconButtonStyles('right', isEnd);
-
-export default React.memo(function NavigationButtons({ isStart, isEnd, type }) {
+export default React.memo(function NavigationButtons({
+  isStart,
+  isEnd,
+  type,
+  ...rest
+}) {
   return (
     <>
-      <IconButton
+      <IconWrapper
         className={`swiper-button-prev__${type}`}
-        sx={navBackButtonStyles(isStart)}
-        disabled={isStart}
+        isDisabled={isStart}
+        position="left"
+        {...rest}
       >
-        <NavigateBefore sx={svgStyles} />
-      </IconButton>
-      <IconButton
+        <NavigateBeforeIcon sx={svgStyles} />
+      </IconWrapper>
+      <IconWrapper
         className={`swiper-button-next__${type}`}
-        sx={navNextButtonStyles(isEnd)}
-        disabled={isEnd}
+        isDisabled={isEnd}
+        position="right"
+        {...rest}
       >
-        <NavigateNext sx={svgStyles} />
-      </IconButton>
+        <NavigateNextIcon sx={svgStyles} />
+      </IconWrapper>
     </>
   );
 });

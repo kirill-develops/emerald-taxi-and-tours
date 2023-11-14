@@ -1,17 +1,18 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-import React, { useCallback, useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+import React, { useCallback, useState } from 'react';
+import useSwiperBreakpoints from './hooks/useSwiperBreakpoints';
 import { GridItem } from '@elements/CustomGridEl';
 import DividerRight from '@elements/DividerRight';
 import SectionTitle from '@elements/SectionTitle';
 import SwiperTourCard from './Elements/SwiperTourCard';
 import NavigationButtons from './Elements/NavigationButtons';
-import useSwiperBreakpoints from './hooks/useSwiperBreakpoints';
 
 const SwiperGridItem = styled(GridItem)(({ theme }) =>
   theme.unstable_sx({ width: '100%', flexDirection: 'column' }),
@@ -30,6 +31,10 @@ const SwiperPaper = styled((props) => (
     color: (theme) => theme.palette.secondary.containerText,
     position: 'relative',
   }),
+);
+
+const SwiperWrapper = styled(Box)(({ theme }) =>
+  theme.unstable_sx({ position: 'relative' }),
 );
 
 const StyledTourSwiper = styled(Swiper)(({ theme }) =>
@@ -60,30 +65,32 @@ export default React.memo(function TourSwiper({ tours, type }) {
       <SwiperPaper>
         <SectionTitle>{type}s</SectionTitle>
         <DividerRight />
-        <StyledTourSwiper
-          slidesPerView={1}
-          spaceBetween={8}
-          breakpoints={breakpoints}
-          modules={[Navigation]}
-          onSwiper={handleSwiperPosition}
-          onSlideChange={handleSwiperPosition}
-          navigation={{
-            prevEl: `.swiper-button-prev__${key}`,
-            nextEl: `.swiper-button-next__${key}`,
-          }}
-          updateOnWindowResize
-        >
-          {tours.map((tour) => (
-            <SwiperSlide key={tour.link}>
-              <SwiperTourCard tour={tour} />
-            </SwiperSlide>
-          ))}
-        </StyledTourSwiper>
-        <NavigationButtons
-          isStart={isStart}
-          isEnd={isEnd}
-          type={key}
-        />
+        <SwiperWrapper>
+          <StyledTourSwiper
+            slidesPerView={1}
+            spaceBetween={8}
+            breakpoints={breakpoints}
+            modules={[Navigation]}
+            onSwiper={handleSwiperPosition}
+            onSlideChange={handleSwiperPosition}
+            navigation={{
+              prevEl: `.swiper-button-prev__${key}`,
+              nextEl: `.swiper-button-next__${key}`,
+            }}
+            updateOnWindowResize
+          >
+            {tours.map((tour) => (
+              <SwiperSlide key={tour.link}>
+                <SwiperTourCard tour={tour} />
+              </SwiperSlide>
+            ))}
+          </StyledTourSwiper>
+          <NavigationButtons
+            isStart={isStart}
+            isEnd={isEnd}
+            type={key}
+          />
+        </SwiperWrapper>
       </SwiperPaper>
     </SwiperGridItem>
   );
