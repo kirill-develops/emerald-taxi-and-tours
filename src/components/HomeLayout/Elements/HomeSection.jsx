@@ -25,7 +25,7 @@ export default React.memo(function HomeSection({
       pt: 3,
       pb: 5,
       height: '100%',
-      rowGap: 3,
+      rowGap: 2,
       ...sx,
     }),
     [sx],

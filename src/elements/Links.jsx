@@ -15,6 +15,7 @@ export const PopUpLink = React.forwardRef(function PopUpLink(
     <Link
       href={href}
       target="_blank"
+      rel="noopener"
       ref={ref}
       {...linkTypographyProps}
       {...others}

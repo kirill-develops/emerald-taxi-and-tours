@@ -7,6 +7,7 @@ import { layoutGridSpacingProp } from '@elements/CustomGridEl';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import ItemCard from './ItemCard/ItemCard';
 import PageLayoutStack from '@elements/PageLayoutStack';
+import FeaturedToursByStartLocation from '../HomeLayout/FeaturedToursByStartLocation/FeaturedToursByStartLocation';
 
 export default function ToursByLocationLayout() {
   const { locations, name } = useContext(TourAreaContext);
@@ -39,6 +40,7 @@ export default function ToursByLocationLayout() {
           ))}
         </GridContainer>
       </MaxWidthContainer>
+      <FeaturedToursByStartLocation />
     </PageLayoutStack>
   );
 }

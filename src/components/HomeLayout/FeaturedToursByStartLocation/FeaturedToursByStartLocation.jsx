@@ -88,7 +88,7 @@ export default React.memo(function FeatureTours() {
             isStart={isStart}
             isEnd={isEnd}
             type={navKey}
-            sx={{ top: '40%' }}
+            sx={{ top: '43%' }}
           />
         )}
       </SwiperWrapper>

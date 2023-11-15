@@ -21,7 +21,7 @@ export default function SectionTitle({
       sx={{ zIndex: 1 }}
     >
       <Typography
-        variant="h4"
+        variant="h5"
         fontWeight={1000}
         sx={textStyles}
         {...rest}

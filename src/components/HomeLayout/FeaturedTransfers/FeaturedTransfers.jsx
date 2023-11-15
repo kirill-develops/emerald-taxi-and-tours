@@ -26,12 +26,12 @@ const SectionStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({
     overflowX: 'scroll',
     width: '100%',
-    pt: { xxs: 1, sm: 3 },
+    pt: { xxs: 1, sm: 2.5 },
     pb: 5,
-    px: { xxs: 2, sm: 4 },
+    px: { xxs: 2, sm: 3 },
     flexDirection: { xxs: 'column', sm: 'row' },
     justifyContent: 'space-between',
-    columnGap: 4,
+    columnGap: 3,
     rowGap: 3.5,
   }),
 );
