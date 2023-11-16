@@ -15,13 +15,14 @@ const SwiperWrapper = styled(Box)(({ theme }) =>
   theme.unstable_sx({ position: 'relative' }),
 );
 
-const StyledSwiper = styled((props) => <Swiper {...props} />)(
-  ({ theme, isLessMdBreakpoint }) =>
-    theme.unstable_sx({
-      px: isLessMdBreakpoint
-        ? { xxs: '16px !important', sm: '24px !important' }
-        : null,
-    }),
+const StyledSwiper = styled((props) => <Swiper {...props} />, {
+  shouldForwardProp: (prop) => prop !== 'isLessMdBreakpoint',
+})(({ theme, isLessMdBreakpoint }) =>
+  theme.unstable_sx({
+    px: isLessMdBreakpoint
+      ? { xxs: '16px !important', sm: '24px !important' }
+      : null,
+  }),
 );
 
 export default React.memo(function PageSwiper({

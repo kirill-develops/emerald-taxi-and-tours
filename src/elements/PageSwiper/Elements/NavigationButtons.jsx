@@ -4,7 +4,9 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import React from 'react';
 
-const IconWrapper = styled(IconButton)(({ theme, position, isDisabled }) => ({
+const IconWrapper = styled((props) => <IconButton {...props} />, {
+  shouldForwardProp: (prop) => prop !== 'isDisabled',
+})(({ theme, position, isDisabled }) => ({
   position: 'absolute',
   zIndex: 2,
   top: '50%',

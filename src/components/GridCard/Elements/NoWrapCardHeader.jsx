@@ -8,9 +8,14 @@ const getTitleTypographyProps = (noWrap, titleVariant) => ({
   variant: titleVariant,
 });
 
-const getSubheaderTypographyProps = (noWrap, subheaderVariant) => ({
+const getSubheaderTypographyProps = (
+  noWrap,
+  subheaderVariant,
+  subheaderColor,
+) => ({
   noWrap,
   variant: subheaderVariant,
+  sx: { color: subheaderColor },
 });
 
 export default function NoWrapCardHeader({
@@ -18,6 +23,7 @@ export default function NoWrapCardHeader({
   subheader,
   titleVariant = 'h5',
   subheaderVariant = 'caption',
+  subheaderColor,
   noWrap = false,
   ...rest
 }) {
@@ -26,6 +32,7 @@ export default function NoWrapCardHeader({
   const subheaderTypographyProps = getSubheaderTypographyProps(
     noWrap,
     subheaderVariant,
+    subheaderColor,
   );
 
   return (

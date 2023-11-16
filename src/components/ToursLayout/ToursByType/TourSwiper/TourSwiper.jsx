@@ -61,7 +61,7 @@ export default React.memo(function TourSwiper({ tours, type }) {
   return (
     <StyledStack>
       <StyledContainer disableGutters={!isLessMdBreakpoint}>
-        <CardTitle body>{type}s</CardTitle>
+        <CardTitle body="true">{type}s</CardTitle>
         <Caption>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae, quasi
           quidem,
