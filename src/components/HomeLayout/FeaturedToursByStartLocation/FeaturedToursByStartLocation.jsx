@@ -10,7 +10,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { startingPoints } from '@data/controllers/tour';
 import HomeSection from '../Elements/HomeSection';
 import LocationCard from './Elements/LocationCard';
-import NavigationButtons from '../../ToursLayout/TourGrid/ToursByType/TourSwiper/Elements/NavigationButtons';
+import NavigationButtons from '../../ToursLayout/ToursByType/TourSwiper/Elements/NavigationButtons';
 
 const navKey = 'tours_by_starting_location';
 

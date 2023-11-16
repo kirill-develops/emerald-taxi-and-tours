@@ -4,6 +4,8 @@ import FilterOptions from './FilterOptions/FilterOptions';
 import TourGrid from './TourGrid/TourGrid';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import PageLayoutStack from '@elements/PageLayoutStack';
+import ToursByType from './ToursByType/ToursByType';
+import FeaturedToursByStartLocation from '../HomeLayout/FeaturedToursByStartLocation/FeaturedToursByStartLocation';
 
 const gridItemStyles = { display: { xxs: 'none', sm: 'block' } };
 
@@ -38,6 +40,8 @@ function Content({ children, sx, ...rest }) {
 export default React.memo(function TourLayout() {
   return (
     <PageLayoutStack>
+      <FeaturedToursByStartLocation />
+      <ToursByType />
       <GridContainer spacing={layoutGridSpacingProp}>
         <Aside>
           <FilterOptions />

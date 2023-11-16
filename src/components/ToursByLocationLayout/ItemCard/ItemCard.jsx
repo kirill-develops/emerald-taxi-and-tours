@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import GridCard from '@components/GridCard/GridCard';
 import TourAreaContext from '@context/TourAreaContext';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
-import useCardSubheading from '../../ToursLayout/TourGrid/hooks/useCardSubheading';
+import useCardSubheading from '../../ToursLayout/ToursByType/hooks/useCardSubheading';
 import RankingEl from '@elements/RankingEl';
 
 export default function ItemCard({ tour, ...rest }) {

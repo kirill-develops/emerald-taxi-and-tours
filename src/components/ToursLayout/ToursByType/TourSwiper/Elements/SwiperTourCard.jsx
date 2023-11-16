@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
 import SmallCard from '@components/GridCard/SmallCard';
 import RankingEl from '@elements/RankingEl';
-import useCardSubheading from '../../../hooks/useCardSubheading';
+import useCardSubheading from '../../hooks/useCardSubheading';
 
 export default function SwiperTourCard({ tour, sx, ...rest }) {
   const {

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useTour } from '../../../hooks/useTour';
+import { useTour } from '../../hooks/useTour';
 
 export default function useTourByTypeDataFetcher() {
   const [state] = useTour();
