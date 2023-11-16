@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
-import SmallCard from '@components/GridCard/SmallCard';
+import SmallCard from '@components/GridCard/SmallCard/SmallCard';
 import RankingEl from '@elements/RankingEl';
 import useCardSubheading from '../../hooks/useCardSubheading';
 
@@ -22,23 +22,17 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
     } = {},
   } = tour;
 
-  const areaPrice = startingPoints.reduce(
-    (acc, startingPoint) =>
-      startingPoint.price < acc ? startingPoint.price : acc,
-    startingPoints[0].price,
+  const lowestPrice = useMemo(
+    () =>
+      startingPoints.reduce(
+        (lowestPrice, startingPoint) =>
+          startingPoint.price < lowestPrice ? startingPoint.price : lowestPrice,
+        startingPoints[0].price,
+      ),
+    [startingPoints],
   );
 
   const url = useMemo(() => getToursUrl(areaLink, link), [areaLink, link]);
-
-  const cardStyles = useMemo(
-    () => ({
-      height: { xxs: 155 },
-      backgroundColor: (theme) => theme.palette.secondary.main,
-      color: (theme) => theme.palette.tertiary.container,
-      ...sx,
-    }),
-    [sx],
-  );
 
   const subheading = useCardSubheading({
     priceLevel,
@@ -54,7 +48,7 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
     <SmallCard
       noWrap
       noGrid
-      price={areaPrice}
+      price={lowestPrice}
       picData={tripAdvisorPhotos[0]}
       title={name}
       subheader={subheading}
@@ -64,11 +58,10 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
           rating={rating}
           numReviews={numReviews}
           textVariant="smallCaption"
-          ratingColor={(theme) => theme.palette.tertiary.container}
-          ratingOutlineColor={(theme) => theme.palette.tertiary.container}
+          ratingColor={(theme) => theme.palette.secondary.main}
+          ratingOutlineColor={(theme) => theme.palette.secondary.main}
         />
       }
-      sx={cardStyles}
       {...rest}
     />
   );

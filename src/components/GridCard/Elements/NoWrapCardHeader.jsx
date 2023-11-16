@@ -1,38 +1,31 @@
 import CardHeader from '@mui/material/CardHeader';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 const cardHeaderStyles = { p: 0, overflow: 'hidden' };
+
+const getTitleTypographyProps = (noWrap, titleVariant) => ({
+  noWrap,
+  variant: titleVariant,
+});
+
+const getSubheaderTypographyProps = (noWrap, subheaderVariant) => ({
+  noWrap,
+  variant: subheaderVariant,
+});
 
 export default function NoWrapCardHeader({
   title,
   subheader,
   titleVariant = 'h5',
   subheaderVariant = 'caption',
-  subheaderColor = (theme) => theme.palette.secondary.contrastText,
   noWrap = false,
+  ...rest
 }) {
-  const headerTypographyProp = useMemo(
-    () => ({
-      noWrap: noWrap,
-    }),
-    [noWrap],
-  );
+  const titleTypographyProps = getTitleTypographyProps(noWrap, titleVariant);
 
-  const titleTypographyProps = useMemo(
-    () => ({
-      ...headerTypographyProp,
-      variant: titleVariant,
-    }),
-    [titleVariant, headerTypographyProp],
-  );
-
-  const subheaderTypographyProps = useMemo(
-    () => ({
-      ...headerTypographyProp,
-      variant: subheaderVariant,
-      sx: { color: subheaderColor },
-    }),
-    [headerTypographyProp, subheaderVariant, subheaderColor],
+  const subheaderTypographyProps = getSubheaderTypographyProps(
+    noWrap,
+    subheaderVariant,
   );
 
   return (
@@ -42,6 +35,7 @@ export default function NoWrapCardHeader({
       titleTypographyProps={titleTypographyProps}
       subheaderTypographyProps={subheaderTypographyProps}
       sx={cardHeaderStyles}
+      {...rest}
     />
   );
 }

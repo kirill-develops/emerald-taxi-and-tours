@@ -37,6 +37,7 @@ const StyledCard = styled((props) => (
 const Caption = styled((props) => (
   <Typography
     variant="subtitle2"
+    color="text.secondary"
     {...props}
   />
 ))(({ theme }) => theme.unstable_sx({ fontWeight: 300 }));

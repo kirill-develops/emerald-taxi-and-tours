@@ -22,7 +22,9 @@ const StyledTourSwiper = styled(Swiper)(({ theme, isLessMdBreakpoint }) =>
   theme.unstable_sx({
     overflow: 'visible',
     position: 'relative',
-    px: isLessMdBreakpoint ? '16px !important' : null,
+    px: isLessMdBreakpoint
+      ? { xxs: '16px !important', sm: '24px !important' }
+      : null,
   }),
 );
 
