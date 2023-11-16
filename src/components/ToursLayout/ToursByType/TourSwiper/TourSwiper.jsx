@@ -1,97 +1,84 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import { SwiperSlide } from 'swiper/react';
 import { styled } from '@mui/material/styles';
-import React, { useCallback, useState } from 'react';
-import useSwiperBreakpoints from './hooks/useSwiperBreakpoints';
-import { GridItem } from '@elements/CustomGridEl';
-import DividerRight from '@elements/DividerRight';
-import SectionTitle from '@elements/SectionTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import React from 'react';
+import CardTitle from '@elements/CardTitle';
 import SwiperTourCard from './Elements/SwiperTourCard';
-import NavigationButtons from './Elements/NavigationButtons';
+import PageSwiper from '../../../../elements/PageSwiper/PageSwiper';
+import Typography from '@mui/material/Typography';
 
-const SwiperGridItem = styled(GridItem)(({ theme }) =>
-  theme.unstable_sx({ width: '100%', flexDirection: 'column' }),
+const StyledStack = styled(Stack)(({ theme }) =>
+  theme.unstable_sx({
+    flexDirection: { xxs: 'column', md: 'row' },
+    justifyContent: 'space-between',
+    width: '100%',
+    columnGap: 5,
+    rowGap: 1.5,
+  }),
 );
 
-const SwiperPaper = styled((props) => (
-  <Paper
-    elevation={1}
+const StyledContainer = styled((props) => (
+  <Container
+    maxWidth={false}
     {...props}
   />
 ))(({ theme }) =>
   theme.unstable_sx({
-    p: 2,
-    pb: 0,
-    backgroundColor: (theme) => theme.palette.secondary.container,
-    color: (theme) => theme.palette.secondary.containerText,
-    position: 'relative',
+    flexBasis: '25%',
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: { xxs: 0, md: 1.5 },
   }),
 );
 
-const SwiperWrapper = styled(Box)(({ theme }) =>
-  theme.unstable_sx({ position: 'relative' }),
-);
+const Caption = styled((props) => (
+  <Typography
+    variant="body2"
+    {...props}
+  />
+))(({ theme }) => theme.unstable_sx({}));
 
-const StyledTourSwiper = styled(Swiper)(({ theme }) =>
-  theme.unstable_sx({
-    overflow: 'visible',
-    '& .swiper-wrapper': {
-      paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(2),
-    },
-  }),
-);
+const buttonProps = { sx: { top: '40%' } };
+
+const wrapperProps = {
+  sx: {
+    width: { md: '75%' },
+    flexBasis: '75%',
+    flexGrow: 4,
+  },
+};
 
 export default React.memo(function TourSwiper({ tours, type }) {
-  const [isStart, setIsStart] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
+  const isLessMdBreakpoint = useMediaQuery((theme) =>
+    theme.breakpoints.down('md'),
+  );
 
   const key = type.replace(/\s/g, '_');
 
-  const breakpoints = useSwiperBreakpoints();
-
-  const handleSwiperPosition = useCallback((swiper) => {
-    setIsStart(swiper.isBeginning);
-    setIsEnd(swiper.isEnd);
-  }, []);
-
   return (
-    <SwiperGridItem>
-      <SwiperPaper>
-        <SectionTitle>{type}s</SectionTitle>
-        <DividerRight />
-        <SwiperWrapper>
-          <StyledTourSwiper
-            slidesPerView={1}
-            spaceBetween={8}
-            breakpoints={breakpoints}
-            modules={[Navigation]}
-            onSwiper={handleSwiperPosition}
-            onSlideChange={handleSwiperPosition}
-            navigation={{
-              prevEl: `.swiper-button-prev__${key}`,
-              nextEl: `.swiper-button-next__${key}`,
-            }}
-            updateOnWindowResize
-          >
-            {tours.map((tour) => (
-              <SwiperSlide key={tour.link}>
-                <SwiperTourCard tour={tour} />
-              </SwiperSlide>
-            ))}
-          </StyledTourSwiper>
-          <NavigationButtons
-            isStart={isStart}
-            isEnd={isEnd}
-            type={key}
-          />
-        </SwiperWrapper>
-      </SwiperPaper>
-    </SwiperGridItem>
+    <StyledStack>
+      <StyledContainer disableGutters={!isLessMdBreakpoint}>
+        <CardTitle body>{type}s</CardTitle>
+        <Caption>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae, quasi
+          quidem,
+        </Caption>
+      </StyledContainer>
+      <PageSwiper
+        id={key}
+        slidesPerView={1}
+        wrapperProps={wrapperProps}
+        buttonProps={buttonProps}
+      >
+        {tours.map((tour) => (
+          <SwiperSlide key={tour.link}>
+            <SwiperTourCard tour={tour} />
+          </SwiperSlide>
+        ))}
+      </PageSwiper>
+    </StyledStack>
   );
 });

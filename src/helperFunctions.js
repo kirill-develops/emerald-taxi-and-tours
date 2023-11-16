@@ -35,3 +35,17 @@ export function isDataOld(dateUpdated) {
 
   return Date.now() - new Date(dateUpdated).getTime() > timeWindow;
 }
+
+export function checkUnrecognizedProps(componentName, props) {
+  if (!props || typeof props !== 'object') {
+    return;
+  };
+
+  const unrecognizedProps = Object.keys(props);
+
+  if (unrecognizedProps.length > 0) {
+    const quotedProps = unrecognizedProps.map(prop => `'${prop}'`);
+
+    console.error(`Error: ${componentName} received unrecognized props: ${quotedProps.join(', ')}`);
+  }
+};

@@ -1,98 +1,48 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
-import 'swiper/css/bundle';
-import 'swiper/css/navigation';
-
-import Box from '@mui/material/Box';
+import { SwiperSlide } from 'swiper/react';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { styled, useTheme } from '@mui/material/styles';
-import React, { useCallback, useMemo, useState } from 'react';
+import React from 'react';
 import { startingPoints } from '@data/controllers/tour';
 import HomeSection from '../Elements/HomeSection';
 import LocationCard from './Elements/LocationCard';
-import NavigationButtons from '../../ToursLayout/ToursByType/TourSwiper/Elements/NavigationButtons';
+import PageSwiper from '@elements/PageSwiper/PageSwiper';
+import useSwiperBreakpointSettings from './hooks/useSwiperBreakpointSettings';
 
 const navKey = 'tours_by_starting_location';
 
-const SwiperWrapper = styled(Box)(({ theme }) =>
-  theme.unstable_sx({ position: 'relative' }),
-);
+const buttonProps = { sx: { top: '43%' } };
 
-const StyledTourSwiper = styled(Swiper)(({ theme, isLessMdBreakpoint }) =>
-  theme.unstable_sx({
-    overflow: 'visible',
-    position: 'relative',
-    px: isLessMdBreakpoint
-      ? { xxs: '16px !important', sm: '24px !important' }
-      : null,
-  }),
-);
+const homeSectionStyles = { pb: 3 };
 
 export default React.memo(function FeatureTours() {
-  const [isStart, setIsStart] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
-
-  const handleSwiperPosition = useCallback((swiper) => {
-    setIsStart(swiper.isBeginning);
-    setIsEnd(swiper.isEnd);
-  }, []);
-
-  const muiBreakpoints = useTheme().breakpoints.values;
-
   const isLessMdBreakpoint = useMediaQuery((theme) =>
     theme.breakpoints.down('md'),
   );
 
-  const swiperBreakpointSettings = useMemo(
-    () => ({
-      [muiBreakpoints.xs]: { slidesPerView: 2.4 },
-      [muiBreakpoints.sm]: { slidesPerView: 4.3 },
-      [muiBreakpoints.md]: { slidesPerView: 6 },
-    }),
-    [muiBreakpoints],
-  );
+  const swiperBreakpointSettings = useSwiperBreakpointSettings();
 
   return (
     <HomeSection
       title="Browse Island Tours by Starting Locations"
       disableGutters={isLessMdBreakpoint}
-      sx={{ pb: 3 }}
+      sx={homeSectionStyles}
     >
-      <SwiperWrapper>
-        <StyledTourSwiper
-          isLessMdBreakpoint={isLessMdBreakpoint}
-          slidesPerView={1.7}
-          spaceBetween={10}
-          breakpoints={swiperBreakpointSettings}
-          modules={[Navigation]}
-          onSwiper={handleSwiperPosition}
-          onSlideChange={handleSwiperPosition}
-          navigation={{
-            prevEl: `.swiper-button-prev__${navKey}`,
-            nextEl: `.swiper-button-next__${navKey}`,
-          }}
-          updateOnWindowResize
-        >
-          {startingPoints.map(({ name, link, total, image }) => (
-            <SwiperSlide key={link}>
-              <LocationCard
-                url={link}
-                title={name}
-                numberOfTours={total}
-                image={image}
-              />
-            </SwiperSlide>
-          ))}
-        </StyledTourSwiper>
-        {isLessMdBreakpoint ? null : (
-          <NavigationButtons
-            isStart={isStart}
-            isEnd={isEnd}
-            type={navKey}
-            sx={{ top: '43%' }}
-          />
-        )}
-      </SwiperWrapper>
+      <PageSwiper
+        id={navKey}
+        slidesPerView={1.4}
+        swiperBreakpointSettings={swiperBreakpointSettings}
+        buttonProps={buttonProps}
+      >
+        {startingPoints.map(({ name, link, total, image }) => (
+          <SwiperSlide key={link}>
+            <LocationCard
+              url={link}
+              title={name}
+              numberOfTours={total}
+              image={image}
+            />
+          </SwiperSlide>
+        ))}
+      </PageSwiper>
     </HomeSection>
   );
 });
