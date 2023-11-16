@@ -24,7 +24,6 @@ const filterTypes = [
 
 const cardStyles = {
   m: { xxs: 2, sm: 0 },
-  ml: { sm: 1 },
   p: 1,
   position: { xxs: 'static', sm: 'sticky' },
   top: { sm: 80 },

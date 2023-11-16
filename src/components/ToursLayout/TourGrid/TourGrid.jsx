@@ -11,6 +11,7 @@ export default React.memo(function TourGrid() {
     <MaxWidthContainer
       maxWidth="md"
       disableStack
+      disableGutters
       sx={gridContainerStyles}
     >
       <GridContainer spacing={layoutGridSpacingProp}>

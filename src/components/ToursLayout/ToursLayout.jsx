@@ -1,9 +1,10 @@
+import Container from '@mui/material/Container';
 import React from 'react';
 import { layoutGridSpacingProp } from '@elements/CustomGridEl';
-import FilterOptions from './FilterOptions/FilterOptions';
-import TourGrid from './TourGrid/TourGrid';
 import { GridContainer, GridItem } from '@elements/CustomGridEl';
 import PageLayoutStack from '@elements/PageLayoutStack';
+import FilterOptions from './FilterOptions/FilterOptions';
+import TourGrid from './TourGrid/TourGrid';
 import ToursByType from './ToursByType/ToursByType';
 import FeaturedToursByStartLocation from '../HomeLayout/FeaturedToursByStartLocation/FeaturedToursByStartLocation';
 
@@ -41,14 +42,16 @@ export default React.memo(function TourLayout() {
   return (
     <PageLayoutStack>
       <ToursByType />
-      <GridContainer spacing={layoutGridSpacingProp}>
-        <Aside>
-          <FilterOptions />
-        </Aside>
-        <Content>
-          <TourGrid />
-        </Content>
-      </GridContainer>
+      <Container>
+        <GridContainer spacing={layoutGridSpacingProp}>
+          <Aside>
+            <FilterOptions />
+          </Aside>
+          <Content>
+            <TourGrid />
+          </Content>
+        </GridContainer>
+      </Container>
       <FeaturedToursByStartLocation />
     </PageLayoutStack>
   );

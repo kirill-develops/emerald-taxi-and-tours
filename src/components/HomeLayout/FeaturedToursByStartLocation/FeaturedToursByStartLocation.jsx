@@ -60,7 +60,7 @@ export default React.memo(function FeatureTours() {
         <StyledTourSwiper
           isLessMdBreakpoint={isLessMdBreakpoint}
           slidesPerView={1.7}
-          spaceBetween={16}
+          spaceBetween={10}
           breakpoints={swiperBreakpointSettings}
           modules={[Navigation]}
           onSwiper={handleSwiperPosition}
