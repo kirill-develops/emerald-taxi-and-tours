@@ -58,7 +58,6 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
       picData={tripAdvisorPhotos[0]}
       title={name}
       subheader={subheading}
-      variant="outlined"
       url={destinationURL}
       rankingEl={
         <RankingEl

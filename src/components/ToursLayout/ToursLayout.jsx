@@ -40,7 +40,6 @@ function Content({ children, sx, ...rest }) {
 export default React.memo(function TourLayout() {
   return (
     <PageLayoutStack>
-      <FeaturedToursByStartLocation />
       <ToursByType />
       <GridContainer spacing={layoutGridSpacingProp}>
         <Aside>
@@ -50,6 +49,7 @@ export default React.memo(function TourLayout() {
           <TourGrid />
         </Content>
       </GridContainer>
+      <FeaturedToursByStartLocation />
     </PageLayoutStack>
   );
 });

@@ -18,6 +18,7 @@ export default React.memo(function HomeSection({
   containerStyles,
   disableGutters = false,
   center = false,
+  maxWidth = 'lg',
   ...rest
 }) {
   const stackStyles = useMemo(
@@ -53,7 +54,7 @@ export default React.memo(function HomeSection({
     >
       {sectionTitle}
       <MaxWidthContainer
-        maxWidth="lg"
+        maxWidth={maxWidth}
         disableStack
         disableGutters={disableGutters}
         sx={containerStyle(center, containerStyles)}

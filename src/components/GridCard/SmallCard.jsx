@@ -35,7 +35,6 @@ function SmallCard({
 }) {
   return (
     <Card
-      square
       sx={heightStyles}
       {...rest}
     >
@@ -54,7 +53,6 @@ function SmallCard({
           >
             <CardImage picData={picData} />
           </ImageOverlayWrapper>
-
           <Box sx={{ py: 1.25, px: 2 }}>
             <NoWrapCardHeader
               title={title}

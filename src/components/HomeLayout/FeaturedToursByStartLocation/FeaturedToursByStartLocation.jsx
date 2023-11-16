@@ -22,7 +22,7 @@ const StyledTourSwiper = styled(Swiper)(({ theme, isLessMdBreakpoint }) =>
   theme.unstable_sx({
     overflow: 'visible',
     position: 'relative',
-    px: isLessMdBreakpoint ? '8px !important' : null,
+    px: isLessMdBreakpoint ? '16px !important' : null,
   }),
 );
 
@@ -54,14 +54,13 @@ export default React.memo(function FeatureTours() {
     <HomeSection
       title="Browse Island Tours by Starting Locations"
       disableGutters={isLessMdBreakpoint}
-      containerStyles={{ position: 'relative' }}
       sx={{ pb: 3 }}
     >
       <SwiperWrapper>
         <StyledTourSwiper
           isLessMdBreakpoint={isLessMdBreakpoint}
           slidesPerView={1.7}
-          spaceBetween={10}
+          spaceBetween={16}
           breakpoints={swiperBreakpointSettings}
           modules={[Navigation]}
           onSwiper={handleSwiperPosition}

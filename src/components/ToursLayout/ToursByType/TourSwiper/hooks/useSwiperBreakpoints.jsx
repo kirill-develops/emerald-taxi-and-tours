@@ -6,9 +6,9 @@ export default function useSwiperBreakpoints() {
 
   return useMemo(
     () => ({
-      [muiBreakpoints.xs]: { slidesPerView: 1.2 },
-      [muiBreakpoints.sm]: { slidesPerView: 2.3 },
-      [muiBreakpoints.md]: { slidesPerView: 4 },
+      [muiBreakpoints.xs]: { slidesPerView: 1.4 },
+      [muiBreakpoints.sm]: { slidesPerView: 2.6 },
+      [muiBreakpoints.md]: { slidesPerView: 3, spaceBetween: 16 },
     }),
     [muiBreakpoints],
   );
