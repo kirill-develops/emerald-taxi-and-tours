@@ -21,29 +21,12 @@ interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
-// const useEnhancedEffect =
-//   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
-  // const [node, setNode] = React.useState(null);
-  // useEnhancedEffect(() => {
-  //   setNode(document.getElementById('__next'));
-  // }, []);
+  const { loading, currentTheme, toggleColorMode } = useThemeInitilizer()
 
-  // ! MUI Theme Provider methodology
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme:dark)');
-
-  const { isDarkMode, toggleColorMode } = useDarkModeToggle(prefersDarkMode);
-
-  const currentTheme = React.useMemo(() => isDarkMode ? darkTheme : theme, [isDarkMode])
-
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => { setMounted(true) }, []);
-
-  if (!mounted) return null;
+  if (loading) return null;
 
   return (
     <CacheProvider value={emotionCache}>
@@ -70,4 +53,19 @@ export default function MyApp(props: MyAppProps) {
 
     </CacheProvider>
   )
+}
+
+function useThemeInitilizer() {
+  const [loading, setLoading] = React.useState(true);
+
+  // ! MUI Theme Provider methodology
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme:dark)');
+
+  const { isDarkMode, toggleColorMode } = useDarkModeToggle(prefersDarkMode);
+  const currentTheme = React.useMemo(() => isDarkMode ? darkTheme : theme, [isDarkMode]);
+
+
+  React.useEffect(() => { setLoading(false) }, []);
+
+  return { currentTheme, toggleColorMode, loading };
 }

@@ -64,7 +64,7 @@ export let theme = createTheme({
       primary: '#191C19',
       disabled: '#717971',
     },
-    divider: '#817567',
+    divider: '#e5e5e5',
   },
 });
 
