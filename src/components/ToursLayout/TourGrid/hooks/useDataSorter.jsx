@@ -37,9 +37,15 @@ export default function useDataSorter(data, sortBy = '', filterStartLocation) {
           .filter(([key, value]) => value)
           .map(([key, value]) => key);
 
-        const aLowestPrice = getLowestPrice(a.price, filteredLocations);
+        const aLowestPrice = getLowestPrice(
+          a.starting_points,
+          filteredLocations,
+        );
 
-        const bLowestPrice = getLowestPrice(b.price, filteredLocations);
+        const bLowestPrice = getLowestPrice(
+          b.starting_points,
+          filteredLocations,
+        );
 
         return aLowestPrice - bLowestPrice;
       });
@@ -49,9 +55,15 @@ export default function useDataSorter(data, sortBy = '', filterStartLocation) {
           .filter(([key, value]) => value)
           .map(([key, value]) => key);
 
-        const aHighestPrice = getHighestPrice(a.price, filteredLocations);
+        const aHighestPrice = getHighestPrice(
+          a.starting_points,
+          filteredLocations,
+        );
 
-        const bHighestPrice = getHighestPrice(b.price, filteredLocations);
+        const bHighestPrice = getHighestPrice(
+          b.starting_points,
+          filteredLocations,
+        );
 
         return (aHighestPrice - bHighestPrice) * -1;
       });
