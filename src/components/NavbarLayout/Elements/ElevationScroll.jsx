@@ -1,13 +1,10 @@
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import React from 'react';
 
-export default React.memo(function ElevationScroll(props) {
-  const { children } = props;
+export default React.memo(function ElevationScroll({ children, window }) {
+  const isXsBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('xs'));
 
-  const theme = useTheme();
-  const isXsBreakpoint = useMediaQuery(theme.breakpoints.down('xs'));
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -18,13 +15,12 @@ export default React.memo(function ElevationScroll(props) {
   }
 
   return React.cloneElement(children, {
-    sx: {
+    elevation: trigger ? 5 : 0,
+    sx: (theme) => ({
       ...children.props.sx,
-      elevation: 0,
       backgroundColor: trigger
-        ? 'rgba(0,0,0,0.75)'
-        : (theme) => theme.palette.background.default,
-      backdropFilter: trigger ? 'blur(3.5px)' : undefined,
-    },
+        ? `${theme.palette.background.variant}bf`
+        : `${theme.palette.background.variant}`,
+    }),
   });
 });

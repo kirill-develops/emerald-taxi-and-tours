@@ -9,11 +9,10 @@ export const layoutGridSpacingProp = {
   lg: 4.5,
 };
 
-export const GridContainer = React.memo(function GridContainer({
-  children,
-  sx,
-  ...other
-}) {
+export const GridContainer = React.forwardRef(function GridContainer(
+  { children, sx, ...other },
+  ref,
+) {
   const gridStyles = useMemo(
     () => ({ width: '100%', alignItems: 'stretch', ...sx }),
     [sx],
@@ -24,12 +23,13 @@ export const GridContainer = React.memo(function GridContainer({
       <Grid
         container
         sx={gridStyles}
+        ref={ref}
         {...other}
       >
         {children}
       </Grid>
     ),
-    [children, gridStyles, other],
+    [children, gridStyles, other, ref],
   );
 });
 

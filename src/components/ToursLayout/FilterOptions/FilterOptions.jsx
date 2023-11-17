@@ -4,6 +4,7 @@ import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 import FilterListGroup from './Elements/FilterListGroup';
+import { checkUnrecognizedProps } from '../../../helperFunctions';
 
 const filterTypes = [
   {
@@ -23,17 +24,20 @@ const filterTypes = [
   },
 ];
 
-const StyledCard = styled((props) => (
-  <Card
-    elevation={1}
-    {...props}
-  />
-))(({ theme }) =>
+const StyledCard = styled(
+  React.forwardRef(function StyledCard(props, ref) {
+    return (
+      <Card
+        elevation={1}
+        ref={ref}
+        {...props}
+      />
+    );
+  }),
+)(({ theme }) =>
   theme.unstable_sx({
     m: { xxs: 2, sm: 0 },
     p: 1,
-    position: { xxs: 'static', sm: 'sticky' },
-    top: { sm: 80 },
     backgroundColor: theme.palette.secondary.container,
     color: theme.palette.secondary.containerText,
   }),
@@ -46,9 +50,18 @@ const StyledListSubheader = styled(ListSubheader)(({ theme }) =>
   }),
 );
 
-export default React.memo(function FilterOptions() {
+export default React.memo(function FilterOptions({
+  forwardedRef,
+  sx,
+  ...rest
+}) {
+  checkUnrecognizedProps('FilterOptions', rest);
+
   return (
-    <StyledCard>
+    <StyledCard
+      ref={forwardedRef}
+      sx={sx}
+    >
       <List>
         <StyledListSubheader>Filters</StyledListSubheader>
         {filterTypes.map(({ filterState, optionKey, headerString }) => (

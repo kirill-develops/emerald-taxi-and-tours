@@ -16,17 +16,12 @@ import MaxWidthContainer from '@elements/MaxWidthContainer';
 import NavBreakpointContext from '@context/NavBreakpointContext';
 import DarkModeSwitch from './Mobile/DrawerButton/Elements/DarkModeSwitch';
 
-const SiteAppBar = styled((props) => (
-  <AppBar
-    elevation={5}
-    {...props}
-  />
-))(({ theme }) =>
+const SiteAppBar = styled(AppBar)(({ theme }) =>
   theme.unstable_sx({
     position: { xxs: 'fixed' },
     top: { xxs: 'auto', sm: '0' },
     bottom: { xxs: 0, sm: 'initial' },
-    backdropFilter: 'blur(8.5px)',
+    backdropFilter: 'blur(7.5px)',
     backgroundColor: `${theme.palette.background.variant}df`,
     color: theme.palette.background.variantText,
   }),
@@ -42,29 +37,29 @@ export default function NavbarLayout(props) {
 
   return (
     <NavBreakpointContext.Provider value={menuBreakpoint}>
-      {/* <ElevationScroll {...props}> */}
-      <SiteAppBar>
-        <MaxWidthContainer
-          maxWidth="lg"
-          disableGutters
-          disableStack
-        >
-          <Toolbar sx={{ ...loadingTransitionStyle }}>
-            <MobileDrawerButton dissapearingBreakpoint={menuBreakpoint} />
-            <TitleWrapper />
-            <TabletPageLinks />
+      <ElevationScroll {...props}>
+        <SiteAppBar>
+          <MaxWidthContainer
+            maxWidth="lg"
+            disableGutters
+            disableStack
+          >
+            <Toolbar sx={{ ...loadingTransitionStyle }}>
+              <MobileDrawerButton dissapearingBreakpoint={menuBreakpoint} />
+              <TitleWrapper />
+              <TabletPageLinks />
 
-            <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
-            <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
-            {isTablet ? (
-              <Box sx={{ pl: 2 }}>
-                <DarkModeSwitch isTablet />
-              </Box>
-            ) : null}
-          </Toolbar>
-        </MaxWidthContainer>
-      </SiteAppBar>
-      {/* </ElevationScroll> */}
+              <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
+              <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
+              {isTablet ? (
+                <Box sx={{ pl: 2 }}>
+                  <DarkModeSwitch isTablet />
+                </Box>
+              ) : null}
+            </Toolbar>
+          </MaxWidthContainer>
+        </SiteAppBar>
+      </ElevationScroll>
     </NavBreakpointContext.Provider>
   );
 }
