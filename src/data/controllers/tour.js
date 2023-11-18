@@ -1,7 +1,8 @@
 import data from '@data/tourData.json'
+import { cloneDeep } from 'lodash';
 
 
-export const tourData = structuredClone(data);
+export const tourData = cloneDeep(data);
 
 export const startingPoints = tourData
    .flatMap(tour => tour.starting_points)

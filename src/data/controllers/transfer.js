@@ -1,6 +1,7 @@
 import data from '@data/transferData.json'
+import { cloneDeep } from 'lodash';
 
-export const transferData = structuredClone(data);
+export const transferData = cloneDeep(data);
 
 const filterTransfersByAirport = (passedAirportLink) =>
    transferData.filter(({ airportLink }) => passedAirportLink === airportLink);
