@@ -1,9 +1,9 @@
 import { experimental_extendTheme, responsiveFontSizes } from "@mui/material";
-import { roboto } from "@material/themeConfig/typography";
+import { playfair_display } from "@material/themeConfig/typography";
 
 export let experimentalTheme = experimental_extendTheme({
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: playfair_display.style.fontFamily,
   },
   colorSchemes: {
     light: {
