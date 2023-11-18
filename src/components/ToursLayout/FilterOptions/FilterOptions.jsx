@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
-import FilterListGroup from './Elements/FilterListGroup';
+import FilterListGroup from './FilterListGroup/FilterListGroup';
 import { checkUnrecognizedProps } from '../../../helperFunctions';
 
 const filterTypes = [

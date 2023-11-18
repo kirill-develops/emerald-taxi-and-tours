@@ -13,6 +13,7 @@ export const tourStore = createStore({
   initialState: {
     sortBy: '',
     expandMobileFilter: false,
+    filterOptionsCollapse: false,
     filterStartLocation: initFilterStartLocation,
     filterType: initFilterType,
     filterArea: initFilterArea,
@@ -33,6 +34,16 @@ export const tourStore = createStore({
             boolean : !getState().expandMobileFilter
         })
       },
+    toggleFilterOptionsCollapse: (filterType) => ({ setState, getState }) => {
+      const filterOptionsCollapseState = getState().filterOptionsCollapse;
+
+      setState({
+        filterOptionsCollapse: {
+          ...filterOptionsCollapseState,
+          [filterType]: !filterOptionsCollapseState[filterType] ?? true
+        }
+      })
+    },
     toggleCheckbox:
       (stateName, value) => ({ setState, getState }) => {
         const state = getState()[stateName];
