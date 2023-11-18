@@ -11,15 +11,15 @@ const filterButtonStyles = {
 };
 
 export default React.memo(function FilterButtonMobile() {
-  const [{ filterExpand }, { toggleFilterExpand }] = useTour();
+  const [{ expandMobileFilter }, { toggleExpandMobileFilter }] = useTour();
 
   const isXsBreakpoint = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   useLayoutEffect(() => {
     if (isXsBreakpoint === false) {
-      toggleFilterExpand(false);
+      toggleExpandMobileFilter(false);
     }
-  }, [isXsBreakpoint, toggleFilterExpand]);
+  }, [isXsBreakpoint, toggleExpandMobileFilter]);
 
   return (
     <Button
@@ -27,8 +27,8 @@ export default React.memo(function FilterButtonMobile() {
       endIcon={<FilterAltOutlined />}
       size="large"
       sx={filterButtonStyles}
-      onClick={toggleFilterExpand}
-      aria-expanded={filterExpand}
+      onClick={toggleExpandMobileFilter}
+      aria-expanded={expandMobileFilter}
       aria-label="Show tour filters"
     >
       Filter

@@ -12,7 +12,7 @@ export const tourStore = createStore({
   containedBy: TourContainer,
   initialState: {
     sortBy: '',
-    filterExpand: false,
+    expandMobileFilter: false,
     filterStartLocation: initFilterStartLocation,
     filterType: initFilterType,
     filterArea: initFilterArea,
@@ -24,13 +24,13 @@ export const tourStore = createStore({
       (option) => ({ setState }) => {
         setState({ sortBy: option })
       },
-    toggleFilterExpand:
+    toggleExpandMobileFilter:
       (boolean) => ({ setState, getState }) => {
         const isBoolean = typeof boolean === 'boolean';
 
         setState({
-          filterExpand: isBoolean ?
-            boolean : !getState().filterExpand
+          expandMobileFilter: isBoolean ?
+            boolean : !getState().expandMobileFilter
         })
       },
     toggleCheckbox:

@@ -18,7 +18,7 @@ const stackStyles = {
 const collapseStyles = { display: { sm: 'none' } };
 
 export default React.memo(function TourOptions({ sx, ...rest }) {
-  const [{ filterExpand }] = useTour();
+  const [{ expandMobileFilter }] = useTour();
 
   return (
     <MaxWidthContainer
@@ -33,7 +33,7 @@ export default React.memo(function TourOptions({ sx, ...rest }) {
       </Stack>
       <FilterChips />
       <Collapse
-        in={filterExpand}
+        in={expandMobileFilter}
         sx={collapseStyles}
         timeout="auto"
         unmountOnExit

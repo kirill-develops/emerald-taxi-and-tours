@@ -3,11 +3,11 @@ import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import React from 'react';
 import CardTitle from '@elements/CardTitle';
 import SwiperTourCard from './Elements/SwiperTourCard';
 import PageSwiper from '../../../../elements/PageSwiper/PageSwiper';
-import Typography from '@mui/material/Typography';
 
 const StyledStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({
