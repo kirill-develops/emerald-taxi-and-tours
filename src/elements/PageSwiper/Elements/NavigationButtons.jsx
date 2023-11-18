@@ -19,10 +19,10 @@ const IconWrapper = styled((props) => <IconButton {...props} />, {
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.tertiary.main,
   opacity: isDisabled ? 0 : 1,
-  transition: 'opacity 0.3s, boxShadow 0.3s',
+  transition: ' 0.3s ease-out',
 
   '&:hover': {
-    boxShadow: theme.shadows[3],
+    boxShadow: theme.shadows[6],
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.tertiary.main,
     filter: 'brightness(96.5%)',
