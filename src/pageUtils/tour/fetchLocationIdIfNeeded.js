@@ -6,7 +6,10 @@ export default async function fetchLocationIdIfNeeded(tourParams) {
       const locationId = await getLocationId(tourParams);
 
       if (locationId) {
-         const updatedTourParams = { ...tourParams, location_id: locationId };
+         const updatedTourParams = {
+            ...tourParams,
+            location_id: locationId
+         };
 
          await updateTourData(updatedTourParams);
 

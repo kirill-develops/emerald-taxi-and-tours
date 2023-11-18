@@ -3,32 +3,20 @@ import { transferData } from './transfer';
 
 export default async function updateTransferData({
    area: { link: areaLink, airportLink } = {},
-   ...transferParams
-} = {}) {
-   const { link: transferLink } = transferParams;
+   ...transferParams }) {
+   const { link: destinationLink } = transferParams;
 
-   const updatedArea = transferData.find(
-      (area) => area.link === areaLink && area.airportLink === airportLink,
-   );
+   const updatedTransferData = transferData.map(area => {
+      if (area.link === areaLink && area.airportLink === airportLink) {
+         const updatedDestinationsData = area.destinations.map(destination =>
+            destination.link === destinationLink ?
+               transferParams : destination)
 
-   const updatedDestinationsData = updatedArea.destinations.map(
-      (destination) => {
-         if (destination.link === transferLink) {
-            return transferParams;
-         }
-
-         return destination;
-      },
-   );
-
-   const updatedAreaData = {
-      ...updatedArea,
-      destinations: updatedDestinationsData,
-   };
-
-   const updatedTransferData = transferData.map((area) =>
-      area.link === areaLink ? updatedAreaData : area,
-   );
+         return { ...area, destinations: updatedDestinationsData };
+      } else {
+         return area;
+      }
+   })
 
    const transferDataFileContent = JSON.stringify(updatedTransferData);
 

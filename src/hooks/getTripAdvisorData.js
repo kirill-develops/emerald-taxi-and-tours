@@ -65,11 +65,11 @@ async function getReviews(locationId) {
 }
 
 export default async function getTripAdvisorData(params, retryCount = 0) {
-  if (retryCount >= 3) {
-    return params;
-  }
-
   let dataUpdated = false;
+
+  if (retryCount >= 3) {
+    return { params, dataUpdated };
+  }
 
   const [details, photos, reviews] = await Promise.allSettled([
     isObjEmpty(params?.tripAdvisorDetails)

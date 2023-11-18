@@ -24,6 +24,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const tourParams = await fetchTourParams(params);
 
+  if (tourParams.notFound) {
+    return { notFound: true };
+  }
+
   let locationId = await fetchLocationIdIfNeeded(tourParams);
 
   const updatedTourParams = await fetchAndUpdateTripAdvisorData(

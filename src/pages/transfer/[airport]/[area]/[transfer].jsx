@@ -20,6 +20,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const transferParams = await fetchTransferParams(params);
 
+  if (transferParams.notFound) {
+    return { notFound: true };
+  }
+
   let locationId = await fetchLocationIdIfNeeded(transferParams);
 
   const updatedTransferParams = await fetchAndUpdateTripAdvisorData(

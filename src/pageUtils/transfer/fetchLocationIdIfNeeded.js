@@ -3,7 +3,13 @@ import updateTransferData from '../../data/controllers/updateTransferData';
 
 export default async function fetchLocationIdIfNeeded(transferParams) {
    if (!transferParams?.location_id) {
-      const locationIdProp = { ...transferParams, area: transferParams?.area?.name };
+      const area = transferParams.area.link === 'all_regions'
+         ? transferParams.name
+         : transferParams.area.link;
+
+      const areaString = `${area}, Jamaica`
+
+      const locationIdProp = { ...transferParams, area: areaString };
 
       const locationId = await getLocationId(locationIdProp);
 

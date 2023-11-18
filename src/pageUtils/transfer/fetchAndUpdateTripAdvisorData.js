@@ -8,11 +8,11 @@ export default async function fetchAndUpdateTripAdvisorData(
 ) {
    const isOldData = isDataOld(transferParams.dateUpdated);
 
-   if (
+   if (locationId && (
       isOldData ||
       !transferParams?.tripAdvisorDetails ||
       !transferParams?.tripAdvisorPhotos ||
-      !transferParams?.tripAdvisorReviews
+      !transferParams?.tripAdvisorReviews)
    ) {
       const transferProp = locationId
          ? { ...transferParams, location_id: locationId }
@@ -29,5 +29,5 @@ export default async function fetchAndUpdateTripAdvisorData(
       }
    }
 
-   return { ...transferParams };
+   return transferParams;
 }

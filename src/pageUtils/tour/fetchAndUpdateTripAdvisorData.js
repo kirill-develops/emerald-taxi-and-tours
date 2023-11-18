@@ -7,10 +7,11 @@ export default async function fetchAndUpdateTripAdvisorData(tourParams, location
    const isOldData = isDataOld(tourParams?.isDataUpdated);
 
    if (
-      isOldData ||
-      !tourParams?.tripAdvisorDetails ||
-      !tourParams?.tripAdvisorPhotos ||
-      !tourParams?.tripAdvisorReviews
+      locationId && (
+         isOldData ||
+         !tourParams?.tripAdvisorDetails ||
+         !tourParams?.tripAdvisorPhotos ||
+         !tourParams?.tripAdvisorReviews)
    ) {
       const tourProp = locationId
          ? { ...tourParams, location_id: locationId }
