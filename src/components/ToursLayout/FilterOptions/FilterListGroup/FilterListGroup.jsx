@@ -1,3 +1,4 @@
+import { styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -8,7 +9,38 @@ import { useTour } from '../../hooks/useTour';
 import ExpandMoreWrapper from '@elements/ExpandMore';
 import useFilterOptionsList from './Elements/FilterOptionsList';
 
-const listItemButtonStyles = { borderRadius: 16 };
+const StyledListItemButton = styled(ListItemButton)(({ theme }) =>
+  theme.unstable_sx({ borderRadius: 16 }),
+);
+
+const StyledListItemText = styled((props) => (
+  <ListItemText
+    primaryTypographyProps={{ variant: 'cardCaption' }}
+    {...props}
+  />
+))(({ theme }) => theme.unstable_sx({ my: 0 }));
+
+const StyledExpandMoreWrapper = styled((props) => (
+  <ExpandMoreWrapper
+    disableRipple
+    {...props}
+  />
+))(({ theme }) => theme.unstable_sx({ p: 0 }));
+
+const StyledCollapse = styled((props) => (
+  <Collapse
+    unmountOnExit
+    {...props}
+  />
+))(({ theme }) => theme.unstable_sx({}));
+
+const StyledList = styled((props) => (
+  <List
+    component="div"
+    disablePadding
+    {...props}
+  />
+))(({ theme }) => theme.unstable_sx({}));
 
 export default function FilterListGroup({
   filterState,
@@ -25,34 +57,17 @@ export default function FilterListGroup({
 
   return (
     <>
-      <ListItemButton
+      <StyledListItemButton
         onClick={() => toggleFilterOptionsCollapse(filterState)}
-        sx={listItemButtonStyles}
       >
-        <ListItemText
-          primary={headerString}
-          primaryTypographyProps={{ variant: 'cardCaption' }}
-          sx={{ my: 0 }}
-        />
-        <ExpandMoreWrapper
-          expand={filterOptionsCollapse[filterState]}
-          disableRipple
-          sx={{ p: 0 }}
-        >
+        <StyledListItemText primary={headerString} />
+        <StyledExpandMoreWrapper expand={filterOptionsCollapse[filterState]}>
           <ExpandMore />
-        </ExpandMoreWrapper>
-      </ListItemButton>
-      <Collapse
-        in={filterOptionsCollapse[filterState]}
-        unmountOnExit
-      >
-        <List
-          component="div"
-          disablePadding
-        >
-          {filterOptionsListJSX}
-        </List>
-      </Collapse>
+        </StyledExpandMoreWrapper>
+      </StyledListItemButton>
+      <StyledCollapse in={filterOptionsCollapse[filterState]}>
+        <StyledList>{filterOptionsListJSX}</StyledList>
+      </StyledCollapse>
     </>
   );
 }

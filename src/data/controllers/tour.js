@@ -9,7 +9,7 @@ export const startingPoints = tourData
    .reduce((uniqueStartingPoints, startingPoint) => {
       const { link, name, parish } = startingPoint;
       const existingPoint = uniqueStartingPoints.find(point => point.link === link);
-      const image = require(`@../public/tour_pickup/${link}.png`)
+      const image = require(`@../public/tour_pickup/${link}.png`);
 
       if (!existingPoint) {
          return [...uniqueStartingPoints, {
