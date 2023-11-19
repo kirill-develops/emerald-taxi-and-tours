@@ -43,7 +43,7 @@ export async function getStaticProps({ params }) {
       tripAdvisorReviews,
     }) => ({
       name,
-      awards: tripAdvisorDetails.awards,
+      awards: tripAdvisorDetails?.awards || [],
       area,
       link,
       areaLink,
