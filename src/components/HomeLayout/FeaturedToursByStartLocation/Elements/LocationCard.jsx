@@ -49,7 +49,7 @@ export default React.memo(function LocationCard({
   image,
 }) {
   return (
-    <CardBox href={`tours/${url}`}>
+    <CardBox href={`/tours/${url}`}>
       <StyledCard>
         <CardActionArea component="div">
           <NextImage
