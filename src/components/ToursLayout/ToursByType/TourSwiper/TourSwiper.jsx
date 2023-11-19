@@ -39,7 +39,7 @@ const Caption = styled((props) => (
     variant="body2"
     {...props}
   />
-))(({ theme }) => theme.unstable_sx({}));
+))(({ theme }) => theme.unstable_sx({ color: theme.palette.text.secondary }));
 
 const buttonProps = { sx: { top: '40%' } };
 
@@ -51,7 +51,7 @@ const wrapperProps = {
   },
 };
 
-export default React.memo(function TourSwiper({ tours, type }) {
+export default React.memo(function TourSwiper({ tours, type, caption }) {
   const isLessMdBreakpoint = useMediaQuery((theme) =>
     theme.breakpoints.down('md'),
   );
@@ -62,10 +62,7 @@ export default React.memo(function TourSwiper({ tours, type }) {
     <StyledStack>
       <StyledContainer disableGutters={!isLessMdBreakpoint}>
         <CardTitle body="true">{type}s</CardTitle>
-        <Caption>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae, quasi
-          quidem,
-        </Caption>
+        <Caption>{caption}</Caption>
       </StyledContainer>
       <PageSwiper
         id={key}

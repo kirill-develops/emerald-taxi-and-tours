@@ -35,12 +35,9 @@ const TourSwipers = React.memo(function TourSwipers() {
 
   return tourDataByType
     .sort((a, b) => b?.tours?.length - a?.tours?.length)
-    .map(({ type, tours }, index, array) => (
-      <React.Fragment key={`${type}-${index}`}>
-        <TourSwiper
-          type={type}
-          tours={tours}
-        />
+    .map((typeData, index, array) => (
+      <React.Fragment key={`${typeData.type}-${index}`}>
+        <TourSwiper {...typeData} />
         {isNotLast(index, array.length) && <StyledDivider />}
       </React.Fragment>
     ));
