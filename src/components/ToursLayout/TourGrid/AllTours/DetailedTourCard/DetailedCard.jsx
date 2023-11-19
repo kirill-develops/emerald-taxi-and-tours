@@ -5,7 +5,23 @@ import RankingEl from '@elements/RankingEl';
 import PickUpCardHeader from './Elements/PickUpCardHeader';
 import { useTour } from '../../../hooks/useTour';
 
-export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
+function getStartingPointPrice(startingPoints, filterStartLocation) {
+  return startingPoints.reduce((acc, startingPoint) => {
+    const startLocationActive =
+      Object.values(filterStartLocation).includes(true);
+
+    const startLocationMatches =
+      filterStartLocation[startingPoint?.link] === true;
+
+    if (!startLocationActive || startLocationMatches) {
+      return Math.min(acc, startingPoint.price);
+    }
+
+    return acc;
+  }, Number.MAX_SAFE_INTEGER);
+}
+
+export default React.memo(function DetailedCard({ tour, ...rest }) {
   const {
     name,
     area,
@@ -14,41 +30,29 @@ export default React.memo(function DetailedCard({ tour, sx, ...rest }) {
     type,
     starting_points: startingPoints,
     tripAdvisorPhotos,
-    tripAdvisorDetails: { rating, num_reviews: numReviews } = {},
+    tripAdvisorDetails: { awards, rating, num_reviews: numReviews } = {},
     tripAdvisorReviews,
   } = tour;
-  const url = getToursUrl(areaLink, link);
   const [{ filterStartLocation }] = useTour();
 
+  const url = getToursUrl(areaLink, link);
   const destinationURL = `${url}#top`;
 
-  const startingPoint = startingPoints.reduce((acc, priceObj) => {
-    const startLocationActive =
-      Object.values(filterStartLocation).includes(true);
-
-    const startLocationMatches = filterStartLocation[priceObj?.link] === true;
-
-    if (!startLocationActive || startLocationMatches) {
-      return Math.min(acc, priceObj.price);
-    }
-
-    return acc;
-  }, Number.MAX_SAFE_INTEGER);
-
-  const cardStyles = { borderRadius: 4, ...sx };
+  const startingPointPrice = getStartingPointPrice(
+    startingPoints,
+    filterStartLocation,
+  );
 
   return (
     <GridCard
-      price={startingPoint}
+      awards={awards}
+      price={startingPointPrice}
       picData={tripAdvisorPhotos?.[0]}
       reviews={tripAdvisorReviews}
       subheader={area}
-      subheaderVariant="cardCaption"
       title={name}
-      titleVariant="cardTitle"
       type={type}
       url={destinationURL}
-      sx={cardStyles}
       rankingEl={
         <RankingEl
           rating={rating}

@@ -3,9 +3,10 @@ import React from 'react';
 
 const cardHeaderStyles = { p: 0, overflow: 'hidden' };
 
-const getTitleTypographyProps = (noWrap, titleVariant) => ({
+const getTitleTypographyProps = (noWrap, titleVariant, titleColor) => ({
   noWrap,
   variant: titleVariant,
+  sx: { color: titleColor },
 });
 
 const getSubheaderTypographyProps = (
@@ -20,14 +21,19 @@ const getSubheaderTypographyProps = (
 
 export default function NoWrapCardHeader({
   title,
-  subheader,
   titleVariant = 'h5',
+  titleColor,
+  subheader,
   subheaderVariant = 'caption',
   subheaderColor,
   noWrap = false,
   ...rest
 }) {
-  const titleTypographyProps = getTitleTypographyProps(noWrap, titleVariant);
+  const titleTypographyProps = getTitleTypographyProps(
+    noWrap,
+    titleVariant,
+    titleColor,
+  );
 
   const subheaderTypographyProps = getSubheaderTypographyProps(
     noWrap,
