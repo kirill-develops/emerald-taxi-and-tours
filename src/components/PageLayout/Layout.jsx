@@ -1,16 +1,16 @@
 import dynamic from 'next/dynamic';
 
-const Container = dynamic(() => import('@mui/material/Container'));
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
+const Container = dynamic(() => import('@mui/material/Container'));
+const Stack = dynamic(() => import('@mui/material/Stack'));
 import React from 'react';
 import usePageTransition from './hooks/usePageTransition';
+const Navbar = dynamic(() => import('@components/NavbarLayout/'));
 const RateUsButton = dynamic(() => import('./RateUsButton/RateUs'));
-const Stack = dynamic(() => import('@mui/material/Stack'));
 const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('./Elements/LayoutTitle'));
 const FooterLayout = dynamic(() => import('../FooterLayout/FooterLayout'));
-const Navbar = dynamic(() => import('@components/NavbarLayout/'));
 
 const LayoutContainer = styled(Container)(({ theme }) =>
   theme.unstable_sx({

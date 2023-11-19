@@ -27,7 +27,7 @@ const OverlayStack = styled(Stack)(({ theme }) =>
   }),
 );
 
-export default function HeroBanner() {
+export default React.memo(function HeroBanner() {
   return (
     <BannerContainer>
       <ImageWrapper>
@@ -41,7 +41,7 @@ export default function HeroBanner() {
       </OverlayStack>
     </BannerContainer>
   );
-}
+});
 
 const bannerContainerStyles = {
   position: 'relative',
