@@ -70,14 +70,12 @@ export default React.memo(function PageSwiper({
       >
         {children}
       </StyledSwiper>
-      {isLessMdBreakpoint ? null : (
-        <NavigationButtons
-          isStart={isStart}
-          isEnd={isEnd}
-          type={id}
-          {...buttonProps}
-        />
-      )}
+      <NavigationButtons
+        isStart={isStart}
+        isEnd={isEnd}
+        type={id}
+        {...buttonProps}
+      />
     </SwiperWrapper>
   );
 });

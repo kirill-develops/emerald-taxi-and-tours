@@ -1,3 +1,4 @@
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
@@ -5,8 +6,9 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import React from 'react';
 
 const IconWrapper = styled((props) => <IconButton {...props} />, {
-  shouldForwardProp: (prop) => prop !== 'isDisabled',
-})(({ theme, position, isDisabled }) => ({
+  shouldForwardProp: (prop) => prop !== 'isDisabled' || prop !== 'isVisable',
+})(({ theme, position, isDisabled, isVisable }) => ({
+  display: isVisable ? 'inline-flex' : 'none',
   position: 'absolute',
   zIndex: 2,
   top: '50%',
@@ -41,11 +43,13 @@ export default React.memo(function NavigationButtons({
   type,
   ...rest
 }) {
+  const isMdAndUp = useMediaQuery((theme) => theme.breakpoints.up('md'));
   return (
     <>
       <IconWrapper
         className={`swiper-button-prev__${type}`}
         isDisabled={isStart}
+        isVisable={isMdAndUp}
         position="left"
         {...rest}
       >
@@ -54,6 +58,7 @@ export default React.memo(function NavigationButtons({
       <IconWrapper
         className={`swiper-button-next__${type}`}
         isDisabled={isEnd}
+        isVisable={isMdAndUp}
         position="right"
         {...rest}
       >
