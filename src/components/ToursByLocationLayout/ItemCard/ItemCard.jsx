@@ -7,6 +7,7 @@ import RankingEl from '@elements/RankingEl';
 
 export default function ItemCard({ tour, ...rest }) {
   const {
+    awards,
     name,
     area,
     link,
@@ -41,6 +42,7 @@ export default function ItemCard({ tour, ...rest }) {
 
   return (
     <GridCard
+      awards={awards}
       price={startingPoint.price}
       picData={photoObj}
       reviews={reviews}

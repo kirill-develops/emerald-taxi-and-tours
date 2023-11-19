@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import TourType from './Elements/TourType';
+import Image from 'next/image';
 
 const OverlayBox = styled(Box)(({ theme }) =>
   theme.unstable_sx({
@@ -12,10 +13,15 @@ const OverlayBox = styled(Box)(({ theme }) =>
   }),
 );
 
+const commonOverlayStyles = {
+  position: 'absolute',
+  zIndex: 2,
+  boxShadow: (theme) => theme.shadows[1],
+};
+
 const OverlayItem1 = styled(Box)(({ theme }) =>
   theme.unstable_sx({
-    position: 'absolute',
-    zIndex: 2,
+    ...commonOverlayStyles,
     bottom: 11,
     left: 11,
   }),
@@ -23,8 +29,7 @@ const OverlayItem1 = styled(Box)(({ theme }) =>
 
 const OverlayItem2 = styled(Box)(({ theme }) =>
   theme.unstable_sx({
-    position: 'absolute',
-    zIndex: 2,
+    ...commonOverlayStyles,
     top: 11,
     left: 11,
     borderRadius: 1,
@@ -38,15 +43,20 @@ const OverlayItem2 = styled(Box)(({ theme }) =>
   }),
 );
 
-const tourTypeStyles = {
-  borderRadius: 0.5,
-  backgroundColor: (theme) => theme.palette.tertiary.container,
-  color: (theme) => theme.palette.tertiary.containerText,
-};
+const OverlayItem3 = styled(Box)(({ theme }) =>
+  theme.unstable_sx({
+    ...commonOverlayStyles,
+    bottom: 11,
+    right: 11,
+    height: 40,
+    width: 35,
+  }),
+);
 
 export default React.memo(function ImageOverlayWrapper({
   type,
   price = '',
+  awards,
   children,
 }) {
   return (
@@ -56,8 +66,6 @@ export default React.memo(function ImageOverlayWrapper({
           <TourType
             typeArr={type}
             variant="filled"
-            color="tertiary"
-            sx={tourTypeStyles}
           />
         )}
       </OverlayItem1>
@@ -66,6 +74,15 @@ export default React.memo(function ImageOverlayWrapper({
           <Typography variant="smallCaption">FROM</Typography>
           <Typography variant="smallBold">${price}</Typography>
         </OverlayItem2>
+      )}
+      {awards?.[0]?.images?.large && (
+        <OverlayItem3>
+          <Image
+            src={awards[0].images.large}
+            alt={`TripAdvisor's ${awards[0].display_name} award`}
+            fill
+          />
+        </OverlayItem3>
       )}
       {children}
     </OverlayBox>

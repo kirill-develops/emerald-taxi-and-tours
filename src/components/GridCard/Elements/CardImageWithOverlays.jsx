@@ -31,13 +31,13 @@ export default React.memo(function CardImageWithOverlay({
   picData,
   awards,
 }) {
-   
   return (
     <StyledCardGridItem>
       <StyledCardActionArea href={url}>
         <ImageOverlayWrapper
           type={type}
           price={price}
+          awards={awards}
         >
           <CardImage picData={picData} />
         </ImageOverlayWrapper>

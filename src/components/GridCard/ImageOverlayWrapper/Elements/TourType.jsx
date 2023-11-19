@@ -1,11 +1,15 @@
 import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-import React, { useMemo } from 'react';
+import React from 'react';
+
+const tourTypeStyles = (theme) => ({
+  borderRadius: 0.5,
+  backgroundColor: theme.palette.tertiary.container,
+  color: theme.palette.tertiary.containerText,
+});
 
 export default React.memo(function TourType({
   typeArr,
   variant = 'outlined',
-  sx,
   ...rest
 }) {
   return typeArr.map((type) => (
@@ -14,7 +18,7 @@ export default React.memo(function TourType({
       label={type}
       size="small"
       variant={variant}
-      sx={sx}
+      sx={tourTypeStyles}
       {...rest}
     />
   ));
