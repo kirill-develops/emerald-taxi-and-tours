@@ -43,7 +43,11 @@ export default React.memo(function DarkModeSwitch({ isTablet, ...props }) {
         )}
       </ListItemIcon>
       {!isTablet ? (
-        <ListItemText primary={`${capitalize(theme.palette.mode)} Mode`} />
+        <ListItemText
+          primary={`${capitalize(
+            theme.palette.mode === 'dark' ? 'light' : 'dark',
+          )} Mode`}
+        />
       ) : null}
     </ListItemButton>
   );
