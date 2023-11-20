@@ -7,11 +7,38 @@ import React from 'react';
 import heroImage from '@../public/hero/101.jpg';
 import Title from './Elements/Title';
 
+const BannerContainer = styled((props) => (
+  <Container
+    disableGutters
+    maxWidth={false}
+    {...props}
+  />
+))(({ theme }) =>
+  theme.unstable_sx({
+    position: 'relative',
+  }),
+);
+
 const ImageWrapper = styled(Box)(({ theme }) =>
   theme.unstable_sx({
     minHeight: { xxs: '360px' },
     overflow: 'hidden',
     filter: 'brightness(60%)',
+  }),
+);
+
+const MuiImage = styled((props) => (
+  <Image
+    quality={100}
+    priority
+    fill
+    sizes="100vw"
+    alt={props.alt}
+    {...props}
+  />
+))(({ theme }) =>
+  theme.unstable_sx({
+    objectFit: 'cover',
   }),
 );
 
@@ -42,38 +69,3 @@ export default React.memo(function HeroBanner() {
     </BannerContainer>
   );
 });
-
-const bannerContainerStyles = {
-  position: 'relative',
-};
-
-function BannerContainer({ children }) {
-  return (
-    <Container
-      disableGutters
-      maxWidth={false}
-      sx={bannerContainerStyles}
-    >
-      {children}
-    </Container>
-  );
-}
-
-const muiImageStyles = {
-  objectFit: 'cover',
-};
-
-function MuiImage({ src, alt, ...rest }) {
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      quality={100}
-      priority
-      fill
-      sizes="100vw"
-      style={muiImageStyles}
-      {...rest}
-    />
-  );
-}
