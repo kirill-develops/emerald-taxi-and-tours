@@ -8,6 +8,7 @@ import FilterOptions from './FilterOptions/FilterOptions';
 import TourGrid from './TourGrid/TourGrid';
 import ToursByType from './ToursByType/ToursByType';
 import FeaturedToursByStartLocation from '../HomeLayout/FeaturedToursByStartLocation/FeaturedToursByStartLocation';
+import FeaturedTransfers from '../HomeLayout/FeaturedTransfers/FeaturedTransfers';
 
 const gridItemStyles = {
   display: { xxs: 'none', sm: 'block' },
@@ -57,6 +58,7 @@ export default React.memo(function TourLayout() {
   return (
     <PageLayoutStack>
       <ToursByType />
+      <FeaturedToursByStartLocation title="Wander Further: Tours from Your Doorstep" />
       <Container>
         <GridContainer
           spacing={layoutGridSpacingProp}
@@ -74,7 +76,7 @@ export default React.memo(function TourLayout() {
           </Content>
         </GridContainer>
       </Container>
-      <FeaturedToursByStartLocation />
+      <FeaturedTransfers title="Need a Lift? Between Resorts or Airports, we got you Covered" />
     </PageLayoutStack>
   );
 });

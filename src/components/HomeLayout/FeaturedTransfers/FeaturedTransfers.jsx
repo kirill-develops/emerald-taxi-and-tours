@@ -26,9 +26,11 @@ const SectionStack = styled(Stack)(({ theme }) =>
   }),
 );
 
-export default React.memo(function FeaturedTransfer() {
+export default React.memo(function FeaturedTransfer({
+  title = 'Plan Your Private Transfer',
+}) {
   return (
-    <StyledHomeSection title={'Plan Your Private Transfer'}>
+    <StyledHomeSection title={title}>
       <SectionStack>
         <TransportCards />
       </SectionStack>

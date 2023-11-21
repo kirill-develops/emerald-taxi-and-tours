@@ -1,8 +1,10 @@
 import React, { useMemo } from 'react';
-
-import AreaAccordions from './AreaAccordion/AreaAccordions';
-import PageLayoutStack from '@elements/PageLayoutStack';
 import { transferData } from '@data/controllers/transfer';
+import PageLayoutStack from '@elements/PageLayoutStack';
+import AreaAccordions from './AreaAccordion/AreaAccordions';
+import FeaturedTransfersByAirport from '../HomeLayout/FeaturedTransfers/FeaturedTransfers';
+import FeaturedTransfersByArea from './FeaturedTransfersByArea/FeaturedTransfersByArea';
+import FeaturedToursByStartLocation from '../HomeLayout/FeaturedToursByStartLocation/FeaturedToursByStartLocation';
 
 export default function TransferLayout() {
   const sangsterTransferData = useMemo(
@@ -17,6 +19,8 @@ export default function TransferLayout() {
 
   return (
     <PageLayoutStack>
+      <FeaturedTransfersByAirport title="Ready to Roll? Your Transfer Awaits" />
+      <FeaturedTransfersByArea />
       <AreaAccordions
         transferData={sangsterTransferData}
         title="Sangster International, Montego Bay"
@@ -25,6 +29,7 @@ export default function TransferLayout() {
         transferData={normanManleyTransferData}
         title="Norman Manley International, Kingston"
       />
+      <FeaturedToursByStartLocation />
     </PageLayoutStack>
   );
 }

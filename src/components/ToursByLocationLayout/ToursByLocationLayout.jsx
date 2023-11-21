@@ -40,7 +40,7 @@ export default function ToursByLocationLayout() {
           ))}
         </GridContainer>
       </MaxWidthContainer>
-      <FeaturedToursByStartLocation />
+      <FeaturedToursByStartLocation title="Widen Your Journey: More Tour Kickoffs Below" />
     </PageLayoutStack>
   );
 }
