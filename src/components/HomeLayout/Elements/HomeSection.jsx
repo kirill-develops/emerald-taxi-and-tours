@@ -1,5 +1,6 @@
+import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import React, { useMemo } from 'react';
+import React from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import SectionTitle from '@elements/SectionTitle';
 
@@ -10,10 +11,18 @@ const containerStyle = (center, containerStyles) => ({
   justifyContent: center ? 'center' : null,
 });
 
+const StyledStack = styled(Stack)(({ theme }) =>
+  theme.unstable_sx({
+    pt: 3,
+    pb: 5,
+    height: '100%',
+    rowGap: 2,
+  }),
+);
+
 export default React.memo(function HomeSection({
   title,
   titleStyles,
-  sx,
   children,
   containerStyles,
   disableGutters = false,
@@ -21,38 +30,12 @@ export default React.memo(function HomeSection({
   maxWidth = 'lg',
   ...rest
 }) {
-  const stackStyles = useMemo(
-    () => ({
-      pt: 3,
-      pb: 5,
-      height: '100%',
-      rowGap: 2,
-      ...sx,
-    }),
-    [sx],
-  );
-
-  const sectionTitle = useMemo(() => {
-    if (!title) {
-      return;
-    }
-
-    return (
-      <SectionTitle
-        maxWidth="lg"
-        sx={titleStyles}
-      >
-        {title}
-      </SectionTitle>
-    );
-  }, [title, titleStyles]);
-
   return (
-    <Stack
-      sx={stackStyles}
-      {...rest}
-    >
-      {sectionTitle}
+    <StyledStack {...rest}>
+      <SectionTitleJSX
+        title={title}
+        titleStyles={titleStyles}
+      />
       <MaxWidthContainer
         maxWidth={maxWidth}
         disableStack
@@ -61,6 +44,21 @@ export default React.memo(function HomeSection({
       >
         {children}
       </MaxWidthContainer>
-    </Stack>
+    </StyledStack>
   );
 });
+
+function SectionTitleJSX({ title, titleStyles }) {
+  if (!title) {
+    return;
+  }
+
+  return (
+    <SectionTitle
+      maxWidth="lg"
+      sx={titleStyles}
+    >
+      {title}
+    </SectionTitle>
+  );
+}

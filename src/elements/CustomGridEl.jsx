@@ -1,5 +1,6 @@
-import Grid from '@mui/material/Grid';
-import React, { useMemo } from 'react';
+import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Unstable_Grid2';
+import React from 'react';
 
 export const layoutGridSpacingProp = {
   xxs: 1,
@@ -9,48 +10,28 @@ export const layoutGridSpacingProp = {
   lg: 4.5,
 };
 
+const StyledContainer = styled(Grid)(({ theme }) =>
+  theme.unstable_sx({ width: '100%', alignItems: 'stretch' }),
+);
+
 export const GridContainer = React.forwardRef(function GridContainer(
-  { children, sx, ...other },
+  { children, ...other },
   ref,
 ) {
-  const gridStyles = useMemo(
-    () => ({ width: '100%', alignItems: 'stretch', ...sx }),
-    [sx],
-  );
-
-  return useMemo(
-    () => (
-      <Grid
-        container
-        sx={gridStyles}
-        ref={ref}
-        {...other}
-      >
-        {children}
-      </Grid>
-    ),
-    [children, gridStyles, other, ref],
+  return (
+    <StyledContainer
+      ref={ref}
+      container
+      {...other}
+    >
+      {children}
+    </StyledContainer>
   );
 });
 
-export const GridItem = React.memo(function GridItem({
-  children,
-  sx,
-  ...other
-}) {
-  const gridStyles = useMemo(() => ({ width: '100%', ...sx }), [sx]);
-
-  return useMemo(
-    () => (
-      <Grid
-        item
-        xxs={12}
-        sx={gridStyles}
-        {...other}
-      >
-        {children}
-      </Grid>
-    ),
-    [children, gridStyles, other],
-  );
-});
+export const GridItem = styled((props) => (
+  <Grid
+    xxs={12}
+    {...props}
+  />
+))(({ theme }) => theme.unstable_sx({}));

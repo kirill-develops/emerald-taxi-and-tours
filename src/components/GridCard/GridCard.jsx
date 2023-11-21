@@ -63,7 +63,9 @@ export default React.memo(function GridCard({
 });
 
 const StyledGridItem = styled(GridItem)(({ theme }) =>
-  theme.unstable_sx({ width: '100%', flexDirection: 'column' }),
+  theme.unstable_sx({
+    flexDirection: 'column',
+  }),
 );
 
 function GridCardWrapper({ noGrid, children, ...rest }) {
