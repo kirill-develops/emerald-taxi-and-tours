@@ -4,13 +4,13 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 
 const paragraphStringArr = [
-  `Your go-to tour company for
+  `Your go-to transfer & tour company for
           unforgettable experiences in Jamaica. Our expertly crafted tours will
           take you on an adventure to discover the most magical destinations on
           the island. From the stunning Dunn's River Falls to the
           breathtaking Blue Hole and YS Falls, to the iconic Rick's Cafe
           and beyond, we've got you covered.`,
-  `As a top-rated tour company on TripAdvisor, we pride ourselves on
+  `As a top-rated transfer & tour company on TripAdvisor, we pride ourselves on
           providing exceptional service from start to finish. We offer private
           airport transportation to and from Norman Manley International Airport
           in Kingston or Donald Sangster's International Airport in
@@ -20,7 +20,7 @@ const paragraphStringArr = [
   `Experience the thrill of adventure, the beauty of nature, and the
           warmth of the Jamaican people with us. Book your Jamaica tour or
           airport transportation in Jamaica with Emerald Taxi & Tour today and
-          let us take you on a jour ney through the heart of the island.`,
+          let us take you on a journey through the heart of the island.`,
 ];
 
 const ScriptBox = styled(Box)(({ theme }) => theme.unstable_sx({ p: 2 }));
@@ -62,7 +62,7 @@ export default function Summary() {
         variant="h4"
         color="primary"
       >
-        Welcome to Emerald Taxi & Tour!
+        Welcome to Emerald Taxi & Tours!
       </Typography>
       <ScriptBox>
         <Paragraphs />
