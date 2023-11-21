@@ -13,10 +13,9 @@ const containerStyle = (center, containerStyles) => ({
 
 const StyledStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({
-    pt: 3,
     pb: 5,
     height: '100%',
-    rowGap: 2,
+    rowGap: { xxs: 2, sm: 3 },
   }),
 );
 

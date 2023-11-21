@@ -1,14 +1,13 @@
+import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import React from 'react';
 import { layoutGridSpacingProp } from '@elements/CustomGridEl';
-export default function PageLayoutStack({ children, ...rest }) {
-  return (
-    <Stack
-      rowGap={layoutGridSpacingProp}
-      sx={{ py: { xxs: 3, lg: 4.5 } }}
-      {...rest}
-    >
-      {children}
-    </Stack>
-  );
-}
+
+const PageLayoutStack = styled((props) => (
+  <Stack
+    rowGap={layoutGridSpacingProp}
+    {...props}
+  />
+))(({ theme }) => theme.unstable_sx({ py: { xxs: 3, lg: 4.5 } }));
+
+export default React.memo(PageLayoutStack);

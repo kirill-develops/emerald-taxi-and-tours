@@ -10,13 +10,13 @@ const StyledHomeSection = styled((props) => (
     disableGutters
     {...props}
   />
-))(({ theme }) => theme.unstable_sx({ pt: 5, pb: 0, rowGap: 0 }));
+))(({ theme }) => theme.unstable_sx({ p: 0, rowGap: { xxs: 0, sm: 0 } }));
 
 const SectionStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({
     overflowX: 'scroll',
     width: '100%',
-    pt: { xxs: 1, sm: 2.5 },
+    pt: { xxs: 2, sm: 3 },
     pb: 5,
     px: { xxs: 2, sm: 3 },
     flexDirection: { xxs: 'column', sm: 'row' },
@@ -27,7 +27,7 @@ const SectionStack = styled(Stack)(({ theme }) =>
 );
 
 export default React.memo(function FeaturedTransfer({
-  title = 'Plan Your Private Transfer',
+  title = 'Plan Your Private Transfer, Your Way',
 }) {
   return (
     <StyledHomeSection title={title}>

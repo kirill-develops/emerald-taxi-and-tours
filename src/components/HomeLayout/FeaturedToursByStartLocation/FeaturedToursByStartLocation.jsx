@@ -11,8 +11,6 @@ const navKey = 'tours_by_starting_location';
 
 const buttonProps = { sx: { top: '43%' } };
 
-const homeSectionStyles = { pb: 3 };
-
 export default React.memo(function FeatureTours({
   title = 'Start Your Jamaican Adventure: Explore Tours By Departure',
 }) {
@@ -26,7 +24,6 @@ export default React.memo(function FeatureTours({
     <HomeSection
       title={title}
       disableGutters={isLessMdBreakpoint}
-      sx={homeSectionStyles}
     >
       <PageSwiper
         id={navKey}
