@@ -1,7 +1,7 @@
 import React from 'react';
-import PageLayout from '@components/PageLayout/';
+import PageLayout from '@layouts/PageLayout/';
 import Head from 'next/head';
-import AboutLayout from '@components/AboutLayout/';
+import AboutLayout from '@layouts/AboutLayout/';
 
 export default function About() {
   return (

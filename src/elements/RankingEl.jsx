@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import React, { useMemo } from 'react';
-import { detailTypographyProps } from '../components/DetailedPageLayout/DetailsWrapper';
+import { detailTypographyProps } from '../components/DetailImageWrapper/';
 
 const RankingStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({ alignItems: 'center' }),

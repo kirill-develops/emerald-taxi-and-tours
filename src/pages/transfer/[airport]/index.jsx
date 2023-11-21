@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '@components/PageLayout/';
+import PageLayout from '@layouts/PageLayout/';
 import Head from 'next/head';
 import Fallback from '@components/Fallback';
 import { useRouter } from 'next/router';

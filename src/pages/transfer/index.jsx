@@ -1,7 +1,7 @@
 import React from 'react';
-import PageLayout from '@components/PageLayout/';
+import PageLayout from '@layouts/PageLayout/';
 import Head from 'next/head';
-import TransferLayout from '@components/TransfersLayout/';
+import TransferLayout from '@layouts/TransfersLayout/';
 
 export default function Transfer() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import PageLayout from '@components/PageLayout/';
-import ToursLayout from '../../components/ToursLayout/';
+import PageLayout from '@layouts/PageLayout/';
+import ToursLayout from '../../layouts/ToursLayout/';
 import Head from 'next/head';
 import TourContext from '@context/TourContext';
 
