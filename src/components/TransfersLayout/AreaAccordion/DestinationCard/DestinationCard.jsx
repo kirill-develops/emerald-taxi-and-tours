@@ -1,5 +1,5 @@
 import React from 'react';
-import GridCard from '@components/GridCard/GridCard';
+import GridCard from '@components/GridCard/';
 import RankingEl from '@elements/RankingEl';
 
 function getSubheader(areaLink, destination, area) {

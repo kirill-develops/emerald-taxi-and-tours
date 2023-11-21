@@ -1,7 +1,7 @@
 import LinearProgress from '@mui/material/LinearProgress';
 import React from 'react';
 import { GridContainer } from '@elements/CustomGridEl';
-import PageLayout from '@components/PageLayout/Layout';
+import PageLayout from '@components/PageLayout/';
 
 function Fallback() {
   return (

@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { startingPoints } from '@data/controllers/tour';
-import PageLayout from '@components/PageLayout/Layout';
+import PageLayout from '@components/PageLayout/';
 import TourAreaContext from '@context/TourAreaContext';
 import Fallback from '@components/Fallback';
-import ToursByLocationLayout from '@components/ToursByLocationLayout/ToursByLocationLayout';
+import ToursByLocationLayout from '@components/ToursByLocationLayout/';
 import { isObjEmpty } from '../../../helperFunctions';
 import { filterToursByStartingPoint } from '../../../data/controllers/tour';
 

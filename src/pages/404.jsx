@@ -1,4 +1,4 @@
-import PageLayout from '@components/PageLayout/Layout';
+import PageLayout from '@components/PageLayout/';
 import Error from 'next/error';
 import React from 'react';
 

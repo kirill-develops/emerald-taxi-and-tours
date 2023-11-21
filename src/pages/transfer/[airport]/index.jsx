@@ -1,11 +1,11 @@
 import React from 'react';
-import PageLayout from '@components/PageLayout/Layout';
+import PageLayout from '@components/PageLayout/';
 import Head from 'next/head';
 import Fallback from '@components/Fallback';
 import { useRouter } from 'next/router';
 import { transferData } from '@data/controllers/transfer';
 import { isObjEmpty } from '@helperFunctions';
-import TransfersByAirportLayout from '@components/TransfersByAirportLayout/TransfersByAirportLayout';
+import TransfersByAirportLayout from '@layouts/TransfersByAirportLayout/';
 
 export async function getStaticPaths() {
   const uniqueAirportLinks = [

@@ -10,7 +10,7 @@ const Navbar = dynamic(() => import('@components/NavbarLayout/'));
 const RateUsButton = dynamic(() => import('./RateUsButton/RateUs'));
 const ContactSpeedDial = dynamic(() => import('../ContactSpeedDial'));
 const LayoutTitle = dynamic(() => import('./Elements/LayoutTitle'));
-const FooterLayout = dynamic(() => import('../FooterLayout/FooterLayout'));
+const FooterLayout = dynamic(() => import('../FooterLayout'));
 
 const LayoutContainer = styled(Container)(({ theme }) =>
   theme.unstable_sx({

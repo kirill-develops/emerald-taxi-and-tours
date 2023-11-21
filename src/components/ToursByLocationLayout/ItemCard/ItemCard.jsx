@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import GridCard from '@components/GridCard/GridCard';
+import GridCard from '@components/GridCard/';
 import TourAreaContext from '@context/TourAreaContext';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
 import useCardSubheading from '../../ToursLayout/ToursByType/hooks/useCardSubheading';

@@ -1,5 +1,5 @@
 import React from 'react';
-import GridCard from '@components/GridCard/GridCard';
+import GridCard from '@components/GridCard/';
 import { getToursUrl } from '@pages/tours/[area]/[tour]';
 import RankingEl from '@elements/RankingEl';
 import PickUpCardHeader from './Elements/PickUpCardHeader';
