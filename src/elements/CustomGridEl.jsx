@@ -11,7 +11,7 @@ export const layoutGridSpacingProp = {
 };
 
 const StyledContainer = styled(Grid)(({ theme }) =>
-  theme.unstable_sx({ width: '100%', alignItems: 'stretch' }),
+  theme.unstable_sx({ alignItems: 'stretch' }),
 );
 
 export const GridContainer = React.forwardRef(function GridContainer(
