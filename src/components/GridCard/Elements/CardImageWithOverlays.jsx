@@ -15,17 +15,7 @@ const StyledCardGridItem = styled((props) => (
   />
 ))(({ theme }) => theme.unstable_sx(heightStyles));
 
-const StyledCardActionArea = styled((props) => (
-  <CardActionArea
-    LinkComponent={Link}
-    disableRipple
-    disableTouchRipple
-    {...props}
-  />
-))(({ theme }) => theme.unstable_sx(heightStyles));
-
 export default React.memo(function CardImageWithOverlay({
-  url,
   type,
   price,
   picData,
@@ -33,15 +23,13 @@ export default React.memo(function CardImageWithOverlay({
 }) {
   return (
     <StyledCardGridItem>
-      <StyledCardActionArea href={url}>
-        <ImageOverlayWrapper
-          type={type}
-          price={price}
-          awards={awards}
-        >
-          <CardImage picData={picData} />
-        </ImageOverlayWrapper>
-      </StyledCardActionArea>
+      <ImageOverlayWrapper
+        type={type}
+        price={price}
+        awards={awards}
+      >
+        <CardImage picData={picData} />
+      </ImageOverlayWrapper>
     </StyledCardGridItem>
   );
 });

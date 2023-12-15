@@ -30,7 +30,7 @@ export default React.memo(function GridCard({
   url = '',
   ...rest
 }) {
-  const overlayImageProps = { url, type, price, picData, awards };
+  const overlayImageProps = { type, price, picData, awards };
 
   return (
     <GridCardWrapper

@@ -77,7 +77,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function AirportTransfer({ transferParams }) {
+export default function AirportTransfer({ transferParams = {} }) {
   const router = useRouter();
 
   if (router.isFallback) {

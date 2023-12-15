@@ -6,7 +6,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import React from 'react';
 
 const IconWrapper = styled((props) => <IconButton {...props} />, {
-  shouldForwardProp: (prop) => prop !== 'isDisabled' || prop !== 'isVisable',
+  shouldForwardProp: (prop) => prop !== 'isDisabled' && prop !== 'isVisable',
 })(({ theme, position, isDisabled, isVisable }) => ({
   display: isVisable ? 'inline-flex' : 'none',
   position: 'absolute',
