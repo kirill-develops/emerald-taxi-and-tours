@@ -36,10 +36,7 @@ export default React.memo(function DetailsWrapper({ children, ...rest }) {
 
   return (
     <DetailsBox {...rest}>
-      <MaxWidthContainer
-        rowGap={0.5}
-        maxWidth="lg"
-      >
+      <MaxWidthContainer rowGap={0.5}>
         <DetailsStack>
           <RankingEl />
           {!isSmBreakpoint && <FormattedRankingString />}

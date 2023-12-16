@@ -7,30 +7,29 @@ export default React.memo(function MaxWidthContainer({
   disableStack = false,
   rowGap = 3,
   children,
-  ...others
+  ...rest
 }) {
-  const containerProps = useMemo(
-    () => ({
-      maxWidth,
-      ...others,
-    }),
-    [maxWidth, others],
-  );
-
   const content = useMemo(() => {
     if (disableStack) {
       return children;
-    } else {
-      return (
-        <Stack
-          direction="column"
-          rowGap={rowGap}
-        >
-          {children}
-        </Stack>
-      );
     }
+
+    return (
+      <Stack
+        direction="column"
+        rowGap={rowGap}
+      >
+        {children}
+      </Stack>
+    );
   }, [disableStack, rowGap, children]);
 
-  return <Container {...containerProps}>{content}</Container>;
+  return (
+    <Container
+      maxWidth={maxWidth}
+      {...rest}
+    >
+      {content}
+    </Container>
+  );
 });

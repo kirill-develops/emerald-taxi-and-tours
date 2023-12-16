@@ -40,7 +40,6 @@ export default function NavbarLayout(props) {
       <ElevationScroll {...props}>
         <SiteAppBar>
           <MaxWidthContainer
-            maxWidth="lg"
             disableGutters
             disableStack
           >
