@@ -1,4 +1,5 @@
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 
 import Link from '@material/Link';
@@ -6,49 +7,37 @@ import Link from '@material/Link';
 export default function TitleScript() {
   return (
     <HighlightedText>
-      Emerald <StandardText>Taxi & Tours</StandardText>
+      Emerald<StandardText>Taxi & Tours</StandardText>
     </HighlightedText>
   );
 }
 
-const highlightedTextStyles = (theme) => ({
-  textDecoration: 'none',
-  fontWeight: 500,
-  color: theme.palette.primary,
-  display: 'flex',
-  columnGap: 1,
-  alignItems: 'center',
-});
+const HighlightedText = styled((props) => (
+  <Link
+    href="/"
+    noWrap
+    {...props}
+  />
+))(({ theme }) =>
+  theme.unstable_sx({
+    display: 'flex',
+    alignItems: 'center',
+    columnGap: 1,
+    color: theme.palette.primary,
+    typography: 'navTitle',
+    textDecoration: 'none',
+  }),
+);
 
-function HighlightedText({ children }) {
-  return (
-    <Typography
-      variant="h4"
-      altfont="true"
-      component={Link}
-      href="/"
-      noWrap
-      sx={highlightedTextStyles}
-    >
-      {children}
-    </Typography>
-  );
-}
-
-const standardTextStyles = (theme) => ({
-  textTransform: 'capitalize',
-  color: theme.palette.text.primary,
-});
-
-function StandardText({ children }) {
-  return (
-    <Typography
-      variant="h6"
-      component="span"
-      noWrap
-      sx={standardTextStyles}
-    >
-      {children}
-    </Typography>
-  );
-}
+const StandardText = styled((props) => (
+  <Typography
+    component="span"
+    noWrap
+    {...props}
+  />
+))(({ theme }) =>
+  theme.unstable_sx({
+    color: theme.palette.text.primary,
+    typography: 'navTitle',
+  }),
+);
