@@ -36,6 +36,14 @@ export const themeComponents = {
          }
       }
    },
+   MuiTab: {
+      styleOverrides: {
+         root: ({ theme }) => theme.unstable_sx({
+            px: '15px',
+            minWidth: 'fit-content'
+         })
+      }
+   },
    MuiIconButton: {
       styleOverrides: {
          root: {

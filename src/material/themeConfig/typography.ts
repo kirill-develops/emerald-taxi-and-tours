@@ -15,6 +15,15 @@ export const themeTypography = {
    subtitle1: { fontFamily: dm_sans.style.fontFamily },
    subtitle2: { fontFamily: dm_sans.style.fontFamily },
    caption: { fontFamily: dm_sans.style.fontFamily },
+   navLink: {
+      fontFamily: dm_sans.style.fontFamily,
+      fontSize: '0.875rem',
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: 'normal',
+      letterSpacing: '0.0525rem',
+      textTransform: 'lowercase',
+   },
    cardTitle: {
       fontWeight: 500,
       fontSize: '1.1rem',
