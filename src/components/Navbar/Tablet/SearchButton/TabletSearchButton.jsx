@@ -28,8 +28,8 @@ const SearchTextField = styled((props) => (
 ))(({ theme }) =>
   theme.unstable_sx({
     cursor: 'pointer',
-    flexGrow: 1,
-    flexBasis: '20%',
+    width: '20%',
+    maxWidth: '12.5rem',
     [`& .${inputBaseClasses.root}`]: {
       borderRadius: 6,
       backgroundColor: theme.palette.background.paper,

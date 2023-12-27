@@ -8,13 +8,19 @@ import React, { useContext, useState } from 'react';
 import DarkModeContext from '@context/DarkModeContext';
 import { capitalize } from '@helperFunctions';
 
-const borderRadiusStyles = { borderRadius: 4 };
+const borderRadiusStylesGetter = (isTablet) => ({
+  borderRadius: 4,
+  maxWidth: 'fit-content',
+  px: isTablet ? '8px' : '16px',
+});
 
 export default React.memo(function DarkModeSwitch({ isTablet, ...props }) {
   const theme = useTheme();
   const context = useContext(DarkModeContext);
 
   const [isSpinning, setIsSpinning] = useState(false);
+
+  const borderRadiusStyles = borderRadiusStylesGetter(isTablet);
 
   return (
     <ListItemButton
@@ -33,7 +39,6 @@ export default React.memo(function DarkModeSwitch({ isTablet, ...props }) {
           transform: isSpinning ? 'rotateX(90deg)' : 'rotateX(0deg)',
           transition: 'transform 0.3s ease-in-out',
           minWidth: isTablet ? 'unset' : null,
-          width: 'fit-content',
         }}
       >
         {theme.palette.mode === 'dark' ? (

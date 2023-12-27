@@ -18,7 +18,6 @@ const StyledTabs = styled(
 )(({ theme, dissapearingBreakpoint }) =>
   theme.unstable_sx({
     alignSelf: 'stretch',
-    flexGrow: 1,
     flexBasis: 'content',
     display: {
       xxs: 'none',

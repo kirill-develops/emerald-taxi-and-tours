@@ -43,18 +43,14 @@ export default function NavbarLayout(props) {
             disableGutters
             disableStack
           >
-            <Toolbar sx={{ ...loadingTransitionStyle }}>
+            <Toolbar sx={{ ...loadingTransitionStyle, columnGap: 2 }}>
               <MobileDrawerButton dissapearingBreakpoint={menuBreakpoint} />
               <TitleWrapper />
               <TabletPageLinks />
 
               <MobileSearchButton dissapearingBreakpoint={menuBreakpoint} />
               <TabletSearchButton dissapearingBreakpoint={menuBreakpoint} />
-              {isTablet ? (
-                <Box sx={{ pl: 2 }}>
-                  <DarkModeSwitch isTablet />
-                </Box>
-              ) : null}
+              {isTablet ? <DarkModeSwitch isTablet /> : null}
             </Toolbar>
           </MaxWidthContainer>
         </SiteAppBar>

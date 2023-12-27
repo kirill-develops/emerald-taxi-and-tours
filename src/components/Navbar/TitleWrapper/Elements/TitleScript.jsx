@@ -37,7 +37,7 @@ const StandardText = styled((props) => (
   />
 ))(({ theme }) =>
   theme.unstable_sx({
-    color: theme.palette.text.primary,
+    color: theme.palette.background.variantText,
     typography: 'navTitle',
   }),
 );
