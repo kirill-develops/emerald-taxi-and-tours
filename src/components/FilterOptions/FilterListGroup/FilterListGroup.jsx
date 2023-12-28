@@ -15,7 +15,7 @@ const StyledListItemButton = styled(ListItemButton)(({ theme }) =>
 
 const StyledListItemText = styled((props) => (
   <ListItemText
-    primaryTypographyProps={{ variant: 'cardCaption' }}
+    primaryTypographyProps={{ variant: 'filterSubcategory' }}
     {...props}
   />
 ))(({ theme }) => theme.unstable_sx({ my: 0 }));

@@ -37,7 +37,7 @@ const StyledCheckbox = styled((props) => (
 
 const StyledListItemText = styled((props) => (
   <ListItemText
-    primaryTypographyProps={{ variant: 'smallBold' }}
+    primaryTypographyProps={{ variant: 'filterOption' }}
     {...props}
   />
 ))(({ theme }) => theme.unstable_sx({}));

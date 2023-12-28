@@ -1,5 +1,5 @@
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
@@ -24,21 +24,11 @@ const filterTypes = [
   },
 ];
 
-const StyledCard = styled(
-  React.forwardRef(function StyledCard(props, ref) {
-    return (
-      <Card
-        elevation={1}
-        ref={ref}
-        {...props}
-      />
-    );
-  }),
-)(({ theme }) =>
+const StyledList = styled(List)(({ theme }) =>
   theme.unstable_sx({
     m: { xxs: 2, sm: 0 },
-    p: 1,
-    backgroundColor: theme.palette.secondary.container,
+    py: 0,
+
     color: theme.palette.secondary.containerText,
   }),
 );
@@ -46,33 +36,27 @@ const StyledCard = styled(
 const StyledListSubheader = styled(ListSubheader)(({ theme }) =>
   theme.unstable_sx({
     color: theme.palette.secondary.containerText,
-    backgroundColor: 'inherit',
+    typography: 'filterTitle',
+    borderRadius: 1.5,
+    mb: '1.12rem',
   }),
 );
 
-export default React.memo(function FilterOptions({
-  forwardedRef,
-  sx,
-  ...rest
-}) {
+export default React.memo(function FilterOptions({ sx, ...rest }) {
   checkUnrecognizedProps('FilterOptions', rest);
+  const isLessXs = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   return (
-    <StyledCard
-      ref={forwardedRef}
-      sx={sx}
-    >
-      <List>
-        <StyledListSubheader>Filters</StyledListSubheader>
-        {filterTypes.map(({ filterState, optionKey, headerString }) => (
-          <FilterListGroup
-            filterState={filterState}
-            optionKey={optionKey}
-            headerString={headerString}
-            key={optionKey}
-          />
-        ))}
-      </List>
-    </StyledCard>
+    <StyledList sx={sx}>
+      {isLessXs ? '' : <StyledListSubheader>Filters</StyledListSubheader>}
+      {filterTypes.map(({ filterState, optionKey, headerString }) => (
+        <FilterListGroup
+          filterState={filterState}
+          optionKey={optionKey}
+          headerString={headerString}
+          key={optionKey}
+        />
+      ))}
+    </StyledList>
   );
 });
