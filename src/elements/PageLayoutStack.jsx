@@ -8,6 +8,12 @@ const PageLayoutStack = styled((props) => (
     rowGap={layoutGridSpacingProp}
     {...props}
   />
-))(({ theme }) => theme.unstable_sx({ py: { xxs: 3, lg: 4.5 } }));
+))(({ theme }) =>
+  theme.unstable_sx({
+    py: { xxs: 3, lg: 4.5 },
+    minHeight: 'fit-content',
+    height: '100%',
+  }),
+);
 
 export default React.memo(PageLayoutStack);
