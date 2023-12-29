@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
-import FilterListGroup from './FilterListGroup/FilterListGroup';
+import FilterListGroup from './FilterListGroup';
 import { checkUnrecognizedProps } from '../../helperFunctions';
 
 const filterTypes = [
