@@ -1,7 +1,7 @@
-import { createStripeTourPrice, processTourPrices } from '../../server/controller/create-products/tourPrices';
-import { createStripeTourProduct, processTourProducts } from '../../server/controller/create-products/tourProducts';
-import { createStripeTransferPrice, processTransferPrices } from '../../server/controller/create-products/transferPrices';
-import { createStripeTransferProduct, processTransferProducts } from '../../server/controller/create-products/transferProducts';
+import { createStripeTourPrice, processTourPrices } from '../../../server/controller/create-products/tourPrices';
+import { createStripeTourProduct, processTourProducts } from '../../../server/controller/create-products/tourProducts';
+import { createStripeTransferPrice, processTransferPrices } from '../../../server/controller/create-products/transferPrices';
+import { createStripeTransferProduct, processTransferProducts } from '../../../server/controller/create-products/transferProducts';
 
 const transferData = require('@data/transferData.json');
 const tourData = require('@data/tourData.json');
