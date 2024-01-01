@@ -11,13 +11,26 @@ import NoWrapCardHeader from '../Elements/NoWrapCardHeader';
 
 const heightStyles = { height: '100%' };
 
-const StyledCard = styled(Card)(({ theme }) =>
-  theme.unstable_sx({ height: { xxs: 115, xs: 125, sm: 140, md: 180 } }),
+const StyledLink = styled(Link)(({ theme }) =>
+  theme.unstable_sx({
+    textDecoration: 'none',
+    color: 'inherit',
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: 1.25,
+  }),
+);
+
+const StyledCard = styled(Card)(({ theme, sx }) =>
+  theme.unstable_sx({
+    height: { xxs: 115, xs: 125, sm: 140, md: 180 },
+    ...sx,
+  }),
 );
 
 const StyledActionArea = styled((props) => (
   <CardActionArea
-    LinkComponent={Link}
+    component={'div'}
     {...props}
   />
 ))(({ theme }) => theme.unstable_sx(heightStyles));
@@ -26,7 +39,7 @@ const CardStack = styled(Stack)(({ theme }) =>
   theme.unstable_sx({ ...heightStyles, flexDirection: 'column' }),
 );
 
-const StyledBox = styled(Box)(({ theme }) => theme.unstable_sx({ pt: 1.25 }));
+const StyledBox = styled(Box)(({ theme }) => theme.unstable_sx({ px: 1 }));
 
 export default React.memo(function GridCardWrapper({
   url = '',
@@ -37,10 +50,11 @@ export default React.memo(function GridCardWrapper({
   subheader,
   noWrap = false,
   rankingEl,
+  ...rest
 }) {
   return (
-    <>
-      <StyledCard>
+    <StyledLink href={url}>
+      <StyledCard {...rest}>
         <StyledActionArea href={url}>
           <CardStack>
             <ImageOverlayWrapper
@@ -62,6 +76,6 @@ export default React.memo(function GridCardWrapper({
         />
         {rankingEl}
       </StyledBox>
-    </>
+    </StyledLink>
   );
 });

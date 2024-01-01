@@ -15,7 +15,14 @@ const StyledStack = styled(Stack)(({ theme }) =>
     justifyContent: 'space-between',
     width: '100%',
     columnGap: 5,
-    rowGap: 1.5,
+    rowGap: 4.5,
+  }),
+);
+
+const StyledCardTitle = styled(CardTitle)(({ theme }) =>
+  theme.unstable_sx({
+    typography: 'categoryTitle',
+    color: theme.palette.secondary.containerText,
   }),
 );
 
@@ -30,13 +37,14 @@ const StyledContainer = styled((props) => (
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
-    rowGap: { xxs: 0, md: 1.5 },
+    rowGap: 1.5,
+    justifyContent: { md: 'center' },
   }),
 );
 
 const Caption = styled((props) => (
   <Typography
-    variant="body2"
+    variant="categoryDescription"
     {...props}
   />
 ))(({ theme }) => theme.unstable_sx({ color: theme.palette.text.secondary }));
@@ -61,7 +69,7 @@ export default React.memo(function TourSwiper({ tours, type, caption }) {
   return (
     <StyledStack>
       <StyledContainer disableGutters={!isLessMdBreakpoint}>
-        <CardTitle body="true">{type}s</CardTitle>
+        <StyledCardTitle>{type}s</StyledCardTitle>
         <Caption>{caption}</Caption>
       </StyledContainer>
       <PageSwiper

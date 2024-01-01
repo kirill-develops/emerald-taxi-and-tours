@@ -15,25 +15,32 @@ const captions = {
 };
 
 export default function useTourByTypeDataFetcher() {
-  const [state] = useTour();
-  const { tourData } = state;
+  const [{ tourData }] = useTour();
 
   return useMemo(() => {
-    const data = tourData.reduce((data, tour) => {
-      tour.type.forEach((type) => {
-        data[type] = data[type] || [];
-        data[type].push(tour);
-      });
-      return data;
-    }, {});
+    const groupedData = groupTourData(tourData);
+    const formattedData = formatGroupedData(groupedData);
 
-    return Object.entries(data)
-      .map(([type, tours]) => {
-        const typeNoSpaces = type.replace(/ /g, '');
-        const caption = captions[typeNoSpaces];
-
-        return { type, tours, caption };
-      })
-      .sort((a, b) => a.type.localeCompare(b.type));
+    return formattedData;
   }, [tourData]);
+}
+
+function groupTourData(tourData) {
+  return tourData.reduce((data, tour) => {
+    tour.type.forEach((type) => {
+      data[type] = data[type] || [];
+      data[type].push(tour);
+    });
+    return data;
+  }, {});
+}
+
+function formatGroupedData(groupedData) {
+  return Object.entries(groupedData)
+    .map(([type, tours]) => {
+      const typeNoSpaces = type.replace(/ /g, '');
+      const caption = captions[typeNoSpaces]; // Assuming captions is defined somewhere
+      return { type, tours, caption };
+    })
+    .sort((a, b) => a.type.localeCompare(b.type));
 }

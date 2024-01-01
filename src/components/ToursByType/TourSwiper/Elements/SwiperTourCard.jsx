@@ -47,12 +47,12 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
   return (
     <SmallCard
       noWrap
-      noGrid
       price={lowestPrice}
       picData={tripAdvisorPhotos[0]}
       title={name}
       subheader={subheading}
       url={destinationURL}
+      sx={{ height: '8.75rem' }}
       rankingEl={
         <RankingEl
           rating={rating}
