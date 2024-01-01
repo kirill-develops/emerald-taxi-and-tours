@@ -6,7 +6,7 @@ import PickUpCardHeader from './Elements/PickUpCardHeader';
 import { useTour } from '../../../../layouts/ToursLayout/hooks/useTour';
 
 function getStartingPointPrice(startingPoints, filterStartLocation) {
-  return startingPoints.reduce((acc, startingPoint) => {
+  return startingPoints.reduce((lowestPrice, startingPoint) => {
     const startLocationActive =
       Object.values(filterStartLocation).includes(true);
 
@@ -14,10 +14,10 @@ function getStartingPointPrice(startingPoints, filterStartLocation) {
       filterStartLocation[startingPoint?.link] === true;
 
     if (!startLocationActive || startLocationMatches) {
-      return Math.min(acc, startingPoint.price);
+      return Math.min(lowestPrice, startingPoint.basePrice.value);
     }
 
-    return acc;
+    return lowestPrice;
   }, Number.MAX_SAFE_INTEGER);
 }
 

@@ -28,10 +28,11 @@ export default React.memo(function PriceTable() {
           <Caption>All prices in USD & include pickup and return</Caption>
           <TableHeaders />
           <TableBody>
-            {startingPoints?.map(({ name, link, price }) => (
+            {startingPoints?.map(({ name, link, basePrice, plusOnePrice }) => (
               <StyledTableRowComponent
                 name={name}
-                price={price}
+                basePrice={basePrice.value}
+                plusOnePrice={plusOnePrice.value}
                 key={link}
               />
             ))}

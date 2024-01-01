@@ -26,8 +26,10 @@ export default function SwiperTourCard({ tour, sx, ...rest }) {
     () =>
       startingPoints.reduce(
         (lowestPrice, startingPoint) =>
-          startingPoint.price < lowestPrice ? startingPoint.price : lowestPrice,
-        startingPoints[0].price,
+          startingPoint.basePrice.value < lowestPrice
+            ? startingPoint.basePrice.value
+            : lowestPrice,
+        startingPoints[0].basePrice.value,
       ),
     [startingPoints],
   );
