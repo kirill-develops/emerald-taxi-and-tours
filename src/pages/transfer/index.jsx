@@ -9,7 +9,10 @@ export default function Transfer() {
       <Head>
         <title>Airport Transfers | EMERALD Taxi & Tours</title>
       </Head>
-      <PageLayout title="Airport Transfers">
+      <PageLayout
+        heroBanner
+        title="Airport Transfers"
+      >
         <TransferLayout />
       </PageLayout>
     </>

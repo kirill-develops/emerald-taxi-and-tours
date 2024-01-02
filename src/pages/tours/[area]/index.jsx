@@ -98,6 +98,7 @@ export default function AreaPage({ tourParams }) {
       </Head>
 
       <PageLayout
+        heroBanner
         title={layoutTitle}
         subheader="Tours"
       >

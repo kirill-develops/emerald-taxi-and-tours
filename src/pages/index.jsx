@@ -6,7 +6,7 @@ import TourContext from '../context/TourContext';
 export default function App() {
   return (
     <TourContext>
-      <PageLayout>
+      <PageLayout heroBanner>
         <HomeLayout />
       </PageLayout>
     </TourContext>

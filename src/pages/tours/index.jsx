@@ -11,7 +11,10 @@ export default function tours() {
         <title>Attractions & Tours | EMERALD Taxi & Tours</title>
       </Head>
       <TourContext>
-        <PageLayout title="Tours & Attractions">
+        <PageLayout
+          heroBanner
+          title="Tours & Attractions"
+        >
           <ToursLayout />
         </PageLayout>
       </TourContext>

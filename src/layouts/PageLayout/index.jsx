@@ -13,6 +13,7 @@ const ContactSpeedDial = dynamic(() =>
 );
 const LayoutTitle = dynamic(() => import('./Elements/LayoutTitle'));
 const FooterLayout = dynamic(() => import('../../components/Footer'));
+const HeroBanner = dynamic(() => import('@components/HeroBanner/HeroBanner'));
 
 const LayoutContainer = styled(Container)(({ theme }) =>
   theme.unstable_sx({
@@ -38,6 +39,7 @@ export default function PageLayout({
   title = '',
   subheader = '',
   airport = '',
+  heroBanner = false,
 }) {
   const showComponent = usePageTransition();
 
@@ -54,6 +56,7 @@ export default function PageLayout({
         id={isXsBreakpoint ? 'top' : undefined}
       >
         <LayoutGrid component="main">
+          {heroBanner && <HeroBanner />}
           <LayoutTitle
             title={title}
             subheader={subheader}

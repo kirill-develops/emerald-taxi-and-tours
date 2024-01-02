@@ -92,6 +92,7 @@ export default function AirportTransfer({ transferParams = {} }) {
         <title>{name} Transfers | EMERALD Taxi & Tours</title>
       </Head>
       <PageLayout
+        heroBanner
         title={name}
         subheader="Transfers"
       >
