@@ -7,12 +7,12 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import { darkTheme, theme } from '@material/theme';
 import createEmotionCache from '@material/createEmotionCache';
 import '@styles/globals.css';
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material';
+// import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { CookiesProvider } from 'react-cookie';
 import useDarkModeToggle from '@hooks/useDarkModeToggle'
 import DarkModeContext from '@context/DarkModeContext'
-import { experimentalTheme } from '@material/experimentalTheme';
+// import { experimentalTheme } from '@material/experimentalTheme';
 
 // Client-side cache, shared for the whole session of the user in the browser
 const clientSideEmotionCache = createEmotionCache();
