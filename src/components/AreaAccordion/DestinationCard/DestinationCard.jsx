@@ -35,9 +35,7 @@ export default React.memo(function TransferCard({ destinationData, areaData }) {
       picData={tripAdvisorPhotos?.[0]}
       reviews={tripAdvisorReviews}
       subheader={subheader}
-      subheaderVariant="cardCaption"
       title={name}
-      titleVariant="cardTitle"
       url={destinationURL}
       variant="outlined"
       rankingEl={

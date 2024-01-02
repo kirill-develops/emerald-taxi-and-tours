@@ -47,9 +47,7 @@ export default function ItemCard({ tour, ...rest }) {
       picData={photoObj}
       reviews={reviews}
       subheader={subheading}
-      subheaderVariant="cardCaption"
       title={name}
-      titleVariant="cardTitle"
       type={type}
       url={url}
       rankingEl={

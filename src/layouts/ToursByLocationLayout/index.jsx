@@ -34,7 +34,6 @@ export default function ToursByLocationLayout() {
           {locations.map((location) => (
             <ItemCard
               key={location.link}
-              md={6}
               tour={location}
             />
           ))}

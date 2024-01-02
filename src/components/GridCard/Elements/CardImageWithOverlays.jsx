@@ -16,6 +16,7 @@ const StyledCardGridItem = styled((props) => (
 ))(({ theme }) => theme.unstable_sx(heightStyles));
 
 export default React.memo(function CardImageWithOverlay({
+  url,
   type,
   price,
   picData,
@@ -23,13 +24,15 @@ export default React.memo(function CardImageWithOverlay({
 }) {
   return (
     <StyledCardGridItem>
-      <ImageOverlayWrapper
-        type={type}
-        price={price}
-        awards={awards}
-      >
-        <CardImage picData={picData} />
-      </ImageOverlayWrapper>
+      <Link href={url}>
+        <ImageOverlayWrapper
+          type={type}
+          price={price}
+          awards={awards}
+        >
+          <CardImage picData={picData} />
+        </ImageOverlayWrapper>
+      </Link>
     </StyledCardGridItem>
   );
 });

@@ -30,7 +30,7 @@ export default React.memo(function GridCard({
   url = '',
   ...rest
 }) {
-  const overlayImageProps = { type, price, picData, awards };
+  const overlayImageProps = { url, type, price, picData, awards };
 
   return (
     <GridCardWrapper
@@ -71,18 +71,19 @@ const StyledGridItem = styled(GridItem)(({ theme }) =>
 function GridCardWrapper({ noGrid, children, ...rest }) {
   const wrappedChildren = useMemo(
     () => (
-      <StyledCard {...rest}>
+      <StyledCard>
         <CardHighlight>
           <GridContainer sx={heightStyles}>{children}</GridContainer>
         </CardHighlight>
       </StyledCard>
     ),
-    [children, rest],
+    [children],
   );
+  console.log(rest);
 
   return noGrid ? (
     wrappedChildren
   ) : (
-    <StyledGridItem>{wrappedChildren}</StyledGridItem>
+    <StyledGridItem {...rest}>{wrappedChildren}</StyledGridItem>
   );
 }
