@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { transferData } from '@data/controllers/transfer';
 import PageLayoutStack from '@elements/PageLayoutStack';
 import AreaAccordions from '../../components/AreaAccordion/';
-import FeaturedTransfersByArea from '../../components/FeaturedTransfersByArea';
+// import FeaturedTransfersByArea from '../../components/FeaturedTransfersByArea';
 import FeaturedToursByStartLocation from '../../components/FeaturedToursByStartLocation';
 import FeaturedTransfers from '../../components/FeaturedTransfers';
 
