@@ -70,6 +70,7 @@ export default React.memo(function GridCardWrapper({
         <NoWrapCardHeader
           title={title}
           titleVariant="smallBold"
+          titleColor={(theme) => theme.palette.text.strong}
           subheader={subheader}
           subheaderVariant="smallCaption"
           noWrap={noWrap}

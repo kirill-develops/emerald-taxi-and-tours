@@ -63,6 +63,7 @@ export let theme = createTheme({
       secondary: '#414941',
       primary: '#191C19',
       disabled: '#717971',
+      strong: '#000'
     },
     divider: '#e5e5e5',
   },
@@ -114,6 +115,7 @@ export let darkTheme = createTheme({
       disabled: '#414941',
       primary: '#eae1d9',
       secondary: '#D1C5B4',
+      strong: '#fff'
     },
     divider: '#9c8f80',
   },
