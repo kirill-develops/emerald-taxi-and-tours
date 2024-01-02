@@ -95,10 +95,10 @@ const Elipse = styled((props) => (
         width="58"
         height="42"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
         <feFlood
-          flood-opacity="0"
+          floodOpacity="0"
           result="BackgroundImageFix"
         />
         <feColorMatrix

@@ -56,7 +56,10 @@ export default React.memo(function TourLayout() {
   return (
     <PageLayoutStack>
       <ToursByType />
-      <FeaturedToursByStartLocation title="Wander Further: Tours from Your Doorstep" />
+      <FeaturedToursByStartLocation
+        title="Wander Further: Tours from Your Doorstep"
+        titleHighlight="Tours"
+      />
       <Container>
         <StyledGridContainer>
           <Aside>
@@ -68,7 +71,10 @@ export default React.memo(function TourLayout() {
           </Content>
         </StyledGridContainer>
       </Container>
-      <FeaturedTransfers title="Need a Lift? Between Resorts or Airports, we got you Covered" />
+      <FeaturedTransfers
+        title="Need a Lift? Between Resorts or Airports, we got you Covered"
+        titleHighlight="Need a Lift?"
+      />
     </PageLayoutStack>
   );
 });

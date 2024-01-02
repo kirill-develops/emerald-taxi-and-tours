@@ -20,7 +20,7 @@ export default function TransferLayout() {
   return (
     <PageLayoutStack>
       <FeaturedTransfers title="Ready to Roll? Your Transfer Awaits" />
-      <FeaturedTransfersByArea />
+      {/* <FeaturedTransfersByArea /> */}
       <AreaAccordions
         transferData={sangsterTransferData}
         title="Sangster International, Montego Bay"

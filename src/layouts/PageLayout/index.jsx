@@ -13,7 +13,7 @@ const ContactSpeedDial = dynamic(() =>
 );
 const LayoutTitle = dynamic(() => import('./Elements/LayoutTitle'));
 const FooterLayout = dynamic(() => import('../../components/Footer'));
-const HeroBanner = dynamic(() => import('@components/HeroBanner/HeroBanner'));
+import HeroBanner from '@components/HeroBanner/HeroBanner';
 
 const LayoutContainer = styled(Container)(({ theme }) =>
   theme.unstable_sx({

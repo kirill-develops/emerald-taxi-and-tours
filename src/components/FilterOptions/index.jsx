@@ -36,6 +36,7 @@ const StyledList = styled(List)(({ theme }) =>
 const StyledListSubheader = styled(ListSubheader)(({ theme }) =>
   theme.unstable_sx({
     color: theme.palette.secondary.containerText,
+    border: `0.5px solid ${theme.palette.divider}`,
     typography: 'filterTitle',
     borderRadius: 1.5,
     mb: '1.12rem',
