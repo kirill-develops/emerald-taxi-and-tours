@@ -21,19 +21,19 @@ const BannerContainer = styled((props) => (
 
 const ImageWrapper = styled(Box)(({ theme }) =>
   theme.unstable_sx({
-    minHeight: { xxs: '360px' },
+    height: { xxs: '360px' },
     overflow: 'hidden',
     filter: 'brightness(60%)',
   }),
 );
 
-const MuiImage = styled((props) => (
+const MuiImage = styled(({ alt, ...props }) => (
   <Image
-    quality={100}
+    alt={alt}
     priority
-    fill
+    quality={80}
     sizes="100vw"
-    alt={props.alt}
+    fill
     {...props}
   />
 ))(({ theme }) =>
