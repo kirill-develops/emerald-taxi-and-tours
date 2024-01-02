@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import React from 'react';
 import MaxWidthContainer from '@elements/MaxWidthContainer';
 import SectionTitle from '@elements/SectionTitle';
@@ -19,8 +20,9 @@ const StyledStack = styled(Stack)(({ theme }) =>
   }),
 );
 
-export default React.memo(function HomeSection({
+export default function HomeSection({
   title,
+  titleHighlight,
   titleStyles,
   children,
   containerStyles,
@@ -33,6 +35,7 @@ export default React.memo(function HomeSection({
     <StyledStack {...rest}>
       <SectionTitleJSX
         title={title}
+        titleHighlight={titleHighlight}
         titleStyles={titleStyles}
       />
       <MaxWidthContainer
@@ -45,19 +48,50 @@ export default React.memo(function HomeSection({
       </MaxWidthContainer>
     </StyledStack>
   );
-});
+}
 
-function SectionTitleJSX({ title, titleStyles }) {
+const StyledSectionTitle = styled((props) => (
+  <SectionTitle
+    maxWidth="lg"
+    {...props}
+  />
+))(({ theme, sx }) => theme.unstable_sx({ ...sx }));
+
+const HighlightedText = styled((props) => (
+  <Typography
+    component={'span'}
+    {...props}
+  />
+))(({ theme }) =>
+  theme.unstable_sx({
+    typography: 'sectionTitle',
+    color: theme.palette.primary.main,
+  }),
+);
+
+function SectionTitleJSX({ title, titleHighlight, titleStyles }) {
   if (!title) {
     return;
   }
 
+  const startIndex = title.indexOf(titleHighlight);
+
+  if (startIndex === -1) {
+    // If the titleHighlight is not found, return the original string
+    return <StyledSectionTitle sx={titleStyles}>{title}</StyledSectionTitle>;
+  }
+
+  const [before, selected, after] = [
+    title.substring(0, startIndex),
+    title.substring(startIndex, startIndex + titleHighlight.length),
+    title.substring(startIndex + titleHighlight.length),
+  ];
+
   return (
-    <SectionTitle
-      maxWidth="lg"
-      sx={titleStyles}
-    >
-      {title}
-    </SectionTitle>
+    <StyledSectionTitle sx={titleStyles}>
+      {before}
+      <HighlightedText>{selected}</HighlightedText>
+      {after}
+    </StyledSectionTitle>
   );
 }

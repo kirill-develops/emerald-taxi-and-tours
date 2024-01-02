@@ -13,6 +13,7 @@ const buttonProps = { sx: { top: '43%' } };
 
 export default React.memo(function FeatureTours({
   title = 'Start Your Jamaican Adventure: Explore Tours By Departure',
+  titleHighlight = 'Tours By Departure',
 }) {
   const isLessMdBreakpoint = useMediaQuery((theme) =>
     theme.breakpoints.down('md'),
@@ -23,6 +24,7 @@ export default React.memo(function FeatureTours({
   return (
     <HomeSection
       title={title}
+      titleHighlight={titleHighlight}
       disableGutters={isLessMdBreakpoint}
     >
       <PageSwiper

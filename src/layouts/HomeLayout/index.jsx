@@ -13,7 +13,8 @@ export default function HomeLayout() {
       <PageLayoutStack>
         <FeaturedTransfers />
         <HomeSection
-          title="Pick Your Passion: Explore Every Hidden Gem Jamaica Has to Offer"
+          title="Tour Jamaica's Hidden Gems with Us!"
+          titleHighlight="Tour"
           disableGutters
           maxWidth={false}
         >

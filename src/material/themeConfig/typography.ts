@@ -28,6 +28,17 @@ export const themeTypography = {
       letterSpacing: '0.0525rem',
       textTransform: 'lowercase',
    },
+   sectionTitle: {
+      fontFamily: raleway.style.fontFamily,
+      fontSize: '2rem',
+      fontStyle: 'italic',
+      fontWeight: 700,
+      letterSpacing: '0.02rem',
+      [breakpointMediaQueries.md]: {
+         fontSize: '2.3125rem',
+         letterSpacing: '0.02313rem'
+      },
+   },
    filterTitle: {
       fontFamily: raleway.style.fontFamily,
       fontSize: ' 1rem',

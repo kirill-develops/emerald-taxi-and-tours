@@ -11,9 +11,9 @@ export default function SectionTitle({
 }) {
   const textStyles = (theme) => ({
     color: theme.palette.text.primary,
-    letterSpacing: -0.6,
     ...sx,
   });
+
   return (
     <Container
       maxWidth={maxWidth}
@@ -21,8 +21,7 @@ export default function SectionTitle({
       sx={{ zIndex: 1 }}
     >
       <Typography
-        variant="h5"
-        fontWeight={1000}
+        variant="sectionTitle"
         sx={textStyles}
         {...rest}
       >
