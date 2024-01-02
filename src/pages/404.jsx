@@ -2,7 +2,7 @@ import PageLayout from '@layouts/PageLayout/';
 import Error from 'next/error';
 import React from 'react';
 
-export default function error404() {
+export default function Error404() {
   return (
     <PageLayout>
       <Error

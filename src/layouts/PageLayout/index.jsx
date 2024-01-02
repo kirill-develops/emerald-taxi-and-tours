@@ -55,8 +55,8 @@ export default function PageLayout({
         disableGutters
         id={isXsBreakpoint ? 'top' : undefined}
       >
+        {heroBanner && <HeroBanner />}
         <LayoutGrid component="main">
-          {heroBanner && <HeroBanner />}
           <LayoutTitle
             title={title}
             subheader={subheader}
