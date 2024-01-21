@@ -40,7 +40,7 @@ const Aside = styled((props) => (
 );
 
 const SpaceFiller = styled('div')(({ theme }) =>
-  theme.unstable_sx({ height: '100%' }),
+  theme.unstable_sx({ height: 'auto' }),
 );
 
 const Content = styled((props) => (

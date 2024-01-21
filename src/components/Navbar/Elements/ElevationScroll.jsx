@@ -15,7 +15,7 @@ export default React.memo(function ElevationScroll({ children, window }) {
   }
 
   return React.cloneElement(children, {
-    elevation: trigger ? 5 : 0,
+    elevation: trigger ? 5 : 2,
     sx: (theme) => ({
       ...children.props.sx,
       backgroundColor: trigger

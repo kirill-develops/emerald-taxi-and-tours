@@ -14,6 +14,16 @@ export const StyledCard = styled(Card)(({ theme }) =>
     borderRadius: 4,
     backgroundColor: theme.palette.primary.container,
     color: theme.palette.primary.containerText,
+    boxShadow: theme.shadows[2],
+    transition: theme.transitions.create('box-shadow', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&:hover': {
+      boxShadow: theme.shadows[3],
+    },
+    '&:active': {
+      boxShadow: theme.shadows[1],
+    },
   }),
 );
 

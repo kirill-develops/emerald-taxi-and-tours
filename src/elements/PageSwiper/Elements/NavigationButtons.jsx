@@ -21,17 +21,30 @@ const IconWrapper = styled((props) => <IconButton {...props} />, {
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.tertiary.main,
   opacity: isDisabled ? 0 : 1,
-  transition: ' 0.3s ease-out',
-
+  transition: theme.transitions.create(['opacity', 'boxShadow'], {
+    duration: theme.transitions.duration.short,
+    easing: theme.transitions.easing.sharp,
+  }),
   '&:hover': {
     boxShadow: theme.shadows[6],
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.tertiary.main,
     filter: 'brightness(96.5%)',
+    transition: theme.transitions.create(
+      ['box-shadow', 'background-color', 'color', 'filter'],
+      {
+        duration: theme.transitions.duration.standard,
+        easing: theme.transitions.easing.easeInOut,
+      },
+    ),
   },
 
   '&:active': {
-    boxShadow: theme.shadows[1],
+    boxShadow: theme.shadows[2],
+    transition: theme.transitions.create(['box-shadow'], {
+      duration: theme.transitions.duration.standard,
+      easing: theme.transitions.easing.easeInOut,
+    }),
   },
 }));
 
