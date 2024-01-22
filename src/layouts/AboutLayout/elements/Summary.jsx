@@ -14,7 +14,7 @@ const paragraphStringArr = [
           providing exceptional service from start to finish. We offer private
           airport transportation to and from Norman Manley International Airport
           in Kingston or Donald Sangster's International Airport in
-          Montego. With our 24/7 availability, we're dedicated to assisting
+          Montego Bay. With our 24/7 availability, we're dedicated to assisting
           you every step of the way, paying close attention to every detail so
           you can relax and enjoy the trip of a lifetime.`,
   `Experience the thrill of adventure, the beauty of nature, and the
