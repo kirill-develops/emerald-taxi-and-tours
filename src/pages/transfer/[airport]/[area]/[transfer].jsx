@@ -1,117 +1,70 @@
 import Head from 'next/head';
-import React, { createContext } from 'react';
 import { useRouter } from 'next/router';
-import { transferData } from '@data/transfers';
+import React from 'react';
+import { transferData } from '@data/controllers/transfer';
 import Fallback from '@components/Fallback';
-import Layout from '@components/Layout';
-import FormContextProvider from '@components/FormComponents/FormContextProvider';
-import BookingLayout from '@components/BookingLayout';
-import AboutTransfer from '@PageTransfer/AboutTransfer';
+import PageLayout from '@layouts/PageLayout/';
+import FormContextProvider from '@context/FormContextProvider';
+import DetailedPageLayout from '@layouts/DetailedPageLayout/';
+import { generateAllTransferPaths } from '../../../../pageUtils/generatePaths';
+import fetchAndUpdateTripAdvisorData from '../../../../pageUtils/transfer/fetchAndUpdateTripAdvisorData';
+import fetchTransferParams from '../../../../pageUtils/transfer/fetchTransferParams';
+import fetchLocationIdIfNeeded from '../../../../pageUtils/transfer/fetchLocationIdIfNeeded';
 
 export async function getStaticPaths() {
-  function generatePaths(transferData) {
-    const paths = [];
-
-    transferData.forEach((transferArea) => {
-      const areaLink = transferArea.link;
-      const airport = transferArea.airportLink;
-
-      transferArea.destinations.forEach((destination) => {
-        const transferLink = destination.link;
-
-        const path = {
-          params: {
-            airport: airport,
-            area: areaLink,
-            transfer: transferLink,
-          },
-        };
-
-        paths.push(path);
-      });
-    });
-
-    return paths;
-  }
-
-  const paths = generatePaths(transferData);
+  const paths = generateAllTransferPaths(transferData);
 
   return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
-  const transferAirport = transferData.filter(
-    (transferArea) => transferArea.airportLink === params.airport,
-  );
+  const transferParams = await fetchTransferParams(params);
 
-  if (!transferAirport) {
-    return {
-      notFound: true,
-    };
+  if (transferParams.notFound) {
+    return { notFound: true };
   }
 
-  const transferArea = transferAirport.find(
-    (transferArea) => transferArea.link === params.area,
+  let locationId = await fetchLocationIdIfNeeded(transferParams);
+
+  const updatedTransferParams = await fetchAndUpdateTripAdvisorData(
+    transferParams,
+    locationId,
   );
-
-  if (!transferArea) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const transferParams = transferArea?.destinations.find(
-    (destination) => destination.link === params.transfer,
-  );
-
-  if (!transferParams) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const { destinations, ...areaParams } = transferArea;
 
   return {
     props: {
-      transferParams,
-      areaParams,
+      params: updatedTransferParams,
     },
     revalidate: 43200,
   };
 }
 
-export const ParamContext = createContext();
-
-function DynamicTransfer({ transferParams, areaParams }) {
+export default React.memo(function DynamicTransfer({ params }) {
   const router = useRouter();
 
   if (router.isFallback) {
     return <Fallback />;
   }
 
+  const contextParams = { ...params, type: 'transfer' };
+  const { name, area: { name: areaName, airport } = {} } = params;
+
   return (
     <>
       <Head>
         <title>
-          Transfers: {transferParams.name}, {areaParams.name} &{' '}
-          {areaParams.airport}| EMERALD Taxi & Tours
+          {name}, {areaName} {'<>'} {airport} Transfer | EMERALD Taxi & Tours
         </title>
       </Head>
-      <Layout
-        title={transferParams.name}
-        subheader={areaParams.name}
-        airport={areaParams.airport}
+      <PageLayout
+        title={name}
+        subheader={areaName}
+        airport={airport}
       >
-        <FormContextProvider
-          value={{ transferParams, areaParams, type: 'transfer' }}
-        >
-          <BookingLayout />
-          <AboutTransfer />
+        <FormContextProvider value={contextParams}>
+          <DetailedPageLayout />
         </FormContextProvider>
-      </Layout>
+      </PageLayout>
     </>
   );
-}
-
-export default DynamicTransfer;
+});

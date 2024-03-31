@@ -1,10 +1,6 @@
 import { experimental_extendTheme, responsiveFontSizes } from "@mui/material";
-import { roboto } from "@material/theme";
 
 export let experimentalTheme = experimental_extendTheme({
-  typography: {
-    fontFamily: roboto.style.fontFamily,
-  },
   colorSchemes: {
     light: {
       palette: {
@@ -130,6 +126,4 @@ export let experimentalTheme = experimental_extendTheme({
       }
     }
   }
-})
-
-experimentalTheme = responsiveFontSizes(experimentalTheme);
+});

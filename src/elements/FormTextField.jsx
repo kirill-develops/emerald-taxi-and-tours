@@ -4,6 +4,7 @@ const TextField = dynamic(() => import('@mui/material/TextField'));
 import { useFormikContext } from 'formik';
 import React from 'react';
 import usePhoneField from '@hooks/usePhoneField';
+import useFieldSizeGetter from '../components/DetailedPageLayout/BookingLayout/FormComponents/hooks/useFieldSizeGetter';
 
 function FormTextField({
   stepName,
@@ -11,6 +12,7 @@ function FormTextField({
   label,
   type = 'text',
   required = true,
+  second = false,
   sx,
   mobileNumber: mobile = false,
   ...props
@@ -22,6 +24,10 @@ function FormTextField({
     fieldName,
     mobile,
   );
+
+  const secondFieldStyles = second && { mt: { xxs: 1, sm: 0 } };
+
+  const size = useFieldSizeGetter();
 
   return (
     <TextField
@@ -40,8 +46,9 @@ function FormTextField({
       }
       placeholder={placeholderText}
       variant="outlined"
-      sx={{ ...sx }}
+      sx={{ ...secondFieldStyles, ...sx }}
       required={required}
+      size={size}
       fullWidth
       {...props}
     />

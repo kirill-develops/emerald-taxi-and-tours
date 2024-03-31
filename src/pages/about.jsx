@@ -1,7 +1,7 @@
 import React from 'react';
-import Layout from '@components/Layout';
+import PageLayout from '@layouts/PageLayout/';
 import Head from 'next/head';
-import AboutLayout from '@components/AboutLayout/';
+import AboutLayout from '@layouts/AboutLayout/';
 
 export default function About() {
   return (
@@ -9,9 +9,9 @@ export default function About() {
       <Head>
         <title>About US | EMERALD Taxi & Tours</title>
       </Head>
-      <Layout title="About Us">
+      <PageLayout title="About Us">
         <AboutLayout />
-      </Layout>
+      </PageLayout>
     </>
   );
 }

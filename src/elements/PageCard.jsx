@@ -1,15 +1,47 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
+import MaxWidthContainer from '@elements/MaxWidthContainer';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-const PageCard = styled(Card)(({ theme }) =>
-  theme.unstable_sx({
+const StyledPageCard = styled(Card)(({ theme, sx }) => {
+  const isBelowMdBreakpoint = useMediaQuery((theme) =>
+    theme.breakpoints.down('md'),
+  );
+
+  return theme.unstable_sx({
     width: '100%',
-    py: { xxs: 1, md: 3 },
+    minWidth: 'fit-content',
+    maxWidth: isBelowMdBreakpoint ? 'unset' : 'fit-content',
+    flexGrow: 1,
+    backgroundColor: (theme) => theme.palette.secondary.container,
+    color: (theme) => theme.palette.secondary.containerText,
+    py: { xxs: 2, md: 3 },
     borderRadius: 0,
-    borderLeft: 'none',
-    borderRight: 'none',
-  }),
-);
+    borderLeft: { xxs: 'none', md: `1px solid ${theme.palette.divider}` },
+    borderRight: { xxs: 'none', md: `1px solid ${theme.palette.divider}` },
+    ...sx,
+  });
+});
 
-export default React.memo(PageCard);
+export default React.memo(function PageCard({
+  children,
+  disableStack = false,
+  maxWidth,
+  ...rest
+}) {
+  return (
+    <StyledPageCard
+      variant="outlined"
+      {...rest}
+    >
+      <MaxWidthContainer
+        rowGap={0}
+        disableStack={disableStack}
+        maxWidth={maxWidth}
+      >
+        {children}
+      </MaxWidthContainer>
+    </StyledPageCard>
+  );
+});

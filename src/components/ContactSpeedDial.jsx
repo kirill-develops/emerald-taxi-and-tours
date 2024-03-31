@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import Backdrop from '@mui/material/Backdrop';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import SpeedDial, { speedDialClasses } from '@mui/material/SpeedDial';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import WhatsappIcon from '@mui/icons-material/Whatsapp';
-import { QuestionAnswer } from '@mui/icons-material';
+import WhatsappIcon from '@mui/icons-material/WhatsApp';
+import QuestionAnswer from '@mui/icons-material/QuestionAnswer';
+import React, { useState } from 'react';
 import Link from '@material/Link';
 
 const actions = [
@@ -23,17 +24,32 @@ const actions = [
   },
 ];
 
-const backdropStyles = { zIndex: 1 };
+const StyledBackdrop = styled(Backdrop)(({ theme }) =>
+  theme.unstable_sx({ zIndex: 1 }),
+);
 
-const speedDialStyles = {
-  position: 'absolute',
-  bottom: { xs: 105, sm: 45 },
-  right: 45,
-  zIndex: 10,
-  [`& .${speedDialClasses.fab}`]: {
-    backgroundColor: (theme) => theme.palette.info.main,
-  },
-};
+const StyledSpeedDial = styled((props) => (
+  <SpeedDial
+    ariaLabel="Contact Emerald"
+    FabProps={{ elevation: 10 }}
+    icon={<QuestionAnswer />}
+    {...props}
+  />
+))(({ theme }) =>
+  theme.unstable_sx({
+    position: 'fixed',
+    bottom: { xxs: 95, sm: 45 },
+    right: 35,
+    zIndex: theme.zIndex.fab,
+
+    [`& .${speedDialClasses.fab}`]: {
+      height: 50,
+      width: 50,
+      boxShadow: theme.shadows[10],
+      backgroundColor: theme.palette.info.main,
+    },
+  }),
+);
 
 const speedDialActionFabProps = (href, color) => ({
   href,
@@ -49,7 +65,7 @@ const speedDialActionFabProps = (href, color) => ({
   },
 });
 
-function ContactSpeedDial() {
+export default React.memo(function ContactSpeedDial() {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -57,17 +73,11 @@ function ContactSpeedDial() {
 
   return (
     <>
-      <Backdrop
-        open={open}
-        sx={backdropStyles}
-      />
-      <SpeedDial
-        ariaLabel="Contact Emerald"
-        icon={<QuestionAnswer />}
+      <StyledBackdrop open={open} />
+      <StyledSpeedDial
         onOpen={handleOpen}
         onClose={handleClose}
         open={open}
-        sx={speedDialStyles}
       >
         {actions.map(({ name, icon, color, href }) => (
           <SpeedDialAction
@@ -79,9 +89,7 @@ function ContactSpeedDial() {
             FabProps={speedDialActionFabProps(href, color)}
           />
         ))}
-      </SpeedDial>
+      </StyledSpeedDial>
     </>
   );
-}
-
-export default ContactSpeedDial;
+});

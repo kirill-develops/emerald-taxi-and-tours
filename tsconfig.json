@@ -3,15 +3,7 @@
     "baseUrl": "./src",
     "paths": {
       "@*": ["./*"],
-      "@Form/*": ["components/FormComponents/*"],
-      "@Navbar/*": ["components/NavbarLayout/*"],
-      "@NavSearch/*": ["components/NavSearch/*"],
-      "@Stepper/*" : ["components/StepperComponents/*"],
-      "@Tour/*" : ["components/TourComponents/*"],
-      "@DynamicTour/*" : ["components/DynamicTourComponents/*"],
-      "@Transfer/*" : ["components/TransferComponents/*"],
-      "@PageTransfer/*" : ["components/TransferPageComponents/*"],
-      "@Public/*" : ["../public/*"],
+      "@Form/*": ["components/DetailedPageLayout/BookingLayout/FormComponents/*"],
     },
     "lib": [
       "dom",
@@ -20,7 +12,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
@@ -40,8 +32,11 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "next.config.js"  ],
+    "**/*.tsx",
+    "next.config.js",
+    "src/material/theme.js", 
+    "src/material/themeConfig/components.js",
+  ],
   "exclude": [
     "node_modules"
   ]

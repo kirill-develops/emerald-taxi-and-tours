@@ -1,11 +1,11 @@
 import LinearProgress from '@mui/material/LinearProgress';
 import React from 'react';
 import { GridContainer } from '@elements/CustomGridEl';
-import Layout from '@components/Layout';
+import PageLayout from '@layouts/PageLayout/';
 
 function Fallback() {
   return (
-    <Layout>
+    <PageLayout>
       <GridContainer
         flexDirection="column"
         alignItems="stretch"
@@ -16,7 +16,7 @@ function Fallback() {
       >
         <LinearProgress />
       </GridContainer>
-    </Layout>
+    </PageLayout>
   );
 }
 

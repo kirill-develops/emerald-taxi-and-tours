@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import dayjs from 'dayjs';
 import { validatePhoneNumberLength } from 'libphonenumber-js';
-import { tourDate, transferStartDate } from 'hooks/useFormInitialValues';
+import { tourDate, transferStartDate } from '@data/formInitValues';
 
 
 const flightDetailsValidationSchema = Yup.object().shape({
@@ -63,14 +63,15 @@ const flightDetailsValidationSchema = Yup.object().shape({
 
 const tourDetailsValidationSchema = Yup.object({
   tourDetails: Yup.object().shape({
-    date: Yup.date().required('Tour date is required')
+    date: Yup.date()
+      .required('Tour date is required')
       .min(dayjs().subtract(1, 'days'), 'Tour Date cannot be before today'),
-    time: Yup.date().when('date', {
-      is: (date) => date && dayjs(date).isSame(dayjs(), 'day'),
-      then: schema => schema
-        .min(dayjs(tourDate), 'Must be 6 hours in advance')
-        .required('Tour time is required'),
-      otherwise: schema => schema.required('Tour time is required'),
+    time: Yup.date().when('date', (date, schema) => {
+      const sameDay = date && dayjs(date).isSame(dayjs(), 'day');
+
+      return schema
+        .required('Tour time is required')
+        .min(sameDay ? dayjs().add(6, 'hours') : dayjs(), 'Must be 6 hours in advance');
     }),
     accomName: Yup.string().required('Accommodation name is required'),
     area: Yup.string().required('Area is required'),
@@ -101,8 +102,8 @@ const personalDetailsValidationSchema = Yup.object({
       .email('Invalid email address')
       .required('Email is required'),
     emailConfirm: Yup.string()
-      .test('email-match', 'Emails must match', (value) => {
-        return value === Yup.ref('email');
+      .test('email-match', 'Emails must match', function (value) {
+        return value === this.resolve(Yup.ref('email'));
       })
       .required('Email confirmation is required'),
     country: Yup.string().required('Country is required'),
@@ -139,16 +140,12 @@ const personalDetailsValidationSchema = Yup.object({
 
 
 const paymentDetailsValidationSchema = Yup.object({
-  paymentDetails: Yup.object().shape({
-    paymentAuthorized: Yup.boolean().oneOf([true], 'You must authorize payment'),
-  })
+  paymentDetails: Yup.object()
 });
 
 
 const confirmDetailsValidationSchema = Yup.object({
-  confirmDetails: Yup.object().shape({
-    userConfirmed: Yup.boolean().oneOf([true], 'You must confirm the details'),
-  })
+  confirmDetails: Yup.object()
 });
 
 
