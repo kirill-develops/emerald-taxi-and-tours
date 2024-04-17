@@ -13,10 +13,8 @@ const GridImageItem = styled(GridItem)(({ theme }) =>
 );
 
 export default React.memo(function GridImage({ picData, muiImageSizes }) {
-  const {
-    caption,
-    images: { original: { url = picData.images.large.url } = { images: {} } },
-  } = picData;
+  const { caption } = picData;
+  const url = picData?.images?.large?.url;
 
   return (
     <GridImageItem>
