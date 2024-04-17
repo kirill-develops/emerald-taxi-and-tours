@@ -50,7 +50,7 @@ const Content = styled((props) => (
     lg={9.5}
     {...props}
   />
-))();
+))({});
 
 export default React.memo(function TourLayout() {
   return (
