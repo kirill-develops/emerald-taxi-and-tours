@@ -79,7 +79,6 @@ function GridCardWrapper({ noGrid, children, ...rest }) {
     ),
     [children],
   );
-  console.log(rest);
 
   return noGrid ? (
     wrappedChildren
