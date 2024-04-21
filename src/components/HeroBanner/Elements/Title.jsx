@@ -1,4 +1,4 @@
-import { darken } from '@mui/material';
+import { darken } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
