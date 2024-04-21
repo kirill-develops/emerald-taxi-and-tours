@@ -6,7 +6,9 @@ import {
   SearchEndAdornment,
   SearchStartAdornment,
 } from './Elements/SearchAdornments';
-import { inputBaseClasses, outlinedInputClasses, styled } from '@mui/material';
+import { inputBaseClasses } from '@mui/material/InputBase';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import { styled } from '@mui/material';
 
 const textColor = (theme) => theme.palette.tertiary.main;
 
