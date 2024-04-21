@@ -2,6 +2,7 @@ import { tourData } from '@data/controllers/tour';
 
 export default async function fetchTourParams(params) {
    const { tour: tourParam, area: areaParam } = params;
+
    const isCurrentTour = (tour) =>
       tourParam === tour.link && areaParam === tour.area_link;
 
