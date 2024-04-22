@@ -8,7 +8,7 @@ import {
 } from './Elements/SearchAdornments';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const textColor = (theme) => theme.palette.tertiary.main;
 
